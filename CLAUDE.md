@@ -22,7 +22,12 @@ des horaires (→ adhan-js) et `zoom` pour la taille du texte (→ `font-size` d
 
 ## Branches et mise en ligne
 
-- On travaille sur **`dev`**. Une phase validée est fusionnée dans **`main`**, qui est mise en ligne.
+- **Jamais de commit direct sur `dev` ni sur `main`.** Chaque travail suit ce chemin :
+  1. une **issue** GitHub (`gh issue create`), prévue dans le plan de la phase ;
+  2. une **branche** créée depuis `dev`, nommée d'après l'issue : `feat/12-horaires-priere`, `fix/…`, `docs/…` ;
+  3. des **commits** courts qui citent l'issue (`(#12)`) ;
+  4. une **PR vers `dev`** (`gh pr create --base dev`) avec `Closes #12`, fusionnée quand la CI est verte.
+- Une phase validée passe de `dev` à **`main`** par une PR ; `main` est mise en ligne.
 - `.github/workflows/ci.yml` : lint, format, tests, build et Playwright sur chaque push ; déploiement GitHub Pages
   seulement depuis `main`. URL : `https://th3-attacker.github.io/ma-routine/` (`base: '/ma-routine/'`).
 
