@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>ELHADJ · الحاج</title>
+    <meta name="description" content="Prières, athkar, Coran, budget et projets au quotidien." />
+    <meta name="theme-color" content="#F1F2F7" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="ELHADJ" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/logo.svg" sizes="any" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
+    <script>
+      // Applique langue, thème et taille du texte avant l'affichage, pour éviter un flash.
+      // Mêmes clés que src/app/device-prefs.ts.
+      ;(function () {
+        var h = document.documentElement
+        function get(k) {
+          try {
+            return localStorage.getItem(k)
+          } catch (e) {
+            return null
+          }
+        }
+        var lang = get('elhadj.lang')
+        if (lang !== 'ar' && lang !== 'fr') lang = /^ar\b/i.test(navigator.language || '') ? 'ar' : 'fr'
+        h.lang = lang
+        h.dir = lang === 'ar' ? 'rtl' : 'ltr'
+        var mode = get('elhadj.mode')
+        var dark = mode === 'dark' || (mode !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)
+        if (dark) h.classList.add('dark')
+        var sizes = { s: 92, m: 100, l: 110, xl: 122 }
+        var size = sizes[get('elhadj.size')]
+        if (size) h.style.fontSize = size + '%'
+      })()
+    </script>
+  </head>
+  <body>
+    <noscript>ELHADJ a besoin de JavaScript. · يحتاج ELHADJ إلى JavaScript.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

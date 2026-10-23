@@ -1,0 +1,57 @@
+{
+  "app": {
+    "name": "ELHADJ",
+    "description": "Prières, athkar, Coran, budget et projets au quotidien."
+  },
+  "tabs": {
+    "label": "Sections",
+    "today": "Aujourd’hui",
+    "prayer": "Prière",
+    "athkar": "Athkar",
+    "budget": "Budget",
+    "projects": "Projets"
+  },
+  "header": {
+    "switchLang": "Passer en arabe",
+    "appearance": "Apparence : {{mode}}",
+    "settings": "Réglages",
+    "close": "Fermer"
+  },
+  "sync": {
+    "local": "Sur cet appareil",
+    "cloud": "Synchronisé",
+    "loading": "Chargement"
+  },
+  "theme": {
+    "auto": "Automatique",
+    "light": "Clair",
+    "dark": "Sombre"
+  },
+  "size": {
+    "s": "Petit",
+    "m": "Normal",
+    "l": "Grand",
+    "xl": "Très grand"
+  },
+  "settings": {
+    "title": "Réglages",
+    "device": "Appareil",
+    "language": "Langue",
+    "appearance": "Apparence",
+    "textSize": "Taille du texte",
+    "later": "Les autres réglages arrivent avec les prochaines étapes."
+  },
+  "today": {
+    "salam": "As-salâmu ‘alaykum",
+    "salamName": "As-salâmu ‘alaykum, {{name}}"
+  },
+  "soon": {
+    "title": "Bientôt ici",
+    "body": "Cette section arrive dans une prochaine étape."
+  },
+  "pwa": {
+    "offlineReady": "ELHADJ fonctionne maintenant hors connexion.",
+    "needRefresh": "Une nouvelle version d’ELHADJ est prête.",
+    "reload": "Mettre à jour"
+  }
+}
