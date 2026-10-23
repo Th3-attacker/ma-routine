@@ -1,19 +1,14 @@
 import { expect, test } from '@playwright/test'
 
+import { openApp } from './helpers.ts'
+
 const LANGS = ['fr', 'ar'] as const
 const SIZES = ['s', 'm', 'l', 'xl'] as const
 
 for (const lang of LANGS) {
   for (const size of SIZES) {
     test(`pas de débordement — ${lang}, taille ${size}`, async ({ page }) => {
-      await page.addInitScript(
-        ([l, s]) => {
-          localStorage.setItem('elhadj.lang', l)
-          localStorage.setItem('elhadj.size', s)
-        },
-        [lang, size],
-      )
-      await page.goto('./')
+      await openApp(page, { 'elhadj.lang': lang, 'elhadj.size': size })
       await expect(page.locator('html')).toHaveAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr')
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
 
@@ -39,8 +34,7 @@ for (const lang of LANGS) {
 }
 
 test('les onglets naviguent et l’adresse garde le hash', async ({ page }) => {
-  await page.addInitScript(() => localStorage.setItem('elhadj.lang', 'fr'))
-  await page.goto('./')
+  await openApp(page, { 'elhadj.lang': 'fr' })
   await page.getByRole('link', { name: 'Prière' }).click()
   await expect(page).toHaveURL(/#\/priere$/)
   await page.reload()
@@ -48,8 +42,7 @@ test('les onglets naviguent et l’adresse garde le hash', async ({ page }) => {
 })
 
 test('le bouton de langue et les réglages fonctionnent', async ({ page }) => {
-  await page.addInitScript(() => localStorage.setItem('elhadj.lang', 'fr'))
-  await page.goto('./')
+  await openApp(page, { 'elhadj.lang': 'fr' })
   await page.getByRole('button', { name: 'Passer en arabe' }).click()
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl')
   await page.getByRole('button', { name: 'الإعدادات' }).click()
@@ -59,4 +52,37 @@ test('le bouton de langue et les réglages fonctionnent', async ({ page }) => {
   await expect(page.locator('html')).toHaveClass(/dark/)
   await dialog.getByRole('radio', { name: 'كبير جدًا' }).click()
   await expect(page.locator('html')).toHaveAttribute('style', /font-size: 122%/)
+})
+
+test('l’écran d’accueil enregistre le prénom', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('elhadj.lang', 'fr'))
+  await page.goto('./')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Bienvenue sur ELHADJ')
+  await page.getByLabel('Ton prénom').fill('Elhadj')
+  await page.getByRole('button', { name: 'Commencer' }).click()
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('As-salâmu ‘alaykum, Elhadj')
+  await page.reload()
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('As-salâmu ‘alaykum, Elhadj')
+})
+
+test('les réglages changent la ville et le prénom', async ({ page }) => {
+  await openApp(page, { 'elhadj.lang': 'fr' })
+  await page.getByRole('button', { name: 'Réglages' }).click()
+  const dialog = page.getByRole('dialog')
+  await dialog.getByLabel('Ton prénom').fill('Aïcha')
+  await dialog.getByRole('combobox', { name: 'Ville' }).click()
+  await page.getByRole('option', { name: 'Dakar' }).click()
+  await expect(dialog.getByRole('combobox', { name: 'Ville' })).toHaveText('Dakar')
+  await dialog.getByRole('button', { name: 'Enregistrer' }).click()
+  await expect(dialog).toBeHidden()
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('As-salâmu ‘alaykum, Aïcha')
+})
+
+test('les réglages affichent une erreur traduite', async ({ page }) => {
+  await openApp(page, { 'elhadj.lang': 'ar' })
+  await page.getByRole('button', { name: 'الإعدادات' }).click()
+  const dialog = page.getByRole('dialog')
+  await dialog.getByLabel('الصفحة الحالية').fill('900')
+  await dialog.getByRole('button', { name: 'حفظ' }).click()
+  await expect(dialog.getByText('الصفحة الحالية أكبر من عدد الصفحات.')).toBeVisible()
 })

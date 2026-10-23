@@ -1,9 +1,9 @@
+import { XIcon } from 'lucide-react'
+import { useId } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { TEXT_SIZES, THEME_MODES } from '@/app/device-prefs'
 import { usePreferences } from '@/app/PreferencesProvider'
-import { XIcon } from 'lucide-react'
-
 import {
   Drawer,
   DrawerClose,
@@ -12,13 +12,20 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from '@/components/ui/drawer'
+import { Skeleton } from '@/components/ui/skeleton'
+import { Switch } from '@/components/ui/switch'
+import { updateSettings, useSettings } from '@/db/settings'
+import { SettingsForm } from '@/features/settings/SettingsForm'
 
 import { ChipGroup } from './ChipGroup'
+import { labelClass, SectionTitle } from './Field'
 import { ThemeIcon } from './ThemeIcon'
 
 export function SettingsDrawer({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const { t } = useTranslation()
   const { lang, setLang, themeMode, setThemeMode, textSize, setTextSize } = usePreferences()
+  const settings = useSettings()
+  const ramadanId = useId()
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
@@ -33,13 +40,11 @@ export function SettingsDrawer({ open, onOpenChange }: { open: boolean; onOpenCh
           >
             <XIcon className="size-5" aria-hidden="true" />
           </DrawerClose>
-          <DrawerDescription className="sr-only">{t('settings.later')}</DrawerDescription>
         </DrawerHeader>
+        <DrawerDescription className="sr-only">{t('settings.later')}</DrawerDescription>
         <div className="flex flex-col gap-6 overflow-y-auto overscroll-contain px-4 pb-[calc(22px+env(safe-area-inset-bottom,0px))]">
           <section aria-labelledby="settings-device" className="flex flex-col gap-4">
-            <h3 id="settings-device" className="font-display text-lg font-semibold rtl:font-bold">
-              {t('settings.device')}
-            </h3>
+            <SectionTitle id="settings-device">{t('settings.device')}</SectionTitle>
             <ChipGroup
               label={t('settings.language')}
               value={lang}
@@ -69,7 +74,32 @@ export function SettingsDrawer({ open, onOpenChange }: { open: boolean; onOpenCh
               onChange={setTextSize}
               options={TEXT_SIZES.map((s) => ({ value: s, label: t(`size.${s}`) }))}
             />
+            <div className="flex flex-col gap-[7px]">
+              <span className={labelClass}>{t('settings.ramadan')}</span>
+              <div className="flex items-center gap-3 rounded-[14px] border border-line bg-surface px-3.5 py-3">
+                <label htmlFor={ramadanId} className="min-w-0 flex-1">
+                  <span className="block font-bold">{t('settings.ramadanPreview')}</span>
+                  <span className="block text-[0.8125rem] text-muted-foreground">{t('settings.ramadanHint')}</span>
+                </label>
+                <Switch
+                  id={ramadanId}
+                  checked={settings?.ramadanPreview ?? false}
+                  disabled={!settings}
+                  onCheckedChange={(v) => void updateSettings({ ramadanPreview: v })}
+                  className="data-checked:bg-ok"
+                />
+              </div>
+            </div>
           </section>
+          {settings ? (
+            <SettingsForm settings={settings} onSaved={() => onOpenChange(false)} />
+          ) : (
+            <div className="flex flex-col gap-3" aria-busy="true" aria-label={t('common.loading')}>
+              <Skeleton className="h-6 w-32" />
+              <Skeleton className="h-11 w-full" />
+              <Skeleton className="h-11 w-full" />
+            </div>
+          )}
           <p className="text-[0.8125rem] text-muted-foreground">{t('settings.later')}</p>
         </div>
       </DrawerContent>

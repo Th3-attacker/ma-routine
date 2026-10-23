@@ -1,6 +1,9 @@
 import { useId, type ReactNode } from 'react'
 
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
+import { cn } from '@/lib/utils'
+
+import { labelClass } from './Field'
 
 type Option<T extends string> = { value: T; label: ReactNode; lang?: string }
 
@@ -22,10 +25,7 @@ export function ChipGroup<T extends string>({
   const legendId = useId()
   return (
     <fieldset className="flex min-w-0 flex-col gap-[7px]">
-      <legend
-        id={legendId}
-        className="mb-[7px] text-[0.71875rem] font-extrabold tracking-[0.07em] text-ink-2 uppercase rtl:text-[0.8125rem] rtl:tracking-normal rtl:normal-case"
-      >
+      <legend id={legendId} className={cn(labelClass, 'mb-[7px]')}>
         {label}
       </legend>
       <ToggleGroup
