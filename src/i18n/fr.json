@@ -39,7 +39,45 @@
     "language": "Langue",
     "appearance": "Apparence",
     "textSize": "Taille du texte",
-    "later": "Les autres réglages arrivent avec les prochaines étapes."
+    "later": "Notifications, compte et sauvegarde arrivent avec les prochaines étapes.",
+    "ramadan": "Mode Ramadan",
+    "ramadanPreview": "Aperçu du mode Ramadan",
+    "ramadanHint": "Il s’active tout seul pendant Ramadan. L’aperçu te le montre dès maintenant.",
+    "profile": "Profil",
+    "name": "Ton prénom",
+    "namePlaceholder": "Pour te saluer",
+    "place": "Lieu",
+    "city": "Ville",
+    "customCity": "Autre lieu (coordonnées)",
+    "myPosition": "Ma position",
+    "lat": "Latitude",
+    "lng": "Longitude",
+    "coordsHint": "Coordonnées utilisées seulement si « Autre lieu » est choisi, avec le fuseau horaire de ton appareil.",
+    "useLocation": "Utiliser ma position",
+    "locating": "Recherche de ta position…",
+    "locationError": "Position indisponible. Vérifie que la localisation est autorisée.",
+    "locationFound": "Position trouvée",
+    "calc": "Calcul des horaires",
+    "method": "Méthode de calcul",
+    "asr": "Heure de Asr",
+    "asrStandard": "Standard (malikite, chaféite, hanbalite)",
+    "asrHanafi": "Hanafite",
+    "tune": "Ajustements en minutes (pour coller à ta mosquée)",
+    "calendar": "Calendrier",
+    "hijriAdj": "Date hégirienne",
+    "budget": "Budget",
+    "currency": "Devise",
+    "quran": "Coran",
+    "wird": "Wird (pages / jour)",
+    "page": "Page actuelle",
+    "total": "Pages du mushaf",
+    "totalHint": "604 pour le mushaf de Médine (Hafs). Mets le nombre de pages de ton propre mushaf.",
+    "habits": "Habitudes (une par ligne)",
+    "save": "Enregistrer",
+    "saved": "Réglages enregistrés",
+    "days_one": "{{value}} jour",
+    "days_other": "{{value}} jours",
+    "habitsTitle": "Habitudes"
   },
   "today": {
     "salam": "As-salâmu ‘alaykum",
@@ -53,5 +91,47 @@
     "offlineReady": "ELHADJ fonctionne maintenant hors connexion.",
     "needRefresh": "Une nouvelle version d’ELHADJ est prête.",
     "reload": "Mettre à jour"
+  },
+  "methods": {
+    "mwl": "Ligue islamique mondiale · 18° / 17°",
+    "uqa": "Umm al-Qura · 18,5° / 90 min",
+    "egy": "Égypte · 19,5° / 17,5°",
+    "kar": "Karachi · 18° / 18°",
+    "isna": "Amérique du Nord · 15° / 15°",
+    "uoif": "France UOIF · 12° / 12°"
+  },
+  "prayers": {
+    "fajr": "Fajr",
+    "sunrise": "Chourouq",
+    "dhuhr": "Dhohr",
+    "asr": "Asr",
+    "maghrib": "Maghrib",
+    "isha": "Icha",
+    "jumua": "Joumou‘a"
+  },
+  "habits": {
+    "sport": "Sport 20 min",
+    "read": "Lire 10 pages",
+    "water": "Boire 2 L d’eau",
+    "family": "Appeler la famille",
+    "sleep": "Dormir avant 23 h"
+  },
+  "errors": {
+    "required": "Ce champ est obligatoire.",
+    "number": "Entre un nombre.",
+    "integer": "Entre un nombre entier.",
+    "range": "Entre une valeur de {{min}} à {{max}}.",
+    "tooLong": "{{max}} caractères au maximum.",
+    "coords": "Entre une latitude et une longitude valides.",
+    "pageAfterTotal": "La page actuelle dépasse le nombre de pages."
+  },
+  "welcome": {
+    "title": "Bienvenue sur ELHADJ",
+    "intro": "Deux réglages pour calculer tes horaires de prière. Tout reste sur ton téléphone.",
+    "start": "Commencer",
+    "hint": "Tu pourras tout changer plus tard dans Réglages."
+  },
+  "common": {
+    "loading": "Chargement…"
   }
 }
