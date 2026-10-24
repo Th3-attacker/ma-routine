@@ -1,0 +1,221 @@
+// Versets et hadiths du jour, repris de maquette-elhadj.html. Textes à faire vérifier en phase 5.
+
+export type DailyText = { ar: string; fr: string; refFr: string; refAr: string; hadith?: true }
+
+export const VERSES: readonly DailyText[] = [
+  {
+    ar: 'فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ',
+    fr: 'Souvenez-vous de Moi, Je Me souviendrai de vous. Soyez-Moi reconnaissants et ne soyez pas ingrats.',
+    refFr: 'Al-Baqara, 152',
+    refAr: 'البقرة: 152',
+  },
+  {
+    ar: 'إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ',
+    fr: 'Les actes ne valent que par les intentions.',
+    refFr: 'Al-Bukhârî et Muslim',
+    refAr: 'متفق عليه',
+    hadith: true,
+  },
+  {
+    ar: 'وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ',
+    fr: 'Quand Mes serviteurs t’interrogent sur Moi, Je suis tout proche : Je réponds à l’appel de celui qui M’invoque.',
+    refFr: 'Al-Baqara, 186',
+    refAr: 'البقرة: 186',
+  },
+  {
+    ar: 'أَحَبُّ الْأَعْمَالِ إِلَى اللَّهِ أَدْوَمُهَا وَإِنْ قَلَّ',
+    fr: 'Les actes les plus aimés d’Allah sont les plus réguliers, même s’ils sont peu nombreux.',
+    refFr: 'Al-Bukhârî et Muslim',
+    refAr: 'متفق عليه',
+    hadith: true,
+  },
+  {
+    ar: 'فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ﴿٥﴾ إِنَّ مَعَ الْعُسْرِ يُسْرًا ﴿٦﴾ ',
+    fr: 'À côté de la difficulté, il y a une facilité. Oui, à côté de la difficulté, il y a une facilité.',
+    refFr: 'Ash-Sharh, 5-6',
+    refAr: 'الشرح: 5-6',
+  },
+  {
+    ar: 'الْكَلِمَةُ الطَّيِّبَةُ صَدَقَةٌ',
+    fr: 'La bonne parole est une aumône.',
+    refFr: 'Al-Bukhârî et Muslim',
+    refAr: 'متفق عليه',
+    hadith: true,
+  },
+  {
+    ar: 'أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ',
+    fr: 'C’est par le rappel d’Allah que les cœurs trouvent l’apaisement.',
+    refFr: 'Ar-Ra‘d, 28',
+    refAr: 'الرعد: 28',
+  },
+  {
+    ar: 'مَا نَقَصَتْ صَدَقَةٌ مِنْ مَالٍ',
+    fr: 'L’aumône ne diminue en rien la richesse.',
+    refFr: 'Muslim',
+    refAr: 'رواه مسلم',
+    hadith: true,
+  },
+  {
+    ar: 'وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا ﴿٢﴾ وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ',
+    fr: 'Celui qui craint Allah, Il lui ménage une issue et lui accorde Ses biens d’où il ne s’y attend pas.',
+    refFr: 'At-Talâq, 2-3',
+    refAr: 'الطلاق: 2-3',
+  },
+  {
+    ar: 'لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ',
+    fr: 'Aucun de vous n’a la foi tant qu’il n’aime pas pour son frère ce qu’il aime pour lui-même.',
+    refFr: 'Al-Bukhârî et Muslim',
+    refAr: 'متفق عليه',
+    hadith: true,
+  },
+  {
+    ar: 'وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ',
+    fr: 'Celui qui place sa confiance en Allah, Il lui suffit.',
+    refFr: 'At-Talâq, 3',
+    refAr: 'الطلاق: 3',
+  },
+  {
+    ar: 'مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ',
+    fr: 'Que celui qui croit en Allah et au Jour dernier dise du bien ou se taise.',
+    refFr: 'Al-Bukhârî et Muslim',
+    refAr: 'متفق عليه',
+    hadith: true,
+  },
+  {
+    ar: 'لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ',
+    fr: 'Si vous êtes reconnaissants, J’augmenterai certes Mes bienfaits pour vous.',
+    refFr: 'Ibrâhîm, 7',
+    refAr: 'إبراهيم: 7',
+  },
+  {
+    ar: 'خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ',
+    fr: 'Le meilleur d’entre vous est celui qui apprend le Coran et l’enseigne.',
+    refFr: 'Al-Bukhârî',
+    refAr: 'رواه البخاري',
+    hadith: true,
+  },
+  {
+    ar: 'لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا',
+    fr: 'Ne désespérez pas de la miséricorde d’Allah : Allah pardonne tous les péchés.',
+    refFr: 'Az-Zumar, 53',
+    refAr: 'الزمر: 53',
+  },
+  {
+    ar: 'الطُّهُورُ شَطْرُ الْإِيمَانِ',
+    fr: 'La purification est la moitié de la foi.',
+    refFr: 'Muslim',
+    refAr: 'رواه مسلم',
+    hadith: true,
+  },
+  {
+    ar: 'يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ',
+    fr: 'Ô vous qui croyez, cherchez secours dans la patience et la prière. Allah est avec les patients.',
+    refFr: 'Al-Baqara, 153',
+    refAr: 'البقرة: 153',
+  },
+  {
+    ar: 'لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ، إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ عِنْدَ الْغَضَبِ',
+    fr: 'Le fort n’est pas celui qui terrasse les autres, mais celui qui se maîtrise dans la colère.',
+    refFr: 'Al-Bukhârî et Muslim',
+    refAr: 'متفق عليه',
+    hadith: true,
+  },
+  {
+    ar: 'وَقُل رَّبِّ زِدْنِي عِلْمًا',
+    fr: 'Et dis : « Mon Seigneur, accrois ma science. »',
+    refFr: 'Tâ-Hâ, 114',
+    refAr: 'طه: 114',
+  },
+  {
+    ar: 'الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ',
+    fr: 'Le musulman est celui dont les musulmans n’ont à craindre ni la langue ni la main.',
+    refFr: 'Al-Bukhârî et Muslim',
+    refAr: 'متفق عليه',
+    hadith: true,
+  },
+  {
+    ar: 'وَقَالَ رَبُّكُمُ ادْعُونِي أَسْتَجِبْ لَكُمْ',
+    fr: 'Votre Seigneur a dit : « Invoquez-Moi, Je vous répondrai. »',
+    refFr: 'Ghâfir, 60',
+    refAr: 'غافر: 60',
+  },
+  {
+    ar: 'إِنَّ اللَّهَ لَا يَنْظُرُ إِلَى صُوَرِكُمْ وَأَمْوَالِكُمْ، وَلَكِنْ يَنْظُرُ إِلَى قُلُوبِكُمْ وَأَعْمَالِكُمْ',
+    fr: 'Allah ne regarde ni vos apparences ni vos biens, mais Il regarde vos cœurs et vos actes.',
+    refFr: 'Muslim',
+    refAr: 'رواه مسلم',
+    hadith: true,
+  },
+  {
+    ar: 'إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ',
+    fr: 'La prière préserve de la turpitude et du blâmable.',
+    refFr: 'Al-‘Ankabût, 45',
+    refAr: 'العنكبوت: 45',
+  },
+  {
+    ar: 'اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ، وَأَتْبِعِ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا، وَخَالِقِ النَّاسَ بِخُلُقٍ حَسَنٍ',
+    fr: 'Crains Allah où que tu sois, fais suivre la mauvaise action d’une bonne qui l’effacera, et traite les gens avec un bon caractère.',
+    refFr: 'At-Tirmidhî',
+    refAr: 'رواه الترمذي',
+    hadith: true,
+  },
+  {
+    ar: 'لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا',
+    fr: 'Allah n’impose à aucune âme une charge supérieure à sa capacité.',
+    refFr: 'Al-Baqara, 286',
+    refAr: 'البقرة: 286',
+  },
+  {
+    ar: 'مَنْ عَمِلَ صَالِحًا مِّن ذَكَرٍ أَوْ أُنثَىٰ وَهُوَ مُؤْمِنٌ فَلَنُحْيِيَنَّهُ حَيَاةً طَيِّبَةً',
+    fr: 'Quiconque, homme ou femme, fait une bonne œuvre en étant croyant, Nous lui ferons vivre une belle vie.',
+    refFr: 'An-Nahl, 97',
+    refAr: 'النحل: 97',
+  },
+  {
+    ar: 'فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ',
+    fr: 'Une fois ta décision prise, place ta confiance en Allah.',
+    refFr: 'Âl ‘Imrân, 159',
+    refAr: 'آل عمران: 159',
+  },
+  {
+    ar: 'وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰ',
+    fr: 'Ton Seigneur t’accordera certes Ses faveurs, et tu seras satisfait.',
+    refFr: 'Ad-Duhâ, 5',
+    refAr: 'الضحى: 5',
+  },
+  {
+    ar: 'وَلَا تَيْأَسُوا مِن رَّوْحِ اللَّهِ',
+    fr: 'Et ne désespérez pas de la miséricorde d’Allah.',
+    refFr: 'Yûsuf, 87',
+    refAr: 'يوسف: 87',
+  },
+  {
+    ar: 'إِنَّ أَكْرَمَكُمْ عِندَ اللَّهِ أَتْقَاكُمْ',
+    fr: 'Le plus noble d’entre vous auprès d’Allah est le plus pieux.',
+    refFr: 'Al-Hujurât, 13',
+    refAr: 'الحجرات: 13',
+  },
+]
+
+/** Pendant Ramadan, un jour sur trois vient de cette liste. */
+export const RAMADAN_VERSES: readonly DailyText[] = [
+  {
+    ar: 'يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ كَمَا كُتِبَ عَلَى الَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ',
+    fr: 'Ô vous qui croyez, le jeûne vous a été prescrit comme il l’a été à ceux d’avant vous, afin que vous atteigniez la piété.',
+    refFr: 'Al-Baqara, 183',
+    refAr: 'البقرة: 183',
+  },
+  {
+    ar: 'مَنْ صَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ',
+    fr: 'Celui qui jeûne le Ramadan avec foi et en espérant la récompense, ses péchés passés lui sont pardonnés.',
+    refFr: 'Al-Bukhârî et Muslim',
+    refAr: 'متفق عليه',
+    hadith: true,
+  },
+  {
+    ar: 'شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ هُدًى لِّلنَّاسِ',
+    fr: 'Le mois de Ramadan, au cours duquel le Coran a été descendu comme guide pour les gens.',
+    refFr: 'Al-Baqara, 185',
+    refAr: 'البقرة: 185',
+  },
+]
