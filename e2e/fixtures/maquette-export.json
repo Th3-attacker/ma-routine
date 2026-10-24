@@ -1,0 +1,46 @@
+{
+  "app": "ELHADJ",
+  "exportedAt": "2026-10-20T10:00:00.000Z",
+  "profile": {
+    "name": "Elhadj",
+    "cityId": "nkc",
+    "method": "mwl",
+    "asr": 1,
+    "hijriAdj": 0,
+    "currency": "UM",
+    "budgets": { "food": 30000 },
+    "qada": 0,
+    "quran": { "goal": 4, "page": 120, "total": 604, "khatmas": 0 },
+    "habits": [{ "id": "h1", "k": "sport" }]
+  },
+  "days": {},
+  "months": {
+    "2026-10": {
+      "items": [
+        {
+          "id": "t1",
+          "type": "out",
+          "amt": 1500,
+          "cat": "food",
+          "pay": "bankily",
+          "note": "Pain",
+          "date": "2026-10-19",
+          "ts": 5
+        }
+      ]
+    }
+  },
+  "projects": {
+    "p1": {
+      "id": "p1",
+      "name": "Ouvrir ma boutique",
+      "why": "Nourrir ma famille",
+      "color": "--c1",
+      "status": "active",
+      "deadline": "",
+      "created": 1,
+      "tasks": [{ "id": "k1", "t": "Trouver un local", "done": false }]
+    }
+  },
+  "finance": {}
+}

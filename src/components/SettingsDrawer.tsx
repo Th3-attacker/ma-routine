@@ -6,6 +6,7 @@ import { usePreferences } from '@/app/PreferencesProvider'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Switch } from '@/components/ui/switch'
 import { updateSettings, useSettings } from '@/db/settings'
+import { AboutSettings, BackupSettings } from '@/features/backup/BackupSettings'
 import { CallSettings } from '@/features/call/CallSettings'
 import { SecuritySettings } from '@/features/security/SecuritySettings'
 import { SettingsForm } from '@/features/settings/SettingsForm'
@@ -82,6 +83,8 @@ export function SettingsDrawer({ open, onOpenChange }: { open: boolean; onOpenCh
       )}
       {settings && <CallSettings settings={settings} />}
       <SecuritySettings />
+      {settings && <BackupSettings settings={settings} />}
+      <AboutSettings />
       <p className="text-[0.8125rem] text-muted-foreground">{t('settings.later')}</p>
     </AppDrawer>
   )
