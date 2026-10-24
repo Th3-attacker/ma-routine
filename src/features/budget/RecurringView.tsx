@@ -7,6 +7,7 @@ import { z } from 'zod'
 
 import { usePreferences } from '@/app/PreferencesProvider'
 import { AmountInput } from '@/components/AmountInput'
+import { AppSelect } from '@/components/AppSelect'
 import { AppDrawer } from '@/components/AppDrawer'
 import { ChipGroup } from '@/components/ChipGroup'
 import { ColorDot } from '@/components/ColorDot'
@@ -16,7 +17,6 @@ import { EmptyState, TotalsPair } from '@/components/ItemCard'
 import { subClass } from '@/components/Section'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Switch } from '@/components/ui/switch'
 import type { Recurring, Settings } from '@/db/types'
@@ -214,18 +214,13 @@ function RecurringForm({
           {(field) => (
             <Field label={t('rec.day')}>
               {(p) => (
-                <Select value={field.state.value} onValueChange={field.handleChange}>
-                  <SelectTrigger {...p} className={cn(inputClass, 'tabular h-[58px] w-24')}>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent position="popper" className="max-h-72">
-                    {DAYS.map((d) => (
-                      <SelectItem key={d} value={String(d)} className="tabular min-h-11">
-                        {d}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <AppSelect
+                  {...p}
+                  className="w-24"
+                  value={field.state.value}
+                  onChange={field.handleChange}
+                  options={DAYS.map((d) => ({ value: String(d), label: String(d) }))}
+                />
               )}
             </Field>
           )}
