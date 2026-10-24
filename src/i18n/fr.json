@@ -363,5 +363,28 @@
     "noSpeech": "La voix n’est pas disponible sur ce navigateur : seul le bandeau s’affichera.",
     "closedHint": "App fermée : l’appel arrivera en notification avec les notifications d’adhan.",
     "close": "Fermer"
+  },
+  "categories": {
+    "food": "Alimentation",
+    "transport": "Transport",
+    "home": "Logement",
+    "bills": "Factures & crédit",
+    "family": "Famille",
+    "health": "Santé",
+    "sadaqa": "Sadaqa",
+    "clothes": "Habillement",
+    "leisure": "Loisirs",
+    "other": "Autre",
+    "salary": "Salaire",
+    "business": "Commerce",
+    "gift": "Don reçu",
+    "other_in": "Autre revenu"
+  },
+  "payMethods": {
+    "cash": "Espèces",
+    "bankily": "Bankily",
+    "masrvi": "Masrvi",
+    "card": "Banque / carte",
+    "other": "Autre"
   }
 }

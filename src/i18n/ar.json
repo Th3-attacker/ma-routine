@@ -379,5 +379,28 @@
     "minutesValue_two": "دقيقتان",
     "minutesValue_few": "{{count}} دقائق",
     "minutesValue_many": "{{count}} دقيقة"
+  },
+  "categories": {
+    "food": "التغذية",
+    "transport": "النقل",
+    "home": "السكن",
+    "bills": "الفواتير والرصيد",
+    "family": "العائلة",
+    "health": "الصحة",
+    "sadaqa": "الصدقة",
+    "clothes": "الملابس",
+    "leisure": "الترفيه",
+    "other": "أخرى",
+    "salary": "الراتب",
+    "business": "التجارة",
+    "gift": "هدية",
+    "other_in": "دخل آخر"
+  },
+  "payMethods": {
+    "cash": "نقدًا",
+    "bankily": "بنكيلي",
+    "masrvi": "مصرفي",
+    "card": "بنك / بطاقة",
+    "other": "أخرى"
   }
 }

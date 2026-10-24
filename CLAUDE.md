@@ -94,7 +94,7 @@ focus visible · `prefers-reduced-motion`.
 ## Phases
 
 0 Mise en place ✅ · 1A Cœur hors connexion (Dexie, Réglages, Aujourd'hui, Prière, Athkar, tasbih) ✅ ·
-1A+ Verrou à 4 chiffres et appel avant l'adhan (Ajout n° 1) ·
+1A+ Verrou à 4 chiffres et appel avant l'adhan (Ajout n° 1) ✅ ·
 1B Budget, projets, bilan du soir, Ramadan, export/import (dont JSON de la maquette) · 2 Compte + synchro Supabase
 (code à 6 chiffres par e-mail) · 3 Notifications d'adhan · 4 Conseils sans IA · 5 Finitions (a11y, Lighthouse ≥ 90,
 README FR/AR, liste des textes à faire vérifier).
