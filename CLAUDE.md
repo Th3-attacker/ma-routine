@@ -46,6 +46,7 @@ Web Push VAPID (phase 3) · Vitest + Testing Library · Playwright (360 et 390 p
 pnpm dev            # serveur local
 pnpm test           # Vitest
 pnpm test:e2e       # Playwright (après pnpm build)
+pnpm verify         # formate, puis lint + types + tests (avant chaque commit)
 pnpm lint && pnpm format:check
 pnpm build          # tsc -b + vite build
 pnpm icons          # régénère les icônes PWA depuis public/logo.svg (pwa-assets.config.ts)

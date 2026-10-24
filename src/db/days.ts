@@ -62,3 +62,11 @@ export function useDays(ids: readonly string[]): Day[] | undefined {
 export function getMonthDays(month: string): Promise<Day[]> {
   return db.days.where('id').between(`${month}-01`, `${month}-32`).toArray()
 }
+
+/** Journées enregistrées entre deux clés incluses (pour la série et les bilans), indexées par clé. */
+export function useDaysBetween(from: string, to: string): Map<string, Day> | undefined {
+  return useLiveQuery(
+    async () => new Map((await db.days.where('id').between(from, to, true, true).toArray()).map((d) => [d.id, d])),
+    [from, to],
+  )
+}
