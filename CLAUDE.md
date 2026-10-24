@@ -86,6 +86,17 @@ e2e/            tests Playwright
   d'espacement de lettres ni de majuscules forcées sur de l'arabe (`rtl:tracking-normal rtl:normal-case`).
 - Dates : `fr-FR` / `ar-MR-u-nu-latn` (mois mauritaniens, chiffres latins), dans le fuseau de la ville.
 
+## Choix techniques à garder
+
+- **Listes déroulantes : `AppSelect` (natif)**, jamais le Select dessiné de shadcn : sur iPhone il ne défile pas
+  dans un volet du bas. Volets : `AppDrawer`. Suppressions : `ConfirmDialog`.
+- **Toasts traversables** (`pointer-events: none`, sauf leurs boutons) et `scroll-padding` haut/bas : rien ne doit
+  être caché sous la barre d'onglets ou un message.
+- **Montants** : entiers, `formatMoney` (espace insécable classique, pas l'espace fine). En arabe, les nombres
+  (`.tabular`) prennent la police du texte : le 0 de Reem Kufi ressemble à ٥.
+- **Tests** : la CI lance aussi WebKit + iPhone 13 (60 s par test, captures en artefact `playwright-results`).
+  Dans les tests, viser les onglets avec `tab(page, 'Budget')` ; après `page.reload()`, ne pas refaire `goto`.
+
 ## Qualité (toujours)
 
 360 px sans défilement horizontal dans les 2 langues et les 4 tailles · cibles tactiles ≥ 44 px · safe areas ·
@@ -96,7 +107,7 @@ focus visible · `prefers-reduced-motion`.
 
 0 Mise en place ✅ · 1A Cœur hors connexion (Dexie, Réglages, Aujourd'hui, Prière, Athkar, tasbih) ✅ ·
 1A+ Verrou à 4 chiffres et appel avant l'adhan (Ajout n° 1) ✅ ·
-1B Budget, projets, bilan du soir, Ramadan, export/import (dont JSON de la maquette) · 2 Compte + synchro Supabase
+1B Budget, projets, bilan du soir, Ramadan, export/import (dont JSON de la maquette) ✅ · 2 Compte + synchro Supabase
 (code à 6 chiffres par e-mail) · 3 Notifications d'adhan · 4 Conseils sans IA · 5 Finitions (a11y, Lighthouse ≥ 90,
 README FR/AR, liste des textes à faire vérifier).
 
