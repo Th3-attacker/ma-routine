@@ -141,7 +141,8 @@
     "date": "Choisis une date valide, pas après aujourd’hui.",
     "budget": "Entre un montant entier, ou laisse vide.",
     "person": "Indique un nom.",
-    "goalName": "Donne un nom à l’objectif."
+    "goalName": "Donne un nom à l’objectif.",
+    "recName": "Donne un nom."
   },
   "welcome": {
     "title": "Bienvenue sur ELHADJ",
@@ -546,5 +547,26 @@
     "c7": "Vert",
     "c8": "Ocre",
     "c9": "Bleu ciel"
+  },
+  "rec": {
+    "out": "Dépenses fixes / mois",
+    "in": "Revenus fixes / mois",
+    "hint": "Elles s’ajoutent seules à ton budget le jour prévu. Tu peux ensuite les modifier ou les supprimer comme les autres.",
+    "new": "Nouvelle opération récurrente",
+    "emptyTitle": "Aucune opération récurrente",
+    "emptyBody": "Loyer, électricité (Somelec), eau, crédit téléphone, salaire… Ajoute-les une fois, ELHADJ les note chaque mois.",
+    "every": "le {{day}} de chaque mois",
+    "toggle": "Activer ou désactiver : {{name}}",
+    "title": "Opération récurrente",
+    "edit": "Modifier",
+    "name": "Nom",
+    "namePlaceholderOut": "ex. Loyer",
+    "namePlaceholderIn": "ex. Salaire",
+    "day": "Jour du mois",
+    "formHint": "Ajoutée automatiquement chaque mois, à partir de la prochaine date prévue.",
+    "deleteTitle": "Supprimer cette opération récurrente ?",
+    "deleteBody": "Elle ne sera plus ajoutée. Les mouvements déjà notés restent dans ton budget.",
+    "added_one": "{{count}} opération récurrente ajoutée",
+    "added_other": "{{count}} opérations récurrentes ajoutées"
   }
 }

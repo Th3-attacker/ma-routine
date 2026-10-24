@@ -9,6 +9,7 @@ import { TabBar } from '@/components/TabBar'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Toaster } from '@/components/ui/sonner'
 import { useSettings } from '@/db/settings'
+import { useRecurringAutoAdd } from '@/features/budget/useRecurringAutoAdd'
 import { useCallAlarm } from '@/features/call/useCallAlarm'
 
 import { OpenSettingsContext } from './settings-drawer'
@@ -17,6 +18,7 @@ export function AppLayout() {
   const [settingsOpen, setSettingsOpen] = useState(false)
   const settings = useSettings()
   const [callAlert, closeCall] = useCallAlarm(settings)
+  useRecurringAutoAdd(settings)
 
   const openSettings = useCallback(() => setSettingsOpen(true), [])
 
