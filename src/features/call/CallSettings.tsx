@@ -3,11 +3,11 @@ import { useId } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { usePreferences } from '@/app/PreferencesProvider'
+import { AppSelect } from '@/components/AppSelect'
 import { ChipGroup } from '@/components/ChipGroup'
-import { Field, inputClass, labelClass, SectionTitle } from '@/components/Field'
+import { Field, labelClass, SectionTitle } from '@/components/Field'
 import { ToggleChip } from '@/components/ToggleChip'
 import { Button } from '@/components/ui/button'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
 import { updateSettings } from '@/db/settings'
 import { PRAYERS, type CallLang, type CallSettings as Call, type Settings } from '@/db/types'
@@ -58,18 +58,12 @@ export function CallSettings({ settings }: { settings: Settings }) {
       <fieldset disabled={!call.enabled} className={cn('flex min-w-0 flex-col gap-4', !call.enabled && 'opacity-60')}>
         <Field label={t('call.minutes')}>
           {(p) => (
-            <Select value={String(call.minutesBefore)} onValueChange={(v) => set({ minutesBefore: Number(v) })}>
-              <SelectTrigger {...p} className={cn(inputClass, 'w-full')}>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent position="popper" className="max-h-72">
-                {MINUTES.map((m) => (
-                  <SelectItem key={m} value={String(m)} className="min-h-11">
-                    {t('call.minutesValue', { count: m })}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <AppSelect
+              {...p}
+              value={String(call.minutesBefore)}
+              onChange={(v) => set({ minutesBefore: Number(v) })}
+              options={MINUTES.map((m) => ({ value: String(m), label: t('call.minutesValue', { count: m }) }))}
+            />
           )}
         </Field>
 
