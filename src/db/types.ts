@@ -38,11 +38,25 @@ export type NotifSettings = {
   iftar: boolean
 }
 
+export type CallLang = 'app' | 'fr' | 'ar' | 'both'
+
+/** Appel personnel avant l'adhan (« Elhadj, la prière »). */
+export type CallSettings = {
+  enabled: boolean
+  /** De 1 à 15 minutes avant l'adhan. */
+  minutesBefore: number
+  prayers: Record<Prayer, boolean>
+  lang: CallLang
+  voice: boolean
+}
+
 export type Settings = SyncMeta & {
   id: 'me'
   /** Écran d'accueil du premier lancement terminé. */
   onboarded: boolean
   name: string
+  /** Prénom en arabe (facultatif), pour l'appel en arabe. */
+  nameAr: string
   cityId: string
   /** Position personnalisée : remplace la ville quand elle est remplie. */
   custom: { lat: number; lng: number; timezone: string } | null
@@ -60,6 +74,7 @@ export type Settings = SyncMeta & {
   qada: number
   ramadanPreview: boolean
   notif: NotifSettings
+  call: CallSettings
 }
 
 export const SUNNA_KEYS = ['fajr2', 'rawatib', 'duha', 'witr', 'qiyam'] as const
@@ -85,4 +100,24 @@ export type Day = SyncMeta & {
   fasted: boolean
   tarawih: boolean
   journal: { good: string; better: string }
+}
+
+export type LockDelay = 0 | 1 | 5 | 15
+
+/**
+ * Verrou de l'app sur cet appareil. Jamais synchronisé : sur un nouvel appareil, on choisit un code.
+ * Le code n'est jamais stocké : seulement son hachage PBKDF2-SHA-256 et le sel (en base64).
+ */
+export type Security = {
+  id: 'device'
+  salt: string | null
+  hash: string | null
+  iterations: number
+  failedCount: number
+  /** Heure (ms) jusqu'à laquelle la saisie est bloquée après des erreurs. */
+  lockedUntil: number
+  /** Heure (ms) à laquelle l'app est passée en arrière-plan. */
+  lastHiddenAt: number | null
+  /** Délai avant de redemander le code au retour : 0 = à chaque ouverture. */
+  lockAfterMin: LockDelay
 }

@@ -93,7 +93,8 @@ focus visible · `prefers-reduced-motion`.
 
 ## Phases
 
-0 Mise en place ✅ · 1A Cœur hors connexion (Dexie, Réglages, Aujourd'hui, Prière, Athkar, tasbih) ·
+0 Mise en place ✅ · 1A Cœur hors connexion (Dexie, Réglages, Aujourd'hui, Prière, Athkar, tasbih) ✅ ·
+1A+ Verrou à 4 chiffres et appel avant l'adhan (Ajout n° 1) ·
 1B Budget, projets, bilan du soir, Ramadan, export/import (dont JSON de la maquette) · 2 Compte + synchro Supabase
 (code à 6 chiffres par e-mail) · 3 Notifications d'adhan · 4 Conseils sans IA · 5 Finitions (a11y, Lighthouse ≥ 90,
 README FR/AR, liste des textes à faire vérifier).
@@ -101,6 +102,24 @@ README FR/AR, liste des textes à faire vérifier).
 Valeurs de référence pour les tests (Nouakchott 18,0858 ; −15,9785, 23/10/2026, Ligue islamique mondiale, Asr
 standard, ±2 min) : Fajr 05:47 · Chourouq 07:00 · Dhohr 12:48 · Asr 16:08 · Maghrib 18:36 · Icha 19:45 ;
 hégirien 12 Joumada al-oula 1448 ; le 24/10/2026 est le premier des jours blancs.
+
+## Ajout n° 1 : verrou à 4 chiffres et appel avant l'adhan (phase 1A+)
+
+- **Verrou de l'app sur l'appareil**, distinct du compte Supabase (qui garde le code e-mail, phase 2).
+  Redemandé au démarrage et au retour après le délai (0 / 1 / 5 par défaut / 15 min, `visibilitychange`).
+- Inscription en 3 étapes : Bienvenue (langue) → Prénom + prénom arabe (facultatif) + ville → Code ×2.
+  Codes refusés : 4 chiffres identiques, suites croissantes / décroissantes.
+- Clavier 3 × 4 dessiné, `dir="ltr"`, touches ≥ 56 px, validation au 4e chiffre, tremblement + vibration.
+  Tant que le code n'est pas bon, **aucune donnée n'est chargée** dans l'interface.
+- Paliers : 5e erreur → 30 s, 6e → 1 min, 7e → 5 min, ensuite 15 min ; enregistrés (survivent au rechargement).
+- Code oublié : sans compte → effacer l'appareil (confirmation en 2 temps) ; avec compte → code e-mail (phase 2).
+- Table Dexie **`security`** (jamais synchronisée) : hachage PBKDF2-SHA-256, sel 16 octets, 210 000 itérations.
+  Ne jamais promettre un chiffrement ; ne pas chiffrer la base avec ce code. WebAuthn : à proposer en phase 5.
+- **Appel avant l'adhan** : « {prénom}, la prière » / « {الاسم}، الصلاة » (prénom arabe sinon latin), N min avant
+  (3 par défaut, 1–15), une fois par prière et par jour. App ouverte : voix Web Speech (0,95, voix ar-* / fr-*,
+  pas pendant le plein écran des athkar) + bandeau 2 min. App fermée : notification en phase 3 (`call:<prière>`
+  dans `push_log`, une seule notification si l'alerte d'adhan tombe au même moment).
+- `settings.nameAr` et `settings.call` sont synchronisés (le serveur en a besoin).
 
 ## Logo
 

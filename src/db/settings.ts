@@ -10,6 +10,7 @@ export const DEFAULT_SETTINGS: Settings = {
   dirty: 0,
   onboarded: false,
   name: '',
+  nameAr: '',
   cityId: 'nkc',
   custom: null,
   method: 'mwl',
@@ -38,6 +39,13 @@ export const DEFAULT_SETTINGS: Settings = {
     suhur: true,
     iftar: true,
   },
+  call: {
+    enabled: true,
+    minutesBefore: 3,
+    prayers: { fajr: true, dhuhr: true, asr: true, maghrib: true, isha: true },
+    lang: 'app',
+    voice: true,
+  },
 }
 
 /** Complète une ligne lue (ou importée) avec les valeurs par défaut, champ par champ. */
@@ -53,6 +61,7 @@ export function normalizeSettings(row: Partial<Settings> | undefined): Settings 
     habits: Array.isArray(r.habits) ? r.habits : d.habits,
     budgets: { ...r.budgets },
     notif: { ...d.notif, ...r.notif, prayers: { ...d.notif.prayers, ...r.notif?.prayers } },
+    call: { ...d.call, ...r.call, prayers: { ...d.call.prayers, ...r.call?.prayers } },
   }
 }
 
