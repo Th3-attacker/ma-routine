@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test'
 
-import { openApp } from './helpers.ts'
+import { openApp, tab } from './helpers.ts'
 
 const nb = (s: string) => s.replace(/\s/g, ' ')
 
 test('budget du mois : ajouter, modifier, supprimer, budgets', async ({ page }) => {
   await openApp(page, { 'elhadj.lang': 'fr' })
-  await page.getByRole('link', { name: 'Budget' }).click()
+  await tab(page, 'Budget').click()
   await expect(page.getByText(/^Aucun mouvement en /)).toBeVisible()
 
   // Ajouter une dépense
@@ -56,7 +56,7 @@ test('budget du mois : ajouter, modifier, supprimer, budgets', async ({ page }) 
 
 test('budget en arabe, texte très grand : pas de débordement', async ({ page }) => {
   await openApp(page, { 'elhadj.lang': 'ar', 'elhadj.size': 'xl' })
-  await page.getByRole('link', { name: 'الميزانية' }).click()
+  await tab(page, 'الميزانية').click()
   await page.getByRole('button', { name: 'مصروف', exact: true }).click()
   await page.getByRole('dialog').getByLabel('المبلغ').fill('1250000')
   await page.getByRole('dialog').getByRole('button', { name: 'إضافة' }).click()
