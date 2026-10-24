@@ -6,6 +6,7 @@ import { RouterProvider } from '@tanstack/react-router'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
+import { ErrorBoundary } from './app/ErrorBoundary'
 import { LockGate } from './app/LockGate'
 import { Providers } from './app/Providers'
 import { router } from './app/router'
@@ -13,9 +14,11 @@ import { router } from './app/router'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Providers>
-      <LockGate>
-        <RouterProvider router={router} />
-      </LockGate>
+      <ErrorBoundary>
+        <LockGate>
+          <RouterProvider router={router} />
+        </LockGate>
+      </ErrorBoundary>
     </Providers>
   </StrictMode>,
 )

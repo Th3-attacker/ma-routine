@@ -386,5 +386,17 @@
     "masrvi": "Masrvi",
     "card": "Banque / carte",
     "other": "Autre"
+  },
+  "startup": {
+    "blockedTitle": "Une ancienne version d’ELHADJ est encore ouverte",
+    "blockedBody": "Ferme les autres onglets ELHADJ (dans Safari : bouton des onglets, puis glisse-les vers la gauche), puis touche « Réessayer ».",
+    "slowTitle": "Le chargement prend trop de temps",
+    "slowBody": "Ferme les autres onglets ELHADJ, puis touche « Réessayer ». Si ça continue, envoie une capture de cet écran.",
+    "errorTitle": "ELHADJ n’a pas pu démarrer",
+    "errorBody": "Touche « Réessayer ». Si ça continue, envoie une capture de cet écran.",
+    "insecureTitle": "Ouvre ELHADJ avec une adresse sécurisée",
+    "insecureBody": "Cette adresse commence par « http:// ». Le téléphone y bloque le calcul sécurisé du code à 4 chiffres. Ouvre l’adresse en « https:// » (version en ligne, ou « pnpm dev:phone » sur l’ordinateur).",
+    "retry": "Réessayer",
+    "details": "Détails techniques"
   }
 }
