@@ -228,5 +228,36 @@
     "khatmas_one": " · {{count}} khatma terminée",
     "khatmas_other": " · {{count}} khatmas terminées",
     "khatmaDone": "Khatma terminée. Qu’Allah l’accepte !"
-  }
+  },
+  "prayer": {
+    "sunriseNote": "fin du temps de Fajr",
+    "mark": "Marquer",
+    "times": "Horaires du jour",
+    "asrStandard": "Asr standard",
+    "asrHanafi": "Asr hanafite",
+    "adjust": "Ajuster",
+    "sunna": "Prières surérogatoires",
+    "last7": "7 derniers jours",
+    "last7Hint": "Touche une case pour la modifier",
+    "cell": "{{name}}, {{date}} : {{status}}",
+    "notFilled": "non renseignée",
+    "legend": "Légende",
+    "summary": "Mon bilan",
+    "streak_one": "jour sans manquer",
+    "streak_other": "jours sans manquer",
+    "onTimeMonth": "à l’heure ce mois",
+    "jamaaMonth": "en jamâ‘a ce mois",
+    "qada": "Prières à rattraper (qadâ’)",
+    "qadaMinus": "J’en ai rattrapé une",
+    "qadaPlus": "Ajouter une prière à rattraper",
+    "current": "en cours"
+  },
+  "sunna": {
+    "fajr2": "2 rak‘a avant Fajr",
+    "rawatib": "Rawâtib",
+    "duha": "Duha",
+    "witr": "Witr",
+    "qiyam": "Qiyâm al-layl"
+  },
+  "weekdays": ["dim", "lun", "mar", "mer", "jeu", "ven", "sam"]
 }

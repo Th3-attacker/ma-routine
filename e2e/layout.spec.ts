@@ -38,7 +38,7 @@ test('les onglets naviguent et l’adresse garde le hash', async ({ page }) => {
   await page.getByRole('link', { name: 'Prière' }).click()
   await expect(page).toHaveURL(/#\/priere$/)
   await page.reload()
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Prière')
+  await expect(page.getByRole('heading', { level: 2, name: 'Horaires du jour' })).toBeVisible()
 })
 
 test('le bouton de langue et les réglages fonctionnent', async ({ page }) => {
