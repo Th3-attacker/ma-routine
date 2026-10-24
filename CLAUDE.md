@@ -26,7 +26,11 @@ des horaires (→ adhan-js) et `zoom` pour la taille du texte (→ `font-size` d
   1. une **issue** GitHub (`gh issue create`), prévue dans le plan de la phase ;
   2. une **branche** créée depuis `dev`, nommée d'après l'issue : `feat/12-horaires-priere`, `fix/…`, `docs/…` ;
   3. des **commits** courts qui citent l'issue (`(#12)`) ;
-  4. une **PR vers `dev`** (`gh pr create --base dev`) avec `Closes #12`, fusionnée quand la CI est verte.
+  4. `pnpm verify` (formate, lint, types, tests), puis `pnpm build && pnpm test:e2e` ;
+  5. une **PR vers `dev`** (`gh pr create --base dev`) avec `Closes #12`, que je fusionne moi-même
+     (`gh pr merge --squash --delete-branch`) quand la CI est verte ;
+  6. « Closes » ne ferme l'issue qu'en arrivant sur `main` : la fermer à la main
+     (`gh issue close 12 -c "Fusionnée dans dev par #13."`).
 - Une phase validée passe de `dev` à **`main`** par une PR ; `main` est mise en ligne.
 - `.github/workflows/ci.yml` : lint, format, tests, build et Playwright sur chaque push ; déploiement GitHub Pages
   seulement depuis `main`. URL : `https://th3-attacker.github.io/ma-routine/` (`base: '/ma-routine/'`).
