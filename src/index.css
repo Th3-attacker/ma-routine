@@ -256,3 +256,13 @@
 @utility animate-shake {
   animation: shake 0.4s ease;
 }
+
+/* Les messages courts (toasts) informent sans bloquer : un toucher passe à travers jusqu'au contenu dessous.
+   Seuls leurs boutons d'action restent touchables. */
+[data-sonner-toaster],
+[data-sonner-toast] {
+  pointer-events: none !important;
+}
+[data-sonner-toast] button {
+  pointer-events: auto !important;
+}
