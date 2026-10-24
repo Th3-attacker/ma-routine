@@ -229,3 +229,22 @@
     animation: none !important;
   }
 }
+
+/* Le clavier du code tremble quand le code est faux (désactivé avec prefers-reduced-motion) */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-8px);
+  }
+  40%,
+  80% {
+    transform: translateX(8px);
+  }
+}
+@utility animate-shake {
+  animation: shake 0.4s ease;
+}

@@ -18,6 +18,7 @@ import { verseOfDay } from '@/features/daily/verseOfDay'
 import { useNow, useToday } from '@/features/prayer/useToday'
 import { ramadanDay } from '@/features/ramadan/ramadan'
 import { formatLongDate, keyToUtcNoon } from '@/lib/dates'
+import { displayName } from '@/lib/names'
 
 export function TodayPage() {
   const settings = useSettings()
@@ -31,7 +32,7 @@ function Today({ settings }: { settings: Settings }) {
   const now = useNow()
   const { key, place, yesterday, today, tomorrow } = useToday(settings, now)
   const day = useDay(key)
-  const name = settings.name.trim()
+  const name = displayName(settings, lang)
   const hijri = hijriDate(key, settings.hijriAdj)
   const ramadan = ramadanDay(key, settings.hijriAdj, settings.ramadanPreview)
 

@@ -143,7 +143,7 @@ export function SettingsForm({ settings, onSaved }: { settings: Settings; onSave
   })
 
   const textField = (
-    name: 'name' | 'currency' | 'goal' | 'page' | 'total',
+    name: 'name' | 'nameAr' | 'currency' | 'goal' | 'page' | 'total',
     label: string,
     extra: { hint?: string; numeric?: boolean; placeholder?: string; maxLength?: number } = {},
   ) => (
@@ -159,7 +159,8 @@ export function SettingsForm({ settings, onSaved }: { settings: Settings; onSave
               onChange={(e) => field.handleChange(e.target.value)}
               onBlur={field.handleBlur}
               inputMode={extra.numeric ? 'numeric' : undefined}
-              dir={extra.numeric || name === 'currency' ? 'ltr' : undefined}
+              dir={extra.numeric || name === 'currency' ? 'ltr' : name === 'nameAr' ? 'rtl' : undefined}
+              lang={name === 'nameAr' ? 'ar' : undefined}
               placeholder={extra.placeholder}
               maxLength={extra.maxLength}
             />
@@ -181,6 +182,7 @@ export function SettingsForm({ settings, onSaved }: { settings: Settings; onSave
       <section aria-labelledby="settings-profile" className="flex flex-col gap-4">
         <SectionTitle id="settings-profile">{t('settings.profile')}</SectionTitle>
         {textField('name', t('settings.name'), { placeholder: t('settings.namePlaceholder'), maxLength: 40 })}
+        {textField('nameAr', t('settings.nameAr'), { hint: t('lock.nameArHint'), maxLength: 40 })}
       </section>
 
       <section aria-labelledby="settings-place" className="flex flex-col gap-4">

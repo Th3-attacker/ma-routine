@@ -6,6 +6,7 @@ import { usePreferences } from '@/app/PreferencesProvider'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Switch } from '@/components/ui/switch'
 import { updateSettings, useSettings } from '@/db/settings'
+import { SecuritySettings } from '@/features/security/SecuritySettings'
 import { SettingsForm } from '@/features/settings/SettingsForm'
 
 import { AppDrawer } from './AppDrawer'
@@ -78,6 +79,7 @@ export function SettingsDrawer({ open, onOpenChange }: { open: boolean; onOpenCh
           <Skeleton className="h-11 w-full" />
         </div>
       )}
+      <SecuritySettings />
       <p className="text-[0.8125rem] text-muted-foreground">{t('settings.later')}</p>
     </AppDrawer>
   )

@@ -35,6 +35,7 @@ const optionalCoord = (max: number) =>
 export const settingsFormSchema = z
   .object({
     name: z.string().max(40, err('tooLong', { max: 40 })),
+    nameAr: z.string().max(40, err('tooLong', { max: 40 })),
     cityId: z.string().min(1, err('required')),
     lat: optionalCoord(66),
     lng: optionalCoord(180),
@@ -67,12 +68,23 @@ export type SettingsFormValues = z.input<typeof settingsFormSchema>
 /** Le sous-ensemble des réglages modifié par le formulaire (aussi utilisé par l'écran d'accueil). */
 export type SettingsFormSource = Pick<
   Settings,
-  'name' | 'cityId' | 'custom' | 'method' | 'asrSchool' | 'tune' | 'hijriAdj' | 'currency' | 'quran' | 'habits'
+  | 'name'
+  | 'nameAr'
+  | 'cityId'
+  | 'custom'
+  | 'method'
+  | 'asrSchool'
+  | 'tune'
+  | 'hijriAdj'
+  | 'currency'
+  | 'quran'
+  | 'habits'
 >
 
 export function toFormValues(s: SettingsFormSource, habitName: (h: Habit) => string): SettingsFormValues {
   return {
     name: s.name,
+    nameAr: s.nameAr,
     cityId: s.cityId,
     lat: s.custom ? String(s.custom.lat) : '',
     lng: s.custom ? String(s.custom.lng) : '',
@@ -115,6 +127,7 @@ export function fromFormValues(
   const total = parseNumber(v.total)
   return {
     name: v.name.trim(),
+    nameAr: v.nameAr.trim(),
     cityId: v.cityId,
     custom: Number.isFinite(lat) && Number.isFinite(lng) ? { lat, lng, timezone } : current.custom,
     method: v.method,

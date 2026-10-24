@@ -84,3 +84,10 @@ export function formatDuration(ms: number, lang: Lang): string {
   if (lang === 'ar') return h ? `${h} س ${pad2(m)} د` : `${m} دقيقة`
   return h ? `${h} h ${pad2(m)}` : `${m} min`
 }
+
+/** Attente avant de réessayer : « 25 s » / « 25 ث », ou « 4 min » au-delà d'une minute. */
+export function formatWait(ms: number, lang: Lang): string {
+  const s = Math.max(0, Math.ceil(ms / 1000))
+  if (s >= 60) return formatDuration(s * 1000, lang)
+  return lang === 'ar' ? `${s} ث` : `${s} s`
+}

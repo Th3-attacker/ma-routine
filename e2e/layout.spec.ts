@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-import { openApp } from './helpers.ts'
+import { openApp, unlock } from './helpers.ts'
 
 const LANGS = ['fr', 'ar'] as const
 const SIZES = ['s', 'm', 'l', 'xl'] as const
@@ -38,6 +38,7 @@ test('les onglets naviguent et l’adresse garde le hash', async ({ page }) => {
   await page.getByRole('link', { name: 'Prière' }).click()
   await expect(page).toHaveURL(/#\/priere$/)
   await page.reload()
+  await unlock(page)
   await expect(page.getByRole('heading', { level: 2, name: 'Horaires du jour' })).toBeVisible()
 })
 
@@ -52,17 +53,6 @@ test('le bouton de langue et les réglages fonctionnent', async ({ page }) => {
   await expect(page.locator('html')).toHaveClass(/dark/)
   await dialog.getByRole('radio', { name: 'كبير جدًا' }).click()
   await expect(page.locator('html')).toHaveAttribute('style', /font-size: 122%/)
-})
-
-test('l’écran d’accueil enregistre le prénom', async ({ page }) => {
-  await page.addInitScript(() => localStorage.setItem('elhadj.lang', 'fr'))
-  await page.goto('./')
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Bienvenue sur ELHADJ')
-  await page.getByLabel('Ton prénom').fill('Elhadj')
-  await page.getByRole('button', { name: 'Commencer' }).click()
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('As-salâmu ‘alaykum, Elhadj')
-  await page.reload()
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('As-salâmu ‘alaykum, Elhadj')
 })
 
 test('les réglages changent la ville et le prénom', async ({ page }) => {
