@@ -85,7 +85,19 @@
   },
   "today": {
     "salam": "السلام عليكم",
-    "salamName": "السلام عليكم، {{name}}"
+    "salamName": "السلام عليكم، {{name}}",
+    "nextPrayer": "الصلاة القادمة",
+    "tomorrow": " · غدًا",
+    "sunArc": "مسار الشمس ومواقيت الصلاة",
+    "myPrayers": "صلواتي",
+    "fullTracking": "المتابعة الكاملة",
+    "toFill": "غير مسجلة",
+    "athkarTitle": "أذكار اليوم",
+    "open": "فتح",
+    "habits": "العادات",
+    "last7": "آخر 7 أيام: {{n}} من 7",
+    "verseOfDay": "آية اليوم",
+    "hadithOfDay": "حديث اليوم"
   },
   "soon": {
     "title": "قريبًا هنا",
@@ -137,5 +149,92 @@
   },
   "common": {
     "loading": "جارٍ التحميل…"
+  },
+  "time": {
+    "in": "بعد {{d}}",
+    "now": "الآن"
+  },
+  "window": {
+    "current": "{{name}} الآن · بقي {{d}} قبل {{end}}",
+    "duha": "وقت صلاة الضحى",
+    "night": "الليل: الثلث الأخير يقترب",
+    "last": "الثلث الأخير من الليل: وقت القيام",
+    "end": {
+      "sunrise": "الشروق",
+      "asr": "العصر",
+      "maghrib": "المغرب",
+      "isha": "العشاء",
+      "third": "انتهاء ثلث الليل الأول"
+    }
+  },
+  "status": {
+    "jamaa": "جماعة",
+    "ontime": "في وقتها",
+    "late": "متأخرة",
+    "missed": "فائتة",
+    "jamaaHint": "في المسجد أو مع جماعة",
+    "ontimeHint": "منفردًا في وقتها",
+    "lateHint": "صُلّيت في آخر وقتها",
+    "missedHint": "تُضاف إلى عدّاد القضاء",
+    "clear": "مسح",
+    "title": "{{name}} · {{time}}",
+    "label": "{{name}}: {{status}}",
+    "description": "كيف صلّيت؟"
+  },
+  "friday": {
+    "title": "يوم الجمعة",
+    "hour": "ساعة الإجابة: آخر ساعة قبل المغرب، من {{from}} إلى {{to}}.",
+    "kahf": "سورة الكهف",
+    "ghusl": "الغسل",
+    "salawat": "الإكثار من الصلاة على النبي",
+    "early": "التبكير إلى المسجد"
+  },
+  "fast": {
+    "todayTitle": "صيام اليوم",
+    "today": "اليوم: {{list}}.",
+    "fasted": "صمت اليوم",
+    "tomorrowSunnaTitle": "غدًا صيام سنة",
+    "tomorrowSunna": "غدًا: {{list}}. لا تنسَ النية والسحور قبل {{suhur}}.",
+    "tomorrowTitle": "غدًا: {{list}}",
+    "tomorrow": "فرصة طيبة للصيام. ينتهي السحور عند {{suhur}}.",
+    "reason": {
+      "ramadan": "رمضان",
+      "arafa": "يوم عرفة",
+      "tasua": "تاسوعاء",
+      "ashura": "عاشوراء",
+      "white": "الأيام البيض",
+      "mon": "الاثنين",
+      "thu": "الخميس"
+    },
+    "separator": "، "
+  },
+  "athkar": {
+    "sets": {
+      "matin": "الصباح",
+      "soir": "المساء",
+      "salat": "بعد الصلاة",
+      "nuit": "النوم",
+      "tasbih": "التسبيح"
+    },
+    "miniMatin": "أذكار الصباح",
+    "miniSoir": "أذكار المساء"
+  },
+  "quran": {
+    "title": "الورد القرآني",
+    "page": "الصفحة {{page}} / {{total}}",
+    "today": "{{read}} / {{goal}} صفحات اليوم",
+    "done": "تم الورد",
+    "left": "بقي {{n}}",
+    "plusOne": "⁦+1⁩ صفحة",
+    "plusWird": "⁦+{{goal}}⁩ (الورد)",
+    "minusOne": "حذف صفحة",
+    "eta": "الختمة المتوقعة في {{date}}",
+    "khatmas_one": " · ختمات منجزة: {{count}}",
+    "khatmas_other": " · ختمات منجزة: {{count}}",
+    "khatmaDone": "ختمة مكتملة. تقبّل الله!",
+    "khatmas_zero": " · ختمات منجزة: {{count}}",
+    "khatmas_two": " · ختمات منجزة: {{count}}",
+    "khatmas_few": " · ختمات منجزة: {{count}}",
+    "khatmas_many": " · ختمات منجزة: {{count}}"
   }
 }

@@ -1,27 +1,77 @@
 import { useTranslation } from 'react-i18next'
 
 import { usePreferences } from '@/app/PreferencesProvider'
-import { useSettings } from '@/db/settings'
-import { ComingSoon } from '@/components/ComingSoon'
+import { AthkarMini } from '@/components/AthkarMini'
+import { FastCard, FridayCard } from '@/components/ContextCards'
+import { HabitsCard } from '@/components/HabitsCard'
 import { PageTitle } from '@/components/PageTitle'
-import { dayKey, formatLongDate } from '@/lib/dates'
+import { PrayerPills } from '@/components/PrayerPills'
+import { QuranCard } from '@/components/QuranCard'
+import { SkyHero } from '@/components/SkyHero'
+import { VerseCard } from '@/components/VerseCard'
+import { Skeleton } from '@/components/ui/skeleton'
+import { useDay } from '@/db/days'
+import { useSettings } from '@/db/settings'
+import type { Settings } from '@/db/types'
+import { formatHijri, hijriDate } from '@/features/calendar/hijri'
+import { verseOfDay } from '@/features/daily/verseOfDay'
+import { useNow, useToday } from '@/features/prayer/useToday'
+import { ramadanDay } from '@/features/ramadan/ramadan'
+import { formatLongDate, keyToUtcNoon } from '@/lib/dates'
 
 export function TodayPage() {
+  const settings = useSettings()
+  if (!settings) return <Skeleton className="h-40 w-full rounded-xl" />
+  return <Today settings={settings} />
+}
+
+function Today({ settings }: { settings: Settings }) {
   const { t } = useTranslation()
   const { lang } = usePreferences()
-  const settings = useSettings()
-  const name = settings?.name.trim()
-  const now = new Date()
+  const now = useNow()
+  const { key, place, yesterday, today, tomorrow } = useToday(settings, now)
+  const day = useDay(key)
+  const name = settings.name.trim()
+  const hijri = hijriDate(key, settings.hijriAdj)
+  const ramadan = ramadanDay(key, settings.hijriAdj, settings.ramadanPreview)
 
   return (
     <>
       <hgroup className="flex flex-col gap-0.5 pt-0.5">
         <PageTitle>{name ? t('today.salamName', { name }) : t('today.salam')}</PageTitle>
         <p className="text-[0.84375rem] text-ink-2">
-          <time dateTime={dayKey(now)}>{formatLongDate(now, lang)}</time>
+          <time dateTime={key}>{formatLongDate(keyToUtcNoon(key), lang, 'UTC')}</time>
+          {hijri && (
+            <>
+              {' · '}
+              <b className="font-bold text-gold">{formatHijri(hijri, lang)}</b>
+            </>
+          )}
         </p>
       </hgroup>
-      <ComingSoon />
+      <SkyHero now={now} dayKey={key} place={place} yesterday={yesterday} today={today} tomorrow={tomorrow} />
+      {day ? (
+        <>
+          <PrayerPills day={day} times={today} timezone={place.timezone} />
+          <FridayCard day={day} times={today} timezone={place.timezone} />
+          {!ramadan && (
+            <FastCard
+              day={day}
+              now={now}
+              times={today}
+              tomorrowTimes={tomorrow}
+              timezone={place.timezone}
+              hijriAdj={settings.hijriAdj}
+            />
+          )}
+          <VerseCard text={verseOfDay(key, !!ramadan)} />
+          <AthkarMini day={day} />
+          <QuranCard day={day} settings={settings} />
+          <HabitsCard day={day} settings={settings} />
+        </>
+      ) : (
+        <Skeleton className="h-24 w-full rounded-xl" />
+      )}
     </>
   )
 }

@@ -81,7 +81,19 @@
   },
   "today": {
     "salam": "As-salâmu ‘alaykum",
-    "salamName": "As-salâmu ‘alaykum, {{name}}"
+    "salamName": "As-salâmu ‘alaykum, {{name}}",
+    "nextPrayer": "Prochaine prière",
+    "tomorrow": " · demain",
+    "sunArc": "Course du soleil et horaires de prière",
+    "myPrayers": "Mes prières",
+    "fullTracking": "Suivi complet",
+    "toFill": "à renseigner",
+    "athkarTitle": "Athkar du jour",
+    "open": "Ouvrir",
+    "habits": "Habitudes",
+    "last7": "7 derniers jours : {{n}} sur 7",
+    "verseOfDay": "Verset du jour",
+    "hadithOfDay": "Hadith du jour"
   },
   "soon": {
     "title": "Bientôt ici",
@@ -133,5 +145,88 @@
   },
   "common": {
     "loading": "Chargement…"
+  },
+  "time": {
+    "in": "dans {{d}}",
+    "now": "maintenant"
+  },
+  "window": {
+    "current": "{{name}} en cours · encore {{d}} avant {{end}}",
+    "duha": "Temps de la prière du Duha",
+    "night": "Nuit : le dernier tiers approche",
+    "last": "Dernier tiers de la nuit : moment du qiyâm",
+    "end": {
+      "sunrise": "le lever du soleil",
+      "asr": "Asr",
+      "maghrib": "Maghrib",
+      "isha": "Icha",
+      "third": "la fin du premier tiers de la nuit"
+    }
+  },
+  "status": {
+    "jamaa": "En jamâ‘a",
+    "ontime": "À l’heure",
+    "late": "En retard",
+    "missed": "Manquée",
+    "jamaaHint": "À la mosquée ou en groupe",
+    "ontimeHint": "Seul, dans son temps",
+    "lateHint": "Priée, mais en fin de temps",
+    "missedHint": "Ajoutée au compteur à rattraper",
+    "clear": "Effacer",
+    "title": "{{name}} · {{time}}",
+    "label": "{{name}} : {{status}}",
+    "description": "Comment as-tu prié ?"
+  },
+  "friday": {
+    "title": "Jour de Joumou‘a",
+    "hour": "Heure de l’exaucement : la dernière heure avant Maghrib, de {{from}} à {{to}}.",
+    "kahf": "Sourate Al-Kahf",
+    "ghusl": "Ghusl",
+    "salawat": "Salawat abondantes",
+    "early": "Arriver tôt à la mosquée"
+  },
+  "fast": {
+    "todayTitle": "Jeûne du jour",
+    "today": "Aujourd’hui : {{list}}.",
+    "fasted": "J’ai jeûné aujourd’hui",
+    "tomorrowSunnaTitle": "Demain, jeûne sunna",
+    "tomorrowSunna": "Demain : {{list}}. Pense à ton intention et au suhûr avant {{suhur}}.",
+    "tomorrowTitle": "Demain : {{list}}",
+    "tomorrow": "Une bonne occasion de jeûner. Le suhûr se termine à {{suhur}}.",
+    "reason": {
+      "ramadan": "Ramadan",
+      "arafa": "jour de ‘Arafa",
+      "tasua": "Tâsû‘a",
+      "ashura": "‘Âchoura",
+      "white": "jours blancs",
+      "mon": "lundi",
+      "thu": "jeudi"
+    },
+    "separator": ", "
+  },
+  "athkar": {
+    "sets": {
+      "matin": "Matin",
+      "soir": "Soir",
+      "salat": "Après prière",
+      "nuit": "Coucher",
+      "tasbih": "Tasbih"
+    },
+    "miniMatin": "Matin",
+    "miniSoir": "Soir"
+  },
+  "quran": {
+    "title": "Wird du Coran",
+    "page": "Page {{page}} / {{total}}",
+    "today": "{{read}} / {{goal}} pages aujourd’hui",
+    "done": "Wird accompli",
+    "left": "encore {{n}}",
+    "plusOne": "+1 page",
+    "plusWird": "+{{goal}} (wird)",
+    "minusOne": "Retirer une page",
+    "eta": "Khatma prévue vers le {{date}}",
+    "khatmas_one": " · {{count}} khatma terminée",
+    "khatmas_other": " · {{count}} khatmas terminées",
+    "khatmaDone": "Khatma terminée. Qu’Allah l’accepte !"
   }
 }
