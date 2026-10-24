@@ -142,7 +142,9 @@
     "budget": "Entre un montant entier, ou laisse vide.",
     "person": "Indique un nom.",
     "goalName": "Donne un nom à l’objectif.",
-    "recName": "Donne un nom."
+    "recName": "Donne un nom.",
+    "projectName": "Donne un nom à ton projet.",
+    "step": "Écris l’étape."
   },
   "welcome": {
     "title": "Bienvenue sur ELHADJ",
@@ -568,5 +570,55 @@
     "deleteBody": "Elle ne sera plus ajoutée. Les mouvements déjà notés restent dans ton budget.",
     "added_one": "{{count}} opération récurrente ajoutée",
     "added_other": "{{count}} opérations récurrentes ajoutées"
+  },
+  "projects": {
+    "title": "Mes projets",
+    "filterLabel": "Filtrer les projets",
+    "filters": {
+      "active": "En cours",
+      "done": "Terminés",
+      "all": "Tous"
+    },
+    "new": "Nouveau projet",
+    "emptyFilterTitle": "Rien dans ce filtre",
+    "emptyFilterBody": "Change de filtre pour voir tes autres projets.",
+    "emptyTitle": "Ton premier projet",
+    "emptyBody": "Un projet, c’est un but, une intention (niyya), une échéance et des étapes. Par exemple : « Mémoriser Juz ‘Amma », « Ouvrir ma boutique », « Économiser pour la Omra ».",
+    "status": {
+      "active": "En cours",
+      "paused": "En pause",
+      "done": "Terminé"
+    },
+    "late": "En retard",
+    "steps": "{{done}}/{{total}} étapes · {{pct}} %",
+    "noSteps": "Aucune étape",
+    "statusLabel": "Statut",
+    "niyya": "Niyya : {{text}}",
+    "stepsTitle": "Étapes",
+    "noStepsLong": "Aucune étape. Ajoute la première ci-dessous.",
+    "finish": "Terminer : {{title}}",
+    "reopen": "Rouvrir : {{title}}",
+    "deleteStep": "Supprimer l’étape : {{title}}",
+    "newStep": "Nouvelle étape",
+    "newStepPlaceholder": "ex. Réviser 5 versets par jour",
+    "addStep": "Ajouter l’étape",
+    "edit": "Modifier le projet",
+    "name": "Nom du projet",
+    "namePlaceholder": "ex. Mémoriser Juz ‘Amma",
+    "intention": "Intention (niyya)",
+    "intentionPlaceholder": "Pourquoi ce projet compte pour toi",
+    "deadline": "Échéance",
+    "firstSteps": "Premières étapes (une par ligne)",
+    "firstStepsPlaceholder": "Choisir un horaire fixe\nTrouver un professeur",
+    "create": "Créer le projet",
+    "created": "Projet créé",
+    "updated": "Projet mis à jour",
+    "deleteTitle": "Supprimer ce projet ?",
+    "deleteBody": "Le projet et toutes ses étapes seront supprimés.",
+    "suggestLater": "« Proposer des étapes » arrive bientôt.",
+    "activeCount_one": "{{count}} en cours",
+    "activeCount_other": "{{count}} en cours",
+    "openCount_one": "{{count}} étape à faire",
+    "openCount_other": "{{count}} étapes à faire"
   }
 }
