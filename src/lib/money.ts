@@ -14,7 +14,10 @@ export function currencyLabel(currency: string, lang: Lang): string {
 export function formatMoney(n: number, currency: string, lang: Lang, sign = false): string {
   const v = Math.round(n || 0)
   const prefix = v < 0 ? '−' : sign && v > 0 ? '+' : ''
-  return `${prefix}${nf.format(Math.abs(v))} ${currencyLabel(currency, lang)}`
+  // fr-FR sépare les milliers par une espace fine (U+202F), absente de certaines polices (Reem Kufi) :
+  // on la remplace par une espace insécable classique (U+00A0).
+  const digits = nf.format(Math.abs(v)).replace(/\u202f/g, '\u00a0')
+  return `${prefix}${digits}\u00a0${currencyLabel(currency, lang)}`
 }
 
 /** Lit un montant tapé (espaces acceptés, y compris les espaces fines du format fr-FR). Seuls les nombres entiers sont acceptés : sinon NaN. */

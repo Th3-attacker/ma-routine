@@ -136,7 +136,10 @@
     "range": "Entre une valeur de {{min}} à {{max}}.",
     "tooLong": "{{max}} caractères au maximum.",
     "coords": "Entre une latitude et une longitude valides.",
-    "pageAfterTotal": "La page actuelle dépasse le nombre de pages."
+    "pageAfterTotal": "La page actuelle dépasse le nombre de pages.",
+    "amount": "Indique un montant entier supérieur à zéro.",
+    "date": "Choisis une date valide, pas après aujourd’hui.",
+    "budget": "Entre un montant entier, ou laisse vide."
   },
   "welcome": {
     "title": "Bienvenue sur ELHADJ",
@@ -398,5 +401,62 @@
     "insecureBody": "Cette adresse commence par « http:// ». Le téléphone y bloque le calcul sécurisé du code à 4 chiffres. Ouvre l’adresse en « https:// » (version en ligne, ou « pnpm dev:phone » sur l’ordinateur).",
     "retry": "Réessayer",
     "details": "Détails techniques"
+  },
+  "budget": {
+    "views": {
+      "month": "Mois",
+      "debts": "Dettes",
+      "goals": "Épargne",
+      "rec": "Récurrentes"
+    },
+    "viewsLabel": "Sections du budget",
+    "prevMonth": "Mois précédent",
+    "nextMonth": "Mois suivant",
+    "spentMonth": "Dépensé ce mois",
+    "ofBudget": "{{pct}} % du budget de {{budget}} · {{status}}",
+    "left": "reste {{amount}}",
+    "over": "dépassé de {{amount}}",
+    "noBudget": "Aucun budget fixé.",
+    "setBudgets": "Fixer mes budgets",
+    "income": "Revenus",
+    "balance": "Solde",
+    "sadaqa": "Sadaqa",
+    "addOut": "Dépense",
+    "addIn": "Revenu",
+    "emptyTitle": "Aucun mouvement en {{month}}",
+    "emptyBody": "Note chaque dépense en quelques secondes : montant, catégorie, et Bankily, Masrvi ou espèces. Le bilan par catégorie apparaîtra ici.",
+    "setBudgetsLong": "Fixer mes budgets par catégorie",
+    "byCategory": "Par catégorie",
+    "budgets": "Budgets",
+    "movements": "Mouvements",
+    "today": "Aujourd’hui",
+    "form": {
+      "newOut": "Nouvelle dépense",
+      "newIn": "Nouveau revenu",
+      "edit": "Modifier",
+      "type": "Type",
+      "amount": "Montant",
+      "category": "Catégorie",
+      "payMethod": "Moyen de paiement",
+      "note": "Note",
+      "notePlaceholderOut": "ex. marché Capitale",
+      "notePlaceholderIn": "ex. salaire octobre",
+      "date": "Date",
+      "add": "Ajouter",
+      "save": "Enregistrer",
+      "delete": "Supprimer",
+      "deleteTitle": "Supprimer ce mouvement ?",
+      "deleteBody": "Il disparaîtra du mois et des statistiques.",
+      "cancel": "Annuler"
+    },
+    "toast": {
+      "addedOut": "Dépense ajoutée",
+      "addedIn": "Revenu ajouté",
+      "edited": "Modifié",
+      "deleted": "Supprimé"
+    },
+    "budgetsTitle": "Budgets du mois",
+    "budgetsHint": "Montant mensuel prévu par catégorie. Laisse vide pour ne pas suivre.",
+    "budgetsSaved": "Budgets enregistrés"
   }
 }
