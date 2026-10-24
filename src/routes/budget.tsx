@@ -2,7 +2,6 @@ import { getRouteApi, useNavigate } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 
 import type { BudgetView } from '@/app/router'
-import { ComingSoon } from '@/components/ComingSoon'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useSettings } from '@/db/settings'
@@ -10,6 +9,7 @@ import type { Settings } from '@/db/types'
 import { DebtsView } from '@/features/budget/DebtsView'
 import { GoalsView } from '@/features/budget/GoalsView'
 import { MonthView } from '@/features/budget/MonthView'
+import { RecurringView } from '@/features/budget/RecurringView'
 import { resolvePlace } from '@/features/prayer/cities'
 import { useNow } from '@/features/prayer/useToday'
 import { dayKey } from '@/lib/dates'
@@ -61,7 +61,7 @@ function Budget({ settings }: { settings: Settings }) {
           <GoalsView today={today} settings={settings} />
         </TabsContent>
         <TabsContent value="rec" className="mt-[22px] text-base">
-          <ComingSoon />
+          <RecurringView today={today} settings={settings} />
         </TabsContent>
       </Tabs>
     </>
