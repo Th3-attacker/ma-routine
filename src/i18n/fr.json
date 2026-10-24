@@ -213,7 +213,20 @@
       "tasbih": "Tasbih"
     },
     "miniMatin": "Matin",
-    "miniSoir": "Soir"
+    "miniSoir": "Soir",
+    "tabsLabel": "Séries d’athkar",
+    "tapHint": "Touche une carte à chaque répétition.",
+    "fullscreen": "Plein écran",
+    "repetition": "Répétition {{c}} sur {{n}}",
+    "once": "Une fois",
+    "times": "× {{n}}",
+    "reset": "Recommencer cette série",
+    "resetTitle": "Recommencer cette série ?",
+    "resetBody": "Les compteurs de cette série seront remis à zéro pour aujourd’hui.",
+    "cancel": "Annuler",
+    "confirmReset": "Remettre à zéro",
+    "seriesDone": "Série terminée. BârakAllahu fîk !",
+    "progress": "{{done}} sur {{total}} terminés"
   },
   "quran": {
     "title": "Wird du Coran",
@@ -259,5 +272,24 @@
     "witr": "Witr",
     "qiyam": "Qiyâm al-layl"
   },
-  "weekdays": ["dim", "lun", "mar", "mer", "jeu", "ven", "sam"]
+  "weekdays": ["dim", "lun", "mar", "mer", "jeu", "ven", "sam"],
+  "reader": {
+    "count": "Compter",
+    "prev": "Précédent",
+    "next": "Suivant",
+    "hint": "Touche le texte pour compter",
+    "done": "Série terminée",
+    "position": "Dhikr {{i}} sur {{n}}"
+  },
+  "tasbih": {
+    "formulas": "Formule",
+    "target": "Objectif",
+    "noLimit": "Sans limite",
+    "of": "sur {{n}}",
+    "reached": "objectif atteint",
+    "free": "libre",
+    "total": "Total aujourd’hui : ",
+    "reset": "Remettre le compteur à zéro",
+    "count": "Compter : {{n}}"
+  }
 }

@@ -16,15 +16,18 @@ export function ChipGroup<T extends string>({
   onChange,
   options,
   label,
+  centered,
 }: {
   value: T
   onChange: (v: T) => void
   options: readonly Option<T>[]
   label: string
+  /** Pastilles centrées (tasbih). */
+  centered?: boolean
 }) {
   const legendId = useId()
   return (
-    <fieldset className="flex min-w-0 flex-col gap-[7px]">
+    <fieldset className={cn('flex min-w-0 flex-col gap-[7px]', centered && 'items-center')}>
       <legend id={legendId} className={cn(labelClass, 'mb-[7px]')}>
         {label}
       </legend>
@@ -36,7 +39,7 @@ export function ChipGroup<T extends string>({
         }}
         aria-labelledby={legendId}
         spacing={1.5}
-        className="w-full flex-wrap"
+        className={cn('w-full flex-wrap', centered && 'justify-center')}
       >
         {options.map((o) => (
           <ToggleGroupItem
