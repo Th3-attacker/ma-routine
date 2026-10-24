@@ -212,6 +212,10 @@
   .tabular {
     font-variant-numeric: tabular-nums;
   }
+  /* En arabe, le « 0 » de Reem Kufi ressemble au chiffre arabe ٥ : les nombres prennent la police du texte. */
+  .tabular:where([dir='rtl'] *) {
+    font-family: var(--font-sans);
+  }
   /* Inverse un dessin (arc solaire, flèches) en arabe */
   .rtl-flip:where([dir='rtl'] *) {
     transform: scaleX(-1);

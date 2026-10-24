@@ -7,6 +7,8 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useSettings } from '@/db/settings'
 import type { Settings } from '@/db/types'
+import { DebtsView } from '@/features/budget/DebtsView'
+import { GoalsView } from '@/features/budget/GoalsView'
 import { MonthView } from '@/features/budget/MonthView'
 import { resolvePlace } from '@/features/prayer/cities'
 import { useNow } from '@/features/prayer/useToday'
@@ -52,11 +54,15 @@ function Budget({ settings }: { settings: Settings }) {
         <TabsContent value="month" className="mt-[22px] text-base">
           <MonthView month={month} today={today} settings={settings} onMonth={(m) => go({ month: m })} />
         </TabsContent>
-        {VIEWS.filter((v) => v !== 'month').map((v) => (
-          <TabsContent key={v} value={v} className="mt-[22px] text-base">
-            <ComingSoon />
-          </TabsContent>
-        ))}
+        <TabsContent value="debts" className="mt-[22px] text-base">
+          <DebtsView today={today} settings={settings} />
+        </TabsContent>
+        <TabsContent value="goals" className="mt-[22px] text-base">
+          <GoalsView today={today} settings={settings} />
+        </TabsContent>
+        <TabsContent value="rec" className="mt-[22px] text-base">
+          <ComingSoon />
+        </TabsContent>
       </Tabs>
     </>
   )
