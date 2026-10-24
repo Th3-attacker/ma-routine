@@ -342,5 +342,26 @@
     "delay5": "Après 5 min",
     "delay15": "Après 15 min",
     "info": "Le code protège l’ouverture de l’app sur ce téléphone. Garde aussi le verrouillage de ton téléphone activé."
+  },
+  "call": {
+    "title": "Appel avant l’adhan",
+    "enabled": "M’appeler par mon prénom avant l’adhan",
+    "enabledHint": "Le téléphone dit « {{phrase}} » quand l’app est ouverte, et un bandeau s’affiche.",
+    "minutes": "Minutes avant l’adhan",
+    "minutesValue_one": "{{count}} minute",
+    "minutesValue_other": "{{count}} minutes",
+    "prayers": "Prières concernées",
+    "voice": "Dire la phrase à voix haute",
+    "lang": "Langue de l’appel",
+    "langApp": "Langue de l’app",
+    "langFr": "Français",
+    "langAr": "Arabe",
+    "langBoth": "Les deux",
+    "test": "Écouter un exemple",
+    "noVoiceAr": "Aucune voix arabe sur ce téléphone. Ajoute-la dans les réglages de synthèse vocale du téléphone.",
+    "noVoiceFr": "Aucune voix française sur ce téléphone. Ajoute-la dans les réglages de synthèse vocale du téléphone.",
+    "noSpeech": "La voix n’est pas disponible sur ce navigateur : seul le bandeau s’affichera.",
+    "closedHint": "App fermée : l’appel arrivera en notification avec les notifications d’adhan.",
+    "close": "Fermer"
   }
 }
