@@ -16,8 +16,11 @@ import {
 import { Button } from '@/components/ui/button'
 import { formatWait } from '@/lib/dates'
 
+import { useSession } from '@/sync/auth'
+
 import { LockLayout } from './LockLayout'
 import { getSecurity, verifyPin, wipeDevice } from './pin'
+import { ResetWithEmail } from './ResetWithEmail'
 
 /** Déverrouillage : salutation, 4 ronds, clavier ; paliers d'attente avec compte à rebours ; « Code oublié ? ». */
 export function UnlockScreen({ name, onUnlock }: { name: string; onUnlock: () => void }) {
@@ -27,6 +30,9 @@ export function UnlockScreen({ name, onUnlock }: { name: string; onUnlock: () =>
   const [now, setNow] = useState(() => Date.now())
   const [wrong, setWrong] = useState(false)
   const [forgot, setForgot] = useState<0 | 1 | 2>(0)
+  const [resetting, setResetting] = useState(false)
+  const { session } = useSession()
+  const accountEmail = session?.user.email ?? null
 
   // L'attente enregistrée survit au rechargement de la page.
   useEffect(() => {
@@ -46,26 +52,36 @@ export function UnlockScreen({ name, onUnlock }: { name: string; onUnlock: () =>
       <h1 className="text-center font-display text-2xl font-semibold rtl:font-bold">
         {name ? t('today.salamName', { name }) : t('today.salam')}
       </h1>
-      <PinPad
-        title={t('lock.unlockHint')}
-        message={waiting ? t('lock.wait', { time: waitText }) : wrong ? t('lock.wrong') : undefined}
-        error={waiting || wrong}
-        disabled={waiting}
-        onComplete={async (pin) => {
-          const r = await verifyPin(pin)
-          if (r.ok) {
-            onUnlock()
-            return true
-          }
-          setWrong(true)
-          setLockedUntil(r.lockedUntil)
-          setNow(Date.now())
-          return false
-        }}
-      />
-      <Button variant="link" className="h-11 font-bold" onClick={() => setForgot(1)}>
-        {t('lock.forgot')}
-      </Button>
+      {!resetting && (
+        <PinPad
+          title={t('lock.unlockHint')}
+          message={waiting ? t('lock.wait', { time: waitText }) : wrong ? t('lock.wrong') : undefined}
+          error={waiting || wrong}
+          disabled={waiting}
+          onComplete={async (pin) => {
+            const r = await verifyPin(pin)
+            if (r.ok) {
+              onUnlock()
+              return true
+            }
+            setWrong(true)
+            setLockedUntil(r.lockedUntil)
+            setNow(Date.now())
+            return false
+          }}
+        />
+      )}
+      {resetting && accountEmail ? (
+        <ResetWithEmail email={accountEmail} onDone={onUnlock} onCancel={() => setResetting(false)} />
+      ) : (
+        <Button
+          variant="link"
+          className="h-11 font-bold"
+          onClick={() => (accountEmail ? setResetting(true) : setForgot(1))}
+        >
+          {t('lock.forgot')}
+        </Button>
+      )}
 
       <AlertDialog open={forgot > 0} onOpenChange={(o) => !o && setForgot(0)}>
         <AlertDialogContent>

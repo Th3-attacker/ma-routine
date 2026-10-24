@@ -11,6 +11,7 @@ import { Toaster } from '@/components/ui/sonner'
 import { useSettings } from '@/db/settings'
 import { useRecurringAutoAdd } from '@/features/budget/useRecurringAutoAdd'
 import { useCallAlarm } from '@/features/call/useCallAlarm'
+import { SyncLink } from '@/sync/SyncLink'
 
 import { OpenSettingsContext } from './settings-drawer'
 
@@ -34,6 +35,7 @@ export function AppLayout() {
       <TabBar />
       <SettingsDrawer open={settingsOpen} onOpenChange={setSettingsOpen} />
       <PwaPrompt />
+      <SyncLink />
       <Toaster />
     </OpenSettingsContext.Provider>
   )

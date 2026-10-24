@@ -10,6 +10,7 @@ import { AboutSettings, BackupSettings } from '@/features/backup/BackupSettings'
 import { CallSettings } from '@/features/call/CallSettings'
 import { SecuritySettings } from '@/features/security/SecuritySettings'
 import { SettingsForm } from '@/features/settings/SettingsForm'
+import { AccountSettings } from '@/sync/AccountSettings'
 
 import { AppDrawer } from './AppDrawer'
 import { ChipGroup } from './ChipGroup'
@@ -82,6 +83,7 @@ export function SettingsDrawer({ open, onOpenChange }: { open: boolean; onOpenCh
         </div>
       )}
       {settings && <CallSettings settings={settings} />}
+      <AccountSettings />
       <SecuritySettings />
       {settings && <BackupSettings settings={settings} />}
       <AboutSettings />
