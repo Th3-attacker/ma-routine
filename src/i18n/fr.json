@@ -39,7 +39,7 @@
     "language": "Langue",
     "appearance": "Apparence",
     "textSize": "Taille du texte",
-    "later": "Notifications, compte et sauvegarde arrivent avec les prochaines étapes.",
+    "later": "Notifications et compte arrivent avec les prochaines étapes.",
     "ramadan": "Mode Ramadan",
     "ramadanPreview": "Aperçu du mode Ramadan",
     "ramadanHint": "Il s’active tout seul pendant Ramadan. L’aperçu te le montre dès maintenant.",
@@ -683,5 +683,27 @@
     "create": "Créer un projet",
     "doneTitle": "Tout est à jour",
     "doneBody": "Aucune étape en attente dans tes projets en cours."
+  },
+  "backup": {
+    "title": "Sauvegarde",
+    "hint": "Tes données restent sur ce téléphone. Télécharge une sauvegarde de temps en temps, et garde-la en lieu sûr.",
+    "export": "Télécharger une sauvegarde (.json)",
+    "exported": "Sauvegarde prête",
+    "import": "Importer une sauvegarde",
+    "importHint": "Accepte aussi le fichier exporté par la maquette.",
+    "confirmTitle": "Importer ce fichier ?",
+    "confirmBody": "{{days}} journées, {{transactions}} mouvements, {{projects}} projets, {{debts}} dettes, {{goals}} objectifs et {{recurring}} opérations récurrentes. Les éléments du fichier remplacent ceux qui ont le même identifiant ; le reste est conservé.",
+    "confirm": "Importer",
+    "imported": "Sauvegarde importée",
+    "invalid": "Ce fichier n’est pas une sauvegarde ELHADJ."
+  },
+  "about": {
+    "title": "À propos",
+    "athkar": "Athkar : Hisn al-Muslim (Sa‘îd al-Qahtânî).",
+    "quran": "Versets : le Coran, mushaf de Médine (Hafs ‘an ‘Âsim).",
+    "hadith": "Hadiths : Al-Bukhârî, Muslim, Abû Dâwûd, At-Tirmidhî, An-Nasâ’î, Ibn Mâjah (source citée sous chaque hadith).",
+    "times": "Horaires : bibliothèque libre adhan-js ; calendrier hégirien Umm al-Qura.",
+    "check": "Les textes seront relus avec Hisn al-Muslim et un mushaf avant la version finale.",
+    "privacy": "Aucune publicité, aucun outil de mesure, aucune donnée envoyée à des tiers."
   }
 }
