@@ -20,8 +20,10 @@ test('récurrente : créée avant le jour prévu, ajoutée automatiquement le jo
 
   // Le lendemain (5 octobre) : ajout automatique
   await page.clock.setSystemTime(new Date('2026-10-05T09:00:00Z'))
-  await page.clock.runFor(61_000)
-  await expect(page.getByText('1 opération récurrente ajoutée')).toBeVisible()
+  // La vérification se fait chaque minute : on avance seconde par seconde pour voir le message (affiché 2,5 s).
+  const toast = page.getByText('1 opération récurrente ajoutée')
+  for (let i = 0; i < 65 && !(await toast.count()); i++) await page.clock.runFor(1000)
+  await expect(toast).toBeVisible()
   await page.goto('./#/budget?view=month')
   await expect(page.getByRole('button', { name: /Loyer/ })).toHaveCount(1)
 
