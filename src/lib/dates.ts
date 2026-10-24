@@ -91,3 +91,16 @@ export function formatWait(ms: number, lang: Lang): string {
   if (s >= 60) return formatDuration(s * 1000, lang)
   return lang === 'ar' ? `${s} ث` : `${s} s`
 }
+
+/** « Octobre 2026 » / « أكتوبر 2026 » pour un mois 'YYYY-MM'. */
+export function formatMonth(month: string, lang: Lang): string {
+  const [y, m] = month.split('-').map(Number)
+  const f = new Intl.DateTimeFormat(dateLocale(lang), { month: 'long', year: 'numeric', timeZone: 'UTC' })
+  return capitalize(f.format(new Date(Date.UTC(y, m - 1, 15))))
+}
+
+/** « Vendredi 23 oct. » pour une clé de jour (titres des groupes de mouvements). */
+export function formatDayLabel(key: string, lang: Lang): string {
+  const f = new Intl.DateTimeFormat(dateLocale(lang), { weekday: 'long', timeZone: 'UTC' })
+  return `${capitalize(f.format(keyToUtcNoon(key)))} ${formatShortDate(key, lang)}`
+}
