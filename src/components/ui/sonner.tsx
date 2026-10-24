@@ -10,6 +10,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
       theme={resolvedTheme}
       dir={lang === "ar" ? "rtl" : "ltr"}
       position="bottom-center"
+      duration={2500}
       offset={{ bottom: "calc(80px + env(safe-area-inset-bottom, 0px))" }}
       mobileOffset={{ bottom: "calc(80px + env(safe-area-inset-bottom, 0px))" }}
       className="toaster group"

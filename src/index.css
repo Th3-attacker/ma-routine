@@ -182,6 +182,10 @@
   html {
     @apply bg-background font-sans;
     -webkit-text-size-adjust: 100%;
+    /* Quand la page défile vers un élément (focus, liens, Safari), il reste visible :
+       au-dessus de la barre d'onglets et des messages courts, sous l'en-tête. */
+    scroll-padding-top: 72px;
+    scroll-padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px));
   }
   body {
     @apply bg-background text-foreground;
