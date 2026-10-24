@@ -27,9 +27,10 @@ test('récurrente : créée avant le jour prévu, ajoutée automatiquement le jo
   await expect(page.getByRole('button', { name: /Loyer/ })).toHaveCount(1)
 
   // Rechargement : pas de doublon
+  // On reste sur #/budget?view=month : après le code, l'app rouvre cet écran (pas de nouveau goto, qui
+  // rechargerait la page avec WebKit et reverrouillerait l'app).
   await page.reload()
   await unlock(page)
-  await page.goto('./#/budget?view=month')
   await expect(page.getByRole('button', { name: /Loyer/ })).toHaveCount(1)
 })
 
