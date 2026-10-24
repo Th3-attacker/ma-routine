@@ -1,4 +1,5 @@
 export * from './days'
+export * from './rows'
 export * from './db'
 export * from './settings'
 export * from './types'

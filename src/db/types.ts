@@ -121,3 +121,88 @@ export type Security = {
   /** Délai avant de redemander le code au retour : 0 = à chaque ouverture. */
   lockAfterMin: LockDelay
 }
+
+// ── Budget et projets (phase 1B) ── montants entiers en ouguiyas
+
+export type MoneyType = 'out' | 'in'
+
+export type Transaction = SyncMeta & {
+  id: string
+  type: MoneyType
+  amount: number
+  category: string
+  payMethod: string
+  note: string
+  /** 'YYYY-MM-DD' */
+  date: string
+  createdAt: number
+  /** Opération récurrente qui l'a créée. */
+  recurringId?: string
+}
+
+export type ProjectStatus = 'active' | 'paused' | 'done'
+
+export type Project = SyncMeta & {
+  id: string
+  name: string
+  /** La niyya. */
+  intention: string
+  /** 'YYYY-MM-DD' ou '' */
+  deadline: string
+  /** Token de couleur : '--c1' … '--c10' */
+  color: string
+  status: ProjectStatus
+  createdAt: number
+}
+
+export type Task = SyncMeta & {
+  id: string
+  projectId: string
+  title: string
+  done: boolean
+  /** 'YYYY-MM-DD' ou '' */
+  due: string
+  position: number
+  /** Jour où l'étape a été cochée (pour le bilan du soir). */
+  doneAt: string | null
+}
+
+export type Movement = { amount: number; date: string }
+
+export type Debt = SyncMeta & {
+  id: string
+  /** 'in' : on me doit · 'out' : je dois */
+  direction: 'in' | 'out'
+  person: string
+  amount: number
+  due: string
+  note: string
+  payments: Movement[]
+  closed: boolean
+  createdAt: number
+}
+
+export type SavingsGoal = SyncMeta & {
+  id: string
+  name: string
+  target: number
+  deadline: string
+  color: string
+  /** Positif : versement · négatif : retrait */
+  moves: Movement[]
+  createdAt: number
+}
+
+export type Recurring = SyncMeta & {
+  id: string
+  type: MoneyType
+  name: string
+  amount: number
+  category: string
+  payMethod: string
+  /** Jour du mois, de 1 à 28. */
+  day: number
+  active: boolean
+  /** 'YYYY-MM' du dernier ajout, ou '' */
+  lastMonth: string
+}
