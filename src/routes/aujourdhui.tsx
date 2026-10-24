@@ -4,9 +4,13 @@ import { usePreferences } from '@/app/PreferencesProvider'
 import { AthkarMini } from '@/components/AthkarMini'
 import { FastCard, FridayCard } from '@/components/ContextCards'
 import { HabitsCard } from '@/components/HabitsCard'
+import { MoneyMini } from '@/components/MoneyMini'
+import { NextSteps } from '@/components/NextSteps'
 import { PageTitle } from '@/components/PageTitle'
 import { PrayerPills } from '@/components/PrayerPills'
 import { QuranCard } from '@/components/QuranCard'
+import { RamadanCard } from '@/components/RamadanCard'
+import { RecapCard } from '@/components/RecapCard'
 import { SkyHero } from '@/components/SkyHero'
 import { VerseCard } from '@/components/VerseCard'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -14,6 +18,7 @@ import { useDay } from '@/db/days'
 import { useSettings } from '@/db/settings'
 import type { Settings } from '@/db/types'
 import { formatHijri, hijriDate } from '@/features/calendar/hijri'
+import { isEvening } from '@/features/daily/recap'
 import { verseOfDay } from '@/features/daily/verseOfDay'
 import { useNow, useToday } from '@/features/prayer/useToday'
 import { ramadanDay } from '@/features/ramadan/ramadan'
@@ -35,6 +40,7 @@ function Today({ settings }: { settings: Settings }) {
   const name = displayName(settings, lang)
   const hijri = hijriDate(key, settings.hijriAdj)
   const ramadan = ramadanDay(key, settings.hijriAdj, settings.ramadanPreview)
+  const evening = isEvening(now, today)
 
   return (
     <>
@@ -50,10 +56,21 @@ function Today({ settings }: { settings: Settings }) {
           )}
         </p>
       </hgroup>
+      {day && (
+        <RamadanCard
+          day={day}
+          settings={settings}
+          now={now}
+          today={today}
+          tomorrow={tomorrow}
+          timezone={place.timezone}
+        />
+      )}
       <SkyHero now={now} dayKey={key} place={place} yesterday={yesterday} today={today} tomorrow={tomorrow} />
       {day ? (
         <>
           <PrayerPills day={day} times={today} timezone={place.timezone} />
+          {evening && <RecapCard day={day} settings={settings} />}
           <FridayCard day={day} times={today} timezone={place.timezone} />
           {!ramadan && (
             <FastCard
@@ -69,6 +86,9 @@ function Today({ settings }: { settings: Settings }) {
           <AthkarMini day={day} />
           <QuranCard day={day} settings={settings} />
           <HabitsCard day={day} settings={settings} />
+          <MoneyMini today={key} settings={settings} />
+          <NextSteps today={key} />
+          {!evening && <RecapCard day={day} settings={settings} />}
         </>
       ) : (
         <Skeleton className="h-24 w-full rounded-xl" />

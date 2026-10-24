@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-import { openApp, unlock } from './helpers.ts'
+import { openApp, tab, unlock } from './helpers.ts'
 
 const LANGS = ['fr', 'ar'] as const
 const SIZES = ['s', 'm', 'l', 'xl'] as const
@@ -35,7 +35,7 @@ for (const lang of LANGS) {
 
 test('les onglets naviguent et l’adresse garde le hash', async ({ page }) => {
   await openApp(page, { 'elhadj.lang': 'fr' })
-  await page.getByRole('link', { name: 'Prière' }).click()
+  await tab(page, 'Prière').click()
   await expect(page).toHaveURL(/#\/priere$/)
   await page.reload()
   await unlock(page)

@@ -28,3 +28,8 @@ export async function unlock(page: Page): Promise<void> {
   await typePin(page, PIN)
   await expect(page.getByRole('navigation', { name: /Sections|الأقسام/ })).toBeVisible()
 }
+
+/** Un onglet de la barre du bas (le même nom peut exister ailleurs dans la page). */
+export function tab(page: Page, name: string) {
+  return page.getByRole('navigation', { name: /^(Sections|الأقسام)$/ }).getByRole('link', { name, exact: true })
+}

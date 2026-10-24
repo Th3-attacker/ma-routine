@@ -620,5 +620,68 @@
     "activeCount_other": "{{count}} en cours",
     "openCount_one": "{{count}} étape à faire",
     "openCount_other": "{{count}} étapes à faire"
+  },
+  "recap": {
+    "title": "Bilan du jour",
+    "muhasaba": "muhâsaba",
+    "prayers": "prières",
+    "prayersJamaa": "prières · {{n}} en jamâ‘a",
+    "athkar": "séries d’athkar",
+    "quran": "pages de Coran",
+    "habits": "habitudes",
+    "steps": "étapes faites",
+    "spent": "dépensé",
+    "write": "Écrire mon bilan du soir",
+    "editJournal": "Modifier mon bilan",
+    "good": "Al-hamdulillah pour : {{text}}",
+    "better": "Demain, je veux : {{text}}",
+    "journalTitle": "Bilan du soir",
+    "journalHint": "Deux lignes suffisent. Personne d’autre ne les lit.",
+    "goodLabel": "Al-hamdulillah pour…",
+    "betterLabel": "Demain, je veux faire mieux sur…",
+    "saved": "Bilan enregistré",
+    "msg": {
+      "allDone": "Toutes tes prières sont accomplies. Al-hamdulillah !",
+      "unmarked_one": "Encore {{count}} prière à marquer.",
+      "unmarked_other": "Encore {{count}} prières à marquer.",
+      "missed_one": "{{count}} prière à rattraper. Allah est Pardonneur.",
+      "missed_other": "{{count}} prières à rattraper. Allah est Pardonneur."
+    }
+  },
+  "ramadan": {
+    "title": "Ramadan Moubarak",
+    "preview": "Aperçu",
+    "day": "Jour {{n}} sur 30",
+    "suhurUntil": "Suhûr jusqu’à",
+    "iftar": "Iftar",
+    "cd": {
+      "suhur": "Fin du suhûr {{in}}",
+      "iftar": "Iftar {{in}}",
+      "tomorrowSuhur": "Suhûr de demain jusqu’à {{time}}"
+    },
+    "fasting": "Je jeûne aujourd’hui",
+    "tarawih": "Tarawih",
+    "pages": "Pour finir le Coran avant l’Aïd : {{n}} pages par jour.",
+    "lastTen": "Les dix dernières nuits : cherche Laylat al-Qadr, surtout les nuits impaires.",
+    "zakat": "Pense à la zakat al-fitr avant la prière de l’Aïd.",
+    "soonTitle": "Ramadan approche",
+    "soon_one": "Ramadan commence dans environ {{count}} jour. Prépare ton intention, ton wird et ton budget.",
+    "soon_other": "Ramadan commence dans environ {{count}} jours. Prépare ton intention, ton wird et ton budget."
+  },
+  "money": {
+    "title": "Dépenses",
+    "today": "Aujourd’hui",
+    "left": "Reste du budget",
+    "month": "Ce mois",
+    "add": "Ajouter une dépense"
+  },
+  "steps": {
+    "title": "Prochaines étapes",
+    "link": "Projets",
+    "noneTitle": "Aucun projet pour l’instant",
+    "noneBody": "Note un objectif (mémoriser une sourate, lancer un commerce, préparer la Omra…) et découpe-le en étapes.",
+    "create": "Créer un projet",
+    "doneTitle": "Tout est à jour",
+    "doneBody": "Aucune étape en attente dans tes projets en cours."
   }
 }

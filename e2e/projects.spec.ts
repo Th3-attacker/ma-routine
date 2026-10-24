@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test'
 
-import { openApp } from './helpers.ts'
+import { openApp, tab } from './helpers.ts'
 
 test('projets : créer avec étapes, cocher, statut, filtres, supprimer', async ({ page }) => {
   await openApp(page, { 'elhadj.lang': 'fr' })
-  await page.getByRole('link', { name: 'Projets' }).click()
+  await tab(page, 'Projets').click()
   await expect(page.getByText('Ton premier projet')).toBeVisible()
 
   await page.getByRole('button', { name: 'Nouveau projet' }).click()
@@ -37,7 +37,7 @@ test('projets : créer avec étapes, cocher, statut, filtres, supprimer', async 
 
 test('projets en arabe, texte très grand : pas de débordement', async ({ page }) => {
   await openApp(page, { 'elhadj.lang': 'ar', 'elhadj.size': 'xl' })
-  await page.getByRole('link', { name: 'المشاريع' }).click()
+  await tab(page, 'المشاريع').click()
   await page.getByRole('button', { name: 'مشروع جديد' }).click()
   await page.getByRole('dialog').getByLabel('اسم المشروع').fill('فتح متجري في السوق المركزي')
   await page.getByRole('dialog').getByRole('button', { name: 'إنشاء المشروع' }).click()
