@@ -29,6 +29,10 @@ jobs:
       - run: pnpm format:check
       - run: pnpm test
       - run: pnpm build
+        env:
+          # Clés publiques du projet Supabase (secrets du dépôt). Sans elles, l'app est construite sans compte.
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
       - run: pnpm exec playwright install --with-deps chromium webkit
       - run: pnpm test:e2e
       # Captures et traces des tests en échec, téléchargeables depuis la page de l'exécution
