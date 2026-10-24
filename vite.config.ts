@@ -1,4 +1,5 @@
 import tailwindcss from '@tailwindcss/vite'
+import basicSsl from '@vitejs/plugin-basic-ssl'
 import react from '@vitejs/plugin-react'
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
@@ -7,9 +8,11 @@ import { VitePWA } from 'vite-plugin-pwa'
 // Nom du dépôt GitHub : l'app est servie sur https://<compte>.github.io/ma-routine/
 const base = '/ma-routine/'
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   base,
   plugins: [
+    // « pnpm dev:phone » : HTTPS sur le Wi-Fi, pour tester sur un téléphone (le code à 4 chiffres a besoin d'une page sécurisée).
+    mode === 'phone' && basicSsl(),
     react(),
     tailwindcss(),
     VitePWA({
@@ -43,4 +46,4 @@ export default defineConfig({
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },
-})
+}))

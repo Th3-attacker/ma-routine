@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Skeleton } from '@/components/ui/skeleton'
 import { db } from '@/db/db'
+import { cryptoAvailable, openDatabase, type OpenResult } from '@/db/open'
 import { useSettings } from '@/db/settings'
 import { CreatePin } from '@/features/security/CreatePin'
 import { LockLayout } from '@/features/security/LockLayout'
@@ -13,12 +14,32 @@ import { UnlockScreen } from '@/features/security/UnlockScreen'
 import { displayName } from '@/lib/names'
 
 import { usePreferences } from './PreferencesProvider'
+import { StartupProblem } from './StartupProblem'
 
 /**
  * Verrou de l'app : tant que le code n'est pas bon, seul l'écran du verrou existe (l'app n'est pas montée).
  * Redemande le code au démarrage, et au retour au premier plan après le délai choisi.
  */
 export function LockGate({ children }: { children: ReactNode }) {
+  const [opened, setOpened] = useState<OpenResult | null>(null)
+  useEffect(() => openDatabase(setOpened), [])
+
+  if (!cryptoAvailable()) return <StartupProblem issue="insecure" />
+  if (opened?.status === 'blocked' || opened?.status === 'slow') return <StartupProblem issue={opened.status} />
+  if (opened?.status === 'error') return <StartupProblem issue="error" detail={opened.message} />
+  if (opened?.status !== 'ok') return <Loading />
+  return <Gate>{children}</Gate>
+}
+
+function Loading() {
+  return (
+    <LockLayout>
+      <Skeleton className="h-64 w-full max-w-xs rounded-xl" />
+    </LockLayout>
+  )
+}
+
+function Gate({ children }: { children: ReactNode }) {
   const { t } = useTranslation()
   const { lang } = usePreferences()
   const settings = useSettings()
@@ -42,13 +63,7 @@ export function LockGate({ children }: { children: ReactNode }) {
     return () => document.removeEventListener('visibilitychange', handler)
   }, [])
 
-  if (!settings || hasPin === undefined || onboarding === null) {
-    return (
-      <LockLayout>
-        <Skeleton className="h-64 w-full max-w-xs rounded-xl" />
-      </LockLayout>
-    )
-  }
+  if (!settings || hasPin === undefined || onboarding === null) return <Loading />
 
   // Premier lancement : inscription en 3 étapes.
   if (onboarding && !unlocked) {

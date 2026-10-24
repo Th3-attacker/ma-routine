@@ -48,8 +48,9 @@ Web Push VAPID (phase 3) · Vitest + Testing Library · Playwright (360 et 390 p
 
 ```
 pnpm dev            # serveur local
+pnpm dev:phone      # serveur HTTPS sur le Wi-Fi, pour tester sur un téléphone (le code à 4 chiffres exige https)
 pnpm test           # Vitest
-pnpm test:e2e       # Playwright (après pnpm build)
+pnpm test:e2e       # Playwright (après pnpm build) ; la CI ajoute WebKit + profil iPhone 13 (WEBKIT=1 en local)
 pnpm verify         # formate, puis lint + types + tests (avant chaque commit)
 pnpm lint && pnpm format:check
 pnpm build          # tsc -b + vite build

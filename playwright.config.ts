@@ -10,6 +10,9 @@ export default defineConfig({
   projects: [
     { name: '360px', use: { ...devices['Pixel 5'], viewport: { width: 360, height: 740 } } },
     { name: '390px', use: { ...devices['iPhone 13'], browserName: 'chromium', viewport: { width: 390, height: 844 } } },
+    // Le vrai moteur des iPhone (Safari = WebKit), profil iPhone 13 complet. Lancé dans la CI (WebKit a besoin de
+    // bibliothèques système installées par « playwright install --with-deps »).
+    ...(process.env.CI || process.env.WEBKIT ? [{ name: 'iphone13', use: { ...devices['iPhone 13'] } }] : []),
   ],
   webServer: {
     command: 'pnpm preview --port 4173 --strictPort',
