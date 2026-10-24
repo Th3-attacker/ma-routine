@@ -5,10 +5,10 @@ import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 
 import { usePreferences } from '@/app/PreferencesProvider'
+import { AppSelect } from '@/components/AppSelect'
 import { Field, inputClass, labelClass, SectionTitle } from '@/components/Field'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { updateSettings } from '@/db/settings'
 import { METHOD_IDS, type Settings } from '@/db/types'
@@ -16,7 +16,7 @@ import { CITIES, CUSTOM_CITY_ID } from '@/features/prayer/cities'
 import { TIME_KEYS } from '@/features/prayer/times'
 import { cn } from '@/lib/utils'
 
-import { deviceTimezone, fromFormValues, settingsFormSchema, toFormValues, type SettingsFormValues } from './form'
+import { deviceTimezone, fromFormValues, settingsFormSchema, toFormValues } from './form'
 import { getPosition } from './geolocation'
 import { useHabitName } from './useHabitName'
 
@@ -65,21 +65,15 @@ export function PlaceFields({
     <>
       <Field label={t('settings.city')}>
         {(p) => (
-          <Select value={cityId} onValueChange={onCityChange}>
-            <SelectTrigger {...p} className={cn(inputClass, 'w-full')}>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent position="popper" className="max-h-72">
-              {CITIES.map((c) => (
-                <SelectItem key={c.id} value={c.id} className="min-h-11">
-                  {c[lang]}
-                </SelectItem>
-              ))}
-              <SelectItem value={CUSTOM_CITY_ID} className="min-h-11">
-                {t('settings.customCity')}
-              </SelectItem>
-            </SelectContent>
-          </Select>
+          <AppSelect
+            {...p}
+            value={cityId}
+            onChange={onCityChange}
+            options={[
+              ...CITIES.map((c) => ({ value: c.id, label: c[lang] })),
+              { value: CUSTOM_CITY_ID, label: t('settings.customCity') },
+            ]}
+          />
         )}
       </Field>
       <Button
@@ -222,21 +216,12 @@ export function SettingsForm({ settings, onSaved }: { settings: Settings; onSave
           {(field) => (
             <Field label={t('settings.method')}>
               {(p) => (
-                <Select
+                <AppSelect
+                  {...p}
                   value={field.state.value}
-                  onValueChange={(v) => field.handleChange(v as SettingsFormValues['method'])}
-                >
-                  <SelectTrigger {...p} className={cn(inputClass, 'w-full')}>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    {METHOD_IDS.map((m) => (
-                      <SelectItem key={m} value={m} className="min-h-11">
-                        {t(`methods.${m}`)}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                  onChange={(v) => field.handleChange(v)}
+                  options={METHOD_IDS.map((m) => ({ value: m, label: t(`methods.${m}`) }))}
+                />
               )}
             </Field>
           )}
@@ -245,22 +230,15 @@ export function SettingsForm({ settings, onSaved }: { settings: Settings; onSave
           {(field) => (
             <Field label={t('settings.asr')}>
               {(p) => (
-                <Select
+                <AppSelect
+                  {...p}
                   value={field.state.value}
-                  onValueChange={(v) => field.handleChange(v as SettingsFormValues['asrSchool'])}
-                >
-                  <SelectTrigger {...p} className={cn(inputClass, 'w-full')}>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    <SelectItem value="standard" className="min-h-11">
-                      {t('settings.asrStandard')}
-                    </SelectItem>
-                    <SelectItem value="hanafi" className="min-h-11">
-                      {t('settings.asrHanafi')}
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
+                  onChange={(v) => field.handleChange(v)}
+                  options={[
+                    { value: 'standard' as const, label: t('settings.asrStandard') },
+                    { value: 'hanafi' as const, label: t('settings.asrHanafi') },
+                  ]}
+                />
               )}
             </Field>
           )}
@@ -296,24 +274,18 @@ export function SettingsForm({ settings, onSaved }: { settings: Settings; onSave
           {(field) => (
             <Field label={t('settings.hijriAdj')}>
               {(p) => (
-                <Select
+                <AppSelect
+                  {...p}
                   value={field.state.value}
-                  onValueChange={(v) => field.handleChange(v as SettingsFormValues['hijriAdj'])}
-                >
-                  <SelectTrigger {...p} className={cn(inputClass, 'w-full')}>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    {HIJRI_ADJ.map((v) => (
-                      <SelectItem key={v} value={v} className="min-h-11">
-                        {t('settings.days', {
-                          count: Math.abs(Number(v)),
-                          value: `\u2066${Number(v) > 0 ? `+${v}` : v}\u2069`,
-                        })}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                  onChange={(v) => field.handleChange(v)}
+                  options={HIJRI_ADJ.map((v) => ({
+                    value: v,
+                    label: t('settings.days', {
+                      count: Math.abs(Number(v)),
+                      value: `\u2066${Number(v) > 0 ? `+${v}` : v}\u2069`,
+                    }),
+                  }))}
+                />
               )}
             </Field>
           )}
