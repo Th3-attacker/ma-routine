@@ -6,9 +6,11 @@ import { useTranslation } from 'react-i18next'
 import { usePreferences } from '@/app/PreferencesProvider'
 import { Button } from '@/components/ui/button'
 import type { Settings } from '@/db/types'
+import { topAlert } from '@/features/budget/insights'
 import { budgetTotal, monthStats } from '@/features/budget/stats'
 import { TransactionDrawer, type TxTarget } from '@/features/budget/TransactionDrawer'
 import { useMonthTransactions } from '@/features/budget/transactions'
+import { useInsightText, useMonthInsights } from '@/features/budget/useInsights'
 import { formatMoney } from '@/lib/money'
 import { cn } from '@/lib/utils'
 
@@ -24,6 +26,8 @@ export function MoneyMini({ today, settings }: { today: string; settings: Settin
   const stats = monthStats(items ?? [])
   const todayOut = (items ?? []).filter((x) => x.type === 'out' && x.date === today).reduce((a, x) => a + x.amount, 0)
   const total = budgetTotal(settings.budgets)
+  const alert = topAlert(useMonthInsights(today.slice(0, 7), today, settings) ?? [])
+  const alertText = useInsightText(settings.currency)
   const big = 'font-display text-[1.375rem] font-semibold tabular [overflow-wrap:anywhere]'
 
   return (
@@ -48,6 +52,17 @@ export function MoneyMini({ today, settings }: { today: string; settings: Settin
             </dd>
           </div>
         </dl>
+        {alert && (
+          <p
+            role="status"
+            className={cn(
+              'rounded-[12px] px-3 py-2 text-[0.8125rem] [overflow-wrap:anywhere]',
+              alert.severity === 'bad' ? 'bg-bad-soft text-bad' : 'bg-warn-soft text-ink-2',
+            )}
+          >
+            {alertText(alert)}
+          </p>
+        )}
         <Button className="h-11 rounded-[14px] font-bold" onClick={() => setTx({ type: 'out' })}>
           <PlusIcon aria-hidden="true" />
           {t('money.add')}

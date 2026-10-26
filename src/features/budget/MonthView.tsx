@@ -13,6 +13,7 @@ import { formatMoney } from '@/lib/money'
 import { cn } from '@/lib/utils'
 
 import { BudgetsDrawer } from './BudgetsDrawer'
+import { InsightsCard } from './InsightsCard'
 import { CATEGORIES, categoryColor } from './categories'
 import { addMonths, budgetLevel, budgetTotal, groupByDay, monthStats } from './stats'
 import { TransactionDrawer, type TxTarget } from './TransactionDrawer'
@@ -194,6 +195,8 @@ export function MonthView({
               </ul>
             </Section>
           )}
+
+          <InsightsCard month={month} today={today} settings={settings} />
 
           <Section title={t('budget.movements')} aside={<span className={subClass}>{items.length}</span>}>
             <div className="overflow-hidden rounded-xl bg-card shadow-card">

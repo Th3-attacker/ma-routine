@@ -76,14 +76,14 @@ export async function deleteProject(id: string): Promise<void> {
   for (const t of await db.tasks.where('projectId').equals(id).toArray()) await softDelete(db.tasks, t.id)
 }
 
-export async function addTask(projectId: string, title: string, position?: number): Promise<Task> {
+export async function addTask(projectId: string, title: string, position?: number, due = ''): Promise<Task> {
   const pos = position ?? (await db.tasks.where('projectId').equals(projectId).count())
   return saveRow(db.tasks, {
     id: newId(),
     projectId,
     title: title.slice(0, 120),
     done: false,
-    due: '',
+    due,
     position: pos,
     doneAt: null,
   })
