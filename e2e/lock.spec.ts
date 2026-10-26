@@ -5,11 +5,11 @@ import { openApp, PIN, typePin, unlock } from './helpers.ts'
 test('inscription en arabe : langue, prénom arabe, codes refusés et différents', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('elhadj.lang', 'fr'))
   await page.goto('./')
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Bienvenue sur ELHADJ')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Bienvenue sur Sama Jàmm')
   // Le choix de la langue change tout l'écran aussitôt
   await page.getByRole('radio', { name: 'ع' }).click()
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl')
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('مرحبًا بك في ELHADJ')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('مرحبًا بك في سلامي')
   await page.getByRole('button', { name: 'متابعة' }).click()
   await page.getByLabel('الاسم', { exact: true }).fill('Elhadj')
   await page.getByLabel('الاسم بالعربية (اختياري)').fill('الحاج')
@@ -73,7 +73,7 @@ test('code oublié sans compte : tout effacer avec une confirmation en deux temp
   await page.getByRole('button', { name: 'Continuer' }).click()
   await expect(page.getByRole('alertdialog')).toContainText('Toutes tes données sur ce téléphone seront supprimées.')
   await page.getByRole('button', { name: 'Tout effacer' }).click()
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Bienvenue sur ELHADJ')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Bienvenue sur Sama Jàmm')
 })
 
 test('Réglages → Sécurité : changer le code', async ({ page }) => {

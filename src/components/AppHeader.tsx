@@ -22,20 +22,20 @@ export function AppHeader({ onOpenSettings }: { onOpenSettings: () => void }) {
     <header className="sticky top-[env(safe-area-inset-top,0px)] z-20 flex items-center justify-between gap-1.5 bg-background pt-3 pb-2.5">
       <div className="flex min-w-0 items-center gap-[7px]">
         <Logo />
-        {/* Sous 375 px, le nom arabe passe sous ELHADJ pour ne pas être coupé. */}
-        <p className="flex min-w-0 items-center gap-[7px] max-[374px]:flex-col max-[374px]:items-start max-[374px]:gap-0">
+        {/* Sous 420 px, le nom arabe passe sous le nom latin pour ne pas être coupé. */}
+        <p className="flex min-w-0 items-center gap-[7px] max-[419px]:flex-col max-[419px]:items-start max-[419px]:gap-0">
           <span
             dir="ltr"
-            className="flex-none font-display text-[20px] leading-tight font-bold tracking-[0.04em] text-primary"
+            className="flex-none font-display text-[20px] leading-tight font-bold tracking-[0.01em] text-primary"
           >
             {t('app.name')}
           </span>
           <span
             lang="ar"
             dir="rtl"
-            className="max-w-full min-w-0 truncate font-quran text-[19px] leading-tight text-gold max-[374px]:text-[15px]"
+            className="max-w-full min-w-0 truncate font-quran text-[19px] leading-tight text-gold max-[419px]:text-[15px]"
           >
-            الحاج
+            {t('app.nameAr')}
           </span>
         </p>
       </div>

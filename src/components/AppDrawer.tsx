@@ -11,7 +11,7 @@ import {
   DrawerTitle,
 } from '@/components/ui/drawer'
 
-/** Volet du bas d'ELHADJ : titre à gauche, bouton Fermer, contenu défilant, safe area respectée. */
+/** Volet du bas de Sama Jàmm : titre à gauche, bouton Fermer, contenu défilant, safe area respectée. */
 export function AppDrawer({
   open,
   onOpenChange,

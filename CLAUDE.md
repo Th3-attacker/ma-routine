@@ -1,4 +1,7 @@
-# ELHADJ (الحاج) — PWA de vie quotidienne musulmane
+# Sama Jàmm (سلامي) — PWA de vie quotidienne musulmane (ex-ELHADJ)
+
+Nom en wolof, devise « Une vie organisée, un cœur apaisé. » Les clés internes gardent `elhadj` (localStorage `elhadj.*`,
+base Dexie `elhadj`, sauvegardes `app: 'ELHADJ'`) pour ne perdre aucune donnée.
 
 Le cahier des charges complet a été donné par l'utilisateur dans la première session. La référence visuelle et
 fonctionnelle validée est `maquette-elhadj.html` (racine) : couleurs, polices, écrans, libellés FR/AR, données
@@ -80,7 +83,7 @@ e2e/            tests Playwright
   **`--ink-3`** (shadcn utilise `--muted` comme fond). Les variables shadcn pointent vers ces tokens.
   Le ciel et la carte Ramadan gardent les mêmes couleurs dans les deux thèmes.
 - Taille du texte : `font-size` de `<html>` à 92/100/110/122 %. Tout en `rem` suit. **L'en-tête est en px** pour
-  ne jamais déborder ; sous 375 px, الحاج passe sous ELHADJ.
+  ne jamais déborder ; sous 420 px, le nom arabe passe sous le nom latin.
 - Arabe : `lang="ar" dir="rtl"` sur `<html>`, `DirectionProvider` (Radix), propriétés logiques Tailwind
   (`ms-`, `pe-`, `start-`, `text-start`…), `.rtl-flip` pour l'arc solaire et les flèches, jamais
   d'espacement de lettres ni de majuscules forcées sur de l'arabe (`rtl:tracking-normal rtl:normal-case`).
@@ -135,6 +138,6 @@ hégirien 12 Joumada al-oula 1448 ; le 24/10/2026 est le premier des jours blanc
 
 ## Logo
 
-Pas encore de photo : monogramme « E » (Reem Kufi, tracé dans `public/logo.svg`) sur indigo, contour doré.
+Pas encore de photo : monogramme « SJ » (Reem Kufi, tracé dans `public/logo.svg`) sur indigo, contour doré.
 Si `logo.jpg`/`logo.png` est ajouté à la racine : l'utiliser recadré en rond dans `Logo.tsx` et régénérer les
 icônes (`pwa-assets.config.ts` → `images`, puis `pnpm icons`).

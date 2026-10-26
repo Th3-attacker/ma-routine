@@ -1,5 +1,5 @@
 /// <reference lib="webworker" />
-// Service worker d'ELHADJ : fonctionnement hors connexion (précache Workbox) et notifications d'adhan.
+// Service worker de Sama Jàmm : fonctionnement hors connexion (précache Workbox) et notifications d'adhan.
 import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 

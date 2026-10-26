@@ -24,9 +24,9 @@ export default defineConfig(({ mode }) => ({
       injectManifest: { globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'] },
       includeAssets: ['favicon.ico', 'logo.svg', 'apple-touch-icon-180x180.png'],
       manifest: {
-        name: 'ELHADJ · الحاج',
-        short_name: 'ELHADJ',
-        description: 'Prières, athkar, Coran, budget et projets au quotidien.',
+        name: 'Sama Jàmm · سلامي',
+        short_name: 'Sama Jàmm',
+        description: 'Une vie organisée, un cœur apaisé. Prières, athkar, Coran, budget et projets au quotidien.',
         lang: 'fr',
         start_url: base,
         scope: base,
