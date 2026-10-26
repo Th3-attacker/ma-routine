@@ -18,6 +18,7 @@ test('Réglages → Appel : désactiver, prières, langue et exemple', async ({ 
   await openApp(page, { 'elhadj.lang': 'ar' })
   await page.getByRole('button', { name: 'الإعدادات' }).click()
   const dialog = page.getByRole('dialog')
+  await dialog.getByRole('button', { name: /^الصلاة والتذكيرات/ }).click()
   await expect(dialog.getByRole('heading', { name: 'النداء قبل الأذان' })).toBeVisible()
   await expect(dialog.getByText('Elhadj، الصلاة')).toBeVisible()
   const asr = dialog.getByRole('button', { name: 'العصر' })

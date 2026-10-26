@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { Skeleton } from '@/components/ui/skeleton'
 import { db } from '@/db/db'
 import { cryptoAvailable, openDatabase, type OpenResult } from '@/db/open'
-import { useSettings } from '@/db/settings'
+import { resetPrayerCalc, useSettings } from '@/db/settings'
 import { CreatePin } from '@/features/security/CreatePin'
 import { LockLayout } from '@/features/security/LockLayout'
 import { Onboarding } from '@/features/security/Onboarding'
@@ -23,6 +23,9 @@ import { StartupProblem } from './StartupProblem'
 export function LockGate({ children }: { children: ReactNode }) {
   const [opened, setOpened] = useState<OpenResult | null>(null)
   useEffect(() => openDatabase(setOpened), [])
+  useEffect(() => {
+    if (opened?.status === 'ok') void resetPrayerCalc()
+  }, [opened?.status])
 
   if (!cryptoAvailable()) return <StartupProblem issue="insecure" />
   if (opened?.status === 'blocked' || opened?.status === 'slow') return <StartupProblem issue={opened.status} />

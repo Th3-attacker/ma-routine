@@ -64,7 +64,7 @@ pnpm icons          # régénère les icônes PWA depuis public/logo.svg (pwa-as
 
 ```
 src/app/        router.tsx, AppLayout, Providers (QueryClient + préférences), device-prefs.ts, fonts.ts
-src/routes/     aujourdhui, priere, athkar, budget, projets (Réglages = Drawer, components/SettingsDrawer)
+src/routes/     aujourdhui, priere, athkar, budget, projets (Réglages = Drawer en 6 rubriques avec Retour, components/SettingsDrawer ; calcul des horaires non réglable : Ligue islamique mondiale, Asr standard)
 src/i18n/       fr.json, ar.json, index.ts, i18next.d.ts
 src/features/   prayer, athkar, tasbih, daily, ramadan, budget, debts, savings, recurring, projects, quran, habits, calendar
 src/db/         schéma Dexie        src/sync/  Supabase + moteur de synchro        src/push/  notifications

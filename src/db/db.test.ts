@@ -43,7 +43,7 @@ describe('réglages', () => {
 
   it('complète une ligne incomplète avec les valeurs par défaut', () => {
     const s = normalizeSettings({ tune: { fajr: 2 } as never, notif: { enabled: true } as never })
-    expect(s.tune).toEqual({ ...DEFAULT_SETTINGS.tune, fajr: 2 })
+    expect(s.tune).toEqual(DEFAULT_SETTINGS.tune) // plus de décalage réglable
     expect(s.notif.enabled).toBe(true)
     expect(s.notif.prayers.isha).toBe(true)
   })
