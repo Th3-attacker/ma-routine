@@ -11,6 +11,7 @@ import { Toaster } from '@/components/ui/sonner'
 import { useSettings } from '@/db/settings'
 import { useRecurringAutoAdd } from '@/features/budget/useRecurringAutoAdd'
 import { useCallAlarm } from '@/features/call/useCallAlarm'
+import { usePushBridge } from '@/push/usePushBridge'
 import { SyncLink } from '@/sync/SyncLink'
 
 import { OpenSettingsContext } from './settings-drawer'
@@ -20,6 +21,7 @@ export function AppLayout() {
   const settings = useSettings()
   const [callAlert, closeCall] = useCallAlarm(settings)
   useRecurringAutoAdd(settings)
+  usePushBridge(settings)
 
   const openSettings = useCallback(() => setSettingsOpen(true), [])
 

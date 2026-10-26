@@ -32,3 +32,7 @@ dist-ssr
 coverage
 test-results
 playwright-report
+
+# Supabase CLI (état local)
+supabase/.temp
+supabase/.branches
