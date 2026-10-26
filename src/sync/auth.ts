@@ -43,9 +43,15 @@ export async function signOut(): Promise<void> {
 }
 
 /** Traduit une erreur Supabase en message clair. */
-export function authErrorKey(e: unknown): 'errors.network' | 'errors.rateLimit' | 'errors.otpWrong' {
-  const err = e as { status?: number; message?: string; name?: string }
-  if (!navigator.onLine || err?.name === 'AuthRetryableFetchError') return 'errors.network'
+export function authErrorKey(
+  e: unknown,
+): 'errors.network' | 'errors.rateLimit' | 'errors.otpWrong' | 'errors.emailSend' {
+  const err = e as { status?: number; message?: string; name?: string } | null
+  if (!navigator.onLine) return 'errors.network'
   if (err?.status === 429 || /rate limit/i.test(err?.message ?? '')) return 'errors.rateLimit'
+  // Le serveur répond, mais n'arrive pas à envoyer l'e-mail (réglages SMTP).
+  if ((err?.status ?? 0) >= 500 || /sending .*email/i.test(err?.message ?? '')) return 'errors.emailSend'
+  // Pas de réponse du serveur : réseau coupé ou adresse injoignable.
+  if (err?.name === 'AuthRetryableFetchError' || err?.status === 0) return 'errors.network'
   return 'errors.otpWrong'
 }
