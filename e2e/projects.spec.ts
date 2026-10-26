@@ -42,7 +42,7 @@ test('projets en arabe, texte très grand : pas de débordement', async ({ page 
   await page.getByRole('dialog').getByLabel('اسم المشروع').fill('فتح متجري في السوق المركزي')
   await page.getByRole('dialog').getByRole('button', { name: 'إنشاء المشروع' }).click()
   await expect(page.getByRole('dialog').getByText('لا توجد خطوات. أضف الأولى أدناه.')).toBeVisible()
-  await page.keyboard.press('Escape')
+  await page.getByRole('dialog').getByRole('button', { name: 'إغلاق' }).first().click()
   await expect(page.getByRole('button', { name: /فتح متجري/ })).toBeVisible()
   expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0)
 })
