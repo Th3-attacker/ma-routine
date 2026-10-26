@@ -32,7 +32,7 @@ describe('premier lancement', () => {
     await act(() => i18n.changeLanguage('fr'))
     const user = userEvent.setup()
     await renderApp('/', { locked: true })
-    expect(await screen.findByRole('heading', { level: 1, name: 'Bienvenue sur ELHADJ' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { level: 1, name: 'Bienvenue sur Sama Jàmm' })).toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'Continuer' }))
     await user.type(screen.getByLabelText('Prénom'), 'Elhadj')
     await user.click(screen.getByRole('button', { name: 'Continuer' }))
@@ -78,7 +78,7 @@ describe('application', () => {
   it('affiche l’en-tête, la salutation et les 5 onglets', async () => {
     await act(() => i18n.changeLanguage('fr'))
     await renderApp()
-    expect(screen.getByRole('banner')).toHaveTextContent('ELHADJ')
+    expect(screen.getByRole('banner')).toHaveTextContent('Sama Jàmm')
     expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent('As-salâmu ‘alaykum')
     const nav = screen.getByRole('navigation', { name: 'Sections' })
     expect(nav.querySelectorAll('a')).toHaveLength(5)

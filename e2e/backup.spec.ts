@@ -31,5 +31,5 @@ test('sauvegarde : un fichier inconnu est refusé', async ({ page }) => {
     .getByRole('dialog')
     .getByLabel('Importer une sauvegarde')
     .setInputFiles({ name: 'autre.json', mimeType: 'application/json', buffer: Buffer.from('{"x":1}') })
-  await expect(page.getByText('Ce fichier n’est pas une sauvegarde ELHADJ.')).toBeVisible()
+  await expect(page.getByText('Ce fichier n’est pas une sauvegarde Sama Jàmm.')).toBeVisible()
 })

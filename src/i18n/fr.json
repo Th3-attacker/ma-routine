@@ -1,6 +1,8 @@
 {
   "app": {
-    "name": "ELHADJ",
+    "name": "Sama Jàmm",
+    "nameAr": "سلامي",
+    "tagline": "Une vie organisée, un cœur apaisé.",
     "description": "Prières, athkar, Coran, budget et projets au quotidien."
   },
   "tabs": {
@@ -102,8 +104,8 @@
     "body": "Cette section arrive dans une prochaine étape."
   },
   "pwa": {
-    "offlineReady": "ELHADJ fonctionne maintenant hors connexion.",
-    "needRefresh": "Une nouvelle version d’ELHADJ est prête.",
+    "offlineReady": "Sama Jàmm fonctionne maintenant hors connexion.",
+    "needRefresh": "Une nouvelle version de Sama Jàmm est prête.",
     "reload": "Mettre à jour"
   },
   "methods": {
@@ -154,7 +156,7 @@
     "emailSend": "L’e-mail n’a pas pu être envoyé. Le service d’envoi du compte est mal réglé : réessaie plus tard."
   },
   "welcome": {
-    "title": "Bienvenue sur ELHADJ",
+    "title": "Bienvenue sur Sama Jàmm",
     "intro": "Deux réglages pour calculer tes horaires de prière. Tout reste sur ton téléphone.",
     "start": "Commencer",
     "hint": "Tu pourras tout changer plus tard dans Réglages."
@@ -309,7 +311,7 @@
     "count": "Compter : {{n}}"
   },
   "lock": {
-    "welcomeTitle": "Bienvenue sur ELHADJ",
+    "welcomeTitle": "Bienvenue sur Sama Jàmm",
     "welcomeText": "Prières, athkar, Coran, budget et projets, au même endroit. Tout reste sur ton téléphone.",
     "languageLabel": "Langue",
     "next": "Continuer",
@@ -332,13 +334,13 @@
     "wait": "Trop d’essais. Réessaie dans {{time}}.",
     "forgot": "Code oublié ?",
     "forgotTitle": "Code oublié",
-    "forgotNoAccount": "Tu n’as pas de compte ELHADJ sur cet appareil : le code ne peut pas être récupéré. La seule solution est d’effacer les données de cet appareil et de recommencer.",
+    "forgotNoAccount": "Tu n’as pas de compte Sama Jàmm sur cet appareil : le code ne peut pas être récupéré. La seule solution est d’effacer les données de cet appareil et de recommencer.",
     "forgotContinue": "Continuer",
     "wipeTitle": "Tout effacer ?",
     "wipeBody": "Toutes tes données sur ce téléphone seront supprimées.",
     "wipe": "Tout effacer",
     "cancel": "Annuler",
-    "createTitle": "Protège ELHADJ",
+    "createTitle": "Protège Sama Jàmm",
     "createText": "Choisis un code à 4 chiffres pour ouvrir l’app sur ce téléphone.",
     "dots": "{{n}} chiffres tapés sur 4",
     "keypad": "Clavier du code",
@@ -406,13 +408,13 @@
     "other": "Autre"
   },
   "startup": {
-    "blockedTitle": "Une ancienne version d’ELHADJ est encore ouverte",
-    "blockedBody": "Ferme les autres onglets ELHADJ (dans Safari : bouton des onglets, puis glisse-les vers la gauche), puis touche « Réessayer ».",
+    "blockedTitle": "Une ancienne version de Sama Jàmm est encore ouverte",
+    "blockedBody": "Ferme les autres onglets Sama Jàmm (dans Safari : bouton des onglets, puis glisse-les vers la gauche), puis touche « Réessayer ».",
     "slowTitle": "Le chargement prend trop de temps",
-    "slowBody": "Ferme les autres onglets ELHADJ, puis touche « Réessayer ». Si ça continue, envoie une capture de cet écran.",
-    "errorTitle": "ELHADJ n’a pas pu démarrer",
+    "slowBody": "Ferme les autres onglets Sama Jàmm, puis touche « Réessayer ». Si ça continue, envoie une capture de cet écran.",
+    "errorTitle": "Sama Jàmm n’a pas pu démarrer",
     "errorBody": "Touche « Réessayer ». Si ça continue, envoie une capture de cet écran.",
-    "insecureTitle": "Ouvre ELHADJ avec une adresse sécurisée",
+    "insecureTitle": "Ouvre Sama Jàmm avec une adresse sécurisée",
     "insecureBody": "Cette adresse commence par « http:// ». Le téléphone y bloque le calcul sécurisé du code à 4 chiffres. Ouvre l’adresse en « https:// » (version en ligne, ou « pnpm dev:phone » sur l’ordinateur).",
     "retry": "Réessayer",
     "details": "Détails techniques"
@@ -519,7 +521,7 @@
     "new": "Nouvel objectif",
     "editTitle": "Modifier l’objectif",
     "emptyTitle": "Aucun objectif d’épargne",
-    "emptyBody": "Omra, Hajj, mouton de l’Aïd, mariage… Fixe un montant et une date : ELHADJ calcule combien mettre de côté chaque mois.",
+    "emptyBody": "Omra, Hajj, mouton de l’Aïd, mariage… Fixe un montant et une date : Sama Jàmm calcule combien mettre de côté chaque mois.",
     "reached": "Atteint",
     "perMonth": "{{amount}} / mois",
     "progress": "{{saved}} / {{target}} · {{pct}} %",
@@ -566,7 +568,7 @@
     "hint": "Elles s’ajoutent seules à ton budget le jour prévu. Tu peux ensuite les modifier ou les supprimer comme les autres.",
     "new": "Nouvelle opération récurrente",
     "emptyTitle": "Aucune opération récurrente",
-    "emptyBody": "Loyer, électricité (Somelec), eau, crédit téléphone, salaire… Ajoute-les une fois, ELHADJ les note chaque mois.",
+    "emptyBody": "Loyer, électricité (Somelec), eau, crédit téléphone, salaire… Ajoute-les une fois, Sama Jàmm les note chaque mois.",
     "every": "le {{day}} de chaque mois",
     "toggle": "Activer ou désactiver : {{name}}",
     "title": "Opération récurrente",
@@ -704,7 +706,7 @@
     "confirmBody": "{{days}} journées, {{transactions}} mouvements, {{projects}} projets, {{debts}} dettes, {{goals}} objectifs et {{recurring}} opérations récurrentes. Les éléments du fichier remplacent ceux qui ont le même identifiant ; le reste est conservé.",
     "confirm": "Importer",
     "imported": "Sauvegarde importée",
-    "invalid": "Ce fichier n’est pas une sauvegarde ELHADJ."
+    "invalid": "Ce fichier n’est pas une sauvegarde Sama Jàmm."
   },
   "about": {
     "title": "À propos",
@@ -747,7 +749,7 @@
     "enable": "Recevoir les notifications d’adhan",
     "enableHint": "Même quand l’app est fermée. La permission est demandée quand tu actives.",
     "needAccount": "Connecte-toi d’abord à ton compte (section Compte) : le serveur a besoin de ta ville pour calculer l’heure des prières.",
-    "denied": "Les notifications sont bloquées pour ELHADJ. Autorise-les dans les réglages du téléphone ou du navigateur, puis réessaie.",
+    "denied": "Les notifications sont bloquées pour Sama Jàmm. Autorise-les dans les réglages du téléphone ou du navigateur, puis réessaie.",
     "unsupported": "Ce navigateur ne permet pas les notifications. Essaie avec Chrome, ou Safari sur iPhone avec l’app sur l’écran d’accueil.",
     "disabled": "Les notifications ne sont pas encore configurées sur cette version.",
     "enabled": "Notifications activées",
@@ -762,11 +764,11 @@
     "athkarSoir": "Athkar du soir, 30 min après Asr",
     "suhur": "Ramadan : fin du suhûr, 45 min avant",
     "iftar": "Ramadan : iftar, à Maghrib",
-    "iosTitle": "Sur iPhone : ajoute d’abord ELHADJ à l’écran d’accueil",
-    "ios1": "Ouvre ELHADJ dans Safari.",
+    "iosTitle": "Sur iPhone : ajoute d’abord Sama Jàmm à l’écran d’accueil",
+    "ios1": "Ouvre Sama Jàmm dans Safari.",
     "ios2": "Touche le bouton Partager (le carré avec une flèche vers le haut).",
     "ios3": "Choisis « Sur l’écran d’accueil », puis « Ajouter ».",
-    "ios4": "Ouvre ELHADJ depuis sa nouvelle icône, et reviens ici. Il faut iOS 16.4 ou plus récent."
+    "ios4": "Ouvre Sama Jàmm depuis sa nouvelle icône, et reviens ici. Il faut iOS 16.4 ou plus récent."
   },
   "insights": {
     "title": "Conseils du mois",
