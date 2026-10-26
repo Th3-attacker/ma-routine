@@ -16,7 +16,7 @@ export async function setPrayerStatus(dayKey: string, prayer: Prayer, status: Pr
     if (status) prayers[prayer] = status
     else delete prayers[prayer]
     const now = Date.now()
-    await db.days.put({ ...day, prayers, updatedAt: now, dirty: 1 })
+    await db.days.put({ ...day, prayers, fieldTimes: { ...day.fieldTimes, prayers: now }, updatedAt: now, dirty: 1 })
 
     const delta = (status === 'missed' ? 1 : 0) - (before === 'missed' ? 1 : 0)
     if (delta !== 0) {

@@ -100,7 +100,11 @@ export type Day = SyncMeta & {
   fasted: boolean
   tarawih: boolean
   journal: { good: string; better: string }
+  /** Heure de modification de chaque champ (ms), pour fusionner champ par champ entre deux téléphones. */
+  fieldTimes?: Partial<Record<DayField, number>>
 }
+
+export type DayField = Exclude<keyof Day, 'id' | 'updatedAt' | 'deleted' | 'dirty' | 'fieldTimes'>
 
 export type LockDelay = 0 | 1 | 5 | 15
 

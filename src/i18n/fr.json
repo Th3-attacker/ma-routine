@@ -20,7 +20,8 @@
   "sync": {
     "local": "Sur cet appareil",
     "cloud": "Synchronisé",
-    "loading": "Chargement"
+    "loading": "Chargement",
+    "error": "Synchro impossible pour le moment"
   },
   "theme": {
     "auto": "Automatique",
@@ -144,7 +145,13 @@
     "goalName": "Donne un nom à l’objectif.",
     "recName": "Donne un nom.",
     "projectName": "Donne un nom à ton projet.",
-    "step": "Écris l’étape."
+    "step": "Écris l’étape.",
+    "email": "Entre une adresse e-mail valide.",
+    "otp": "Entre les 6 chiffres reçus par e-mail.",
+    "otpWrong": "Code incorrect ou expiré. Demande un nouveau code.",
+    "network": "Pas de connexion internet. Réessaie quand tu es en ligne.",
+    "rateLimit": "Trop de demandes. Attends quelques minutes avant de redemander un code.",
+    "emailSend": "L’e-mail n’a pas pu être envoyé. Le service d’envoi du compte est mal réglé : réessaie plus tard."
   },
   "welcome": {
     "title": "Bienvenue sur ELHADJ",
@@ -337,7 +344,10 @@
     "keypad": "Clavier du code",
     "delete": "Effacer",
     "digit": "{{d}}",
-    "nameField": "Prénom"
+    "nameField": "Prénom",
+    "forgotAccount": "Tu es connecté avec {{email}}. Reçois un code par e-mail pour choisir un nouveau code à 4 chiffres.",
+    "sendEmailCode": "Recevoir un code par e-mail",
+    "forgotOther": "Effacer cet appareil à la place"
   },
   "security": {
     "title": "Sécurité",
@@ -705,5 +715,32 @@
     "times": "Horaires : bibliothèque libre adhan-js ; calendrier hégirien Umm al-Qura.",
     "check": "Les textes seront relus avec Hisn al-Muslim et un mushaf avant la version finale.",
     "privacy": "Aucune publicité, aucun outil de mesure, aucune donnée envoyée à des tiers."
+  },
+  "account": {
+    "title": "Compte",
+    "disabled": "Le compte n’est pas encore configuré sur cette version. L’app fonctionne entièrement sur ce téléphone.",
+    "intro": "Un compte garde une copie de tes données pour les retrouver sur un autre téléphone. Sans compte, tout reste sur ce téléphone.",
+    "email": "Ton e-mail",
+    "sendCode": "Recevoir un code",
+    "codeSent": "Code envoyé à {{email}}. Regarde aussi dans les indésirables.",
+    "code": "Code à 6 chiffres",
+    "signIn": "Se connecter",
+    "otherEmail": "Changer d’e-mail",
+    "signedIn": "Connecté : {{email}}",
+    "signOut": "Se déconnecter",
+    "signedOut": "Déconnecté. Tes données restent sur ce téléphone.",
+    "welcome": "Connecté. Synchronisation en cours…",
+    "syncNow": "Synchroniser maintenant",
+    "lastSync": "Dernière synchro : {{time}}",
+    "never": "jamais",
+    "error": "La dernière synchro a échoué. Réessaie quand tu es en ligne."
+  },
+  "firstLogin": {
+    "title": "Des données sont déjà sur ce téléphone",
+    "body": "Que faire avec elles maintenant que tu es connecté ?",
+    "merge": "Fusionner avec mon compte",
+    "mergeHint": "Recommandé : rien n’est perdu, les deux sont réunis.",
+    "replace": "Remplacer par mon compte",
+    "replaceHint": "Les données de ce téléphone sont effacées et remplacées par celles du compte."
   }
 }

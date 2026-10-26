@@ -1,7 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 
 import { db } from './db'
-import type { Day } from './types'
+import type { Day, DayField } from './types'
 
 export function emptyDay(id: string): Day {
   return {
@@ -36,7 +36,12 @@ export async function getDay(id: string): Promise<Day> {
 export async function updateDay(id: string, change: (d: Day) => Partial<Omit<Day, 'id'>>): Promise<Day> {
   return db.transaction('rw', db.days, async () => {
     const current = await getDay(id)
-    const next: Day = { ...current, ...change(current), id, updatedAt: Date.now(), dirty: 1, deleted: 0 }
+    const patch = change(current)
+    const now = Date.now()
+    // On note l'heure de chaque champ modifié : la synchro fusionne les journées champ par champ.
+    const fieldTimes = { ...current.fieldTimes }
+    for (const k of Object.keys(patch) as DayField[]) fieldTimes[k] = now
+    const next: Day = { ...current, ...patch, id, fieldTimes, updatedAt: now, dirty: 1, deleted: 0 }
     await db.days.put(next)
     return next
   })

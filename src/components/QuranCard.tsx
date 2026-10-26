@@ -29,7 +29,13 @@ export function QuranCard({ day, settings }: { day: Day; settings: Settings }) {
       const r = addPages(s.quran, d.quranPages, n)
       if (!r) return false
       const now = Date.now()
-      await db.days.put({ ...d, quranPages: r.pagesToday, updatedAt: now, dirty: 1 })
+      await db.days.put({
+        ...d,
+        quranPages: r.pagesToday,
+        fieldTimes: { ...d.fieldTimes, quranPages: now },
+        updatedAt: now,
+        dirty: 1,
+      })
       await db.settings.put({ ...s, quran: r.quran, updatedAt: now, dirty: 1 })
       return r.khatmaDone
     })
