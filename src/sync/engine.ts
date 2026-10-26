@@ -1,7 +1,8 @@
 import type { EntityTable } from 'dexie'
 
 import { db } from '@/db/db'
-import type { Day, DayField, SyncMeta } from '@/db/types'
+import type { Day, DayField, Settings, SyncMeta } from '@/db/types'
+import { resolvePlace } from '@/features/prayer/cities'
 import { readLocal, writeLocal } from '@/lib/storage'
 
 // Synchro « local d'abord » : le téléphone est la source de vérité, le serveur garde une copie par compte.
@@ -42,9 +43,11 @@ type LocalName = keyof typeof SYNCED_TABLES
 
 const cursorKey = (userId: string, table: string) => `elhadj.sync.${userId}.${table}`
 
-function toRemote(row: Row): Omit<RemoteRow, 'synced_at'> {
-  const { dirty: _dirty, ...data } = row
+function toRemote(row: Row, name: LocalName): Omit<RemoteRow, 'synced_at'> {
+  const { dirty: _dirty, ...rest } = row
   void _dirty
+  // Le serveur des notifications a besoin des coordonnées et du fuseau : on les ajoute aux réglages envoyés.
+  const data = name === 'settings' ? { ...rest, place: resolvePlace(row as unknown as Settings) } : rest
   return { id: row.id, data, updated_at: row.updatedAt, deleted: row.deleted === 1 }
 }
 
@@ -107,7 +110,10 @@ async function pushTable(remote: Remote, name: LocalName): Promise<number> {
   const table = db[name] as unknown as EntityTable<Row, 'id'>
   const dirty = await table.where('dirty').equals(1).toArray()
   if (!dirty.length) return 0
-  await remote.push(SYNCED_TABLES[name], dirty.map(toRemote))
+  await remote.push(
+    SYNCED_TABLES[name],
+    dirty.map((r) => toRemote(r, name)),
+  )
   // On ne nettoie que les lignes qui n'ont pas été modifiées pendant l'envoi.
   await db.transaction('rw', table, async () => {
     for (const row of dirty) {

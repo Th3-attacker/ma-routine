@@ -10,6 +10,7 @@ import { AboutSettings, BackupSettings } from '@/features/backup/BackupSettings'
 import { CallSettings } from '@/features/call/CallSettings'
 import { SecuritySettings } from '@/features/security/SecuritySettings'
 import { SettingsForm } from '@/features/settings/SettingsForm'
+import { NotificationSettings } from '@/push/NotificationSettings'
 import { AccountSettings } from '@/sync/AccountSettings'
 
 import { AppDrawer } from './AppDrawer'
@@ -82,6 +83,7 @@ export function SettingsDrawer({ open, onOpenChange }: { open: boolean; onOpenCh
           <Skeleton className="h-11 w-full" />
         </div>
       )}
+      {settings && <NotificationSettings settings={settings} />}
       {settings && <CallSettings settings={settings} />}
       <AccountSettings />
       <SecuritySettings />
