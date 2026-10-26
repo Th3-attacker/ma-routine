@@ -625,7 +625,6 @@
     "updated": "Projet mis à jour",
     "deleteTitle": "Supprimer ce projet ?",
     "deleteBody": "Le projet et toutes ses étapes seront supprimés.",
-    "suggestLater": "« Proposer des étapes » arrive bientôt.",
     "activeCount_one": "{{count}} en cours",
     "activeCount_other": "{{count}} en cours",
     "openCount_one": "{{count}} étape à faire",
@@ -768,5 +767,43 @@
     "ios2": "Touche le bouton Partager (le carré avec une flèche vers le haut).",
     "ios3": "Choisis « Sur l’écran d’accueil », puis « Ajouter ».",
     "ios4": "Ouvre ELHADJ depuis sa nouvelle icône, et reviens ici. Il faut iOS 16.4 ou plus récent."
+  },
+  "insights": {
+    "title": "Conseils du mois",
+    "catOver": "{{cat}} : {{pct}} % du budget. Ce mois-ci, cette catégorie a dépassé ce que tu avais prévu ; regarde si une dépense peut attendre.",
+    "catNear": "{{cat}} : déjà {{pct}} % du budget. Encore un peu de place, à garder pour l’essentiel.",
+    "projection": "À ce rythme, tu dépenserais environ {{projected}} ce mois-ci, pour un budget de {{budget}}. Quelques jours plus légers suffisent à rééquilibrer.",
+    "lateDebts_one": "Une dette a dépassé son échéance ({{amount}} restants). Un petit message à la personne aide souvent.",
+    "lateDebts_other": "{{count}} dettes ont dépassé leur échéance ({{amount}} restants). Un petit message aux personnes aide souvent.",
+    "catUp": "{{cat}} : +{{pct}} % par rapport au mois dernier.",
+    "catDown": "{{cat}} : −{{pct}} % par rapport au mois dernier. Bien joué !",
+    "biggest": "Plus grosse dépense : {{amount}} ({{what}}), le {{date}}.",
+    "topDay": "Le jour où tu as le plus dépensé : le {{date}}, {{amount}}.",
+    "fixedShare": "Les dépenses fixes (récurrentes) font {{pct}} % de tes dépenses du mois.",
+    "sadaqa": "Sadaqa ce mois-ci : {{amount}}. Qu’Allah l’accepte."
+  },
+  "suggest": {
+    "button": "Proposer des étapes",
+    "title": "Étapes proposées",
+    "template": "Modèle",
+    "choose": "Choisis un modèle",
+    "matched": "Modèle choisi d’après le nom du projet. Tu peux en prendre un autre.",
+    "steps": "Étapes à ajouter",
+    "datesHint": "Les dates sont réparties jusqu’à l’échéance du projet.",
+    "add_one": "Ajouter {{count}} étape",
+    "add_other": "Ajouter {{count}} étapes",
+    "added_one": "{{count}} étape ajoutée",
+    "added_other": "{{count}} étapes ajoutées",
+    "cancel": "Fermer"
+  },
+  "templates": {
+    "memorize": "Mémoriser une sourate ou un juz",
+    "save": "Épargner pour un objectif",
+    "business": "Lancer un petit commerce",
+    "learn": "Apprendre une compétence ou une langue",
+    "travel": "Préparer un voyage",
+    "ramadan": "Préparer Ramadan",
+    "family": "Organiser un événement familial",
+    "debt": "Rembourser une dette"
   }
 }

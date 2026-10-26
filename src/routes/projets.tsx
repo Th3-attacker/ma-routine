@@ -37,6 +37,7 @@ import {
   type ProjectFilter,
   type ProjectWithTasks,
 } from '@/features/projects/projects'
+import { SuggestSteps } from '@/features/projects/SuggestSteps'
 import { dayKey, formatShortDate } from '@/lib/dates'
 import { readLocal, writeLocal } from '@/lib/storage'
 import { cn } from '@/lib/utils'
@@ -268,7 +269,7 @@ function ProjectDetail({
         <AddStepForm projectId={project.id} />
       </section>
 
-      <p className={subClass}>{t('projects.suggestLater')}</p>
+      <SuggestSteps project={project} today={today} />
       <div className="flex flex-wrap gap-2">
         <Button variant="secondary" className={btn} onClick={onEdit}>
           {t('debts.edit')}
