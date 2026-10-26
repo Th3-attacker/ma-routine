@@ -32,18 +32,16 @@ export async function currentSubscription(): Promise<PushSubscription | null> {
 
 async function save(sub: PushSubscription, lang: 'fr' | 'ar'): Promise<void> {
   const json = sub.toJSON()
-  const { error } = await supabase!
-    .from('push_subscriptions')
-    .upsert(
-      {
-        endpoint: sub.endpoint,
-        p256dh: json.keys!.p256dh,
-        auth: json.keys!.auth,
-        lang,
-        updated_at: new Date().toISOString(),
-      },
-      { onConflict: 'endpoint' },
-    )
+  const { error } = await supabase!.from('push_subscriptions').upsert(
+    {
+      endpoint: sub.endpoint,
+      p256dh: json.keys!.p256dh,
+      auth: json.keys!.auth,
+      lang,
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: 'endpoint' },
+  )
   if (error) throw error
 }
 
