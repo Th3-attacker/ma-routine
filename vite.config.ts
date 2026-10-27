@@ -5,6 +5,10 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
+import { shellMarkup } from './src/app/shell.ts'
+import ar from './src/i18n/ar.json' with { type: 'json' }
+import fr from './src/i18n/fr.json' with { type: 'json' }
+
 // Nom du dépôt GitHub : l'app est servie sur https://<compte>.github.io/ma-routine/
 const base = '/ma-routine/'
 
@@ -14,6 +18,31 @@ export default defineConfig(({ mode }) => ({
     // « pnpm dev:phone » : HTTPS sur le Wi-Fi, pour tester sur un téléphone (le code à 4 chiffres a besoin d'une page sécurisée).
     mode === 'phone' && basicSsl(),
     react(),
+    // Écran pré-dessiné dans index.html : visible avant le JavaScript (premier affichage rapide sur téléphone).
+    {
+      name: 'elhadj-shell',
+      transformIndexHtml: (html: string) =>
+        html.replace('<div id="root"></div>', `<div id="root">${shellMarkup(fr, ar)}</div>`),
+    },
+    // En production, le JavaScript de l'app ne se télécharge qu'après le premier affichage de l'écran
+    // pré-dessiné : sur un réseau lent, il ne retarde plus ce premier écran.
+    {
+      name: 'elhadj-load-after-paint',
+      apply: 'build',
+      transformIndexHtml: {
+        order: 'post',
+        handler: (html: string) => {
+          const entry = /<script type="module" crossorigin src="([^"]+)"><\/script>\s*/.exec(html)
+          if (!entry) return html
+          // Onglet en arrière-plan : requestAnimationFrame attend, d'où le second départ après 500 ms.
+          const loader = `<script>(function(){var done;function go(){if(done)return;done=1;var s=document.createElement('script');s.type='module';s.crossOrigin='';s.src='${entry[1]}';document.head.appendChild(s)}requestAnimationFrame(function(){setTimeout(go)});setTimeout(go,500)})()</script>`
+          return html
+            .replace(entry[0], '')
+            .replace(/<link rel="modulepreload"[^>]*>\s*/g, '')
+            .replace('</body>', `${loader}\n</body>`)
+        },
+      },
+    },
     tailwindcss(),
     VitePWA({
       registerType: 'prompt',
