@@ -1,4 +1,4 @@
-import { supabase } from '@/sync/supabase'
+import { accountsEnabled, getSupabase } from '@/sync/supabase'
 
 const VAPID_PUBLIC_KEY = import.meta.env.VITE_VAPID_PUBLIC_KEY as string | undefined
 
@@ -12,7 +12,7 @@ const isStandalone = () =>
 
 /** Les notifications marchent-elles ici ? Sur iPhone, seulement une fois l'app ajoutée à l'écran d'accueil. */
 export function pushSupport(): PushSupport {
-  if (!VAPID_PUBLIC_KEY || !supabase) return 'disabled'
+  if (!VAPID_PUBLIC_KEY || !accountsEnabled) return 'disabled'
   if (isIOS() && !isStandalone()) return 'ios-not-installed'
   if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) return 'unsupported'
   return 'ok'
@@ -32,7 +32,9 @@ export async function currentSubscription(): Promise<PushSubscription | null> {
 
 async function save(sub: PushSubscription, lang: 'fr' | 'ar'): Promise<void> {
   const json = sub.toJSON()
-  const { error } = await supabase!.from('push_subscriptions').upsert(
+  const supabase = await getSupabase()
+  if (!supabase) return
+  const { error } = await supabase.from('push_subscriptions').upsert(
     {
       endpoint: sub.endpoint,
       p256dh: json.keys!.p256dh,
@@ -64,12 +66,12 @@ export async function enablePush(lang: 'fr' | 'ar'): Promise<boolean> {
 export async function disablePush(): Promise<void> {
   const sub = await currentSubscription()
   if (!sub) return
-  await supabase?.from('push_subscriptions').delete().eq('endpoint', sub.endpoint)
+  await (await getSupabase())?.from('push_subscriptions').delete().eq('endpoint', sub.endpoint)
   await sub.unsubscribe()
 }
 
 /** La langue de l'app change : les notifications suivent. */
 export async function updatePushLang(lang: 'fr' | 'ar'): Promise<void> {
   const sub = await currentSubscription()
-  if (sub && supabase) await save(sub, lang)
+  if (sub && accountsEnabled) await save(sub, lang)
 }

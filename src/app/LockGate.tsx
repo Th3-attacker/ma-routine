@@ -12,6 +12,7 @@ import { Onboarding } from '@/features/security/Onboarding'
 import { getSecurity, markHidden, shouldRelock } from '@/features/security/pin'
 import { UnlockScreen } from '@/features/security/UnlockScreen'
 import { displayName } from '@/lib/names'
+import { writeLocal } from '@/lib/storage'
 
 import { usePreferences } from './PreferencesProvider'
 import { StartupProblem } from './StartupProblem'
@@ -52,6 +53,10 @@ function Gate({ children }: { children: ReactNode }) {
   // même quand les réglages et le code sont déjà enregistrés.
   const [onboarding, setOnboarding] = useState<boolean | null>(null)
   if (settings && onboarding === null) setOnboarding(!settings.onboarded)
+  // Pour l'écran pré-dessiné d'index.html (src/app/shell.ts) : bienvenue ou écran du code.
+  useEffect(() => {
+    if (settings?.onboarded) writeLocal('elhadj.onboarded', '1')
+  }, [settings?.onboarded])
 
   useEffect(() => {
     const onVisibility = async () => {

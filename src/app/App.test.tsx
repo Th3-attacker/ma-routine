@@ -34,7 +34,7 @@ describe('premier lancement', () => {
     await renderApp('/', { locked: true })
     expect(await screen.findByRole('heading', { level: 1, name: 'Bienvenue sur Sama Jàmm' })).toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'Continuer' }))
-    await user.type(screen.getByLabelText('Prénom'), 'Elhadj')
+    await user.type(await screen.findByLabelText('Prénom'), 'Elhadj')
     await user.click(screen.getByRole('button', { name: 'Continuer' }))
 
     expect(await screen.findByRole('heading', { name: 'Choisis ton code à 4 chiffres' })).toBeInTheDocument()
