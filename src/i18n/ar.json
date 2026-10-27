@@ -405,7 +405,12 @@
     "minutesValue_zero": "{{count}} دقيقة",
     "minutesValue_two": "دقيقتان",
     "minutesValue_few": "{{count}} دقائق",
-    "minutesValue_many": "{{count}} دقيقة"
+    "minutesValue_many": "{{count}} دقيقة",
+    "voiceFr": "الصوت بالفرنسية",
+    "voiceAr": "الصوت بالعربية",
+    "voiceAuto": "تلقائي (صوت رجل إن وُجد)",
+    "voiceMale": "{{name}} · رجل",
+    "noMaleVoice": "لا يوجد صوت رجل على هذا الهاتف: يُجعل الصوت أخشن. على iPhone يمكنك تنزيل صوت (الإعدادات ← تسهيلات الاستخدام ← المحتوى المنطوق ← الأصوات) ثم اختياره هنا."
   },
   "categories": {
     "food": "التغذية",
