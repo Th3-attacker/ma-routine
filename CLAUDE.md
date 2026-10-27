@@ -114,8 +114,9 @@ focus visible · `prefers-reduced-motion`.
 0 Mise en place ✅ · 1A Cœur hors connexion (Dexie, Réglages, Aujourd'hui, Prière, Athkar, tasbih) ✅ ·
 1A+ Verrou à 4 chiffres et appel avant l'adhan (Ajout n° 1) ✅ ·
 1B Budget, projets, bilan du soir, Ramadan, export/import (dont JSON de la maquette) ✅ · 2 Compte + synchro Supabase
-(code à 6 chiffres par e-mail) · 3 Notifications d'adhan · 4 Conseils sans IA · 5 Finitions (a11y, Lighthouse ≥ 90,
-README FR/AR, liste des textes à faire vérifier).
+(code à 6 chiffres par e-mail) ✅ · 3 Notifications d'adhan ✅ · 4 Conseils sans IA ✅ · 5 Finitions (a11y axe dans la CI,
+Lighthouse mobile ~92 grâce à l'écran pré-dessiné `src/app/shell.ts`, README FR/AR, `pnpm texts`, empreinte/visage
+WebAuthn, voix d'homme) ✅. Reste : mise en ligne (dépôt public, Pages, secrets, PR dev → main), SMTP Gmail.
 
 Valeurs de référence pour les tests (Nouakchott 18,0858 ; −15,9785, 23/10/2026, Ligue islamique mondiale, Asr
 standard, ±2 min) : Fajr 05:47 · Chourouq 07:00 · Dhohr 12:48 · Asr 16:08 · Maghrib 18:36 · Icha 19:45 ;
