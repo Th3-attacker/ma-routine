@@ -1,6 +1,7 @@
 import { Volume2Icon } from 'lucide-react'
 import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'sonner'
 
 import { usePreferences } from '@/app/PreferencesProvider'
 import { AppSelect } from '@/components/AppSelect'
@@ -16,6 +17,7 @@ import { readLocal, removeLocal, writeLocal } from '@/lib/storage'
 import { cn } from '@/lib/utils'
 
 import { callLangs, callPhrase } from './phrase'
+import { chime } from './chime'
 import { isMaleVoice, speak, voiceKey } from './speech'
 import { useVoices } from './useVoices'
 
@@ -35,7 +37,7 @@ export function CallSettings({ settings }: { settings: Settings }) {
   const set = (patch: Partial<Call>) => void updateSettings((s) => ({ call: { ...s.call, ...patch } }))
 
   const langs = callLangs(call.lang, lang)
-  const missing = langs.filter((l) => voices[l].length === 0)
+  const missing = voices.listed ? langs.filter((l) => voices[l].length === 0) : []
   const phrase = callPhrase(lang, settings)
 
   const toggleRow = 'flex items-center gap-3 rounded-[14px] border border-line bg-surface px-3.5 py-3'
@@ -123,8 +125,20 @@ export function CallSettings({ settings }: { settings: Settings }) {
           type="button"
           variant="secondary"
           className="h-11 rounded-[14px] bg-primary-soft font-bold text-primary"
-          disabled={!voices.supported}
-          onClick={() => speak(langs.map((l) => ({ text: callPhrase(l, settings), lang: l })))}
+          onClick={() => {
+            // Téléphone sans voix : on fait entendre le carillon qui remplacera la voix.
+            if (!voices.supported) {
+              chime()
+              return
+            }
+            // Un essai : on coupe une voix restée bloquée (cela arrive sur Android) avant de parler.
+            speechSynthesis.cancel()
+            const ok = speak(
+              langs.map((l) => ({ text: callPhrase(l, settings), lang: l })),
+              (code) => toast(t('call.speechError', { code })),
+            )
+            if (!ok) toast(t('call.notSpoken'))
+          }}
         >
           <Volume2Icon aria-hidden="true" />
           {t('call.test')}

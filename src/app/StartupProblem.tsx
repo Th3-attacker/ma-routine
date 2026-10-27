@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { LockLayout } from '@/features/security/LockLayout'
 
-export type StartupIssue = 'blocked' | 'slow' | 'error' | 'insecure'
+export type StartupIssue = 'blocked' | 'slow' | 'error' | 'insecure' | 'noStorage'
 
 /** Écran affiché quand l'app ne peut pas démarrer, avec « Réessayer » et des détails à envoyer. */
 export function StartupProblem({ issue, detail }: { issue: StartupIssue; detail?: string }) {
@@ -30,7 +30,7 @@ export function StartupProblem({ issue, detail }: { issue: StartupIssue; detail?
           {t(`startup.${issue}Title`)}
         </h1>
         <p className="max-w-[38ch] text-ink-2">{t(`startup.${issue}Body`)}</p>
-        {issue !== 'insecure' && (
+        {issue !== 'insecure' && issue !== 'noStorage' && (
           <Button className="h-12 w-full max-w-xs rounded-[14px] font-bold" onClick={() => location.reload()}>
             {t('startup.retry')}
           </Button>

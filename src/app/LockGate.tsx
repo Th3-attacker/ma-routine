@@ -29,6 +29,8 @@ export function LockGate({ children }: { children: ReactNode }) {
   }, [opened?.status])
 
   if (!cryptoAvailable()) return <StartupProblem issue="insecure" />
+  // Pas de base de données (Chrome ou Firefox sur iPhone avec l'adresse de test, navigation privée…)
+  if (typeof indexedDB === 'undefined') return <StartupProblem issue="noStorage" />
   if (opened?.status === 'blocked' || opened?.status === 'slow') return <StartupProblem issue={opened.status} />
   if (opened?.status === 'error') return <StartupProblem issue="error" detail={opened.message} />
   if (opened?.status !== 'ok') return <Loading />

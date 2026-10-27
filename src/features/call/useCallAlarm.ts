@@ -8,6 +8,7 @@ import { dayKey, formatTime } from '@/lib/dates'
 
 import { callBanner, callLangs, callPhrase } from './phrase'
 import { dueCall, logCall, readCallLog } from './schedule'
+import { chime, primeAudio } from './chime'
 import { speak } from './speech'
 
 export type CallAlert = { prayer: Prayer; text: string; at: number }
@@ -33,13 +34,23 @@ export function useCallAlarm(settings: Settings | undefined): [CallAlert | null,
       const time = formatTime(times[prayer], place.timezone)
       setAlert({ prayer, text: callBanner(lang, settings, prayer, key, time), at: now.getTime() })
       if (settings.call.voice) {
-        speak(callLangs(settings.call.lang, lang).map((l) => ({ text: callPhrase(l, settings), lang: l })))
+        const spoken = speak(
+          callLangs(settings.call.lang, lang).map((l) => ({ text: callPhrase(l, settings), lang: l })),
+        )
+        // Téléphone sans voix : un carillon et une vibration accompagnent le bandeau.
+        if (!spoken) chime()
       }
     }
     check()
     const id = setInterval(check, 15_000)
     return () => clearInterval(id)
   }, [settings, lang])
+
+  // Le son n'est permis qu'après un geste : on le prépare au premier toucher.
+  useEffect(() => {
+    document.addEventListener('pointerdown', primeAudio, { once: true })
+    return () => document.removeEventListener('pointerdown', primeAudio)
+  }, [])
 
   // Le bandeau disparaît après 2 minutes.
   useEffect(() => {

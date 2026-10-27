@@ -394,14 +394,16 @@
     "test": "Écouter un exemple",
     "noVoiceAr": "Aucune voix arabe sur ce téléphone. Ajoute-la dans les réglages de synthèse vocale du téléphone.",
     "noVoiceFr": "Aucune voix française sur ce téléphone. Ajoute-la dans les réglages de synthèse vocale du téléphone.",
-    "noSpeech": "La voix n’est pas disponible sur ce navigateur : seul le bandeau s’affichera.",
+    "noSpeech": "Ce navigateur ne sait pas parler : à la place de la voix, un carillon et une vibration accompagneront le bandeau. Pour entendre ton prénom, essaie Chrome ou Firefox.",
     "closedHint": "App fermée : l’appel arrivera en notification avec les notifications d’adhan.",
     "close": "Fermer",
     "voiceFr": "Voix en français",
     "voiceAr": "Voix en arabe",
     "voiceAuto": "Automatique (voix d’homme si possible)",
     "voiceMale": "{{name}} · homme",
-    "noMaleVoice": "Pas de voix d’homme sur ce téléphone : la voix est rendue plus grave. Sur iPhone, tu peux en télécharger une (Réglages → Accessibilité → Contenu énoncé → Voix), puis la choisir ici."
+    "noMaleVoice": "Pas de voix d’homme sur ce téléphone : la voix est rendue plus grave. Sur iPhone, tu peux en télécharger une (Réglages → Accessibilité → Contenu énoncé → Voix), puis la choisir ici.",
+    "notSpoken": "Le téléphone n’a pas parlé. Vérifie le volume, puis réessaie.",
+    "speechError": "La voix du téléphone a échoué ({{code}}). Vérifie le volume et la synthèse vocale du téléphone."
   },
   "categories": {
     "food": "Alimentation",
@@ -436,7 +438,9 @@
     "insecureTitle": "Ouvre Sama Jàmm avec une adresse sécurisée",
     "insecureBody": "Cette adresse commence par « http:// ». Le téléphone y bloque le calcul sécurisé du code à 4 chiffres. Ouvre l’adresse en « https:// » (version en ligne, ou « pnpm dev:phone » sur l’ordinateur).",
     "retry": "Réessayer",
-    "details": "Détails techniques"
+    "details": "Détails techniques",
+    "noStorageTitle": "Ce navigateur bloque l’enregistrement des données",
+    "noStorageBody": "Sur iPhone, ouvre l’app dans Safari (pas Chrome), et pas en navigation privée. Sur Android, quitte la navigation privée."
   },
   "budget": {
     "views": {

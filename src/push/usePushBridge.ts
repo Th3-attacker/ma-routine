@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { usePreferences } from '@/app/PreferencesProvider'
 import type { Prayer, Settings } from '@/db/types'
 import { logCall, readCallLog } from '@/features/call/schedule'
+import { chime } from '@/features/call/chime'
 import { speak } from '@/features/call/speech'
 import { resolvePlace } from '@/features/prayer/cities'
 import { dayKey } from '@/lib/dates'
@@ -26,7 +27,7 @@ export function usePushBridge(settings: Settings | undefined): void {
       const key = dayKey(new Date(), resolvePlace(settings).timezone)
       if (readCallLog(key).prayers.includes(prayer)) return
       logCall(key, prayer)
-      speak([{ text: msg.text, lang: msg.lang === 'ar' ? 'ar' : 'fr' }])
+      if (!speak([{ text: msg.text, lang: msg.lang === 'ar' ? 'ar' : 'fr' }])) chime()
     }
     navigator.serviceWorker.addEventListener('message', onMessage)
     return () => navigator.serviceWorker.removeEventListener('message', onMessage)

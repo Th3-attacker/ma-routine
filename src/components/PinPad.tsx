@@ -103,9 +103,9 @@ export function PinPad({
         ))}
       </div>
       <div dir="ltr" role="group" aria-label={t('lock.keypad')} className="grid grid-cols-3 gap-3">
-        {KEYS.map((k, i) =>
+        {KEYS.map((k) =>
           k === '' ? (
-            <span key={i} />
+            <span key="empty" />
           ) : (
             <button
               key={k}
