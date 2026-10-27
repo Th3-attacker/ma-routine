@@ -96,7 +96,8 @@ function Prayers({ settings }: { settings: Settings }) {
                 className={cn(
                   'grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-3 border-t border-line px-3.5 py-3 first:border-t-0',
                   k === cur && 'bg-primary-soft',
-                  isSunrise && 'opacity-75',
+                  // Le Chourouq n'est pas une prière : texte plus discret (sans opacité, pour garder le contraste)
+                  isSunrise && 'text-ink-2',
                 )}
               >
                 <span className="flex min-w-0 items-baseline gap-2.5">

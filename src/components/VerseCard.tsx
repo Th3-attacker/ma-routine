@@ -14,7 +14,7 @@ export function VerseCard({ text }: { text: DailyText }) {
     <section aria-labelledby={id} className={`${cardClass} flex flex-col items-center gap-2 text-center`}>
       <h2
         id={id}
-        className="text-[0.6875rem] font-bold tracking-[0.09em] text-gold uppercase rtl:text-[0.78125rem] rtl:tracking-normal rtl:normal-case"
+        className="text-[0.6875rem] font-bold tracking-[0.09em] text-gold-ink uppercase rtl:text-[0.78125rem] rtl:tracking-normal rtl:normal-case"
       >
         {text.hadith ? t('today.hadithOfDay') : t('today.verseOfDay')}
       </h2>
