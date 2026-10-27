@@ -51,7 +51,7 @@ function Today({ settings }: { settings: Settings }) {
           {hijri && (
             <>
               {' · '}
-              <b className="font-bold text-gold">{formatHijri(hijri, lang)}</b>
+              <b className="font-bold text-gold-ink">{formatHijri(hijri, lang)}</b>
             </>
           )}
         </p>

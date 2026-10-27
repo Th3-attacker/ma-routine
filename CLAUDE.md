@@ -82,6 +82,8 @@ e2e/            tests Playwright
   maquette (`--bg`, `--surface`, `--ink`, `--gold`, `--c1`…, `--sky-*`), sauf `--muted` de la maquette renommé
   **`--ink-3`** (shadcn utilise `--muted` comme fond). Les variables shadcn pointent vers ces tokens.
   Le ciel et la carte Ramadan gardent les mêmes couleurs dans les deux thèmes.
+  Contraste ≥ 4,5:1 vérifié par axe (`e2e/a11y.spec.ts`) : `--ink-3`, `--ok`, `--warn` plus foncés que la maquette en
+  clair ; texte doré sur fond clair → `text-gold-ink` (`--gold` reste pour les bordures, fonds et le ciel).
 - Taille du texte : `font-size` de `<html>` à 92/100/110/122 %. Tout en `rem` suit. **L'en-tête est en px** pour
   ne jamais déborder ; sous 420 px, le nom arabe passe sous le nom latin.
 - Arabe : `lang="ar" dir="rtl"` sur `<html>`, `DirectionProvider` (Radix), propriétés logiques Tailwind

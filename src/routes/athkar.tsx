@@ -131,11 +131,11 @@ function Series({ set, day }: { set: AthkarSet; day: Day }) {
             className="flex flex-wrap items-baseline gap-2.5 font-display text-[1.375rem] font-semibold rtl:font-bold"
           >
             {ar ? (
-              <span className="font-quran font-bold text-gold">{series.ar}</span>
+              <span className="font-quran font-bold text-gold-ink">{series.ar}</span>
             ) : (
               <>
                 {t(`athkar.sets.${set}`)}
-                <span lang="ar" className="font-quran font-bold text-gold">
+                <span lang="ar" className="font-quran font-bold text-gold-ink">
                   {series.ar}
                 </span>
               </>

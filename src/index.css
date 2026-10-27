@@ -17,15 +17,17 @@
   --line: #dcdfea;
   --ink: #151935;
   --ink-2: #464b6b;
-  --ink-3: #767b99;
+  --ink-3: #626784; /* maquette #767b99, foncé pour un contraste ≥ 4,5:1 (WCAG AA) */
   --primary: #2c3b8f;
   --primary-soft: #e3e7f8;
   --on-primary: #ffffff;
   --gold: #b97a1c;
+  /* Texte doré sur fond clair : plus foncé que --gold pour un contraste ≥ 4,5:1 */
+  --gold-ink: #8f5e16;
   --gold-soft: #faebd2;
-  --ok: #1e7b56;
+  --ok: #1c7552;
   --ok-soft: #dcf0e6;
-  --warn: #b26d12;
+  --warn: #945b0f;
   --warn-soft: #f9ead2;
   --bad: #b23b3b;
   --bad-soft: #f6dfdf;
@@ -88,6 +90,7 @@
   --primary-soft: #232a55;
   --on-primary: #0d1022;
   --gold: #efb25a;
+  --gold-ink: #efb25a;
   --gold-soft: #382b16;
   --ok: #5fcb98;
   --ok-soft: #14352a;
@@ -144,6 +147,7 @@
   --color-ink-2: var(--ink-2);
   --color-ink-3: var(--ink-3);
   --color-gold: var(--gold);
+  --color-gold-ink: var(--gold-ink);
   --color-gold-soft: var(--gold-soft);
   --color-ok: var(--ok);
   --color-ok-soft: var(--ok-soft);

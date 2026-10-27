@@ -33,7 +33,7 @@ export function AppHeader({ onOpenSettings }: { onOpenSettings: () => void }) {
           <span
             lang="ar"
             dir="rtl"
-            className="max-w-full min-w-0 truncate font-quran text-[19px] leading-tight text-gold max-[419px]:text-[15px]"
+            className="max-w-full min-w-0 truncate font-quran text-[19px] leading-tight text-gold-ink max-[419px]:text-[15px]"
           >
             {t('app.nameAr')}
           </span>

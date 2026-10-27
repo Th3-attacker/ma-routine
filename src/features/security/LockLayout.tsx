@@ -16,7 +16,7 @@ export function LockLayout({ top, children }: { top?: ReactNode; children: React
             <span dir="ltr" className="font-display text-2xl font-bold tracking-[0.01em] text-primary">
               {t('app.name')}
             </span>
-            <span lang="ar" className="font-quran text-[22px] text-gold">
+            <span lang="ar" className="font-quran text-[22px] text-gold-ink">
               {t('app.nameAr')}
             </span>
           </p>
