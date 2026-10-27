@@ -103,7 +103,7 @@ export function voicesFor(lang: 'fr' | 'ar'): SpeechSynthesisVoice[] {
  * sauf si le navigateur ne donne aucune liste de voix.
  * Renvoie false si rien n'a été dit (voix absente, autre voix en cours, lecture plein écran ouverte).
  */
-export function speak(parts: { text: string; lang: 'fr' | 'ar' }[]): boolean {
+export function speak(parts: { text: string; lang: 'fr' | 'ar' }[], onError?: (code: string) => void): boolean {
   if (!speechSupported() || readerOpen || speechSynthesis.speaking) return false
   // Certains téléphones Android ne donnent pas la liste de leurs voix au navigateur, mais savent parler :
   // on laisse alors le téléphone choisir sa voix d'après la langue.
@@ -123,6 +123,11 @@ export function speak(parts: { text: string; lang: 'fr' | 'ar' }[]): boolean {
       u.pitch = 0.75
     }
     u.rate = 0.95
+    u.onerror = (e) => {
+      // Visible aussi dans le terminal de « pnpm dev:phone », pour comprendre un téléphone qui reste muet.
+      console.error(`voix ${p.lang} : ${e.error} (${voice?.name ?? 'voix du téléphone'})`)
+      onError?.(e.error)
+    }
     speechSynthesis.speak(u)
     spoken = true
   }

@@ -1,6 +1,7 @@
 import { Volume2Icon } from 'lucide-react'
 import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'sonner'
 
 import { usePreferences } from '@/app/PreferencesProvider'
 import { AppSelect } from '@/components/AppSelect'
@@ -124,7 +125,15 @@ export function CallSettings({ settings }: { settings: Settings }) {
           variant="secondary"
           className="h-11 rounded-[14px] bg-primary-soft font-bold text-primary"
           disabled={!voices.supported}
-          onClick={() => speak(langs.map((l) => ({ text: callPhrase(l, settings), lang: l })))}
+          onClick={() => {
+            // Un essai : on coupe une voix restée bloquée (cela arrive sur Android) avant de parler.
+            speechSynthesis.cancel()
+            const ok = speak(
+              langs.map((l) => ({ text: callPhrase(l, settings), lang: l })),
+              (code) => toast(t('call.speechError', { code })),
+            )
+            if (!ok) toast(t('call.notSpoken'))
+          }}
         >
           <Volume2Icon aria-hidden="true" />
           {t('call.test')}
