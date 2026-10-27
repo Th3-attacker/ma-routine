@@ -368,7 +368,14 @@
     "delay1": "Après 1 min",
     "delay5": "Après 5 min",
     "delay15": "Après 15 min",
-    "info": "Le code protège l’ouverture de l’app sur ce téléphone. Garde aussi le verrouillage de ton téléphone activé."
+    "info": "Le code protège l’ouverture de l’app sur ce téléphone. Garde aussi le verrouillage de ton téléphone activé.",
+    "biometric": "Ouvrir avec l’empreinte ou le visage",
+    "biometricHint": "Le code à 4 chiffres reste possible. L’empreinte et le visage restent dans ton téléphone : l’app ne les voit jamais.",
+    "biometricOn": "Empreinte ou visage activé",
+    "biometricOff": "Empreinte ou visage désactivé",
+    "biometricFailed": "Activation annulée ou impossible sur ce téléphone.",
+    "biometricUnlock": "Utiliser l’empreinte ou le visage",
+    "biometricRetry": "Pas reconnu. Réessaie, ou tape ton code."
   },
   "call": {
     "title": "Appel avant l’adhan",

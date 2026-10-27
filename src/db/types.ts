@@ -124,6 +124,8 @@ export type Security = {
   lastHiddenAt: number | null
   /** Délai avant de redemander le code au retour : 0 = à chaque ouverture. */
   lockAfterMin: LockDelay
+  /** Clé d'accès de l'appareil pour l'empreinte ou le visage (WebAuthn) : identifiant et clé publique. */
+  passkey: { id: string; publicKey: string; alg: number } | null
 }
 
 // ── Budget et projets (phase 1B) ── montants entiers en ouguiyas

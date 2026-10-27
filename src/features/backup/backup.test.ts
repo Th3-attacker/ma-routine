@@ -198,9 +198,11 @@ describe('sauvegarde', () => {
       lockedUntil: 0,
       lastHiddenAt: null,
       lockAfterMin: 5,
+      passkey: { id: 'cred', publicKey: 'cGs', alg: -7 },
     })
     const text = JSON.stringify(await buildBackup())
     expect(text).not.toContain('aGFzaA==')
+    expect(text).not.toContain('cGs')
     expect(text).not.toContain('security')
   })
 })
