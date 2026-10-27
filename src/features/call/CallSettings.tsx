@@ -17,6 +17,7 @@ import { readLocal, removeLocal, writeLocal } from '@/lib/storage'
 import { cn } from '@/lib/utils'
 
 import { callLangs, callPhrase } from './phrase'
+import { chime } from './chime'
 import { isMaleVoice, speak, voiceKey } from './speech'
 import { useVoices } from './useVoices'
 
@@ -124,8 +125,12 @@ export function CallSettings({ settings }: { settings: Settings }) {
           type="button"
           variant="secondary"
           className="h-11 rounded-[14px] bg-primary-soft font-bold text-primary"
-          disabled={!voices.supported}
           onClick={() => {
+            // Téléphone sans voix : on fait entendre le carillon qui remplacera la voix.
+            if (!voices.supported) {
+              chime()
+              return
+            }
             // Un essai : on coupe une voix restée bloquée (cela arrive sur Android) avant de parler.
             speechSynthesis.cancel()
             const ok = speak(
