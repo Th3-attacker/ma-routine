@@ -5,6 +5,7 @@ import { openApp, tab } from './helpers.ts'
 test('sauvegarde : télécharger, puis importer le fichier de la maquette', async ({ page }) => {
   await openApp(page, { 'elhadj.lang': 'fr' })
   await page.getByRole('button', { name: 'Réglages' }).click()
+  await page.getByRole('button', { name: /^Sauvegarde et à propos/ }).click()
   const dialog = page.getByRole('dialog')
 
   const download = page.waitForEvent('download')
@@ -27,6 +28,7 @@ test('sauvegarde : télécharger, puis importer le fichier de la maquette', asyn
 test('sauvegarde : un fichier inconnu est refusé', async ({ page }) => {
   await openApp(page, { 'elhadj.lang': 'fr' })
   await page.getByRole('button', { name: 'Réglages' }).click()
+  await page.getByRole('button', { name: /^Sauvegarde et à propos/ }).click()
   await page
     .getByRole('dialog')
     .getByLabel('Importer une sauvegarde')

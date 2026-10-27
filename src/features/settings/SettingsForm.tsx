@@ -6,15 +6,13 @@ import { toast } from 'sonner'
 
 import { usePreferences } from '@/app/PreferencesProvider'
 import { AppSelect } from '@/components/AppSelect'
-import { Field, inputClass, labelClass, SectionTitle } from '@/components/Field'
+import { Field, inputClass, SectionTitle } from '@/components/Field'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { updateSettings } from '@/db/settings'
-import { METHOD_IDS, type Settings } from '@/db/types'
+import type { Settings } from '@/db/types'
 import { CITIES, CUSTOM_CITY_ID } from '@/features/prayer/cities'
-import { TIME_KEYS } from '@/features/prayer/times'
-import { cn } from '@/lib/utils'
 
 import { deviceTimezone, fromFormValues, settingsFormSchema, toFormValues } from './form'
 import { getPosition } from './geolocation'
@@ -22,27 +20,23 @@ import { useHabitName } from './useHabitName'
 
 const HIJRI_ADJ = ['-2', '-1', '0', '1', '2'] as const
 
-/** Ville ou « Autre lieu », avec le bouton « Utiliser ma position ». Partagé avec l'écran d'accueil. */
+/**
+ * Ville de la liste, ou « Ma position » trouvée par le bouton (pas de coordonnées à taper).
+ * Partagé avec l'écran d'accueil.
+ */
 export function PlaceFields({
   cityId,
   onCityChange,
-  lat,
-  lng,
+  hasPosition,
   onCoords,
-  latErrors,
-  lngErrors,
-  onLatChange,
-  onLngChange,
+  errors,
 }: {
   cityId: string
   onCityChange: (v: string) => void
-  lat: string
-  lng: string
+  /** Une position a déjà été trouvée : « Ma position » apparaît dans la liste. */
+  hasPosition: boolean
   onCoords: (lat: number, lng: number) => void
-  latErrors?: readonly unknown[]
-  lngErrors?: readonly unknown[]
-  onLatChange: (v: string) => void
-  onLngChange: (v: string) => void
+  errors?: readonly unknown[]
 }) {
   const { t } = useTranslation()
   const { lang } = usePreferences()
@@ -63,7 +57,11 @@ export function PlaceFields({
 
   return (
     <>
-      <Field label={t('settings.city')}>
+      <Field
+        label={t('settings.city')}
+        errors={errors}
+        hint={cityId === CUSTOM_CITY_ID ? t('settings.positionHint') : undefined}
+      >
         {(p) => (
           <AppSelect
             {...p}
@@ -71,7 +69,9 @@ export function PlaceFields({
             onChange={onCityChange}
             options={[
               ...CITIES.map((c) => ({ value: c.id, label: c[lang] })),
-              { value: CUSTOM_CITY_ID, label: t('settings.customCity') },
+              ...(hasPosition || cityId === CUSTOM_CITY_ID
+                ? [{ value: CUSTOM_CITY_ID, label: t('settings.myPosition') }]
+                : []),
             ]}
           />
         )}
@@ -86,43 +86,23 @@ export function PlaceFields({
         <LocateFixedIcon aria-hidden="true" />
         {locating ? t('settings.locating') : t('settings.useLocation')}
       </Button>
-      {cityId === CUSTOM_CITY_ID && (
-        <div className="grid grid-cols-2 gap-2.5">
-          <Field label={t('settings.lat')} errors={latErrors}>
-            {(p) => (
-              <Input
-                {...p}
-                className={inputClass}
-                inputMode="decimal"
-                dir="ltr"
-                placeholder="18.0858"
-                value={lat}
-                onChange={(e) => onLatChange(e.target.value)}
-              />
-            )}
-          </Field>
-          <Field label={t('settings.lng')} errors={lngErrors}>
-            {(p) => (
-              <Input
-                {...p}
-                className={inputClass}
-                inputMode="decimal"
-                dir="ltr"
-                placeholder="-15.9785"
-                value={lng}
-                onChange={(e) => onLngChange(e.target.value)}
-              />
-            )}
-          </Field>
-          <p className="col-span-2 text-[0.8125rem] text-muted-foreground">{t('settings.coordsHint')}</p>
-        </div>
-      )}
     </>
   )
 }
 
-/** Formulaire des réglages enregistrés (profil, lieu, calcul, calendrier, budget, Coran, habitudes). */
-export function SettingsForm({ settings, onSaved }: { settings: Settings; onSaved: () => void }) {
+/** Rubrique « Profil et ville » (profil, lieu, calendrier) ou « Budget, Coran et habitudes ». */
+export type SettingsFormPart = 'profile' | 'daily'
+
+/** Formulaire des réglages enregistrés : n'affiche que les champs de sa rubrique. */
+export function SettingsForm({
+  settings,
+  part,
+  onSaved,
+}: {
+  settings: Settings
+  part: SettingsFormPart
+  onSaved: () => void
+}) {
   const { t } = useTranslation()
   const habitName = useHabitName()
 
@@ -173,156 +153,98 @@ export function SettingsForm({ settings, onSaved }: { settings: Settings; onSave
         void form.handleSubmit()
       }}
     >
-      <section aria-labelledby="settings-profile" className="flex flex-col gap-4">
-        <SectionTitle id="settings-profile">{t('settings.profile')}</SectionTitle>
-        {textField('name', t('settings.name'), { placeholder: t('settings.namePlaceholder'), maxLength: 40 })}
-        {textField('nameAr', t('settings.nameAr'), { hint: t('lock.nameArHint'), maxLength: 40 })}
-      </section>
+      {part === 'profile' && (
+        <>
+          <section aria-labelledby="settings-profile" className="flex flex-col gap-4">
+            <SectionTitle id="settings-profile">{t('settings.profile')}</SectionTitle>
+            {textField('name', t('settings.name'), { placeholder: t('settings.namePlaceholder'), maxLength: 40 })}
+            {textField('nameAr', t('settings.nameAr'), { hint: t('lock.nameArHint'), maxLength: 40 })}
+          </section>
 
-      <section aria-labelledby="settings-place" className="flex flex-col gap-4">
-        <SectionTitle id="settings-place">{t('settings.place')}</SectionTitle>
-        <form.Subscribe selector={(s) => [s.values.cityId, s.values.lat, s.values.lng] as const}>
-          {([cityId, lat, lng]) => (
-            <form.Field name="lat">
-              {(latField) => (
-                <form.Field name="lng">
-                  {(lngField) => (
+          <section aria-labelledby="settings-place" className="flex flex-col gap-4">
+            <SectionTitle id="settings-place">{t('settings.place')}</SectionTitle>
+            <form.Subscribe selector={(s) => s.values.lat !== '' && s.values.lng !== ''}>
+              {(hasPosition) => (
+                <form.Field name="cityId">
+                  {(field) => (
                     <PlaceFields
-                      cityId={cityId}
-                      onCityChange={(v) => form.setFieldValue('cityId', v)}
-                      lat={lat}
-                      lng={lng}
-                      latErrors={latField.state.meta.errors}
-                      lngErrors={lngField.state.meta.errors}
-                      onLatChange={latField.handleChange}
-                      onLngChange={lngField.handleChange}
+                      cityId={field.state.value}
+                      onCityChange={field.handleChange}
+                      hasPosition={hasPosition}
+                      errors={field.state.meta.errors}
                       onCoords={(la, ln) => {
-                        form.setFieldValue('cityId', CUSTOM_CITY_ID)
-                        latField.handleChange(String(la))
-                        lngField.handleChange(String(ln))
+                        form.setFieldValue('lat', String(la))
+                        form.setFieldValue('lng', String(ln))
+                        field.handleChange(CUSTOM_CITY_ID)
                       }}
                     />
                   )}
                 </form.Field>
               )}
-            </form.Field>
-          )}
-        </form.Subscribe>
-      </section>
+            </form.Subscribe>
+          </section>
 
-      <section aria-labelledby="settings-calc" className="flex flex-col gap-4">
-        <SectionTitle id="settings-calc">{t('settings.calc')}</SectionTitle>
-        <form.Field name="method">
-          {(field) => (
-            <Field label={t('settings.method')}>
-              {(p) => (
-                <AppSelect
-                  {...p}
-                  value={field.state.value}
-                  onChange={(v) => field.handleChange(v)}
-                  options={METHOD_IDS.map((m) => ({ value: m, label: t(`methods.${m}`) }))}
-                />
-              )}
-            </Field>
-          )}
-        </form.Field>
-        <form.Field name="asrSchool">
-          {(field) => (
-            <Field label={t('settings.asr')}>
-              {(p) => (
-                <AppSelect
-                  {...p}
-                  value={field.state.value}
-                  onChange={(v) => field.handleChange(v)}
-                  options={[
-                    { value: 'standard' as const, label: t('settings.asrStandard') },
-                    { value: 'hanafi' as const, label: t('settings.asrHanafi') },
-                  ]}
-                />
-              )}
-            </Field>
-          )}
-        </form.Field>
-        <fieldset className="flex min-w-0 flex-col gap-[7px]">
-          <legend className={cn(labelClass, 'mb-[7px]')}>{t('settings.tune')}</legend>
-          <div className="grid grid-cols-3 gap-2">
-            {TIME_KEYS.map((k) => (
-              <form.Field key={k} name={`tune.${k}`}>
-                {(field) => (
-                  <label className="flex min-w-0 flex-col gap-1 text-xs font-bold text-ink-2">
-                    {t(`prayers.${k}`)}
-                    <Input
-                      className={inputClass}
-                      inputMode="numeric"
-                      dir="ltr"
+          <section aria-labelledby="settings-calendar" className="flex flex-col gap-4">
+            <SectionTitle id="settings-calendar">{t('settings.calendar')}</SectionTitle>
+            <form.Field name="hijriAdj">
+              {(field) => (
+                <Field label={t('settings.hijriAdj')}>
+                  {(p) => (
+                    <AppSelect
+                      {...p}
                       value={field.state.value}
-                      aria-invalid={field.state.meta.errors.length ? true : undefined}
-                      onChange={(e) => field.handleChange(e.target.value)}
-                      onBlur={field.handleBlur}
+                      onChange={(v) => field.handleChange(v)}
+                      options={HIJRI_ADJ.map((v) => ({
+                        value: v,
+                        label: t('settings.days', {
+                          count: Math.abs(Number(v)),
+                          value: `\u2066${Number(v) > 0 ? `+${v}` : v}\u2069`,
+                        }),
+                      }))}
                     />
-                  </label>
-                )}
-              </form.Field>
-            ))}
-          </div>
-        </fieldset>
-      </section>
-
-      <section aria-labelledby="settings-calendar" className="flex flex-col gap-4">
-        <SectionTitle id="settings-calendar">{t('settings.calendar')}</SectionTitle>
-        <form.Field name="hijriAdj">
-          {(field) => (
-            <Field label={t('settings.hijriAdj')}>
-              {(p) => (
-                <AppSelect
-                  {...p}
-                  value={field.state.value}
-                  onChange={(v) => field.handleChange(v)}
-                  options={HIJRI_ADJ.map((v) => ({
-                    value: v,
-                    label: t('settings.days', {
-                      count: Math.abs(Number(v)),
-                      value: `\u2066${Number(v) > 0 ? `+${v}` : v}\u2069`,
-                    }),
-                  }))}
-                />
+                  )}
+                </Field>
               )}
-            </Field>
-          )}
-        </form.Field>
-      </section>
+            </form.Field>
+          </section>
+        </>
+      )}
 
-      <section aria-labelledby="settings-budget" className="flex flex-col gap-4">
-        <SectionTitle id="settings-budget">{t('settings.budget')}</SectionTitle>
-        {textField('currency', t('settings.currency'), { maxLength: 6 })}
-      </section>
+      {part === 'daily' && (
+        <>
+          <section aria-labelledby="settings-budget" className="flex flex-col gap-4">
+            <SectionTitle id="settings-budget">{t('settings.budget')}</SectionTitle>
+            {textField('currency', t('settings.currency'), { maxLength: 6 })}
+          </section>
 
-      <section aria-labelledby="settings-quran" className="flex flex-col gap-4">
-        <SectionTitle id="settings-quran">{t('settings.quran')}</SectionTitle>
-        <div className="grid grid-cols-2 gap-2.5">
-          {textField('goal', t('settings.wird'), { numeric: true })}
-          {textField('page', t('settings.page'), { numeric: true })}
-        </div>
-        {textField('total', t('settings.total'), { numeric: true, hint: t('settings.totalHint') })}
-      </section>
+          <section aria-labelledby="settings-quran" className="flex flex-col gap-4">
+            <SectionTitle id="settings-quran">{t('settings.quran')}</SectionTitle>
+            <div className="grid grid-cols-2 gap-2.5">
+              {textField('goal', t('settings.wird'), { numeric: true })}
+              {textField('page', t('settings.page'), { numeric: true })}
+            </div>
+            {textField('total', t('settings.total'), { numeric: true, hint: t('settings.totalHint') })}
+          </section>
 
-      <section aria-labelledby="settings-habits" className="flex flex-col gap-4">
-        <SectionTitle id="settings-habits">{t('settings.habitsTitle')}</SectionTitle>
-        <form.Field name="habits">
-          {(field) => (
-            <Field label={t('settings.habits')}>
-              {(p) => (
-                <Textarea
-                  {...p}
-                  className="min-h-28 rounded-[12px] border-line bg-surface px-3 py-2.5 text-base md:text-base dark:bg-surface"
-                  value={field.state.value}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                />
+          <section aria-labelledby="settings-habits" className="flex flex-col gap-4">
+            <SectionTitle id="settings-habits">{t('settings.habitsTitle')}</SectionTitle>
+            <form.Field name="habits">
+              {(field) => (
+                <Field label={t('settings.habits')}>
+                  {(p) => (
+                    <Textarea
+                      {...p}
+                      className="min-h-28 rounded-[12px] border-line bg-surface px-3 py-2.5 text-base md:text-base dark:bg-surface"
+                      value={field.state.value}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                    />
+                  )}
+                </Field>
               )}
-            </Field>
-          )}
-        </form.Field>
-      </section>
+            </form.Field>
+          </section>
+        </>
+      )}
 
       <form.Subscribe selector={(s) => s.isSubmitting}>
         {(submitting) => (

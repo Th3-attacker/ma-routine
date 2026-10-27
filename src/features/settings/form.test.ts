@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { DEFAULT_SETTINGS } from '@/db/settings'
+import { DEFAULT_SETTINGS, normalizeSettings } from '@/db/settings'
 import type { Habit } from '@/db/types'
 
 import { fromFormValues, habitsFromLines, parseNumber, settingsFormSchema, toFormValues } from './form'
@@ -21,15 +21,14 @@ describe('formulaire des réglages', () => {
     expect(issues(values())).toEqual([])
   })
 
-  it('refuse un ajustement hors de −60…60 avec un message traduisible', () => {
-    const v = values()
-    v.tune.fajr = '90'
-    expect(issues(v)[0]).toMatchObject({ path: ['tune', 'fajr'], message: 'errors.range?min=-60&max=60' })
+  it('calcul des horaires toujours celui de référence, même avec d’anciens choix', () => {
+    const s = normalizeSettings({ method: 'egy', asrSchool: 'hanafi', tune: { ...DEFAULT_SETTINGS.tune, fajr: 5 } })
+    expect(s).toMatchObject({ method: 'mwl', asrSchool: 'standard', tune: DEFAULT_SETTINGS.tune })
   })
 
-  it('exige des coordonnées pour « Autre lieu »', () => {
+  it('« Ma position » exige une position trouvée', () => {
     const v = { ...values(), cityId: 'custom' }
-    expect(issues(v).map((i) => i.path[0])).toContain('lat')
+    expect(issues(v)[0]).toMatchObject({ path: ['cityId'], message: 'errors.position' })
     expect(issues({ ...v, lat: '95', lng: '2' })[0].message).toBe('errors.coords')
     expect(issues({ ...v, lat: '18,08', lng: '-15,97' })).toEqual([])
   })

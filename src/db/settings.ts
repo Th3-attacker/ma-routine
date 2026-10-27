@@ -48,7 +48,10 @@ export const DEFAULT_SETTINGS: Settings = {
   },
 }
 
-/** Complète une ligne lue (ou importée) avec les valeurs par défaut, champ par champ. */
+/**
+ * Complète une ligne lue (ou importée) avec les valeurs par défaut, champ par champ.
+ * Le calcul des horaires n'est plus réglable : toujours Ligue islamique mondiale, Asr standard, sans décalage.
+ */
 export function normalizeSettings(row: Partial<Settings> | undefined): Settings {
   const d = DEFAULT_SETTINGS
   const r = row ?? {}
@@ -56,13 +59,27 @@ export function normalizeSettings(row: Partial<Settings> | undefined): Settings 
     ...d,
     ...r,
     id: 'me',
-    tune: { ...d.tune, ...r.tune },
+    method: d.method,
+    asrSchool: d.asrSchool,
+    tune: { ...d.tune },
     quran: { ...d.quran, ...r.quran },
     habits: Array.isArray(r.habits) ? r.habits : d.habits,
     budgets: { ...r.budgets },
     notif: { ...d.notif, ...r.notif, prayers: { ...d.notif.prayers, ...r.notif?.prayers } },
     call: { ...d.call, ...r.call, prayers: { ...d.call.prayers, ...r.call?.prayers } },
   }
+}
+
+/** Remet les anciens réglages de calcul (méthode, Asr, minutes) aux valeurs de référence, et les synchronise. */
+export async function resetPrayerCalc(): Promise<void> {
+  const row = await db.settings.get('me')
+  if (!row) return
+  const d = DEFAULT_SETTINGS
+  const custom =
+    (row.method ?? d.method) !== d.method ||
+    (row.asrSchool ?? d.asrSchool) !== d.asrSchool ||
+    Object.values(row.tune ?? {}).some((m) => m !== 0)
+  if (custom) await updateSettings({})
 }
 
 export async function getSettings(): Promise<Settings> {

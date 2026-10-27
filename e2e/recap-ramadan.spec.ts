@@ -21,6 +21,7 @@ test('aperçu du mode Ramadan et dépenses depuis Aujourd’hui', async ({ page 
   await page.clock.install({ time: new Date('2026-10-23T12:00:00Z') })
   await openApp(page, { 'elhadj.lang': 'fr' })
   await page.getByRole('button', { name: 'Réglages' }).click()
+  await page.getByRole('button', { name: /^Affichage/ }).click()
   await page.getByRole('switch', { name: /Aperçu du mode Ramadan/ }).click()
   await page.keyboard.press('Escape')
   const ram = page.getByRole('region', { name: /Ramadan Moubarak/ })

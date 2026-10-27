@@ -1,8 +1,7 @@
 import { z } from 'zod'
 
-import { METHOD_IDS, type Habit, type PrayerOrSunrise, type Settings } from '@/db/types'
+import type { Habit, Settings } from '@/db/types'
 import { CUSTOM_CITY_ID } from '@/features/prayer/cities'
-import { TIME_KEYS } from '@/features/prayer/times'
 
 // Les messages d'erreur sont des clés i18n (« errors.range?min=1&max=2000 »), traduites à l'affichage.
 const err = (key: string, params?: Record<string, number>) =>
@@ -39,11 +38,6 @@ export const settingsFormSchema = z
     cityId: z.string().min(1, err('required')),
     lat: optionalCoord(66),
     lng: optionalCoord(180),
-    method: z.enum(METHOD_IDS),
-    asrSchool: z.enum(['standard', 'hanafi']),
-    tune: z.object(
-      Object.fromEntries(TIME_KEYS.map((k) => [k, intIn(-60, 60)])) as Record<PrayerOrSunrise, z.ZodString>,
-    ),
     hijriAdj: z.enum(['-2', '-1', '0', '1', '2']),
     currency: z
       .string()
@@ -56,7 +50,7 @@ export const settingsFormSchema = z
   })
   .superRefine((v, ctx) => {
     if (v.cityId === CUSTOM_CITY_ID && (v.lat.trim() === '' || v.lng.trim() === '')) {
-      ctx.addIssue({ code: 'custom', path: [v.lat.trim() === '' ? 'lat' : 'lng'], message: err('coords') })
+      ctx.addIssue({ code: 'custom', path: ['cityId'], message: err('position') })
     }
     if (parseNumber(v.page) > parseNumber(v.total)) {
       ctx.addIssue({ code: 'custom', path: ['page'], message: err('pageAfterTotal') })
@@ -68,17 +62,7 @@ export type SettingsFormValues = z.input<typeof settingsFormSchema>
 /** Le sous-ensemble des réglages modifié par le formulaire (aussi utilisé par l'écran d'accueil). */
 export type SettingsFormSource = Pick<
   Settings,
-  | 'name'
-  | 'nameAr'
-  | 'cityId'
-  | 'custom'
-  | 'method'
-  | 'asrSchool'
-  | 'tune'
-  | 'hijriAdj'
-  | 'currency'
-  | 'quran'
-  | 'habits'
+  'name' | 'nameAr' | 'cityId' | 'custom' | 'hijriAdj' | 'currency' | 'quran' | 'habits'
 >
 
 export function toFormValues(s: SettingsFormSource, habitName: (h: Habit) => string): SettingsFormValues {
@@ -88,9 +72,6 @@ export function toFormValues(s: SettingsFormSource, habitName: (h: Habit) => str
     cityId: s.cityId,
     lat: s.custom ? String(s.custom.lat) : '',
     lng: s.custom ? String(s.custom.lng) : '',
-    method: s.method,
-    asrSchool: s.asrSchool,
-    tune: Object.fromEntries(TIME_KEYS.map((k) => [k, String(s.tune[k] ?? 0)])) as Record<PrayerOrSunrise, string>,
     hijriAdj: String(Math.min(2, Math.max(-2, s.hijriAdj))) as SettingsFormValues['hijriAdj'],
     currency: s.currency,
     goal: String(s.quran.goal),
@@ -130,9 +111,6 @@ export function fromFormValues(
     nameAr: v.nameAr.trim(),
     cityId: v.cityId,
     custom: Number.isFinite(lat) && Number.isFinite(lng) ? { lat, lng, timezone } : current.custom,
-    method: v.method,
-    asrSchool: v.asrSchool,
-    tune: Object.fromEntries(TIME_KEYS.map((k) => [k, parseNumber(v.tune[k])])) as Record<PrayerOrSunrise, number>,
     hijriAdj: Number(v.hijriAdj),
     currency: v.currency.trim() || 'UM',
     quran: {

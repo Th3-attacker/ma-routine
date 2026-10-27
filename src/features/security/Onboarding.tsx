@@ -31,7 +31,7 @@ const profileSchema = z
   })
   .superRefine((v, ctx) => {
     if (v.cityId === CUSTOM_CITY_ID && (v.lat.trim() === '' || v.lng.trim() === '')) {
-      ctx.addIssue({ code: 'custom', path: [v.lat.trim() === '' ? 'lat' : 'lng'], message: 'errors.coords' })
+      ctx.addIssue({ code: 'custom', path: ['cityId'], message: 'errors.position' })
     }
   })
 
@@ -155,29 +155,21 @@ export function Onboarding({ settings, onDone }: { settings: Settings; onDone: (
               </Field>
             )}
           </form.Field>
-          <form.Subscribe selector={(s) => [s.values.cityId, s.values.lat, s.values.lng] as const}>
-            {([cityId, lat, lng]) => (
-              <form.Field name="lat">
-                {(latField) => (
-                  <form.Field name="lng">
-                    {(lngField) => (
-                      <PlaceFields
-                        cityId={cityId}
-                        onCityChange={(v) => form.setFieldValue('cityId', v)}
-                        lat={lat}
-                        lng={lng}
-                        latErrors={latField.state.meta.errors}
-                        lngErrors={lngField.state.meta.errors}
-                        onLatChange={latField.handleChange}
-                        onLngChange={lngField.handleChange}
-                        onCoords={(la, ln) => {
-                          form.setFieldValue('cityId', CUSTOM_CITY_ID)
-                          latField.handleChange(String(la))
-                          lngField.handleChange(String(ln))
-                        }}
-                      />
-                    )}
-                  </form.Field>
+          <form.Subscribe selector={(s) => s.values.lat !== '' && s.values.lng !== ''}>
+            {(hasPosition) => (
+              <form.Field name="cityId">
+                {(field) => (
+                  <PlaceFields
+                    cityId={field.state.value}
+                    onCityChange={field.handleChange}
+                    hasPosition={hasPosition}
+                    errors={field.state.meta.errors}
+                    onCoords={(la, ln) => {
+                      form.setFieldValue('lat', String(la))
+                      form.setFieldValue('lng', String(ln))
+                      field.handleChange(CUSTOM_CITY_ID)
+                    }}
+                  />
                 )}
               </form.Field>
             )}
