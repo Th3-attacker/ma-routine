@@ -1,5 +1,5 @@
 import { Volume2Icon } from 'lucide-react'
-import { useId } from 'react'
+import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { usePreferences } from '@/app/PreferencesProvider'
@@ -12,10 +12,11 @@ import { Switch } from '@/components/ui/switch'
 import { updateSettings } from '@/db/settings'
 import { PRAYERS, type CallLang, type CallSettings as Call, type Settings } from '@/db/types'
 import { usePrayerName } from '@/features/prayer/usePrayerName'
+import { readLocal, removeLocal, writeLocal } from '@/lib/storage'
 import { cn } from '@/lib/utils'
 
 import { callLangs, callPhrase } from './phrase'
-import { speak } from './speech'
+import { isMaleVoice, speak, voiceKey } from './speech'
 import { useVoices } from './useVoices'
 
 const LANGS: readonly CallLang[] = ['app', 'fr', 'ar', 'both']
@@ -34,7 +35,7 @@ export function CallSettings({ settings }: { settings: Settings }) {
   const set = (patch: Partial<Call>) => void updateSettings((s) => ({ call: { ...s.call, ...patch } }))
 
   const langs = callLangs(call.lang, lang)
-  const missing = langs.filter((l) => !voices[l])
+  const missing = langs.filter((l) => voices[l].length === 0)
   const phrase = callPhrase(lang, settings)
 
   const toggleRow = 'flex items-center gap-3 rounded-[14px] border border-line bg-surface px-3.5 py-3'
@@ -102,6 +103,12 @@ export function CallSettings({ settings }: { settings: Settings }) {
           options={LANGS.map((l) => ({ value: l, label: t(`call.${LANG_KEY[l]}`) }))}
         />
 
+        {langs
+          .filter((l) => voices[l].length > 0)
+          .map((l) => (
+            <VoiceSelect key={l} lang={l} voices={voices[l]} />
+          ))}
+
         {!voices.supported ? (
           <p className="rounded-lg bg-warn-soft p-3 text-[0.8125rem] text-ink-2">{t('call.noSpeech')}</p>
         ) : (
@@ -125,5 +132,37 @@ export function CallSettings({ settings }: { settings: Settings }) {
       </fieldset>
       <p className="text-[0.8125rem] text-muted-foreground">{t('call.closedHint')}</p>
     </section>
+  )
+}
+
+/** Choix de la voix pour une langue, sur cet appareil. « Automatique » prend une voix d'homme si le téléphone en a. */
+function VoiceSelect({ lang, voices }: { lang: 'fr' | 'ar'; voices: { uri: string; name: string }[] }) {
+  const { t } = useTranslation()
+  const [chosen, setChosen] = useState(() => readLocal(voiceKey(lang)) ?? '')
+  const hasMale = voices.some((v) => isMaleVoice({ name: v.name, voiceURI: v.uri }))
+  return (
+    <Field
+      label={t(lang === 'ar' ? 'call.voiceAr' : 'call.voiceFr')}
+      hint={chosen === '' && !hasMale ? t('call.noMaleVoice') : undefined}
+    >
+      {(p) => (
+        <AppSelect
+          {...p}
+          value={chosen}
+          onChange={(v) => {
+            setChosen(v)
+            if (v) writeLocal(voiceKey(lang), v)
+            else removeLocal(voiceKey(lang))
+          }}
+          options={[
+            { value: '', label: t('call.voiceAuto') },
+            ...voices.map((v) => ({
+              value: v.uri,
+              label: isMaleVoice({ name: v.name, voiceURI: v.uri }) ? t('call.voiceMale', { name: v.name }) : v.name,
+            })),
+          ]}
+        />
+      )}
+    </Field>
   )
 }

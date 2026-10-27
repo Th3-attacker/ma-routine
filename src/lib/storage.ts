@@ -14,3 +14,11 @@ export function writeLocal(key: string, value: string): void {
     // préférence non mémorisée, l'app continue
   }
 }
+
+export function removeLocal(key: string): void {
+  try {
+    localStorage.removeItem(key)
+  } catch {
+    // rien à faire
+  }
+}

@@ -6,6 +6,7 @@ import { prayerTimesFor } from '@/features/prayer/times'
 
 import { callBanner, callLangs, callPhrase, prayerAt } from './phrase'
 import { dueCall, logCall, readCallLog } from './schedule'
+import { isMaleVoice, pickVoice } from './speech'
 
 const names = { name: 'Elhadj', nameAr: 'الحاج' }
 
@@ -65,5 +66,25 @@ describe('déclenchement', () => {
     logCall('2026-10-23', 'asr')
     expect(readCallLog('2026-10-23').prayers).toEqual(['asr'])
     expect(readCallLog('2026-10-24')).toEqual({ date: '2026-10-24', prayers: [] })
+  })
+})
+
+describe('voix d’homme', () => {
+  const v = (name: string, voiceURI = name) => ({ name, voiceURI })
+  it('reconnaît les voix d’homme connues', () => {
+    expect(isMaleVoice(v('Thomas'))).toBe(true)
+    expect(isMaleVoice(v('Maged'))).toBe(true)
+    expect(isMaleVoice(v('Microsoft Hamed Online (Natural) - Arabic (Saudi Arabia)'))).toBe(true)
+    expect(isMaleVoice(v('Google français'))).toBe(false)
+    expect(isMaleVoice(v('Amélie'))).toBe(false)
+    expect(isMaleVoice(v('French Female'))).toBe(false)
+    expect(isMaleVoice(v('Natalie'))).toBe(false)
+  })
+  it('prend la voix choisie, sinon une voix d’homme, sinon la première', () => {
+    const voices = [v('Amélie'), v('Thomas'), v('Audrey')]
+    expect(pickVoice(voices, 'Audrey')?.name).toBe('Audrey')
+    expect(pickVoice(voices, null)?.name).toBe('Thomas')
+    expect(pickVoice(voices, 'disparue')?.name).toBe('Thomas')
+    expect(pickVoice([v('Amélie')], null)?.name).toBe('Amélie')
   })
 })
