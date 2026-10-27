@@ -57,6 +57,7 @@ pnpm test:e2e       # Playwright (après pnpm build) ; la CI ajoute WebKit + pro
 pnpm verify         # formate, puis lint + types + tests (avant chaque commit)
 pnpm lint && pnpm format:check
 pnpm build          # tsc -b + vite build
+pnpm texts          # régénère TEXTES-A-VERIFIER.md (textes religieux et traductions à faire relire)
 pnpm icons          # régénère les icônes PWA depuis public/logo.svg (pwa-assets.config.ts)
 ```
 
