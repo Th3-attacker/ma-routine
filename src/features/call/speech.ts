@@ -99,21 +99,30 @@ export function voicesFor(lang: 'fr' | 'ar'): SpeechSynthesisVoice[] {
 }
 
 /**
- * Dit les phrases dans l'ordre. Une phrase sans voix dans sa langue est sautée (pas de bascule vers une autre langue).
+ * Dit les phrases dans l'ordre. Une phrase sans voix dans sa langue est sautée (pas de bascule vers une autre langue),
+ * sauf si le navigateur ne donne aucune liste de voix.
  * Renvoie false si rien n'a été dit (voix absente, autre voix en cours, lecture plein écran ouverte).
  */
 export function speak(parts: { text: string; lang: 'fr' | 'ar' }[]): boolean {
   if (!speechSupported() || readerOpen || speechSynthesis.speaking) return false
+  // Certains téléphones Android ne donnent pas la liste de leurs voix au navigateur, mais savent parler :
+  // on laisse alors le téléphone choisir sa voix d'après la langue.
+  const noList = speechSynthesis.getVoices().length === 0
   let spoken = false
   for (const p of parts) {
     const voice = pickVoice(voicesFor(p.lang), readLocal(voiceKey(p.lang)))
-    if (!voice) continue
+    if (!voice && !noList) continue
     const u = new SpeechSynthesisUtterance(p.text)
-    u.voice = voice
-    u.lang = voice.lang
+    if (voice) {
+      u.voice = voice
+      u.lang = voice.lang
+      // Pas de voix d'homme sur ce téléphone : la voix choisie automatiquement est rendue un peu plus grave.
+      if (!readLocal(voiceKey(p.lang)) && !isMaleVoice(voice)) u.pitch = 0.75
+    } else {
+      u.lang = p.lang === 'ar' ? 'ar-SA' : 'fr-FR'
+      u.pitch = 0.75
+    }
     u.rate = 0.95
-    // Pas de voix d'homme sur ce téléphone : la voix choisie automatiquement est rendue un peu plus grave.
-    if (!readLocal(voiceKey(p.lang)) && !isMaleVoice(voice)) u.pitch = 0.75
     speechSynthesis.speak(u)
     spoken = true
   }

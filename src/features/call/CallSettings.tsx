@@ -35,7 +35,7 @@ export function CallSettings({ settings }: { settings: Settings }) {
   const set = (patch: Partial<Call>) => void updateSettings((s) => ({ call: { ...s.call, ...patch } }))
 
   const langs = callLangs(call.lang, lang)
-  const missing = langs.filter((l) => voices[l].length === 0)
+  const missing = voices.listed ? langs.filter((l) => voices[l].length === 0) : []
   const phrase = callPhrase(lang, settings)
 
   const toggleRow = 'flex items-center gap-3 rounded-[14px] border border-line bg-surface px-3.5 py-3'

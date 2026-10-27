@@ -19,8 +19,10 @@ export default defineConfig(({ mode }) => ({
     mode === 'phone' && basicSsl(),
     react(),
     // Écran pré-dessiné dans index.html : visible avant le JavaScript (premier affichage rapide sur téléphone).
+    // Seulement au build : en développement, le CSS arrive par le JavaScript et l'écran s'afficherait sans style.
     {
       name: 'elhadj-shell',
+      apply: 'build',
       transformIndexHtml: (html: string) =>
         html.replace('<div id="root"></div>', `<div id="root">${shellMarkup(fr, ar)}</div>`),
     },
