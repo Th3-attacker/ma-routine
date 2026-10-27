@@ -1294,6 +1294,13 @@ nombre…) : ne pas les traduire.
 | `security.delay5` | Après 5 min | بعد 5 دقائق |
 | `security.delay15` | Après 15 min | بعد 15 دقيقة |
 | `security.info` | Le code protège l’ouverture de l’app sur ce téléphone. Garde aussi le verrouillage de ton téléphone activé. | الرمز يحمي فتح التطبيق على هذا الهاتف. أبقِ قفل هاتفك مفعّلًا أيضًا. |
+| `security.biometric` | Ouvrir avec l’empreinte ou le visage | الفتح بالبصمة أو الوجه |
+| `security.biometricHint` | Le code à 4 chiffres reste possible. L’empreinte et le visage restent dans ton téléphone : l’app ne les voit jamais. | يبقى الرمز من 4 أرقام متاحًا. البصمة والوجه يبقيان في هاتفك: التطبيق لا يراهما أبدًا. |
+| `security.biometricOn` | Empreinte ou visage activé | تم تفعيل البصمة أو الوجه |
+| `security.biometricOff` | Empreinte ou visage désactivé | تم إيقاف البصمة أو الوجه |
+| `security.biometricFailed` | Activation annulée ou impossible sur ce téléphone. | أُلغي التفعيل أو لا يمكن على هذا الهاتف. |
+| `security.biometricUnlock` | Utiliser l’empreinte ou le visage | استخدام البصمة أو الوجه |
+| `security.biometricRetry` | Pas reconnu. Réessaie, ou tape ton code. | لم يتم التعرف. أعد المحاولة أو اكتب رمزك. |
 ### call
 
 | Clé | Français | العربية |
@@ -1317,6 +1324,11 @@ nombre…) : ne pas les traduire.
 | `call.noSpeech` | La voix n’est pas disponible sur ce navigateur : seul le bandeau s’affichera. | الصوت غير متاح في هذا المتصفح: سيظهر الشريط فقط. |
 | `call.closedHint` | App fermée : l’appel arrivera en notification avec les notifications d’adhan. | عند إغلاق التطبيق: سيصل النداء كإشعار مع إشعارات الأذان. |
 | `call.close` | Fermer | إغلاق |
+| `call.voiceFr` | Voix en français | الصوت بالفرنسية |
+| `call.voiceAr` | Voix en arabe | الصوت بالعربية |
+| `call.voiceAuto` | Automatique (voix d’homme si possible) | تلقائي (صوت رجل إن وُجد) |
+| `call.voiceMale` | {{name}} · homme | {{name}} · رجل |
+| `call.noMaleVoice` | Pas de voix d’homme sur ce téléphone : la voix est rendue plus grave. Sur iPhone, tu peux en télécharger une (Réglages → Accessibilité → Contenu énoncé → Voix), puis la choisir ici. | لا يوجد صوت رجل على هذا الهاتف: يُجعل الصوت أخشن. على iPhone يمكنك تنزيل صوت (الإعدادات ← تسهيلات الاستخدام ← المحتوى المنطوق ← الأصوات) ثم اختياره هنا. |
 ### categories
 
 | Clé | Français | العربية |
