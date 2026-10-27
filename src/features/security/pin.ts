@@ -17,6 +17,7 @@ export const DEFAULT_SECURITY: Security = {
   lockedUntil: 0,
   lastHiddenAt: null,
   lockAfterMin: 5,
+  passkey: null,
 }
 
 export type PinProblem = 'format' | 'repeated' | 'sequence'
@@ -56,7 +57,7 @@ export async function getSecurity(): Promise<Security> {
   return { ...DEFAULT_SECURITY, ...(await db.security.get('device')) }
 }
 
-async function saveSecurity(patch: Partial<Omit<Security, 'id'>>): Promise<Security> {
+export async function saveSecurity(patch: Partial<Omit<Security, 'id'>>): Promise<Security> {
   const next = { ...(await getSecurity()), ...patch, id: 'device' as const }
   await db.security.put(next)
   return next

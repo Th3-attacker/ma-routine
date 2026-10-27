@@ -1,3 +1,5 @@
+import { useLiveQuery } from 'dexie-react-hooks'
+import { FingerprintIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -18,6 +20,7 @@ import { formatWait } from '@/lib/dates'
 
 import { useSession } from '@/sync/auth'
 
+import { unlockWithBiometric } from './biometric'
 import { LockLayout } from './LockLayout'
 import { getSecurity, verifyPin, wipeDevice } from './pin'
 import { ResetWithEmail } from './ResetWithEmail'
@@ -33,6 +36,8 @@ export function UnlockScreen({ name, onUnlock }: { name: string; onUnlock: () =>
   const [resetting, setResetting] = useState(false)
   const { session } = useSession()
   const accountEmail = session?.user.email ?? null
+  const hasPasskey = useLiveQuery(async () => !!(await getSecurity()).passkey)
+  const [bioFailed, setBioFailed] = useState(false)
 
   // L'attente enregistrée survit au rechargement de la page.
   useEffect(() => {
@@ -70,6 +75,24 @@ export function UnlockScreen({ name, onUnlock }: { name: string; onUnlock: () =>
             return false
           }}
         />
+      )}
+      {hasPasskey && !resetting && (
+        <Button
+          variant="secondary"
+          className="h-12 w-full max-w-xs rounded-[14px] bg-primary-soft font-bold text-primary"
+          onClick={async () => {
+            if (await unlockWithBiometric()) onUnlock()
+            else setBioFailed(true)
+          }}
+        >
+          <FingerprintIcon aria-hidden="true" />
+          {t('security.biometricUnlock')}
+        </Button>
+      )}
+      {bioFailed && (
+        <p role="status" className="text-center text-[0.8125rem] text-muted-foreground">
+          {t('security.biometricRetry')}
+        </p>
       )}
       {resetting && accountEmail ? (
         <ResetWithEmail email={accountEmail} onDone={onUnlock} onCancel={() => setResetting(false)} />
