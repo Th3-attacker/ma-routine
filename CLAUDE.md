@@ -59,7 +59,6 @@ pnpm lint && pnpm format:check
 pnpm build          # tsc -b + vite build
 pnpm texts          # régénère TEXTES-A-VERIFIER.md (textes religieux et traductions à faire relire)
 pnpm audio          # régénère ENREGISTREMENTS.md (fichiers audio à demander au récitant, avancement)
-pnpm icons          # régénère les icônes PWA depuis public/logo.svg (pwa-assets.config.ts)
 ```
 
 ## Architecture
@@ -157,8 +156,10 @@ hégirien 12 Joumada al-oula 1448 ; le 24/10/2026 est le premier des jours blanc
 - **Appel avant l'adhan retiré** (28/10/2026, #94) : plus de voix, carillon ni bandeau ; seule la notification
   d'adhan reste. Un ancien `settings.call` (sauvegardes) est ignoré par `normalizeSettings`.
 
-## Logo
+## Logo et charte
 
-Pas encore de photo : monogramme « SJ » (Reem Kufi, tracé dans `public/logo.svg`) sur indigo, contour doré.
-Si `logo.jpg`/`logo.png` est ajouté à la racine : l'utiliser recadré en rond dans `Logo.tsx` et régénérer les
-icônes (`pwa-assets.config.ts` → `images`, puis `pnpm icons`).
+Charte « Charte Sama Jàmm » (artifact https://claude.ai/artifact/GgUKeZw2eYxu4KQz6KsEKL) : symbole = arche dorée,
+intérieur indigo `#2C3B8F`, soleil levant et étoile `#FFD27F` ; contour `--brand-edge` (`#B97A1C` clair,
+`#EFB25A` sombre et sur le ciel). Source unique `src/components/brand-mark.ts` (Logo + écran pré-dessiné).
+Icônes PWA, iPhone et favicon : fichiers fournis par la charte dans `public/` (plus de génération automatique) ;
+`background_color` / `theme_color` du manifeste = nuit de la marque `#10143A`.

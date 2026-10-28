@@ -24,6 +24,8 @@
   --gold: #b97a1c;
   /* Texte doré sur fond clair : plus foncé que --gold pour un contraste ≥ 4,5:1 */
   --gold-ink: #8f5e16;
+  /* Contour du symbole de la marque (arche et seuil). */
+  --brand-edge: #b97a1c;
   --gold-soft: #faebd2;
   --ok: #1c7552;
   --ok-soft: #dcf0e6;
@@ -91,6 +93,7 @@
   --on-primary: #0d1022;
   --gold: #efb25a;
   --gold-ink: #efb25a;
+  --brand-edge: #efb25a;
   --gold-soft: #382b16;
   --ok: #5fcb98;
   --ok-soft: #14352a;

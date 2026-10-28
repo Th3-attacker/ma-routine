@@ -11,7 +11,7 @@ export function LockLayout({ top, children }: { top?: ReactNode; children: React
       {top && <div className="flex justify-end">{top}</div>}
       <main className="flex flex-1 flex-col items-center justify-center gap-6 py-4">
         <header className="flex flex-col items-center gap-2">
-          <Logo className="size-16 text-[24px] ring-[3px]" />
+          <Logo className="w-[72px]" />
           <p className="flex items-baseline gap-2">
             <span dir="ltr" className="font-display text-2xl font-bold tracking-[0.01em] text-primary">
               {t('app.name')}
