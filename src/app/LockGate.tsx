@@ -59,6 +59,11 @@ function Gate({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (settings?.onboarded) writeLocal('elhadj.onboarded', '1')
   }, [settings?.onboarded])
+  // Pour la salutation de l'écran d'ouverture (src/app/opening.ts), affichée avant le chargement de la base.
+  useEffect(() => {
+    if (settings?.name)
+      writeLocal('elhadj.greet', JSON.stringify({ fr: settings.name, ar: settings.nameAr.trim() || settings.name }))
+  }, [settings?.name, settings?.nameAr])
 
   useEffect(() => {
     const onVisibility = async () => {
