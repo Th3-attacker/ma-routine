@@ -89,3 +89,18 @@ test('Réglages → Sécurité : changer le code', async ({ page }) => {
   await typePin(page, '1357')
   await expect(page.getByRole('navigation', { name: 'Sections' })).toBeVisible()
 })
+
+test('inscription : la position d’abord, la ville en secours', async ({ page, context }) => {
+  await context.grantPermissions(['geolocation'])
+  // Dakar
+  await context.setGeolocation({ latitude: 14.7167, longitude: -17.4677 })
+  await page.addInitScript(() => localStorage.setItem('elhadj.lang', 'fr'))
+  await page.goto('./')
+  await page.getByRole('button', { name: 'Continuer' }).click()
+  await page.getByLabel('Prénom', { exact: true }).fill('Awa')
+  const city = page.getByRole('combobox', { name: 'Ou choisis ta ville' })
+  await expect(city.locator('option')).not.toContainText(['Ma position'])
+  await page.getByRole('button', { name: 'Utiliser ma position' }).click()
+  await expect(city).toHaveValue('custom')
+  await expect(page.getByText('Horaires calculés pour ta position')).toBeVisible()
+})

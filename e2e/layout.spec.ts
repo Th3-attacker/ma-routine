@@ -61,10 +61,12 @@ test('les réglages changent la ville et le prénom', async ({ page }) => {
   await page.getByRole('button', { name: 'Réglages' }).click()
   const dialog = page.getByRole('dialog')
   await dialog.getByRole('button', { name: /^Profil et ville/ }).click()
-  await expect(dialog.getByRole('combobox', { name: 'Ville' }).locator('option')).not.toContainText(['Ma position'])
+  await expect(dialog.getByRole('combobox', { name: 'Ou choisis ta ville' }).locator('option')).not.toContainText([
+    'Ma position',
+  ])
   await dialog.getByLabel('Ton prénom').fill('Aïcha')
-  await dialog.getByRole('combobox', { name: 'Ville' }).selectOption({ label: 'Dakar' })
-  await expect(dialog.getByRole('combobox', { name: 'Ville' })).toHaveValue('dkr')
+  await dialog.getByRole('combobox', { name: 'Ou choisis ta ville' }).selectOption({ label: 'Dakar' })
+  await expect(dialog.getByRole('combobox', { name: 'Ou choisis ta ville' })).toHaveValue('dkr')
   await dialog.getByRole('button', { name: 'Enregistrer' }).click()
   // Retour à la liste des rubriques, puis on ferme
   await expect(dialog.getByRole('navigation', { name: 'Rubriques des réglages' })).toBeVisible()
