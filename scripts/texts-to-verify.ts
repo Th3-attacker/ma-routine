@@ -10,6 +10,7 @@ const load = (path: string) => server.ssrLoadModule(path)
 const { ATHKAR, TASBIH_FORMULAS } = await load('/src/features/athkar/data.ts')
 const { VERSES, RAMADAN_VERSES } = await load('/src/features/daily/verses.ts')
 const { DEBT_VERSE, QADR_DUA } = await load('/src/features/daily/quotes.ts')
+const { HISN, formatSources } = await load('/src/features/athkar/hisn.ts')
 const { TEMPLATES } = await load('/src/features/projects/templates.ts')
 const fr = (await load('/src/i18n/fr.json')).default
 const ar = (await load('/src/i18n/ar.json')).default
@@ -74,7 +75,17 @@ line()
 for (const t of TASBIH_FORMULAS as Text[]) line(`- ${t.ar} — ${t.fr} — [ ] Vérifié`)
 line()
 
-line('## 6. Modèles d’étapes des projets (« Proposer des étapes »)')
+line('## 6. Invocations du quotidien (Hisn al-Muslim)')
+line()
+line('Onglet « Invocations » de l’écran Athkar. Vérifier aussi le recueil indiqué pour chaque invocation.')
+line()
+for (const c of HISN as { id: string; fr: string; ar: string; items: (Text & { src: string[] })[] }[]) {
+  line(`### ${c.fr} · ${c.ar} (${c.id})`)
+  line()
+  for (const d of c.items) item({ ...d, refFr: formatSources(d.src, 'fr'), refAr: formatSources(d.src, 'ar') })
+}
+
+line('## 7. Modèles d’étapes des projets (« Proposer des étapes »)')
 line()
 line('À relire surtout pour l’arabe (langue claire, mots simples).')
 line()
@@ -87,7 +98,7 @@ for (const tpl of TEMPLATES as { id: string; steps: { fr: string; ar: string }[]
   line()
 }
 
-line('## 7. Traductions arabes de l’interface')
+line('## 8. Traductions arabes de l’interface')
 line()
 line('Toutes les phrases de l’application, côte à côte. Les mots entre `{{ }}` sont remplacés par l’app (nom,')
 line('nombre…) : ne pas les traduire.')

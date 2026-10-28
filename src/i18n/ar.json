@@ -239,6 +239,7 @@
       "soir": "المساء",
       "salat": "بعد الصلاة",
       "nuit": "النوم",
+      "douas": "الأدعية",
       "tasbih": "التسبيح"
     },
     "miniMatin": "أذكار الصباح",
@@ -255,7 +256,26 @@
     "cancel": "إلغاء",
     "confirmReset": "تصفير",
     "seriesDone": "اكتملت السلسلة. بارك الله فيك!",
-    "progress": "{{done}} من {{total}} مكتملة"
+    "progress": "{{done}} من {{total}} مكتملة",
+    "douas": {
+      "title": "أدعية اليوم والليلة",
+      "hint": "من حصن المسلم: أدعية مواقف اليوم.",
+      "search": "ابحث عن موقف أو كلمة",
+      "empty": "لا يوجد دعاء يطابق «{{q}}».",
+      "count_one": "دعاء واحد",
+      "count_other": "{{count}} دعاء",
+      "source": "رواه {{src}}",
+      "results_one": "موقف واحد",
+      "results_other": "{{count}} موقف",
+      "count_zero": "لا أدعية",
+      "count_two": "دعاءان",
+      "count_few": "{{count}} أدعية",
+      "count_many": "{{count}} دعاءً",
+      "results_zero": "لا مواقف",
+      "results_two": "موقفان",
+      "results_few": "{{count}} مواقف",
+      "results_many": "{{count}} موقفًا"
+    }
   },
   "quran": {
     "title": "الورد القرآني",

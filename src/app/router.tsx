@@ -10,8 +10,8 @@ import { ATHKAR_SETS } from '@/db/types'
 
 import { AppLayout } from './AppLayout'
 
-export type AthkarTab = (typeof ATHKAR_SETS)[number] | 'tasbih'
-const ATHKAR_TABS: readonly string[] = [...ATHKAR_SETS, 'tasbih']
+export type AthkarTab = (typeof ATHKAR_SETS)[number] | 'douas' | 'tasbih'
+const ATHKAR_TABS: readonly string[] = [...ATHKAR_SETS, 'douas', 'tasbih']
 
 export type BudgetView = 'month' | 'debts' | 'goals' | 'rec'
 const BUDGET_VIEWS: readonly string[] = ['month', 'debts', 'goals', 'rec']
