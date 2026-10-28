@@ -298,7 +298,15 @@
     "witr": "Witr",
     "qiyam": "Qiyâm al-layl"
   },
-  "weekdays": ["dim", "lun", "mar", "mer", "jeu", "ven", "sam"],
+  "weekdays": [
+    "dim",
+    "lun",
+    "mar",
+    "mer",
+    "jeu",
+    "ven",
+    "sam"
+  ],
   "reader": {
     "count": "Compter",
     "prev": "Précédent",
@@ -725,7 +733,8 @@
     "hadith": "Hadiths : Al-Bukhârî, Muslim, Abû Dâwûd, At-Tirmidhî, An-Nasâ’î, Ibn Mâjah (source citée sous chaque hadith).",
     "times": "Horaires : bibliothèque libre adhan-js ; calendrier hégirien Umm al-Qura.",
     "check": "Les textes seront relus avec Hisn al-Muslim et un mushaf avant la version finale.",
-    "privacy": "Aucune publicité, aucun outil de mesure, aucune donnée envoyée à des tiers."
+    "privacy": "Aucune publicité, aucun outil de mesure, aucune donnée envoyée à des tiers.",
+    "adhan": "Adhan d’exemple : « Beautiful adhan », Adam-synagda, Wikimedia Commons, domaine public (CC0 1.0)."
   },
   "notif": {
     "title": "Notifications",
@@ -820,5 +829,10 @@
     "moveAmount": "Montant à déplacer",
     "move": "Déplacer",
     "moved": "Argent déplacé"
+  },
+  "adhan": {
+    "listen": "Écouter l’adhan",
+    "stop": "Arrêter l’adhan",
+    "hint": "Un exemple d’adhan à écouter. Les notifications, elles, utilisent le son du téléphone."
   }
 }

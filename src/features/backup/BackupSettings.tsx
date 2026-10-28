@@ -112,7 +112,7 @@ export function AboutSettings() {
     <section aria-labelledby="settings-about" className="flex flex-col gap-2">
       <SectionTitle id="settings-about">{t('about.title')}</SectionTitle>
       <ul className="flex list-disc flex-col gap-1.5 ps-5 text-[0.84375rem] text-ink-2">
-        {(['athkar', 'quran', 'hadith', 'times', 'check', 'privacy'] as const).map((k) => (
+        {(['athkar', 'quran', 'hadith', 'times', 'adhan', 'check', 'privacy'] as const).map((k) => (
           <li key={k}>{t(`about.${k}`)}</li>
         ))}
       </ul>

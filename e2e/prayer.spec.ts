@@ -33,3 +33,14 @@ test('écran Prière en arabe : grille avec les jours abrégés', async ({ page 
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
   expect(overflow).toBeLessThanOrEqual(0)
 })
+
+test('exemple d’adhan : écouter puis arrêter', async ({ page, browserName }) => {
+  test.skip(browserName === 'webkit', 'pas de sortie audio dans WebKit sous Linux (CI)')
+  await openApp(page, { 'elhadj.lang': 'fr' })
+  await page.getByRole('button', { name: 'Réglages' }).click()
+  await page.getByRole('button', { name: /^Prière et rappels/ }).click()
+  await page.getByRole('button', { name: 'Écouter l’adhan' }).click()
+  await expect(page.getByRole('button', { name: 'Arrêter l’adhan' })).toBeVisible()
+  await page.getByRole('button', { name: 'Arrêter l’adhan' }).click()
+  await expect(page.getByRole('button', { name: 'Écouter l’adhan' })).toBeVisible()
+})
