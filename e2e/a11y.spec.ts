@@ -10,7 +10,10 @@ async function audit(page: Page, where: string, found: string[], only?: string) 
   // Laisse finir les animations (volets, apparition) avant de mesurer les contrastes.
   await page.waitForTimeout(400)
   // Volet ouvert : on ne mesure que lui (la page derrière est assombrie et inactive).
-  const builder = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+  // Les messages passagers (toasts) sont exclus : mesurés pendant leur apparition, ils sont encore transparents.
+  const builder = new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+    .exclude('[data-sonner-toaster]')
   const { violations } = await (only ? builder.include(only) : builder).analyze()
   for (const v of violations) found.push(`${where} · ${v.id} : ${v.nodes.map((n) => n.target.join(' ')).join(' | ')}`)
 }
