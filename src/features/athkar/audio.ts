@@ -24,8 +24,9 @@ export const athkarAudioKey = (set: AthkarSet, i: number) => `athkar/${set}-${pa
 export const duaAudioKey = (chapter: string, i: number) => `douas/${chapter}-${pad(i)}`
 
 /** Un enregistrement à jouer n fois de suite (les répétitions du dhikr). « ar » : texte, pour réutiliser
- * l'enregistrement d'un texte identique (Âyat al-Kursî est dans trois séries : enregistrée une seule fois). */
-export type Track = { key: string; n: number; ar?: string; title?: string }
+ * l'enregistrement d'un texte identique (Âyat al-Kursî est dans trois séries : enregistrée une seule fois).
+ * « onEnd » : appelé à la fin de chaque écoute complète (le dhikr compte alors une répétition). */
+export type Track = { key: string; n: number; ar?: string; title?: string; onEnd?: () => void }
 
 const byText = new Map<string, string>()
 
@@ -84,7 +85,10 @@ export function createPlayer(make: () => HTMLAudioElement = () => new Audio(), u
     if (el) return el
     el = make()
     el.preload = 'auto'
-    el.addEventListener('ended', next)
+    el.addEventListener('ended', () => {
+      state.queue[state.index]?.onEnd?.()
+      next()
+    })
     el.addEventListener('error', () => {
       set({ ...state, playing: false })
       onError?.()

@@ -58,7 +58,16 @@ function ReaderBody({ set, day }: { set: AthkarSet; day: Day }) {
   const series = ATHKAR[set]
   const counts = day.athkar[set]
   const [index, setIndex] = useState(() => firstUndone(set, counts))
-  const tracks = seriesTracks(set, i18n.language)
+  // Chaque écoute terminée compte une répétition, comme un toucher.
+  const tracks = seriesTracks(set, i18n.language).map((tr, i) => ({
+    ...tr,
+    onEnd: () =>
+      void tapDhikr(day.id, set, i).then((r) => {
+        if (!r) return
+        vibrate(r.done ? 35 : 8)
+        if (r.seriesDone) toast(t('athkar.seriesDone'))
+      }),
+  }))
   // Pendant l'écoute de la série, le lecteur suit le dhikr en cours d'écoute.
   const audio = usePlayer()
   const playingAt = tracks.findIndex((tr) => tr.key === currentKey(audio))

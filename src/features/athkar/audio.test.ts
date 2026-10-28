@@ -72,3 +72,21 @@ describe('lecteur audio', () => {
     expect(tracks[3]).toMatchObject({ key: 'athkar/salat-04', n: 33 })
   })
 })
+
+describe('fin d’écoute', () => {
+  it('appelle onEnd à chaque écoute complète, pas quand on passe au suivant', () => {
+    const el = fakeAudio()
+    const p = createPlayer(() => el as unknown as HTMLAudioElement, urlOf)
+    const onA = vi.fn()
+    const onC = vi.fn()
+    p.play([
+      { key: 'a', n: 2, onEnd: onA },
+      { key: 'c', n: 1, onEnd: onC },
+    ])
+    el.end()
+    el.end()
+    expect(onA).toHaveBeenCalledTimes(2)
+    p.skip()
+    expect(onC).not.toHaveBeenCalled()
+  })
+})

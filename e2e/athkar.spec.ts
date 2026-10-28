@@ -60,3 +60,15 @@ test('invocations : chercher une situation et ouvrir ses invocations', async ({ 
   await page.getByLabel('Chercher une situation ou un mot').fill('zzzz')
   await expect(page.getByText('Aucune invocation ne correspond à « zzzz ».').first()).toBeVisible()
 })
+
+test('écoute : un dhikr écouté jusqu’au bout est compté', async ({ page, browserName }) => {
+  test.skip(browserName === 'webkit', 'pas de sortie audio dans WebKit sous Linux (CI)')
+  test.setTimeout(60_000)
+  await openApp(page, { 'elhadj.lang': 'fr' })
+  await page.goto('./#/athkar?set=nuit')
+  await expect(page.getByRole('button', { name: 'Tout écouter' })).toBeVisible()
+  // 4e dhikr du coucher : « Bismika Allâhumma amûtu wa ahyâ », une fois (environ 5 s).
+  await page.getByRole('button', { name: 'Écouter', exact: true }).nth(3).click()
+  await expect(page.getByRole('button', { name: 'Mettre en pause' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Répétition 1 sur 1' })).toHaveCount(1, { timeout: 20_000 })
+})
