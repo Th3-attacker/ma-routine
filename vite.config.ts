@@ -53,7 +53,7 @@ export default defineConfig(({ mode }) => ({
       srcDir: 'src',
       filename: 'sw.ts',
       injectManifest: { globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'] },
-      includeAssets: ['favicon.ico', 'logo.svg', 'apple-touch-icon-180x180.png'],
+      includeAssets: ['favicon.ico', 'favicon.svg', 'apple-touch-icon-180x180.png'],
       manifest: {
         name: 'Sama Jàmm · سلامي',
         short_name: 'Sama Jàmm',
@@ -63,8 +63,9 @@ export default defineConfig(({ mode }) => ({
         scope: base,
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#F1F2F7',
-        theme_color: '#2C3B8F',
+        // Nuit de la marque : l'écran de démarrage du téléphone enchaîne avec l'écran d'ouverture.
+        background_color: '#10143A',
+        theme_color: '#10143A',
         categories: ['lifestyle', 'productivity'],
         icons: [
           { src: 'pwa-64x64.png', sizes: '64x64', type: 'image/png' },

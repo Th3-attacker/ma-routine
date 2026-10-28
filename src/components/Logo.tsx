@@ -1,19 +1,14 @@
 import { cn } from '@/lib/utils'
 
-/**
- * Logo rond à contour doré. Tant qu'il n'y a pas de photo (logo.jpg à la racine),
- * c'est le monogramme « SJ » (Sama Jàmm).
- */
+import { BRAND_MARK_SVG } from './brand-mark'
+
+/** Symbole de la marque (arche, soleil, étoile). Décoratif : le nom de l'app est toujours écrit à côté. */
 export function Logo({ className }: { className?: string }) {
   return (
     <span
       aria-hidden="true"
-      className={cn(
-        'grid size-[36px] flex-none place-items-center overflow-hidden rounded-full bg-primary font-display text-[14px] font-bold tracking-[-0.02em] text-primary-foreground ring-2 ring-gold',
-        className,
-      )}
-    >
-      SJ
-    </span>
+      className={cn('block w-[40px] flex-none', className)}
+      dangerouslySetInnerHTML={{ __html: BRAND_MARK_SVG }}
+    />
   )
 }

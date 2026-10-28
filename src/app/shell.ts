@@ -3,6 +3,8 @@
 // en arabe. React le remplace dès qu'il démarre, avec les mêmes classes : rien ne bouge à l'écran.
 // Les textes viennent de fr.json / ar.json, comme partout ailleurs.
 
+import { BRAND_MARK_SVG } from '../components/brand-mark.ts'
+
 type Texts = {
   app: { name: string; nameAr: string; tagline: string }
   lock: { welcomeTitle: string; welcomeText: string; languageLabel: string; next: string; step: string }
@@ -22,7 +24,7 @@ const CHIP =
 
 function header(t: Texts): string {
   return `<header class="flex flex-col items-center gap-2">
-<span aria-hidden="true" class="grid size-16 flex-none place-items-center overflow-hidden rounded-full bg-primary font-display text-[24px] font-bold tracking-[-0.02em] text-primary-foreground ring-[3px] ring-gold">SJ</span>
+<span aria-hidden="true" class="block w-[72px] flex-none">${BRAND_MARK_SVG}</span>
 <p class="flex items-baseline gap-2"><span dir="ltr" class="font-display text-2xl font-bold tracking-[0.01em] text-primary">${esc(t.app.name)}</span><span lang="ar" class="font-quran text-[22px] text-gold-ink">${esc(t.app.nameAr)}</span></p>
 <p class="text-center text-sm text-ink-2 italic rtl:not-italic">${esc(t.app.tagline)}</p>
 </header>`
