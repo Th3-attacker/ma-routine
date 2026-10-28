@@ -31,7 +31,6 @@ export async function saveGoal(input: GoalInput, id?: string): Promise<SavingsGo
   return saveRow(db.savingsGoals, { moves: [], createdAt: Date.now(), ...current, ...input, id: id ?? newId() })
 }
 
-/** Versement (montant positif) ou retrait (négatif). */
 export const addMove = (id: string, amount: number, date: string) =>
   updateRow(db.savingsGoals, id, (g) => ({ moves: [...g.moves, { amount, date }] }))
 export const removeMove = (id: string, index: number) =>

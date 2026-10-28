@@ -2,7 +2,7 @@ import Dexie, { type EntityTable } from 'dexie'
 
 import type { Day, Debt, Project, Recurring, SavingsGoal, Security, Settings, Task, Transaction } from './types'
 
-export class ElhadjDB extends Dexie {
+class ElhadjDB extends Dexie {
   settings!: EntityTable<Settings, 'id'>
   days!: EntityTable<Day, 'id'>
   security!: EntityTable<Security, 'id'>

@@ -87,7 +87,6 @@ export function TotalsPair({ items }: { items: [string, ReactNode, string?][] })
   )
 }
 
-/** État vide (bordure en pointillés). */
 export function EmptyState({ title, children }: { title: string; children: ReactNode }) {
   const id = useId()
   return (

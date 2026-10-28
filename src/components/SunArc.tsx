@@ -10,7 +10,6 @@ const HORIZON = 72
 const AMPLITUDE = 54
 const MARGIN_MS = 36 * 60_000
 
-/** Arc solaire : course du soleil entre le lever et Maghrib, avec les horaires et le soleil (ou la lune). */
 export function SunArc({ now, times, next }: { now: Date; times: DayTimes; next: PrayerOrSunrise }) {
   const { t } = useTranslation()
   const maskId = useId()

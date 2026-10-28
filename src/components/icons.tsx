@@ -29,7 +29,6 @@ export function MoonIcon(props: IconProps) {
   )
 }
 
-/** Demi-cercle : thème automatique. */
 export function AutoThemeIcon(props: IconProps) {
   return (
     <svg {...base} strokeWidth={1.8} {...props}>
@@ -49,7 +48,6 @@ export function MosqueIcon(props: IconProps) {
   )
 }
 
-/** Chapelet. */
 export function BeadsIcon(props: IconProps) {
   return (
     <svg {...base} strokeWidth={1.7} {...props}>

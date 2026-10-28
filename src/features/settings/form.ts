@@ -9,7 +9,6 @@ const err = (key: string, params?: Record<string, number>) =>
     ? `errors.${key}?${new URLSearchParams(Object.entries(params).map(([k, v]) => [k, String(v)]))}`
     : `errors.${key}`
 
-/** Lit un nombre tapé au clavier (accepte la virgule). */
 export function parseNumber(v: string): number {
   const s = v.trim().replace(/\s/g, '').replace(',', '.')
   return s === '' ? NaN : Number(s)

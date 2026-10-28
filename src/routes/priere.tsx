@@ -227,7 +227,6 @@ function Qada({ qada }: { qada: number }) {
   )
 }
 
-/** Grille des 7 derniers jours (tableau) : chaque case ouvre le volet de statut. */
 function WeekGrid({
   todayKey,
   now,

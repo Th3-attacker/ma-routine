@@ -3,7 +3,6 @@ import type { DayTimes } from '@/features/prayer/times'
 
 import { ATHKAR } from './data'
 
-/** Nombre de dhikr terminés dans une série. */
 export function athkarProgress(set: AthkarSet, day: Pick<Day, 'athkar'> | undefined): { done: number; total: number } {
   const items = ATHKAR[set].items
   const counts = day?.athkar[set] ?? {}

@@ -40,7 +40,6 @@ const PAGES = [
 
 type PageId = (typeof PAGES)[number]['id']
 
-/** Réglages en rubriques : une liste courte, puis une page par rubrique avec un bouton Retour. */
 export function SettingsDrawer({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const { t } = useTranslation()
   const [page, setPage] = useState<PageId | null>(null)

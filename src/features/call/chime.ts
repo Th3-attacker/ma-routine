@@ -30,7 +30,6 @@ export function chime(): boolean {
   if (!ac) return false
   void ac.resume().catch(() => {})
   const start = ac.currentTime + 0.05
-  // Mi, sol, do : un accord simple, comme un carillon de porte.
   for (const [i, freq] of [659.25, 783.99, 1046.5].entries()) {
     const t = start + i * 0.35
     const osc = ac.createOscillator()

@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Field, inputClass } from '@/components/Field'
+import { OtpCodeField } from '@/components/OtpCodeField'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { authErrorKey, sendCode, verifyCode } from '@/sync/auth'
 
 import { CreatePin } from './CreatePin'
@@ -49,22 +48,7 @@ export function ResetWithEmail({
       <p className="text-[0.84375rem] [overflow-wrap:anywhere] text-ink-2" role="status">
         {step === 'send' ? t('lock.forgotAccount', { email }) : t('account.codeSent', { email })}
       </p>
-      {step === 'verify' && (
-        <Field label={t('account.code')} errors={error ? [error] : undefined}>
-          {(p) => (
-            <Input
-              {...p}
-              inputMode="numeric"
-              autoComplete="one-time-code"
-              maxLength={6}
-              dir="ltr"
-              className={`${inputClass} tabular text-center font-display text-2xl tracking-[0.4em]`}
-              value={code}
-              onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
-            />
-          )}
-        </Field>
-      )}
+      {step === 'verify' && <OtpCodeField value={code} onChange={setCode} error={error} />}
       {step === 'send' && error && <p className="text-[0.8125rem] font-semibold text-bad">{t(error as never)}</p>}
       <Button type="submit" className={btn} disabled={busy}>
         {step === 'send' ? t('lock.sendEmailCode') : t('account.signIn')}

@@ -6,10 +6,8 @@ import type { Debt } from '@/db/types'
 
 export const debtPaid = (d: Pick<Debt, 'payments'>) => d.payments.reduce((a, p) => a + p.amount, 0)
 export const debtLeft = (d: Pick<Debt, 'payments' | 'amount'>) => Math.max(0, d.amount - debtPaid(d))
-/** Soldée : marquée comme telle, ou entièrement remboursée. */
 export const isSettled = (d: Pick<Debt, 'payments' | 'amount' | 'closed'>) => d.closed || debtLeft(d) <= 0
 
-/** Totaux des dettes en cours : ce qu'on me doit, ce que je dois. */
 export function debtTotals(debts: readonly Debt[]): { toMe: number; iOwe: number } {
   let toMe = 0
   let iOwe = 0

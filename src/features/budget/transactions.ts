@@ -9,7 +9,7 @@ export type TransactionInput = Pick<Transaction, 'type' | 'amount' | 'category' 
 }
 
 /** Mouvements d'un mois 'YYYY-MM' (non supprimés). */
-export function getMonthTransactions(month: string): Promise<Transaction[]> {
+function getMonthTransactions(month: string): Promise<Transaction[]> {
   return db.transactions
     .where('date')
     .between(`${month}-01`, `${month}-32`)

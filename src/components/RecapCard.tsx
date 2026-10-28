@@ -18,7 +18,6 @@ import { AppDrawer } from './AppDrawer'
 import { Field } from './Field'
 import { cardClass, Section, subClass } from './Section'
 
-/** Bilan du soir (muhâsaba) : six tuiles, message bienveillant, journal. */
 export function RecapCard({ day, settings }: { day: Day; settings: Settings }) {
   const { t } = useTranslation()
   const { lang } = usePreferences()

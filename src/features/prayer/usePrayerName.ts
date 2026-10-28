@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import type { PrayerOrSunrise } from '@/db/types'
 import { weekday } from '@/lib/dates'
 
-/** Nom d'une prière dans la langue choisie ; le vendredi, Dhohr devient Joumou‘a. */
 export function usePrayerName(): (p: PrayerOrSunrise, dayKey?: string) => string {
   const { t } = useTranslation()
   return useCallback(

@@ -28,7 +28,7 @@ export interface Remote {
 }
 
 /** Table locale (Dexie) → table du serveur. La table « security » (code à 4 chiffres) n'est jamais synchronisée. */
-export const SYNCED_TABLES = {
+const SYNCED_TABLES = {
   settings: 'settings',
   days: 'days',
   transactions: 'transactions',

@@ -2647,3 +2647,12 @@ nombre…) : ne pas les traduire.
 | `templates.ramadan` | Préparer Ramadan | التحضير لرمضان |
 | `templates.family` | Organiser un événement familial | تنظيم مناسبة عائلية |
 | `templates.debt` | Rembourser une dette | سداد دين |
+### audio
+
+| Clé | Français | العربية |
+|---|---|---|
+| `audio.play` | Écouter | استمع |
+| `audio.pause` | Mettre en pause | إيقاف مؤقت |
+| `audio.listenAll` | Tout écouter | استمع إلى الكل |
+| `audio.stop` | Arrêter l’écoute | إيقاف الاستماع |
+| `audio.error` | Impossible de lire l’enregistrement. Vérifie ta connexion : après une première écoute, il marche sans internet. | تعذّر تشغيل التسجيل. تحقّق من الاتصال: بعد الاستماع الأول يعمل دون إنترنت. |

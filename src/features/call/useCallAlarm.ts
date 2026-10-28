@@ -52,7 +52,6 @@ export function useCallAlarm(settings: Settings | undefined): [CallAlert | null,
     return () => document.removeEventListener('pointerdown', primeAudio)
   }, [])
 
-  // Le bandeau disparaît après 2 minutes.
   useEffect(() => {
     if (!alert) return
     const id = setTimeout(() => setAlert(null), 2 * 60_000)

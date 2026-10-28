@@ -1,10 +1,10 @@
 import type { Lang } from '@/app/device-prefs'
 
-/** Fuseau par défaut tant qu'aucune ville n'est choisie (Réglages, phase 1A). */
-export const DEFAULT_TIMEZONE = 'Africa/Nouakchott'
+/** Fuseau par défaut tant qu'aucune ville n'est choisie (Réglages). */
+const DEFAULT_TIMEZONE = 'Africa/Nouakchott'
 
 /** Locale des dates : mois mauritaniens en arabe, chiffres latins dans les deux langues. */
-export function dateLocale(lang: Lang): string {
+function dateLocale(lang: Lang): string {
   return lang === 'ar' ? 'ar-MR-u-nu-latn' : 'fr-FR'
 }
 
@@ -30,7 +30,7 @@ export function parseKey(key: string): { y: number; m: number; d: number } {
   return { y, m, d }
 }
 
-export function keyOf(y: number, m: number, d: number): string {
+function keyOf(y: number, m: number, d: number): string {
   return `${y}-${pad2(m)}-${pad2(d)}`
 }
 

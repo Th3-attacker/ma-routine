@@ -1,6 +1,6 @@
 import { addDays, daysBetween } from '@/lib/dates'
 
-// Modèles d'étapes pour « Proposer des étapes », sans IA. Textes à faire relire (phase 5).
+// Modèles d'étapes pour « Proposer des étapes », sans IA. Textes à faire relire (pnpm texts).
 
 export type TemplateId = 'memorize' | 'save' | 'business' | 'learn' | 'travel' | 'ramadan' | 'family' | 'debt'
 

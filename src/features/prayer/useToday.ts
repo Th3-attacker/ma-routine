@@ -6,7 +6,6 @@ import { addDays, dayKey } from '@/lib/dates'
 import { resolvePlace } from './cities'
 import { prayerTimesFor } from './times'
 
-/** L'heure actuelle, mise à jour toutes les 30 s (et au retour sur la page). */
 export function useNow(intervalMs = 30_000): Date {
   const [now, setNow] = useState(() => new Date())
   useEffect(() => {

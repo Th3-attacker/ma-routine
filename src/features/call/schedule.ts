@@ -2,7 +2,6 @@ import { PRAYERS, type CallSettings, type Prayer } from '@/db/types'
 import type { DayTimes } from '@/features/prayer/times'
 import { readLocal, writeLocal } from '@/lib/storage'
 
-/** Journal local des appels déjà faits aujourd'hui (une seule fois par prière et par jour). */
 export type CallLog = { date: string; prayers: Prayer[] }
 
 const KEY = 'elhadj.callLog'

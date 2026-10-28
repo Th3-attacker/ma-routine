@@ -27,7 +27,6 @@ export function fastInfo(key: string, hijriAdj = 0): FastInfo {
   return { forbidden: false, reasons }
 }
 
-/** Jours où le jeûne est conseillé (Ramadan exclu : il a sa propre carte). */
 export function isSunnaFast(info: FastInfo): boolean {
   return !info.forbidden && info.reasons.length > 0 && !info.reasons.includes('ramadan')
 }

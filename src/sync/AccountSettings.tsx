@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 
 import { Field, inputClass, SectionTitle } from '@/components/Field'
+import { OtpCodeField } from '@/components/OtpCodeField'
 import { subClass } from '@/components/Section'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -149,20 +150,7 @@ function SignIn() {
       <p className={subClass} role="status">
         {t('account.codeSent', { email: sentTo })}
       </p>
-      <Field label={t('account.code')} errors={error ? [error] : undefined}>
-        {(p) => (
-          <Input
-            {...p}
-            inputMode="numeric"
-            autoComplete="one-time-code"
-            maxLength={6}
-            dir="ltr"
-            className={`${inputClass} tabular text-center font-display text-2xl tracking-[0.4em]`}
-            value={code}
-            onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
-          />
-        )}
-      </Field>
+      <OtpCodeField value={code} onChange={setCode} error={error} />
       <Button type="submit" className={btn} disabled={busy}>
         {t('account.signIn')}
       </Button>
