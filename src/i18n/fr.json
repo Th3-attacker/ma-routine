@@ -235,6 +235,7 @@
       "soir": "Soir",
       "salat": "Après prière",
       "nuit": "Coucher",
+      "douas": "Invocations",
       "tasbih": "Tasbih"
     },
     "miniMatin": "Matin",
@@ -251,7 +252,18 @@
     "cancel": "Annuler",
     "confirmReset": "Remettre à zéro",
     "seriesDone": "Série terminée. BârakAllahu fîk !",
-    "progress": "{{done}} sur {{total}} terminés"
+    "progress": "{{done}} sur {{total}} terminés",
+    "douas": {
+      "title": "Invocations du quotidien",
+      "hint": "Hisn al-Muslim : les invocations des moments de la journée.",
+      "search": "Chercher une situation ou un mot",
+      "empty": "Aucune invocation ne correspond à « {{q}} ».",
+      "count_one": "{{count}} invocation",
+      "count_other": "{{count}} invocations",
+      "source": "Rapporté par {{src}}",
+      "results_one": "{{count}} situation",
+      "results_other": "{{count}} situations"
+    }
   },
   "quran": {
     "title": "Wird du Coran",

@@ -1,6 +1,6 @@
 import { getRouteApi } from '@tanstack/react-router'
 import { ExpandIcon } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 
@@ -34,7 +34,9 @@ import { vibrate } from '@/lib/haptics'
 import { prefersReducedMotion } from '@/lib/motion'
 
 const route = getRouteApi('/athkar')
-const TABS: readonly AthkarTab[] = [...ATHKAR_SETS, 'tasbih']
+const TABS: readonly AthkarTab[] = [...ATHKAR_SETS, 'douas', 'tasbih']
+// Les invocations (Hisn al-Muslim) ne sont chargées qu'à l'ouverture de leur onglet.
+const DouasPanel = lazy(() => import('@/components/DouasPanel'))
 
 const tabClass =
   'h-11 flex-none rounded-full border border-line bg-surface px-3.5 text-[0.8125rem] font-bold text-ink-2 shadow-none after:hidden data-active:border-primary data-active:bg-primary data-active:text-primary-foreground data-active:shadow-none dark:text-ink-2 dark:data-active:border-primary dark:data-active:bg-primary dark:data-active:text-primary-foreground'
@@ -76,7 +78,15 @@ function Athkar({ settings }: { settings: Settings }) {
         {day ? (
           TABS.map((s) => (
             <TabsContent key={s} value={s} className="mt-[22px] text-base">
-              {s === 'tasbih' ? <TasbihPanel day={day} /> : <Series set={s} day={day} />}
+              {s === 'tasbih' ? (
+                <TasbihPanel day={day} />
+              ) : s === 'douas' ? (
+                <Suspense fallback={<Skeleton className="h-40 w-full rounded-xl" />}>
+                  <DouasPanel />
+                </Suspense>
+              ) : (
+                <Series set={s} day={day} />
+              )}
             </TabsContent>
           ))
         ) : (

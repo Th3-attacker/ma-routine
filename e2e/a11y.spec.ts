@@ -22,6 +22,7 @@ const SCREENS = [
   { path: './#/', name: 'aujourdhui' },
   { path: './#/priere', name: 'priere' },
   { path: './#/athkar', name: 'athkar' },
+  { path: './#/athkar?set=douas', name: 'invocations' },
   { path: './#/budget', name: 'budget' },
   { path: './#/budget?view=debts', name: 'dettes' },
   { path: './#/budget?view=goals', name: 'epargne' },

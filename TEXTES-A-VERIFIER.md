@@ -760,7 +760,859 @@ la correction juste en dessous.
 - أَسْتَغْفِرُ اللَّهَ — Astaghfirullah — [ ] Vérifié
 - اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ — Salât ‘ala an-Nabi ﷺ — [ ] Vérifié
 
-## 6. Modèles d’étapes des projets (« Proposer des étapes »)
+## 6. Invocations du quotidien (Hisn al-Muslim)
+
+Onglet « Invocations » de l’écran Athkar. Vérifier aussi le recueil indiqué pour chaque invocation.
+
+### Au réveil · الاستيقاظ من النوم (reveil)
+
+### 87. Al-Bukhârî
+
+> الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ
+
+- **Sens en français** : Louange à Allah qui nous a rendu la vie après nous avoir fait mourir, et c’est vers Lui la résurrection.
+- **Référence (ar)** : البخاري
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 88. At-Tirmidhî
+
+> الْحَمْدُ لِلَّهِ الَّذِي عَافَانِي فِي جَسَدِي، وَرَدَّ عَلَيَّ رُوحِي، وَأَذِنَ لِي بِذِكْرِهِ
+
+- **Sens en français** : Louange à Allah qui a préservé mon corps, m’a rendu mon âme et m’a permis de L’évoquer.
+- **Référence (ar)** : الترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### S’habiller · لبس الثوب (habits)
+
+### 89. Abû Dâwûd et At-Tirmidhî
+
+> الْحَمْدُ لِلَّهِ الَّذِي كَسَانِي هَٰذَا الثَّوْبَ وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ
+
+- **Sens en français** : Louange à Allah qui m’a vêtu de cet habit et me l’a accordé sans force ni puissance de ma part.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 90. Abû Dâwûd et At-Tirmidhî
+
+> اللَّهُمَّ لَكَ الْحَمْدُ أَنْتَ كَسَوْتَنِيهِ، أَسْأَلُكَ مِنْ خَيْرِهِ وَخَيْرِ مَا صُنِعَ لَهُ، وَأَعُوذُ بِكَ مِنْ شَرِّهِ وَشَرِّ مَا صُنِعَ لَهُ
+
+- **Sens en français** : Pour un habit neuf : à Toi la louange, c’est Toi qui m’en as vêtu. Je Te demande son bien et le bien pour lequel il a été fait.
+- **Note en arabe** : عند لبس الثوب الجديد.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 91. At-Tirmidhî
+
+> بِسْمِ اللَّهِ
+
+- **Sens en français** : En se déshabillant : « Au nom d’Allah ».
+- **Note en arabe** : عند وضع الثوب.
+- **Référence (ar)** : الترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Toilettes · دخول الخلاء والخروج منه (toilettes)
+
+### 92. Al-Bukhârî et Muslim
+
+> بِسْمِ اللَّهِ، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ
+
+- **Sens en français** : En entrant : au nom d’Allah. Ô Allah, je me réfugie auprès de Toi contre les démons mâles et femelles.
+- **Note en arabe** : عند الدخول.
+- **Référence (ar)** : البخاري ومسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 93. Abû Dâwûd et At-Tirmidhî
+
+> غُفْرَانَكَ
+
+- **Sens en français** : En sortant : « (Je demande) Ton pardon ».
+- **Note en arabe** : عند الخروج.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Ablutions · الوضوء (wudu)
+
+### 94. Abû Dâwûd
+
+> بِسْمِ اللَّهِ
+
+- **Sens en français** : Avant les ablutions : « Au nom d’Allah ».
+- **Note en arabe** : قبل الوضوء.
+- **Référence (ar)** : أبو داود
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 95. Muslim
+
+> أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ
+
+- **Sens en français** : Après les ablutions : j’atteste qu’il n’y a de divinité qu’Allah, seul, sans associé, et que Muhammad est Son serviteur et Son messager.
+- **Note en arabe** : بعد الوضوء.
+- **Référence (ar)** : مسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 96. At-Tirmidhî
+
+> اللَّهُمَّ اجْعَلْنِي مِنَ التَّوَّابِينَ، وَاجْعَلْنِي مِنَ الْمُتَطَهِّرِينَ
+
+- **Sens en français** : Ô Allah, place-moi parmi ceux qui se repentent et parmi ceux qui se purifient.
+- **Référence (ar)** : الترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 97. An-Nasâ’î
+
+> سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا أَنْتَ، أَسْتَغْفِرُكَ وَأَتُوبُ إِلَيْكَ
+
+- **Sens en français** : Gloire et louange à Toi, ô Allah. J’atteste qu’il n’y a de divinité que Toi ; je Te demande pardon et je me repens à Toi.
+- **Référence (ar)** : النسائي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Sortir de la maison · الخروج من المنزل (sortie)
+
+### 98. Abû Dâwûd et At-Tirmidhî
+
+> بِسْمِ اللَّهِ، تَوَكَّلْتُ عَلَى اللَّهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ
+
+- **Sens en français** : Au nom d’Allah, je m’en remets à Allah ; il n’y a de force ni de puissance qu’en Allah.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 99. Abû Dâwûd, At-Tirmidhî, An-Nasâ’î et Ibn Mâjah
+
+> اللَّهُمَّ إِنِّي أَعُوذُ بِكَ أَنْ أَضِلَّ أَوْ أُضَلَّ، أَوْ أَزِلَّ أَوْ أُزَلَّ، أَوْ أَظْلِمَ أَوْ أُظْلَمَ، أَوْ أَجْهَلَ أَوْ يُجْهَلَ عَلَيَّ
+
+- **Sens en français** : Ô Allah, je me réfugie auprès de Toi contre le fait d’égarer ou d’être égaré, de faillir ou qu’on me fasse faillir, d’opprimer ou d’être opprimé, d’agir sottement ou qu’on agisse sottement envers moi.
+- **Référence (ar)** : أبو داود والترمذي والنسائي وابن ماجه
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Entrer à la maison · دخول المنزل (entree)
+
+### 100. Abû Dâwûd
+
+> بِسْمِ اللَّهِ وَلَجْنَا، وَبِسْمِ اللَّهِ خَرَجْنَا، وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا
+
+- **Sens en français** : Au nom d’Allah nous entrons, au nom d’Allah nous sortons, et en Allah notre Seigneur nous plaçons notre confiance. Puis saluer les siens.
+- **Note en arabe** : ثم يسلّم على أهله.
+- **Référence (ar)** : أبو داود
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Mosquée · المسجد (mosquee)
+
+### 101. Abû Dâwûd
+
+> أَعُوذُ بِاللَّهِ الْعَظِيمِ، وَبِوَجْهِهِ الْكَرِيمِ، وَسُلْطَانِهِ الْقَدِيمِ، مِنَ الشَّيْطَانِ الرَّجِيمِ
+
+- **Sens en français** : En entrant : je me réfugie auprès d’Allah l’Immense, de Sa noble Face et de Son pouvoir éternel contre Satan le maudit.
+- **Note en arabe** : عند دخول المسجد.
+- **Référence (ar)** : أبو داود
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 102. Muslim et Abû Dâwûd
+
+> بِسْمِ اللَّهِ، وَالصَّلَاةُ وَالسَّلَامُ عَلَىٰ رَسُولِ اللَّهِ، اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ
+
+- **Sens en français** : En entrant (pied droit) : au nom d’Allah, prière et salut sur le Messager d’Allah. Ô Allah, ouvre-moi les portes de Ta miséricorde.
+- **Note en arabe** : عند الدخول، يقدّم رجله اليمنى.
+- **Référence (ar)** : مسلم وأبو داود
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 103. Muslim et Abû Dâwûd
+
+> بِسْمِ اللَّهِ، وَالصَّلَاةُ وَالسَّلَامُ عَلَىٰ رَسُولِ اللَّهِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ
+
+- **Sens en français** : En sortant (pied gauche) : … Ô Allah, je Te demande de Ta grâce.
+- **Note en arabe** : عند الخروج، يقدّم رجله اليسرى.
+- **Référence (ar)** : مسلم وأبو داود
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### En entendant l’adhan · الأذان (adhan)
+
+### 104. Al-Bukhârî et Muslim
+
+> لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ
+
+- **Sens en français** : Répéter ce que dit le muezzin, sauf « Hayya ‘ala-s-salât » et « Hayya ‘ala-l-falâh » : on dit alors « Il n’y a de force ni de puissance qu’en Allah ».
+- **Note en arabe** : يقول مثل ما يقول المؤذن إلا في «حيّ على الصلاة» و«حيّ على الفلاح».
+- **Référence (ar)** : البخاري ومسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 105. Muslim
+
+> وَأَنَا أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ، رَضِيتُ بِاللَّهِ رَبًّا، وَبِمُحَمَّدٍ رَسُولًا، وَبِالْإِسْلَامِ دِينًا
+
+- **Sens en français** : Après les deux attestations du muezzin : moi aussi j’atteste… J’agrée Allah comme Seigneur, Muhammad comme messager et l’islam comme religion.
+- **Note en arabe** : بعد تشهّد المؤذن.
+- **Référence (ar)** : مسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 106. Al-Bukhârî
+
+> اللَّهُمَّ رَبَّ هَٰذِهِ الدَّعْوَةِ التَّامَّةِ، وَالصَّلَاةِ الْقَائِمَةِ، آتِ مُحَمَّدًا الْوَسِيلَةَ وَالْفَضِيلَةَ، وَابْعَثْهُ مَقَامًا مَحْمُودًا الَّذِي وَعَدْتَهُ
+
+- **Sens en français** : Après l’adhan (et la prière sur le Prophète ﷺ) : ô Allah, Seigneur de cet appel parfait et de la prière qui va être accomplie, accorde à Muhammad le rang d’intercession et l’excellence, et ressuscite-le à la station louable que Tu lui as promise.
+- **Note en arabe** : بعد الأذان والصلاة على النبي ﷺ.
+- **Référence (ar)** : البخاري
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Pendant la prière · في الصلاة (priere)
+
+### 107. Abû Dâwûd et At-Tirmidhî
+
+> سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، وَتَبَارَكَ اسْمُكَ، وَتَعَالَىٰ جَدُّكَ، وَلَا إِلَٰهَ غَيْرُكَ
+
+- **Sens en français** : Ouverture : gloire et louange à Toi, ô Allah, béni soit Ton nom, élevée soit Ta majesté ; il n’y a de divinité que Toi.
+- **Note en arabe** : دعاء الاستفتاح.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 108. Al-Bukhârî et Muslim
+
+> اللَّهُمَّ بَاعِدْ بَيْنِي وَبَيْنَ خَطَايَايَ كَمَا بَاعَدْتَ بَيْنَ الْمَشْرِقِ وَالْمَغْرِبِ، اللَّهُمَّ نَقِّنِي مِنْ خَطَايَايَ كَمَا يُنَقَّى الثَّوْبُ الْأَبْيَضُ مِنَ الدَّنَسِ، اللَّهُمَّ اغْسِلْ خَطَايَايَ بِالثَّلْجِ وَالْمَاءِ وَالْبَرَدِ
+
+- **Sens en français** : Autre ouverture : ô Allah, éloigne-moi de mes fautes comme Tu as éloigné l’Orient de l’Occident, purifie-moi de mes fautes comme on nettoie l’habit blanc de la saleté, lave mes fautes avec la neige, l’eau et la grêle.
+- **Note en arabe** : دعاء الاستفتاح.
+- **Référence (ar)** : البخاري ومسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 109. Abû Dâwûd et At-Tirmidhî
+
+> سُبْحَانَ رَبِّيَ الْعَظِيمِ
+
+- **Sens en français** : Inclinaison (rukû‘) : gloire à mon Seigneur l’Immense.
+- **Note en arabe** : في الركوع.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 3
+- [ ] Vérifié
+
+### 110. Al-Bukhârî
+
+> سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ، رَبَّنَا وَلَكَ الْحَمْدُ، حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ
+
+- **Sens en français** : En se relevant : Allah entend celui qui Le loue. Notre Seigneur, à Toi la louange, une louange abondante, pure et bénie.
+- **Note en arabe** : عند الرفع من الركوع.
+- **Référence (ar)** : البخاري
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 111. Abû Dâwûd et At-Tirmidhî
+
+> سُبْحَانَ رَبِّيَ الْأَعْلَىٰ
+
+- **Sens en français** : Prosternation : gloire à mon Seigneur le Très-Haut.
+- **Note en arabe** : في السجود.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 3
+- [ ] Vérifié
+
+### 112. Abû Dâwûd
+
+> رَبِّ اغْفِرْ لِي، رَبِّ اغْفِرْ لِي
+
+- **Sens en français** : Entre les deux prosternations : Seigneur, pardonne-moi.
+- **Note en arabe** : بين السجدتين.
+- **Référence (ar)** : أبو داود
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 113. Al-Bukhârî et Muslim
+
+> التَّحِيَّاتُ لِلَّهِ، وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَىٰ عِبَادِ اللَّهِ الصَّالِحِينَ، أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا اللَّهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ
+
+- **Sens en français** : Le tashahhud : les salutations, les prières et les bonnes œuvres sont à Allah. Paix sur toi, ô Prophète… J’atteste qu’il n’y a de divinité qu’Allah et que Muhammad est Son serviteur et Son messager.
+- **Note en arabe** : التشهد.
+- **Référence (ar)** : البخاري ومسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 114. Al-Bukhârî
+
+> اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ
+
+- **Sens en français** : Prière sur le Prophète ﷺ (salât ibrâhîmiyya), après le tashahhud.
+- **Note en arabe** : الصلاة الإبراهيمية بعد التشهد.
+- **Référence (ar)** : البخاري
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 115. Al-Bukhârî et Muslim
+
+> اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، وَمِنْ عَذَابِ جَهَنَّمَ، وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ، وَمِنْ شَرِّ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ
+
+- **Sens en français** : Avant le salâm : ô Allah, je me réfugie auprès de Toi contre le châtiment de la tombe, le châtiment de l’Enfer, l’épreuve de la vie et de la mort, et le mal de l’épreuve de l’Antéchrist.
+- **Note en arabe** : قبل السلام.
+- **Référence (ar)** : البخاري ومسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Witr et qunût · الوتر والقنوت (witr)
+
+### 116. Abû Dâwûd, At-Tirmidhî et An-Nasâ’î
+
+> اللَّهُمَّ اهْدِنِي فِيمَنْ هَدَيْتَ، وَعَافِنِي فِيمَنْ عَافَيْتَ، وَتَوَلَّنِي فِيمَنْ تَوَلَّيْتَ، وَبَارِكْ لِي فِيمَا أَعْطَيْتَ، وَقِنِي شَرَّ مَا قَضَيْتَ، فَإِنَّكَ تَقْضِي وَلَا يُقْضَىٰ عَلَيْكَ، إِنَّهُ لَا يَذِلُّ مَنْ وَالَيْتَ، تَبَارَكْتَ رَبَّنَا وَتَعَالَيْتَ
+
+- **Sens en français** : Qunût du witr : ô Allah, guide-moi parmi ceux que Tu as guidés, préserve-moi parmi ceux que Tu as préservés… Béni sois-Tu, notre Seigneur, et exalté.
+- **Note en arabe** : دعاء قنوت الوتر.
+- **Référence (ar)** : أبو داود والترمذي والنسائي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 117. An-Nasâ’î
+
+> سُبْحَانَ الْمَلِكِ الْقُدُّوسِ
+
+- **Sens en français** : Après le salâm du witr : gloire au Roi, le Très-Saint (la 3e fois en élevant la voix).
+- **Note en arabe** : بعد السلام من الوتر، يرفع صوته في الثالثة.
+- **Référence (ar)** : النسائي
+- **Répétitions** : 3
+- [ ] Vérifié
+
+### Prière de consultation (istikhâra) · الاستخارة (istikhara)
+
+### 118. Al-Bukhârî
+
+> اللَّهُمَّ إِنِّي أَسْتَخِيرُكَ بِعِلْمِكَ، وَأَسْتَقْدِرُكَ بِقُدْرَتِكَ، وَأَسْأَلُكَ مِنْ فَضْلِكَ الْعَظِيمِ، فَإِنَّكَ تَقْدِرُ وَلَا أَقْدِرُ، وَتَعْلَمُ وَلَا أَعْلَمُ، وَأَنْتَ عَلَّامُ الْغُيُوبِ، اللَّهُمَّ إِنْ كُنْتَ تَعْلَمُ أَنَّ هَٰذَا الْأَمْرَ خَيْرٌ لِي فِي دِينِي وَمَعَاشِي وَعَاقِبَةِ أَمْرِي، فَاقْدُرْهُ لِي وَيَسِّرْهُ لِي، ثُمَّ بَارِكْ لِي فِيهِ، وَإِنْ كُنْتَ تَعْلَمُ أَنَّ هَٰذَا الْأَمْرَ شَرٌّ لِي فِي دِينِي وَمَعَاشِي وَعَاقِبَةِ أَمْرِي، فَاصْرِفْهُ عَنِّي وَاصْرِفْنِي عَنْهُ، وَاقْدُرْ لِيَ الْخَيْرَ حَيْثُ كَانَ، ثُمَّ أَرْضِنِي بِهِ
+
+- **Sens en français** : Après deux rak‘a surérogatoires : ô Allah, je Te consulte par Ta science… Si cette affaire (la nommer) est un bien pour moi, décrète-la et facilite-la ; si c’est un mal, détourne-la de moi, décrète pour moi le bien où qu’il soit et rends-m’en satisfait.
+- **Note en arabe** : بعد ركعتين من غير الفريضة، ويسمّي حاجته.
+- **Référence (ar)** : البخاري
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Souci et tristesse · الهم والحزن (souci)
+
+### 119. Ahmad
+
+> اللَّهُمَّ إِنِّي عَبْدُكَ، ابْنُ عَبْدِكَ، ابْنُ أَمَتِكَ، نَاصِيَتِي بِيَدِكَ، مَاضٍ فِيَّ حُكْمُكَ، عَدْلٌ فِيَّ قَضَاؤُكَ، أَسْأَلُكَ بِكُلِّ اسْمٍ هُوَ لَكَ سَمَّيْتَ بِهِ نَفْسَكَ، أَوْ أَنْزَلْتَهُ فِي كِتَابِكَ، أَوْ عَلَّمْتَهُ أَحَدًا مِنْ خَلْقِكَ، أَوِ اسْتَأْثَرْتَ بِهِ فِي عِلْمِ الْغَيْبِ عِنْدَكَ، أَنْ تَجْعَلَ الْقُرْآنَ رَبِيعَ قَلْبِي، وَنُورَ صَدْرِي، وَجَلَاءَ حُزْنِي، وَذَهَابَ هَمِّي
+
+- **Sens en français** : Ô Allah, je suis Ton serviteur, fils de Ton serviteur et de Ta servante… Je Te demande par chacun de Tes noms de faire du Coran le printemps de mon cœur, la lumière de ma poitrine, ce qui dissipe ma tristesse et chasse mon souci.
+- **Référence (ar)** : أحمد
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 120. Al-Bukhârî
+
+> اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ، وَغَلَبَةِ الرِّجَالِ
+
+- **Sens en français** : Ô Allah, je me réfugie auprès de Toi contre le souci et la tristesse, l’incapacité et la paresse, l’avarice et la lâcheté, le poids de la dette et la domination des hommes.
+- **Référence (ar)** : البخاري
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Détresse · الكرب (detresse)
+
+### 121. Al-Bukhârî et Muslim
+
+> لَا إِلَٰهَ إِلَّا اللَّهُ الْعَظِيمُ الْحَلِيمُ، لَا إِلَٰهَ إِلَّا اللَّهُ رَبُّ الْعَرْشِ الْعَظِيمِ، لَا إِلَٰهَ إِلَّا اللَّهُ رَبُّ السَّمَاوَاتِ وَرَبُّ الْأَرْضِ وَرَبُّ الْعَرْشِ الْكَرِيمِ
+
+- **Sens en français** : Il n’y a de divinité qu’Allah, l’Immense, le Longanime ; Seigneur du Trône immense ; Seigneur des cieux, de la terre et du noble Trône.
+- **Référence (ar)** : البخاري ومسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 122. Abû Dâwûd
+
+> اللَّهُمَّ رَحْمَتَكَ أَرْجُو، فَلَا تَكِلْنِي إِلَىٰ نَفْسِي طَرْفَةَ عَيْنٍ، وَأَصْلِحْ لِي شَأْنِي كُلَّهُ، لَا إِلَٰهَ إِلَّا أَنْتَ
+
+- **Sens en français** : Ô Allah, c’est Ta miséricorde que j’espère : ne m’abandonne pas à moi-même le temps d’un clin d’œil, et arrange toutes mes affaires. Il n’y a de divinité que Toi.
+- **Référence (ar)** : أبو داود
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 123. At-Tirmidhî
+
+> لَا إِلَٰهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ
+
+- **Sens en français** : L’invocation de Yûnus : il n’y a de divinité que Toi, gloire à Toi, j’ai été parmi les injustes (Al-Anbiyâ’, 87).
+- **Référence (ar)** : الترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 124. Abû Dâwûd
+
+> اللَّهُ اللَّهُ رَبِّي لَا أُشْرِكُ بِهِ شَيْئًا
+
+- **Sens en français** : Allah, Allah est mon Seigneur, je ne Lui associe rien.
+- **Référence (ar)** : أبو داود
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Épreuve et difficulté · المصيبة والأمر الصعب (epreuve)
+
+### 125. Muslim
+
+> إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ، اللَّهُمَّ أْجُرْنِي فِي مُصِيبَتِي، وَأَخْلِفْ لِي خَيْرًا مِنْهَا
+
+- **Sens en français** : Nous sommes à Allah et c’est vers Lui que nous retournons. Ô Allah, récompense-moi dans mon malheur et remplace-le par un bien meilleur.
+- **Référence (ar)** : مسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 126. Ibn Hibbân
+
+> اللَّهُمَّ لَا سَهْلَ إِلَّا مَا جَعَلْتَهُ سَهْلًا، وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلًا
+
+- **Sens en français** : Ô Allah, rien n’est facile sauf ce que Tu rends facile, et Tu rends facile la difficulté quand Tu le veux.
+- **Référence (ar)** : ابن حبان
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 127. Al-Bukhârî
+
+> حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ
+
+- **Sens en français** : Allah nous suffit, et quel excellent garant ! (face à la peur des gens)
+- **Note en arabe** : عند الخوف من الناس.
+- **Référence (ar)** : البخاري
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Dette et subsistance · قضاء الدين (dette)
+
+### 128. At-Tirmidhî
+
+> اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ
+
+- **Sens en français** : Ô Allah, suffis-moi par ce que Tu as permis contre ce que Tu as interdit, et enrichis-moi par Ta grâce de sorte que je n’aie besoin de personne d’autre que Toi.
+- **Référence (ar)** : الترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Colère · الغضب (colere)
+
+### 129. Al-Bukhârî et Muslim
+
+> أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ
+
+- **Sens en français** : Je me réfugie auprès d’Allah contre Satan le maudit.
+- **Référence (ar)** : البخاري ومسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Doute et insufflations · الوسوسة (doute)
+
+### 130. Muslim
+
+> آمَنْتُ بِاللَّهِ وَرُسُلِهِ
+
+- **Sens en français** : Face au doute dans la foi : j’ai cru en Allah et en Ses messagers.
+- **Référence (ar)** : مسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 131. Muslim
+
+> أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ
+
+- **Sens en français** : Distrait pendant la prière ou la lecture : chercher refuge et souffler légèrement trois fois vers la gauche.
+- **Note en arabe** : في الصلاة والقراءة، ويتفل عن يساره ثلاثًا.
+- **Référence (ar)** : مسلم
+- **Répétitions** : 3
+- [ ] Vérifié
+
+### Mauvais rêve et frayeur · الرؤيا والفزع في النوم (reves)
+
+### 132. Muslim
+
+> أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ وَمِنْ شَرِّ مَا رَأَيْتُ
+
+- **Sens en français** : Après un mauvais rêve : souffler légèrement trois fois à gauche, chercher refuge, ne le raconter à personne et changer de côté.
+- **Note en arabe** : ينفث عن يساره ثلاثًا، ولا يحدّث بها أحدًا، ويتحوّل عن جنبه.
+- **Référence (ar)** : مسلم
+- **Répétitions** : 3
+- [ ] Vérifié
+
+### 133. Abû Dâwûd et At-Tirmidhî
+
+> أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ غَضَبِهِ وَعِقَابِهِ، وَشَرِّ عِبَادِهِ، وَمِنْ هَمَزَاتِ الشَّيَاطِينِ وَأَنْ يَحْضُرُونِ
+
+- **Sens en français** : Réveil en sursaut : je me réfugie dans les paroles parfaites d’Allah contre Sa colère, Son châtiment, le mal de Ses serviteurs, les incitations des démons et leur présence.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Visite au malade · عيادة المريض (malade)
+
+### 134. Al-Bukhârî
+
+> لَا بَأْسَ، طَهُورٌ إِنْ شَاءَ اللَّهُ
+
+- **Sens en français** : Ce n’est rien : une purification, si Allah le veut.
+- **Référence (ar)** : البخاري
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 135. Abû Dâwûd et At-Tirmidhî
+
+> أَسْأَلُ اللَّهَ الْعَظِيمَ، رَبَّ الْعَرْشِ الْعَظِيمِ، أَنْ يَشْفِيَكَ
+
+- **Sens en français** : Je demande à Allah l’Immense, Seigneur du Trône immense, de te guérir.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 7
+- [ ] Vérifié
+
+### Douleur · الألم (douleur)
+
+### 136. Muslim
+
+> بِسْمِ اللَّهِ
+
+- **Sens en français** : Poser la main sur l’endroit douloureux et dire trois fois « Au nom d’Allah ».
+- **Note en arabe** : يضع يده على الذي يألم من جسده.
+- **Référence (ar)** : مسلم
+- **Répétitions** : 3
+- [ ] Vérifié
+
+### 137. Muslim
+
+> أَعُوذُ بِاللَّهِ وَقُدْرَتِهِ مِنْ شَرِّ مَا أَجِدُ وَأُحَاذِرُ
+
+- **Sens en français** : Puis sept fois : je me réfugie auprès d’Allah et de Sa puissance contre le mal que je ressens et que je redoute.
+- **Référence (ar)** : مسلم
+- **Répétitions** : 7
+- [ ] Vérifié
+
+### Décès et condoléances · الميت والتعزية (deces)
+
+### 138. Muslim
+
+> اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ، وَعَافِهِ وَاعْفُ عَنْهُ، وَأَكْرِمْ نُزُلَهُ، وَوَسِّعْ مُدْخَلَهُ، وَاغْسِلْهُ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ، وَنَقِّهِ مِنَ الْخَطَايَا كَمَا نَقَّيْتَ الثَّوْبَ الْأَبْيَضَ مِنَ الدَّنَسِ
+
+- **Sens en français** : Pour le défunt (prière funéraire, extrait) : ô Allah, pardonne-lui, fais-lui miséricorde, préserve-le, efface ses fautes, honore son accueil, élargis sa demeure, lave-le avec l’eau, la neige et la grêle, et purifie-le de ses fautes.
+- **Note en arabe** : في صلاة الجنازة (مختصر).
+- **Référence (ar)** : مسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 139. Al-Bukhârî et Muslim
+
+> إِنَّ لِلَّهِ مَا أَخَذَ، وَلَهُ مَا أَعْطَىٰ، وَكُلُّ شَيْءٍ عِنْدَهُ بِأَجَلٍ مُسَمًّى، فَلْتَصْبِرْ وَلْتَحْتَسِبْ
+
+- **Sens en français** : Condoléances : à Allah ce qu’Il a pris et ce qu’Il a donné, et toute chose a auprès de Lui un terme fixé. Sois patient et espère la récompense.
+- **Note en arabe** : التعزية.
+- **Référence (ar)** : البخاري ومسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 140. Muslim
+
+> السَّلَامُ عَلَيْكُمْ أَهْلَ الدِّيَارِ مِنَ الْمُؤْمِنِينَ وَالْمُسْلِمِينَ، وَإِنَّا إِنْ شَاءَ اللَّهُ بِكُمْ لَاحِقُونَ، نَسْأَلُ اللَّهَ لَنَا وَلَكُمُ الْعَافِيَةَ
+
+- **Sens en français** : Au cimetière : paix sur vous, habitants de ces demeures, croyants et musulmans ; nous vous rejoindrons si Allah le veut. Nous demandons à Allah le salut pour nous et pour vous.
+- **Note en arabe** : عند زيارة القبور.
+- **Référence (ar)** : مسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Pluie, vent et tonnerre · المطر والريح والرعد (pluie)
+
+### 141. Al-Bukhârî
+
+> اللَّهُمَّ أَغِثْنَا، اللَّهُمَّ أَغِثْنَا، اللَّهُمَّ أَغِثْنَا
+
+- **Sens en français** : Pour demander la pluie : ô Allah, secours-nous (par la pluie).
+- **Note en arabe** : الاستسقاء.
+- **Référence (ar)** : البخاري
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 142. Al-Bukhârî
+
+> اللَّهُمَّ صَيِّبًا نَافِعًا
+
+- **Sens en français** : Quand il pleut : ô Allah, (fais-en) une pluie bienfaisante.
+- **Note en arabe** : عند نزول المطر.
+- **Référence (ar)** : البخاري
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 143. Al-Bukhârî et Muslim
+
+> مُطِرْنَا بِفَضْلِ اللَّهِ وَرَحْمَتِهِ
+
+- **Sens en français** : Après la pluie : nous avons reçu la pluie par la grâce d’Allah et Sa miséricorde.
+- **Note en arabe** : بعد نزول المطر.
+- **Référence (ar)** : البخاري ومسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 144. Abû Dâwûd et Ibn Mâjah
+
+> اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَهَا، وَأَعُوذُ بِكَ مِنْ شَرِّهَا
+
+- **Sens en français** : Quand le vent souffle : ô Allah, je Te demande son bien et je me réfugie auprès de Toi contre son mal.
+- **Note en arabe** : عند هبوب الريح.
+- **Référence (ar)** : أبو داود وابن ماجه
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 145. Al-Muwatta’
+
+> سُبْحَانَ الَّذِي يُسَبِّحُ الرَّعْدُ بِحَمْدِهِ وَالْمَلَائِكَةُ مِنْ خِيفَتِهِ
+
+- **Sens en français** : En entendant le tonnerre : gloire à Celui dont le tonnerre célèbre la louange, ainsi que les anges, par crainte de Lui.
+- **Note en arabe** : عند سماع الرعد.
+- **Référence (ar)** : الموطأ
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Nouvelle lune · رؤية الهلال (hilal)
+
+### 146. At-Tirmidhî
+
+> اللَّهُ أَكْبَرُ، اللَّهُمَّ أَهِلَّهُ عَلَيْنَا بِالْأَمْنِ وَالْإِيمَانِ، وَالسَّلَامَةِ وَالْإِسْلَامِ، وَالتَّوْفِيقِ لِمَا تُحِبُّ رَبَّنَا وَتَرْضَىٰ، رَبُّنَا وَرَبُّكَ اللَّهُ
+
+- **Sens en français** : Allah est le plus grand. Ô Allah, fais-la apparaître sur nous avec la sécurité, la foi, le salut, l’islam et la réussite dans ce que Tu aimes et agrées. Notre Seigneur et ton Seigneur est Allah.
+- **Référence (ar)** : الترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Jeûne et rupture · الصيام والإفطار (jeune)
+
+### 147. Abû Dâwûd
+
+> ذَهَبَ الظَّمَأُ، وَابْتَلَّتِ الْعُرُوقُ، وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللَّهُ
+
+- **Sens en français** : À la rupture du jeûne : la soif est partie, les veines sont humectées et la récompense est acquise, si Allah le veut.
+- **Note en arabe** : عند الإفطار.
+- **Référence (ar)** : أبو داود
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 148. Al-Bukhârî et Muslim
+
+> إِنِّي صَائِمٌ، إِنِّي صَائِمٌ
+
+- **Sens en français** : Si l’on t’insulte pendant le jeûne : « Je jeûne, je jeûne ».
+- **Note en arabe** : إذا سابّه أحد وهو صائم.
+- **Référence (ar)** : البخاري ومسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 149. Abû Dâwûd
+
+> أَفْطَرَ عِنْدَكُمُ الصَّائِمُونَ، وَأَكَلَ طَعَامَكُمُ الْأَبْرَارُ، وَصَلَّتْ عَلَيْكُمُ الْمَلَائِكَةُ
+
+- **Sens en français** : Invité à rompre le jeûne : que les jeûneurs rompent le jeûne chez vous, que les pieux mangent votre nourriture et que les anges prient pour vous.
+- **Note en arabe** : لمن أفطر عند قوم.
+- **Référence (ar)** : أبو داود
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Repas · الطعام والشراب (repas)
+
+### 150. Abû Dâwûd et At-Tirmidhî
+
+> بِسْمِ اللَّهِ
+
+- **Sens en français** : Avant de manger : « Au nom d’Allah ».
+- **Note en arabe** : قبل الطعام.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 151. Abû Dâwûd et At-Tirmidhî
+
+> بِسْمِ اللَّهِ فِي أَوَّلِهِ وَآخِرِهِ
+
+- **Sens en français** : Si on l’a oublié au début : au nom d’Allah, au début et à la fin.
+- **Note en arabe** : إذا نسي التسمية في أوله.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 152. Abû Dâwûd et At-Tirmidhî
+
+> الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَٰذَا، وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ
+
+- **Sens en français** : Après le repas : louange à Allah qui m’a nourri de ceci et me l’a accordé sans force ni puissance de ma part.
+- **Note en arabe** : بعد الفراغ من الطعام.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 153. Muslim
+
+> اللَّهُمَّ بَارِكْ لَهُمْ فِيمَا رَزَقْتَهُمْ، وَاغْفِرْ لَهُمْ وَارْحَمْهُمْ
+
+- **Sens en français** : L’invité pour ses hôtes : ô Allah, bénis-les dans ce que Tu leur as accordé, pardonne-leur et fais-leur miséricorde.
+- **Note en arabe** : دعاء الضيف لصاحب الطعام.
+- **Référence (ar)** : مسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 154. Muslim
+
+> اللَّهُمَّ أَطْعِمْ مَنْ أَطْعَمَنِي، وَاسْقِ مَنْ سَقَانِي
+
+- **Sens en français** : Pour qui t’offre à manger ou à boire : ô Allah, nourris qui m’a nourri et abreuve qui m’a abreuvé.
+- **Référence (ar)** : مسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Éternuement · العطاس (eternuement)
+
+### 155. Al-Bukhârî
+
+> الْحَمْدُ لِلَّهِ
+> يَرْحَمُكَ اللَّهُ
+> يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ
+
+- **Sens en français** : Celui qui éternue : « Louange à Allah ». On lui répond : « Qu’Allah te fasse miséricorde ». Il répond : « Qu’Allah vous guide et améliore votre état ».
+- **Note en arabe** : يقول العاطس، ثم يرد عليه أخوه، ثم يجيبه.
+- **Référence (ar)** : البخاري
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Salutation et remerciement · السلام والشكر (salam)
+
+### 156. Abû Dâwûd et At-Tirmidhî
+
+> السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ
+> وَعَلَيْكُمُ السَّلَامُ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ
+
+- **Sens en français** : Que la paix soit sur vous, ainsi que la miséricorde d’Allah et Ses bénédictions. Et la réponse.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 157. At-Tirmidhî
+
+> جَزَاكَ اللَّهُ خَيْرًا
+
+- **Sens en français** : À qui t’a fait du bien : qu’Allah te récompense en bien.
+- **Référence (ar)** : الترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Mariage · الزواج (mariage)
+
+### 158. Abû Dâwûd et At-Tirmidhî
+
+> بَارَكَ اللَّهُ لَكَ، وَبَارَكَ عَلَيْكَ، وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+
+- **Sens en français** : Pour féliciter le marié : qu’Allah te bénisse, répande Sa bénédiction sur toi et vous unisse dans le bien.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Voyage · السفر (voyage)
+
+### 159. Muslim
+
+> اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَٰذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ، وَإِنَّا إِلَىٰ رَبِّنَا لَمُنْقَلِبُونَ، اللَّهُمَّ إِنَّا نَسْأَلُكَ فِي سَفَرِنَا هَٰذَا الْبِرَّ وَالتَّقْوَىٰ، وَمِنَ الْعَمَلِ مَا تَرْضَىٰ، اللَّهُمَّ هَوِّنْ عَلَيْنَا سَفَرَنَا هَٰذَا وَاطْوِ عَنَّا بُعْدَهُ، اللَّهُمَّ أَنْتَ الصَّاحِبُ فِي السَّفَرِ، وَالْخَلِيفَةُ فِي الْأَهْلِ، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ وَعْثَاءِ السَّفَرِ، وَكَآبَةِ الْمَنْظَرِ، وَسُوءِ الْمُنْقَلَبِ فِي الْمَالِ وَالْأَهْلِ
+
+- **Sens en français** : Au départ : gloire à Celui qui a mis ceci à notre service… Ô Allah, nous Te demandons dans ce voyage la bonté et la piété, facilite-le et raccourcis sa distance. Tu es le Compagnon du voyage et le Gardien de la famille. Au retour, ajouter : « De retour, repentants, adorant notre Seigneur et Le louant ».
+- **Note en arabe** : وإذا رجع زاد: آيِبُونَ تَائِبُونَ عَابِدُونَ لِرَبِّنَا حَامِدُونَ.
+- **Référence (ar)** : مسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 160. At-Tirmidhî
+
+> أَسْتَوْدِعُ اللَّهَ دِينَكَ، وَأَمَانَتَكَ، وَخَوَاتِيمَ عَمَلِكَ
+
+- **Sens en français** : À celui qui part : je confie à Allah ta religion, ta loyauté et la fin de tes œuvres.
+- **Note en arabe** : لمن يودّع مسافرًا.
+- **Référence (ar)** : الترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 161. Muslim
+
+> أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ
+
+- **Sens en français** : En s’arrêtant dans un lieu : je me réfugie dans les paroles parfaites d’Allah contre le mal de ce qu’Il a créé.
+- **Note en arabe** : عند نزول منزل.
+- **Référence (ar)** : مسلم
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Bonne ou mauvaise nouvelle · الأمر السار والمكروه (nouvelle)
+
+### 162. Ibn Mâjah
+
+> الْحَمْدُ لِلَّهِ الَّذِي بِنِعْمَتِهِ تَتِمُّ الصَّالِحَاتُ
+
+- **Sens en français** : Pour une bonne nouvelle : louange à Allah par la grâce de qui s’accomplissent les bonnes choses.
+- **Note en arabe** : إذا أتاه أمر يسرّه.
+- **Référence (ar)** : ابن ماجه
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 163. Ibn Mâjah
+
+> الْحَمْدُ لِلَّهِ عَلَىٰ كُلِّ حَالٍ
+
+- **Sens en français** : Pour ce qui déplaît : louange à Allah en toute situation.
+- **Note en arabe** : إذا أتاه أمر يكرهه.
+- **Référence (ar)** : ابن ماجه
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Fin d’une assemblée · كفارة المجلس (assemblee)
+
+### 164. At-Tirmidhî
+
+> سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، أَشْهَدُ أَنْ لَا إِلَٰهَ إِلَّا أَنْتَ، أَسْتَغْفِرُكَ وَأَتُوبُ إِلَيْكَ
+
+- **Sens en français** : En quittant une assemblée : gloire et louange à Toi, ô Allah ; j’atteste qu’il n’y a de divinité que Toi, je Te demande pardon et je me repens à Toi.
+- **Référence (ar)** : الترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### Demande de pardon · الاستغفار والتوبة (pardon)
+
+### 165. Al-Bukhârî
+
+> اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَىٰ عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي، فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ
+
+- **Sens en français** : Sayyid al-istighfâr, la meilleure demande de pardon : ô Allah, Tu es mon Seigneur… Je reconnais Ta grâce sur moi et je reconnais mon péché : pardonne-moi, car nul ne pardonne les péchés sauf Toi.
+- **Note en arabe** : سيد الاستغفار.
+- **Référence (ar)** : البخاري
+- **Répétitions** : 1
+- [ ] Vérifié
+
+### 166. Al-Bukhârî et Muslim
+
+> أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ
+
+- **Sens en français** : Je demande pardon à Allah et je me repens à Lui (cent fois par jour).
+- **Note en arabe** : مائة مرة في اليوم.
+- **Référence (ar)** : البخاري ومسلم
+- **Répétitions** : 100
+- [ ] Vérifié
+
+### 167. Abû Dâwûd et At-Tirmidhî
+
+> رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ، إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ
+
+- **Sens en français** : Seigneur, pardonne-moi et accepte mon repentir : Tu es Celui qui accueille le repentir, le Très-Miséricordieux.
+- **Référence (ar)** : أبو داود والترمذي
+- **Répétitions** : 1
+- [ ] Vérifié
+
+## 7. Modèles d’étapes des projets (« Proposer des étapes »)
 
 À relire surtout pour l’arabe (langue claire, mots simples).
 
@@ -858,7 +1710,7 @@ la correction juste en dessous.
 | Éviter toute nouvelle dette pendant ce temps | تجنب أي دين جديد خلال هذه المدة | [ ] |
 | Noter chaque remboursement | تسجيل كل سداد | [ ] |
 
-## 7. Traductions arabes de l’interface
+## 8. Traductions arabes de l’interface
 
 Toutes les phrases de l’application, côte à côte. Les mots entre `{{ }}` sont remplacés par l’app (nom,
 nombre…) : ne pas les traduire.
@@ -1137,6 +1989,7 @@ nombre…) : ne pas les traduire.
 | `athkar.sets.soir` | Soir | المساء |
 | `athkar.sets.salat` | Après prière | بعد الصلاة |
 | `athkar.sets.nuit` | Coucher | النوم |
+| `athkar.sets.douas` | Invocations | الأدعية |
 | `athkar.sets.tasbih` | Tasbih | التسبيح |
 | `athkar.miniMatin` | Matin | أذكار الصباح |
 | `athkar.miniSoir` | Soir | أذكار المساء |
@@ -1153,6 +2006,15 @@ nombre…) : ne pas les traduire.
 | `athkar.confirmReset` | Remettre à zéro | تصفير |
 | `athkar.seriesDone` | Série terminée. BârakAllahu fîk ! | اكتملت السلسلة. بارك الله فيك! |
 | `athkar.progress` | {{done}} sur {{total}} terminés | {{done}} من {{total}} مكتملة |
+| `athkar.douas.title` | Invocations du quotidien | أدعية اليوم والليلة |
+| `athkar.douas.hint` | Hisn al-Muslim : les invocations des moments de la journée. | من حصن المسلم: أدعية مواقف اليوم. |
+| `athkar.douas.search` | Chercher une situation ou un mot | ابحث عن موقف أو كلمة |
+| `athkar.douas.empty` | Aucune invocation ne correspond à « {{q}} ». | لا يوجد دعاء يطابق «{{q}}». |
+| `athkar.douas.count_one` | {{count}} invocation | دعاء واحد |
+| `athkar.douas.count_other` | {{count}} invocations | {{count}} دعاء |
+| `athkar.douas.source` | Rapporté par {{src}} | رواه {{src}} |
+| `athkar.douas.results_one` | {{count}} situation | موقف واحد |
+| `athkar.douas.results_other` | {{count}} situations | {{count}} موقف |
 ### quran
 
 | Clé | Français | العربية |
@@ -1321,7 +2183,7 @@ nombre…) : ne pas les traduire.
 | `call.test` | Écouter un exemple | استمع إلى مثال |
 | `call.noVoiceAr` | Aucune voix arabe sur ce téléphone. Ajoute-la dans les réglages de synthèse vocale du téléphone. | لا يوجد صوت عربي على هذا الهاتف. أضفه من إعدادات تحويل النص إلى كلام في الهاتف. |
 | `call.noVoiceFr` | Aucune voix française sur ce téléphone. Ajoute-la dans les réglages de synthèse vocale du téléphone. | لا يوجد صوت فرنسي على هذا الهاتف. أضفه من إعدادات تحويل النص إلى كلام في الهاتف. |
-| `call.noSpeech` | La voix n’est pas disponible sur ce navigateur : seul le bandeau s’affichera. | الصوت غير متاح في هذا المتصفح: سيظهر الشريط فقط. |
+| `call.noSpeech` | Ce navigateur ne sait pas parler : à la place de la voix, un carillon et une vibration accompagneront le bandeau. Pour entendre ton prénom, essaie Chrome ou Firefox. | هذا المتصفح لا يستطيع الكلام: بدل الصوت سيرافق الشريطَ رنينٌ واهتزاز. لسماع اسمك جرّب Chrome أو Firefox. |
 | `call.closedHint` | App fermée : l’appel arrivera en notification avec les notifications d’adhan. | عند إغلاق التطبيق: سيصل النداء كإشعار مع إشعارات الأذان. |
 | `call.close` | Fermer | إغلاق |
 | `call.voiceFr` | Voix en français | الصوت بالفرنسية |
@@ -1329,6 +2191,8 @@ nombre…) : ne pas les traduire.
 | `call.voiceAuto` | Automatique (voix d’homme si possible) | تلقائي (صوت رجل إن وُجد) |
 | `call.voiceMale` | {{name}} · homme | {{name}} · رجل |
 | `call.noMaleVoice` | Pas de voix d’homme sur ce téléphone : la voix est rendue plus grave. Sur iPhone, tu peux en télécharger une (Réglages → Accessibilité → Contenu énoncé → Voix), puis la choisir ici. | لا يوجد صوت رجل على هذا الهاتف: يُجعل الصوت أخشن. على iPhone يمكنك تنزيل صوت (الإعدادات ← تسهيلات الاستخدام ← المحتوى المنطوق ← الأصوات) ثم اختياره هنا. |
+| `call.notSpoken` | Le téléphone n’a pas parlé. Vérifie le volume, puis réessaie. | لم يتكلم الهاتف. تحقق من الصوت ثم أعد المحاولة. |
+| `call.speechError` | La voix du téléphone a échoué ({{code}}). Vérifie le volume et la synthèse vocale du téléphone. | فشل صوت الهاتف ({{code}}). تحقق من الصوت ومن تحويل النص إلى كلام في الهاتف. |
 ### categories
 
 | Clé | Français | العربية |
@@ -1370,6 +2234,8 @@ nombre…) : ne pas les traduire.
 | `startup.insecureBody` | Cette adresse commence par « http:// ». Le téléphone y bloque le calcul sécurisé du code à 4 chiffres. Ouvre l’adresse en « https:// » (version en ligne, ou « pnpm dev:phone » sur l’ordinateur). | هذا العنوان يبدأ بـ «http://»، والهاتف يمنع فيه الحساب الآمن للرمز المكوّن من 4 أرقام. افتح العنوان بـ «https://» (النسخة على الإنترنت، أو «pnpm dev:phone» على الحاسوب). |
 | `startup.retry` | Réessayer | أعد المحاولة |
 | `startup.details` | Détails techniques | تفاصيل تقنية |
+| `startup.noStorageTitle` | Ce navigateur bloque l’enregistrement des données | هذا المتصفح يمنع حفظ البيانات |
+| `startup.noStorageBody` | Sur iPhone, ouvre l’app dans Safari (pas Chrome), et pas en navigation privée. Sur Android, quitte la navigation privée. | على آيفون، افتح التطبيق في Safari (وليس Chrome)، وليس في التصفح الخاص. على أندرويد، اخرج من التصفح الخاص. |
 ### budget
 
 | Clé | Français | العربية |
