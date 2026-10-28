@@ -17,29 +17,18 @@ export type NotifSettings = {
   iftar: boolean
 }
 
-export type CallSettings = {
-  enabled: boolean
-  minutesBefore: number
-  prayers: Record<Prayer, boolean>
-  lang: 'app' | 'fr' | 'ar' | 'both'
-  voice: boolean
-}
-
 export type UserContext = {
-  name: string
-  nameAr: string
   timezone: string
   notif: NotifSettings
-  call: CallSettings
   /** Jour de la semaine dans le fuseau de l'utilisateur (5 = vendredi). */
   weekday: number
   ramadan: boolean
   lang: 'fr' | 'ar'
 }
 
-export type Kind = `adhan:${Prayer}` | `call:${Prayer}` | 'kahf' | 'athkar:matin' | 'athkar:soir' | 'suhur' | 'iftar'
+export type Kind = `adhan:${Prayer}` | 'kahf' | 'athkar:matin' | 'athkar:soir' | 'suhur' | 'iftar'
 
-export type Notification = { kind: Kind; title: string; body: string; tag: string; speak?: string }
+export type Notification = { kind: Kind; title: string; body: string; tag: string }
 
 const MIN = 60_000
 
@@ -68,20 +57,10 @@ function prayerLabel(p: Prayer, ctx: UserContext, lang: 'fr' | 'ar'): string {
   return p === 'dhuhr' && ctx.weekday === 5 ? NAMES[lang].jumua : NAMES[lang][p]
 }
 
-const callName = (ctx: UserContext, lang: 'fr' | 'ar') =>
-  lang === 'ar' ? ctx.nameAr.trim() || ctx.name.trim() : ctx.name.trim()
-
-/** « Elhadj, la prière » / « الحاج، الصلاة ». */
-export function callPhrase(ctx: UserContext, lang: 'fr' | 'ar'): string {
-  const n = callName(ctx, lang)
-  return lang === 'ar' ? `${n}، الصلاة` : `${n}, la prière`
-}
-
 const TEXT = {
   fr: {
     adhanBody: (name: string) => `C’est l’heure de ${name}.`,
     adhanSoon: (name: string, m: number) => `${name} dans ${m} min.`,
-    callBody: (name: string, time: string, m: number) => `${name} à ${time} · dans ${m} min`,
     kahf: ['Jour de Joumou‘a', 'Pense à lire la sourate Al-Kahf aujourd’hui.'],
     matin: ['Athkar du matin', 'C’est le moment des athkar du matin.'],
     soir: ['Athkar du soir', 'C’est le moment des athkar du soir.'],
@@ -91,7 +70,6 @@ const TEXT = {
   ar: {
     adhanBody: (name: string) => `حان وقت صلاة ${name}.`,
     adhanSoon: (name: string, m: number) => `${name} بعد ${m} دقيقة.`,
-    callBody: (name: string, time: string, m: number) => `${name} ${time} · بعد ${m} دقائق`,
     kahf: ['يوم الجمعة', 'لا تنسَ قراءة سورة الكهف اليوم.'],
     matin: ['أذكار الصباح', 'حان وقت أذكار الصباح.'],
     soir: ['أذكار المساء', 'حان وقت أذكار المساء.'],
@@ -100,10 +78,7 @@ const TEXT = {
   },
 } as const
 
-/**
- * Notifications à envoyer pendant la minute `now`. L'appel personnel remplace l'alerte d'adhan de la même prière
- * quand les deux tombent à la même minute (une seule notification).
- */
+/** Notifications à envoyer pendant la minute `now`. */
 export function dueNotifications(now: Date, t: Times, ctx: UserContext): Notification[] {
   const lang = ctx.lang
   const tx = TEXT[lang]
@@ -113,19 +88,8 @@ export function dueNotifications(now: Date, t: Times, ctx: UserContext): Notific
   for (const p of PRAYERS) {
     const name = prayerLabel(p, ctx, lang)
     const time = hhmm(t[p], tz)
-    const callAt = new Date(t[p].getTime() - Math.min(15, Math.max(1, ctx.call.minutesBefore)) * MIN)
     const adhanAt = new Date(t[p].getTime() - ctx.notif.minutesBefore * MIN)
-    const callDue = ctx.call.enabled && ctx.call.prayers[p] && sameMinute(now, callAt)
-    const adhanDue = ctx.notif.enabled && ctx.notif.prayers[p] && sameMinute(now, adhanAt)
-    if (callDue) {
-      out.push({
-        kind: `call:${p}`,
-        title: callPhrase(ctx, lang),
-        body: tx.callBody(name, time, ctx.call.minutesBefore),
-        tag: `call-${p}`,
-        speak: ctx.call.voice ? callPhrase(ctx, lang) : undefined,
-      })
-    } else if (adhanDue) {
+    if (ctx.notif.enabled && ctx.notif.prayers[p] && sameMinute(now, adhanAt)) {
       out.push({
         kind: `adhan:${p}`,
         title: `${name} · ${time}`,

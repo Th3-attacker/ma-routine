@@ -39,13 +39,6 @@ export const DEFAULT_SETTINGS: Settings = {
     suhur: true,
     iftar: true,
   },
-  call: {
-    enabled: true,
-    minutesBefore: 3,
-    prayers: { fajr: true, dhuhr: true, asr: true, maghrib: true, isha: true },
-    lang: 'app',
-    voice: true,
-  },
 }
 
 /**
@@ -54,7 +47,9 @@ export const DEFAULT_SETTINGS: Settings = {
  */
 export function normalizeSettings(row: Partial<Settings> | undefined): Settings {
   const d = DEFAULT_SETTINGS
-  const r = row ?? {}
+  // « call » : réglage de l'ancien appel avant l'adhan, retiré (encore présent dans les anciennes sauvegardes).
+  const r: Partial<Settings> & { call?: unknown } = { ...row }
+  delete r.call
   return {
     ...d,
     ...r,
@@ -66,7 +61,6 @@ export function normalizeSettings(row: Partial<Settings> | undefined): Settings 
     habits: Array.isArray(r.habits) ? r.habits : d.habits,
     budgets: { ...r.budgets },
     notif: { ...d.notif, ...r.notif, prayers: { ...d.notif.prayers, ...r.notif?.prayers } },
-    call: { ...d.call, ...r.call, prayers: { ...d.call.prayers, ...r.call?.prayers } },
   }
 }
 

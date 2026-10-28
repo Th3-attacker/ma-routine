@@ -34,7 +34,7 @@ self.addEventListener('message', (event) => {
   if (event.data?.type === 'SKIP_WAITING') void self.skipWaiting()
 })
 
-type PushPayload = { kind: string; title: string; body: string; tag: string; speak?: string; lang?: string }
+type PushPayload = { kind: string; title: string; body: string; tag: string; lang?: string }
 
 self.addEventListener('push', (event) => {
   const data = (event.data?.json() ?? {}) as PushPayload
@@ -51,14 +51,6 @@ self.addEventListener('push', (event) => {
         badge: `${import.meta.env.BASE_URL}pwa-64x64.png`,
         data: { kind: data.kind },
       })
-      // Si l'app est ouverte à l'écran : elle dit l'appel à voix haute (une notification web ne parle pas).
-      if (data.speak) {
-        const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true })
-        for (const w of windows) {
-          if (w.visibilityState === 'visible')
-            w.postMessage({ type: 'elhadj-speak', kind: data.kind, text: data.speak, lang })
-        }
-      }
     })(),
   )
 })

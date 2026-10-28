@@ -1,6 +1,6 @@
 import { ChevronLeftIcon, ChevronRightIcon, XIcon } from 'lucide-react'
 import { Dialog } from 'radix-ui'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { AudioButton } from '@/components/AudioButton'
@@ -9,7 +9,6 @@ import { toast } from 'sonner'
 import type { AthkarSet, Day } from '@/db/types'
 import { firstUndone, tapDhikr } from '@/features/athkar/actions'
 import { currentKey, seriesTracks, usePlayer } from '@/features/athkar/audio'
-import { setReaderOpen } from '@/features/call/speech'
 import { ATHKAR } from '@/features/athkar/data'
 import { athkarProgress } from '@/features/athkar/progress'
 import { vibrate } from '@/lib/haptics'
@@ -35,11 +34,6 @@ export function DhikrReader({
   onClose: () => void
 }) {
   useWakeLock(open)
-  // Pas d'appel à voix haute pendant la lecture plein écran.
-  useEffect(() => {
-    setReaderOpen(open)
-    return () => setReaderOpen(false)
-  }, [open])
   return (
     <Dialog.Root open={open} onOpenChange={(o) => !o && onClose()}>
       <Dialog.Portal>

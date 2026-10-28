@@ -15,8 +15,6 @@ en arabe. Elle fonctionne sans connexion, et tes données restent sur ton télé
 
 - **Prière** : les horaires de ta ville (Ligue islamique mondiale), le temps qui reste, la prière en cours, et le
   suivi de chaque prière (à l'heure, en retard, à rattraper).
-- **Appel avant l'adhan** : « {ton prénom}, la prière », à voix haute quelques minutes avant, et en notification
-  quand l'app est fermée.
 - **Athkar** du matin, du soir, après la prière et avant de dormir, avec un compteur ; un tasbih.
 - **Aujourd'hui** : le ciel du jour, la date hégirienne, un verset ou un hadith, le wird de Coran, les habitudes,
   le bilan du soir et le mode Ramadan.
@@ -80,7 +78,6 @@ Supabase et la clé publique VAPID. Sans ces clés, l'app reste 100 % locale. Le
 
 - **الصلاة**: مواقيت مدينتك (رابطة العالم الإسلامي)، والوقت المتبقي، والصلاة الحالية، ومتابعة كل صلاة (في وقتها،
   متأخرة، قضاء).
-- **النداء قبل الأذان**: «{اسمك}، الصلاة» بصوت مسموع قبل الأذان ببضع دقائق، وفي إشعار إذا كان التطبيق مغلقًا.
 - **الأذكار**: أذكار الصباح والمساء وبعد الصلاة وقبل النوم، مع عدّاد، ومسبحة.
 - **اليوم**: سماء اليوم، والتاريخ الهجري، وآية أو حديث، وورد القرآن، والعادات، وحصيلة المساء، ووضع رمضان.
 - **الميزانية** بالأوقية: المصاريف والمداخيل، وميزانية لكل فئة، والديون، والادخار، والعمليات الشهرية، ونصائح

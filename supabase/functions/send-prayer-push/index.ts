@@ -7,17 +7,14 @@ import { createClient } from 'npm:@supabase/supabase-js@2.118.0'
 import { CalculationMethod, Coordinates, Madhab, PrayerTimes, type CalculationParameters } from 'npm:adhan@4.4.6'
 import * as webpush from 'jsr:@negrel/webpush@0.5.0'
 
-import { dueNotifications, type CallSettings, type NotifSettings, type Times, type UserContext } from './logic.ts'
+import { dueNotifications, type NotifSettings, type Times, type UserContext } from './logic.ts'
 
 type Settings = {
-  name?: string
-  nameAr?: string
   method?: string
   asrSchool?: 'standard' | 'hanafi'
   tune?: Record<string, number>
   hijriAdj?: number
   notif?: NotifSettings
-  call?: CallSettings
   place?: { lat: number; lng: number; timezone: string }
 }
 type Sub = { id: string; user_id: string; endpoint: string; p256dh: string; auth: string; lang: string }
@@ -101,7 +98,7 @@ Deno.serve(async (req) => {
 
   for (const row of rows ?? []) {
     const s = row.data as Settings
-    if (!s.place || !s.notif || !s.call) continue
+    if (!s.place || !s.notif) continue
     const userSubs = byUser.get(row.user_id) ?? []
     const { key, weekday } = localDay(now, s.place.timezone)
     const times = timesFor(key, s)
@@ -109,11 +106,8 @@ Deno.serve(async (req) => {
     // Le journal est commun au compte : une notification part une seule fois, vers tous ses appareils.
     const langs = [...new Set(userSubs.map((u) => (u.lang === 'ar' ? 'ar' : 'fr')))] as ('fr' | 'ar')[]
     const ctx = (lang: 'fr' | 'ar'): UserContext => ({
-      name: s.name ?? '',
-      nameAr: s.nameAr ?? '',
       timezone: s.place!.timezone,
       notif: s.notif!,
-      call: s.call!,
       weekday,
       ramadan,
       lang,

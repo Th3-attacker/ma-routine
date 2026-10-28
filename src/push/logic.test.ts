@@ -10,11 +10,8 @@ const place = resolvePlace({ cityId: 'nkc', custom: null })
 // Vendredi 23 octobre 2026, Nouakchott (UTC+0)
 const t = prayerTimesFor('2026-10-23', place, DEFAULT_SETTINGS)
 const base: UserContext = {
-  name: 'Elhadj',
-  nameAr: 'الحاج',
   timezone: place.timezone,
   notif: { ...DEFAULT_SETTINGS.notif, enabled: true },
-  call: { ...DEFAULT_SETTINGS.call },
   weekday: 5,
   ramadan: false,
   lang: 'fr',
@@ -23,32 +20,24 @@ const at = (d: Date, minutes: number) => new Date(d.getTime() + minutes * 60_000
 const kinds = (now: Date, ctx = base) => dueNotifications(now, t, ctx).map((n) => n.kind)
 
 describe('notifications du serveur', () => {
-  it('appel personnel 3 min avant, alerte d’adhan à l’heure', () => {
-    expect(kinds(at(t.asr, -3))).toEqual(['call:asr'])
+  it('alerte d’adhan à l’heure, ou quelques minutes avant', () => {
     expect(kinds(at(t.asr, 0))).toEqual(['adhan:asr'])
-    expect(kinds(at(t.asr, -2))).toEqual([])
-  })
-
-  it('une seule notification quand l’appel et l’alerte tombent à la même minute', () => {
-    const ctx = { ...base, notif: { ...base.notif, minutesBefore: 3 as const } }
-    expect(kinds(at(t.asr, -3), ctx)).toEqual(['call:asr'])
-    expect(kinds(at(t.asr, -3), { ...ctx, call: { ...ctx.call, enabled: false } })).toEqual(['adhan:asr'])
+    expect(kinds(at(t.asr, -3))).toEqual([])
+    const ctx = { ...base, notif: { ...base.notif, minutesBefore: 5 as const } }
+    expect(kinds(at(t.asr, -5), ctx)).toEqual(['adhan:asr'])
   })
 
   it('textes : Joumou‘a le vendredi, en français et en arabe', () => {
-    const [n] = dueNotifications(at(t.dhuhr, -3), t, base)
-    expect(n.title).toBe('Elhadj, la prière')
-    expect(n.body).toMatch(/^Joumou‘a à 12:4\d · dans 3 min$/)
+    const [n] = dueNotifications(at(t.dhuhr, 0), t, base)
+    expect(n.title).toMatch(/^Joumou‘a · 12:4\d$/)
     const [a] = dueNotifications(at(t.maghrib, 0), t, { ...base, lang: 'ar' })
     expect(a.title).toMatch(/^المغرب · 18:3\d$/)
-    const [c] = dueNotifications(at(t.asr, -3), t, { ...base, lang: 'ar', nameAr: '' })
-    expect(c.title).toBe('Elhadj، الصلاة')
   })
 
   it('prière décochée, notifications coupées', () => {
     const noAsr = { ...base, notif: { ...base.notif, prayers: { ...base.notif.prayers, asr: false } } }
     expect(kinds(at(t.asr, 0), noAsr)).toEqual([])
-    const off = { ...base, notif: { ...base.notif, enabled: false }, call: { ...base.call, enabled: false } }
+    const off = { ...base, notif: { ...base.notif, enabled: false } }
     expect(kinds(at(t.asr, 0), off)).toEqual([])
   })
 
