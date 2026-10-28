@@ -148,3 +148,22 @@ describe('synchro', () => {
     expect(await db.settings.get('me')).toMatchObject({ name: 'Local', updatedAt: 0, dirty: 0 })
   })
 })
+
+describe('synchro en parallèle', () => {
+  it('interroge toutes les tables en même temps', async () => {
+    let inFlight = 0
+    let max = 0
+    const remote: Remote = {
+      async pull() {
+        inFlight++
+        max = Math.max(max, inFlight)
+        await new Promise((r) => setTimeout(r, 5))
+        inFlight--
+        return []
+      },
+      async push() {},
+    }
+    await syncOnce(remote, 'u-par')
+    expect(max).toBe(8)
+  })
+})
