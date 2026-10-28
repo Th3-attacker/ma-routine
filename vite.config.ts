@@ -5,6 +5,9 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
+import { readFileSync } from 'node:fs'
+
+import { openingMarkup } from './src/app/opening.ts'
 import { shellMarkup } from './src/app/shell.ts'
 import ar from './src/i18n/ar.json' with { type: 'json' }
 import fr from './src/i18n/fr.json' with { type: 'json' }
@@ -25,6 +28,16 @@ export default defineConfig(({ mode }) => ({
       apply: 'build',
       transformIndexHtml: (html: string) =>
         html.replace('<div id="root"></div>', `<div id="root">${shellMarkup(fr, ar)}</div>`),
+    },
+    // Écran d'ouverture animé de la charte, hors de #root : React ne le remplace pas, il s'efface tout seul.
+    {
+      name: 'elhadj-opening',
+      apply: 'build',
+      transformIndexHtml: (html: string) =>
+        html.replace(
+          '<div id="root">',
+          `${openingMarkup(fr, ar, readFileSync('src/assets/brand/sama-jamm-nom-nuit.svg', 'utf8'))}<div id="root">`,
+        ),
     },
     // En production, le JavaScript de l'app ne se télécharge qu'après le premier affichage de l'écran
     // pré-dessiné : sur un réseau lent, il ne retarde plus ce premier écran.
