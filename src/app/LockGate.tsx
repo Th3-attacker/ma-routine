@@ -1,12 +1,10 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useEffect, useState, type ReactNode } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { Skeleton } from '@/components/ui/skeleton'
 import { db } from '@/db/db'
 import { cryptoAvailable, openDatabase, type OpenResult } from '@/db/open'
 import { resetPrayerCalc, useSettings } from '@/db/settings'
-import { CreatePin } from '@/features/security/CreatePin'
 import { LockLayout } from '@/features/security/LockLayout'
 import { Onboarding } from '@/features/security/Onboarding'
 import { getSecurity, markHidden, shouldRelock } from '@/features/security/pin'
@@ -46,7 +44,6 @@ function Loading() {
 }
 
 function Gate({ children }: { children: ReactNode }) {
-  const { t } = useTranslation()
   const { lang } = usePreferences()
   const settings = useSettings()
   const hasPin = useLiveQuery(async () => !!(await db.security.get('device'))?.hash)
@@ -55,10 +52,16 @@ function Gate({ children }: { children: ReactNode }) {
   // même quand les réglages et le code sont déjà enregistrés.
   const [onboarding, setOnboarding] = useState<boolean | null>(null)
   if (settings && onboarding === null) setOnboarding(!settings.onboarded)
-  // Pour l'écran pré-dessiné d'index.html (src/app/shell.ts) : bienvenue ou écran du code.
+  // Sans code (facultatif, Réglages → Sécurité), l'app s'ouvre directement ; un code créé ensuite ne la
+  // referme pas tout de suite, seulement au prochain lancement ou après le délai.
+  if (hasPin === false && !unlocked) setUnlocked(true)
+  // Pour l'écran pré-dessiné d'index.html (src/app/shell.ts) : bienvenue, écran du code, ou rien.
   useEffect(() => {
     if (settings?.onboarded) writeLocal('elhadj.onboarded', '1')
   }, [settings?.onboarded])
+  useEffect(() => {
+    if (hasPin !== undefined) writeLocal('elhadj.locked', hasPin ? '1' : '0')
+  }, [hasPin])
   // Pour la salutation de l'écran d'ouverture (src/app/opening.ts), affichée avant le chargement de la base.
   useEffect(() => {
     if (settings?.name)
@@ -71,7 +74,8 @@ function Gate({ children }: { children: ReactNode }) {
         await markHidden()
         return
       }
-      if (shouldRelock(await getSecurity(), Date.now())) setUnlocked(false)
+      const security = await getSecurity()
+      if (security.hash && shouldRelock(security, Date.now())) setUnlocked(false)
     }
     const handler = () => void onVisibility()
     document.addEventListener('visibilitychange', handler)
@@ -80,8 +84,8 @@ function Gate({ children }: { children: ReactNode }) {
 
   if (!settings || hasPin === undefined || onboarding === null) return <Loading />
 
-  // Premier lancement : inscription en 3 étapes.
-  if (onboarding && !unlocked) {
+  // Premier lancement : inscription en 2 étapes (bienvenue, prénom et lieu).
+  if (onboarding) {
     return (
       <Onboarding
         settings={settings}
@@ -90,21 +94,6 @@ function Gate({ children }: { children: ReactNode }) {
           setUnlocked(true)
         }}
       />
-    )
-  }
-
-  // Déjà inscrit mais sans code (ancienne version, import, nouvel appareil) : on en crée un avant tout.
-  if (!hasPin) {
-    return (
-      <LockLayout>
-        <section aria-labelledby="create-pin" className="flex w-full flex-col items-center gap-4">
-          <h1 id="create-pin" className="text-center font-display text-2xl font-semibold rtl:font-bold">
-            {t('lock.createTitle')}
-          </h1>
-          <p className="max-w-[34ch] text-center text-ink-2">{t('lock.createText')}</p>
-          <CreatePin onDone={() => setUnlocked(true)} />
-        </section>
-      </LockLayout>
     )
   }
 

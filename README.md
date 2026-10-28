@@ -21,7 +21,7 @@ en arabe. Elle fonctionne sans connexion, et tes données restent sur ton télé
 - **Budget** en ouguiyas : dépenses et revenus, budgets par catégorie, dettes, épargne, opérations qui reviennent
   chaque mois, et des conseils du mois calculés sur le téléphone.
 - **Projets** avec leurs étapes, leur intention (niyya) et leurs échéances ; l'app peut proposer des étapes.
-- **Sécurité** : un code à 4 chiffres, et en option l'empreinte ou le visage.
+- **Sécurité** : en option, un code à 4 chiffres (Réglages → Sécurité), puis l'empreinte ou le visage.
 
 ### L'installer sur ton téléphone
 
@@ -84,7 +84,7 @@ Supabase et la clé publique VAPID. Sans ces clés, l'app reste 100 % locale. Le
 - **الميزانية** بالأوقية: المصاريف والمداخيل، وميزانية لكل فئة، والديون، والادخار، والعمليات الشهرية، ونصائح
   الشهر محسوبة على الهاتف.
 - **المشاريع** بخطواتها ونيتها ومواعيدها، ويمكن للتطبيق أن يقترح خطوات.
-- **الأمان**: رمز من 4 أرقام، والبصمة أو الوجه اختياريًا.
+- **الأمان**: اختياريًا، رمز من 4 أرقام (الإعدادات ← الأمان)، ثم البصمة أو الوجه.
 
 ### تثبيته على هاتفك
 

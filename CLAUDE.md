@@ -145,7 +145,9 @@ hégirien 12 Joumada al-oula 1448 ; le 24/10/2026 est le premier des jours blanc
 
 - **Verrou de l'app sur l'appareil**.
   Redemandé au démarrage et au retour après le délai (0 / 1 / 5 par défaut / 15 min, `visibilitychange`).
-- Inscription en 3 étapes : Bienvenue (langue) → Prénom + prénom arabe (facultatif) + ville → Code ×2.
+- **Code facultatif** (28/10/2026, #107) : inscription en 2 étapes, Bienvenue (langue) → Prénom + prénom arabe
+  (facultatif) + position ou ville ; le code se crée, se change ou se retire dans Réglages → Sécurité. Sans code,
+  l'app s'ouvre directement (`elhadj.locked` = '0' : pas d'écran pré-dessiné du verrou).
   Codes refusés : 4 chiffres identiques, suites croissantes / décroissantes.
 - Clavier 3 × 4 dessiné, `dir="ltr"`, touches ≥ 56 px, validation au 4e chiffre, tremblement + vibration.
   Tant que le code n'est pas bon, **aucune donnée n'est chargée** dans l'interface.

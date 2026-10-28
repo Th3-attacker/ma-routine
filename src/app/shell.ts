@@ -61,6 +61,6 @@ function shellHtml(t: Texts, lang: 'fr' | 'ar', variant: ShellVariant): string {
 /** Les 4 variantes, plus le petit script qui garde la bonne (langue, premier lancement ou non). */
 export function shellMarkup(fr: Texts, ar: Texts): string {
   const variants = (['welcome', 'unlock'] as const).flatMap((v) => [shellHtml(fr, 'fr', v), shellHtml(ar, 'ar', v)])
-  const keep = `<script>(function(){var o;try{o=localStorage.getItem('elhadj.onboarded')}catch(e){}var w=(o?'unlock-':'welcome-')+document.documentElement.lang;document.querySelectorAll('#root>[data-shell]').forEach(function(e){if(e.getAttribute('data-shell')!==w)e.remove()})})()</script>`
+  const keep = `<script>(function(){var o;try{o=localStorage.getItem('elhadj.onboarded')}catch(e){}var k;try{k=localStorage.getItem('elhadj.locked')}catch(e){}var w=o?(k==='0'?'':'unlock-'+document.documentElement.lang):'welcome-'+document.documentElement.lang;document.querySelectorAll('#root>[data-shell]').forEach(function(e){if(e.getAttribute('data-shell')!==w)e.remove()})})()</script>`
   return variants.join('') + keep
 }

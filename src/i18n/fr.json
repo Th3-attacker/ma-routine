@@ -325,7 +325,7 @@
     "languageLabel": "Langue",
     "next": "Continuer",
     "back": "Retour",
-    "step": "Étape {{n}} sur 3",
+    "step": "Étape {{n}} sur 2",
     "nameTitle": "Ton prénom",
     "nameAr": "Prénom en arabe (facultatif)",
     "nameArHint": "Il s’affiche quand l’app est en arabe.",
@@ -378,7 +378,14 @@
     "biometricOff": "Empreinte ou visage désactivé",
     "biometricFailed": "Activation annulée ou impossible sur ce téléphone.",
     "biometricUnlock": "Utiliser l’empreinte ou le visage",
-    "biometricRetry": "Pas reconnu. Réessaie, ou tape ton code."
+    "biometricRetry": "Pas reconnu. Réessaie, ou tape ton code.",
+    "none": "Aucun code : l’app s’ouvre directement. Tu peux la protéger par un code à 4 chiffres.",
+    "enable": "Protéger l’app par un code",
+    "enabled": "Code enregistré. Il sera demandé au prochain lancement.",
+    "remove": "Retirer le code",
+    "removeTitle": "Retirer le code ?",
+    "removeBody": "L’app s’ouvrira sans code. L’empreinte ou le visage seront aussi désactivés.",
+    "removed": "Code retiré."
   },
   "categories": {
     "food": "Alimentation",
