@@ -40,7 +40,7 @@ export function Onboarding({ settings, onDone }: { settings: Settings; onDone: (
     return (
       <LockLayout>
         <h1 className="text-center font-display text-[1.75rem] font-semibold rtl:font-bold" role="status">
-          {t('lock.welcomeName', { name: displayName(settings, lang) })}
+          {t('lock.welcomeName', { name: displayName(settings) })}
         </h1>
       </LockLayout>
     )

@@ -7,6 +7,7 @@ import { formatShortDate } from '@/lib/dates'
 import { formatMoney } from '@/lib/money'
 
 import { useDebts } from './debts'
+import { useEnvelopes } from './envelopes'
 import { monthInsights, type Insight } from './insights'
 import { addMonths } from './stats'
 import { useMonthTransactions } from './transactions'
@@ -16,8 +17,14 @@ export function useMonthInsights(month: string, today: string, settings: Setting
   const transactions = useMonthTransactions(month)
   const previousMonth = useMonthTransactions(addMonths(month, -1))
   const debts = useDebts()
-  if (!transactions || !previousMonth || !debts) return undefined
-  return monthInsights({ month, today, transactions, previousMonth, budgets: settings.budgets, debts })
+  const envelopes = useEnvelopes(month)
+  if (!transactions || !previousMonth || !debts || !envelopes) return undefined
+  // Le « budget » d'une catégorie est ce que son enveloppe contenait ce mois-ci (reste reporté compris).
+  const fromEnvelopes = Object.fromEntries(
+    envelopes.envelopes.filter((e) => e.available + e.spent > 0).map((e) => [e.id, e.available + e.spent]),
+  )
+  const budgets = Object.keys(fromEnvelopes).length ? fromEnvelopes : settings.budgets
+  return monthInsights({ month, today, transactions, previousMonth, budgets, debts })
 }
 
 export function useInsightText(currency: string): (i: Insight) => string {

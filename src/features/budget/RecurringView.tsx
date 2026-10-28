@@ -9,6 +9,7 @@ import { usePreferences } from '@/app/PreferencesProvider'
 import { AmountInput } from '@/components/AmountInput'
 import { AppSelect } from '@/components/AppSelect'
 import { AppDrawer } from '@/components/AppDrawer'
+import { ChipGroup } from '@/components/ChipGroup'
 import { ColorDot } from '@/components/ColorDot'
 import { ConfirmDialog } from '@/components/ConfirmDialog'
 import { Field, inputClass } from '@/components/Field'
@@ -24,7 +25,7 @@ import { cn } from '@/lib/utils'
 
 import { categoryColor } from './categories'
 import { CategoryChoice, PayMethodChoice, TypeChoice } from './MoneyChoices'
-import { deleteRecurring, recurringTotals, saveRecurring, setActive, useRecurring } from './recurring'
+import { deleteRecurring, isFinished, recurringTotals, saveRecurring, setActive, useRecurring } from './recurring'
 
 const DAYS = Array.from({ length: 28 }, (_, i) => i + 1)
 
@@ -64,7 +65,13 @@ export function RecurringView({ today, settings }: { today: string; settings: Se
                   <span className="truncate">{r.name}</span>
                 </span>
                 <span className="block truncate text-[0.78125rem] text-muted-foreground">
-                  {t('rec.every', { day: r.day })} · {t(`categories.${r.category}` as never)}
+                  {t('rec.every', { day: r.day })} ·{' '}
+                  {r.months == null
+                    ? t('rec.always')
+                    : isFinished(r)
+                      ? t('rec.finished')
+                      : t('rec.progress', { count: r.count ?? 0, months: r.months })}{' '}
+                  · {t(`categories.${r.category}` as never)}
                 </span>
               </button>
               <span
@@ -120,27 +127,47 @@ function RecurringForm({
   onDone: () => void
 }) {
   const { t } = useTranslation()
-  const schema = z.object({
-    type: z.enum(['out', 'in']),
-    name: z.string().trim().min(1, 'errors.recName').max(60, 'errors.tooLong?max=60'),
-    amount: z.string().refine((v) => parseAmount(v) > 0, 'errors.amount'),
-    day: z.string(),
-    category: z.string(),
-    payMethod: z.string(),
-  })
+  // Durée : « toujours », ou un nombre de mois de 1 à 120 (ex. 11 pour un traitement).
+  const schema = z
+    .object({
+      type: z.enum(['out', 'in']),
+      name: z.string().trim().min(1, 'errors.recName').max(60, 'errors.tooLong?max=60'),
+      amount: z.string().refine((v) => parseAmount(v) > 0, 'errors.amount'),
+      day: z.string(),
+      duration: z.enum(['always', 'months']),
+      months: z.string(),
+      category: z.string(),
+      payMethod: z.string(),
+    })
+    .refine(
+      (v) => v.duration === 'always' || (Number.isInteger(Number(v.months)) && +v.months >= 1 && +v.months <= 120),
+      {
+        path: ['months'],
+        message: 'errors.range?min=1&max=120',
+      },
+    )
   const form = useForm({
     defaultValues: {
       type: editing?.type ?? ('out' as 'out' | 'in'),
       name: editing?.name ?? '',
       amount: editing ? String(editing.amount) : '',
       day: String(editing?.day ?? 1),
+      duration: (editing?.months != null ? 'months' : 'always') as 'always' | 'months',
+      months: editing?.months != null ? String(editing.months) : '',
       category: editing?.category ?? 'home',
       payMethod: editing?.payMethod ?? 'cash',
     },
     validators: { onSubmit: schema },
     onSubmit: async ({ value }) => {
+      const { duration, months, ...rest } = value
       await saveRecurring(
-        { ...value, name: value.name.trim(), amount: parseAmount(value.amount), day: Number(value.day) },
+        {
+          ...rest,
+          name: value.name.trim(),
+          amount: parseAmount(value.amount),
+          day: Number(value.day),
+          months: duration === 'months' ? Number(months) : null,
+        },
         today,
         editing?.id,
       )
@@ -220,6 +247,42 @@ function RecurringForm({
           )}
         </form.Field>
       </div>
+      <form.Field name="duration">
+        {(field) => (
+          <ChipGroup
+            label={t('rec.duration')}
+            value={field.state.value}
+            onChange={field.handleChange}
+            options={[
+              { value: 'always', label: t('rec.always') },
+              { value: 'months', label: t('rec.forMonths') },
+            ]}
+          />
+        )}
+      </form.Field>
+      <form.Subscribe selector={(s) => s.values.duration}>
+        {(duration) =>
+          duration === 'months' && (
+            <form.Field name="months">
+              {(field) => (
+                <Field label={t('rec.monthsField')} errors={field.state.meta.errors}>
+                  {(p) => (
+                    <Input
+                      {...p}
+                      className={`${inputClass} w-32`}
+                      inputMode="numeric"
+                      dir="ltr"
+                      placeholder="11"
+                      value={field.state.value}
+                      onChange={(e) => field.handleChange(e.target.value.replace(/\D/g, ''))}
+                    />
+                  )}
+                </Field>
+              )}
+            </form.Field>
+          )
+        }
+      </form.Subscribe>
       <form.Subscribe selector={(s) => s.values.type}>
         {(type) => (
           <form.Field name="category">

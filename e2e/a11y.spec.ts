@@ -73,7 +73,7 @@ for (const mode of ['light', 'dark'] as const) {
 
     // Budget avec une dépense au-dessus du budget (carte des conseils, alerte)
     await page.goto('./#/budget')
-    await page.getByRole('button', { name: 'Fixer mes budgets', exact: true }).click()
+    await page.getByRole('button', { name: 'Répartir mes revenus', exact: true }).click()
     await audit(page, 'volet budgets', found, '[role=dialog]')
     await page.getByRole('dialog').getByLabel('Alimentation').fill('10000')
     await page.getByRole('dialog').getByRole('button', { name: 'Enregistrer' }).click()

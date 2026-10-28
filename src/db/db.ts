@@ -1,6 +1,17 @@
 import Dexie, { type EntityTable } from 'dexie'
 
-import type { Day, Debt, Project, Recurring, SavingsGoal, Security, Settings, Task, Transaction } from './types'
+import type {
+  Allocation,
+  Day,
+  Debt,
+  Project,
+  Recurring,
+  SavingsGoal,
+  Security,
+  Settings,
+  Task,
+  Transaction,
+} from './types'
 
 class ElhadjDB extends Dexie {
   settings!: EntityTable<Settings, 'id'>
@@ -12,6 +23,7 @@ class ElhadjDB extends Dexie {
   debts!: EntityTable<Debt, 'id'>
   savingsGoals!: EntityTable<SavingsGoal, 'id'>
   recurring!: EntityTable<Recurring, 'id'>
+  allocations!: EntityTable<Allocation, 'id'>
 
   constructor(name = 'elhadj') {
     super(name)
@@ -30,6 +42,8 @@ class ElhadjDB extends Dexie {
       savingsGoals: 'id, dirty',
       recurring: 'id, dirty',
     })
+    // v4 : enveloppes du budget base zéro, une ligne par mois
+    this.version(4).stores({ allocations: 'id' })
   }
 }
 

@@ -10,6 +10,7 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from '@/components/ui/drawer'
+import { useKeyboard } from '@/lib/keyboard'
 import { cn } from '@/lib/utils'
 
 export function AppDrawer({
@@ -30,10 +31,25 @@ export function AppDrawer({
   children: ReactNode
 }) {
   const { t } = useTranslation()
+  // Clavier du téléphone ouvert : le volet remonte au-dessus et se raccourcit, le champ touché reste visible.
+  const keyboard = useKeyboard(open)
   return (
     // handleOnly : seule la poignée du haut déplace le volet ; faire défiler le contenu ne le fait plus bouger.
-    <Drawer open={open} onOpenChange={onOpenChange} handleOnly>
-      <DrawerContent className={cn('mx-auto max-w-[560px] overflow-hidden', tall && 'h-[85dvh]')}>
+    // repositionInputs={false} : le placement au-dessus du clavier est fait ici (plus fiable sur iPhone).
+    <Drawer open={open} onOpenChange={onOpenChange} handleOnly repositionInputs={false}>
+      <DrawerContent
+        className={cn('mx-auto max-w-[560px] overflow-hidden', tall && 'h-[85dvh]')}
+        style={
+          keyboard.visible
+            ? { bottom: keyboard.inset, height: tall ? keyboard.visible - 8 : 'auto', maxHeight: keyboard.visible - 8 }
+            : undefined
+        }
+        onFocus={(e) => {
+          const el = e.target as HTMLElement
+          if (el.matches('input, textarea, select'))
+            setTimeout(() => el.scrollIntoView({ block: 'center', behavior: 'smooth' }), 300)
+        }}
+      >
         <DrawerHeader className="flex-row items-center justify-between gap-2.5 group-data-[vaul-drawer-direction=bottom]/drawer-content:text-start">
           <div className="flex min-w-0 flex-col gap-0.5">
             <DrawerTitle className="font-display text-[1.3125rem] font-semibold [overflow-wrap:anywhere] rtl:font-bold">

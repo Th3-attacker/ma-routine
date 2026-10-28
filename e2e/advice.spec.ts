@@ -5,7 +5,7 @@ import { openApp, tab } from './helpers.ts'
 test('conseils du mois : alerte de budget dans Budget et sur Aujourd’hui', async ({ page }) => {
   await openApp(page, { 'elhadj.lang': 'fr' })
   await tab(page, 'Budget').click()
-  await page.getByRole('button', { name: 'Fixer mes budgets', exact: true }).click()
+  await page.getByRole('button', { name: 'Répartir mes revenus', exact: true }).click()
   await page.getByRole('dialog').getByLabel('Alimentation').fill('10000')
   await page.getByRole('dialog').getByRole('button', { name: 'Enregistrer' }).click()
   await page.getByRole('button', { name: 'Dépense', exact: true }).click()

@@ -12,7 +12,6 @@ import { UnlockScreen } from '@/features/security/UnlockScreen'
 import { displayName } from '@/lib/names'
 import { writeLocal } from '@/lib/storage'
 
-import { usePreferences } from './PreferencesProvider'
 import { StartupProblem } from './StartupProblem'
 
 /**
@@ -44,7 +43,6 @@ function Loading() {
 }
 
 function Gate({ children }: { children: ReactNode }) {
-  const { lang } = usePreferences()
   const settings = useSettings()
   const hasPin = useLiveQuery(async () => !!(await db.security.get('device'))?.hash)
   const [unlocked, setUnlocked] = useState(false)
@@ -64,9 +62,8 @@ function Gate({ children }: { children: ReactNode }) {
   }, [hasPin])
   // Pour la salutation de l'écran d'ouverture (src/app/opening.ts), affichée avant le chargement de la base.
   useEffect(() => {
-    if (settings?.name)
-      writeLocal('elhadj.greet', JSON.stringify({ fr: settings.name, ar: settings.nameAr.trim() || settings.name }))
-  }, [settings?.name, settings?.nameAr])
+    if (settings?.name) writeLocal('elhadj.greet', JSON.stringify({ fr: settings.name, ar: settings.name }))
+  }, [settings?.name])
 
   useEffect(() => {
     const onVisibility = async () => {
@@ -97,7 +94,7 @@ function Gate({ children }: { children: ReactNode }) {
     )
   }
 
-  if (!unlocked) return <UnlockScreen name={displayName(settings, lang)} onUnlock={() => setUnlocked(true)} />
+  if (!unlocked) return <UnlockScreen name={displayName(settings)} onUnlock={() => setUnlocked(true)} />
 
   return children
 }

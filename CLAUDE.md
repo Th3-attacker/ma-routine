@@ -128,6 +128,24 @@ WebAuthn) ✅. En ligne depuis le 28/10/2026. Plus tard : Vercel pour un lien à
   (migration `20261028120000_push_sans_compte`), tenu à jour par `usePushBridge`. La fonction Edge ne lit que
   `push_subscriptions` ; journal `push_log` par `sub_id`.
 
+## Budget base zéro (28/10/2026, #117, comme Finzee)
+
+- Enveloppes = catégories de dépense, une ligne Dexie `allocations` par mois (`'YYYY-MM'` → montants, v4).
+  « À répartir » = revenus notés − montants mis ; disponible = mis − dépensé ; les deux sont reportés d'un mois sur
+  l'autre à partir du premier mois réparti (`envelopeMonth`, `features/budget/envelopes.ts`). Déplacer entre
+  enveloppes, « Comme le mois dernier » (sinon les anciens `settings.budgets`). Les conseils du mois et la carte
+  d'Aujourd'hui lisent les enveloppes.
+- Récurrentes : `months` (N mois, null = toujours) et `count` ; `isFinished` les arrête.
+- Portefeuilles : Espèces, Bankily, Masrvi, Sedad, BimBank (`card`/`other` lisibles dans les anciens mouvements).
+
+## Adhan (#119, #125)
+
+- Exemple libre de droits (`src/assets/adhan/adhan-exemple.mp3`, CC0, source dans « À propos »), lecteur unique
+  `adhanPlayer` (`features/prayer/adhan.ts`). `AdhanAlarm` joue l'adhan à l'heure de chaque prière **quand l'app est
+  à l'écran** (préférence de l'appareil `elhadj.adhanSound`, une fois par prière et par jour). Un site web ne peut
+  pas mettre ce son dans une notification : app fermée, la notification garde le son du téléphone (vraie app mobile
+  nécessaire pour ça).
+
 ## Invocations et audio (après la phase 5)
 
 - Onglet **Invocations** (`?set=douas`) : Hisn al-Muslim, situations du quotidien (`src/features/athkar/hisn.ts`,
@@ -167,5 +185,5 @@ Icônes PWA, iPhone et favicon : fichiers fournis par la charte dans `public/` (
 `background_color` / `theme_color` du manifeste = nuit de la marque `#10143A`.
 Verrou et inscription sur le ciel de nuit (`LockLayout`, classe `dark` imbriquée : les variables shadcn sont aussi
 déclarées sur `.dark`), salutation wolof « Jàmm nga am, {prénom} ? » puis « Jàmm rekk. ». Écran d'ouverture animé
-`src/app/opening.ts` (HTML + CSS injectés au build hors de `#root`, ~2 s, passable d'un toucher, absent sous
+`src/app/opening.ts` (HTML + CSS injectés au build hors de `#root`, 3,5 s, passable d'un toucher, absent sous
 `navigator.webdriver`), prénom lu dans `elhadj.greet` (écrit par `LockGate`).

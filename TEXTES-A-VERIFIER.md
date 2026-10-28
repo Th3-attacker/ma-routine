@@ -1741,14 +1741,6 @@ nombre…) : ne pas les traduire.
 | `header.appearance` | Apparence : {{mode}} | المظهر: {{mode}} |
 | `header.settings` | Réglages | الإعدادات |
 | `header.close` | Fermer | إغلاق |
-### sync
-
-| Clé | Français | العربية |
-|---|---|---|
-| `sync.local` | Sur cet appareil | على هذا الجهاز |
-| `sync.cloud` | Synchronisé | متزامن |
-| `sync.loading` | Chargement | جارٍ التحميل |
-| `sync.error` | Synchro impossible pour le moment | تعذّرت المزامنة حاليًا |
 ### theme
 
 | Clé | Français | العربية |
@@ -1801,7 +1793,6 @@ nombre…) : ne pas les traduire.
 | `settings.days_one` | {{value}} jour | {{value}} يوم |
 | `settings.days_other` | {{value}} jours | {{value}} أيام |
 | `settings.habitsTitle` | Habitudes | العادات |
-| `settings.nameAr` | Prénom en arabe (facultatif) | الاسم بالعربية (اختياري) |
 | `settings.positionHint` | Horaires calculés pour ta position, avec le fuseau horaire de ton appareil. | تُحسب المواقيت لموقعك، بالمنطقة الزمنية لجهازك. |
 | `settings.back` | Retour aux réglages | العودة إلى الإعدادات |
 | `settings.sections.label` | Rubriques des réglages | أقسام الإعدادات |
@@ -1810,13 +1801,15 @@ nombre…) : ne pas les traduire.
 | `settings.sections.display` | Affichage | العرض |
 | `settings.sections.displayHint` | Langue, apparence, taille du texte, Ramadan | اللغة، المظهر، حجم الخط، رمضان |
 | `settings.sections.prayer` | Prière et rappels | الصلاة والتذكيرات |
-| `settings.sections.prayerHint` | Notifications d’adhan, appel avant la prière | إشعارات الأذان، النداء قبل الصلاة |
+| `settings.sections.prayerHint` | Notifications d’adhan et rappels | إشعارات الأذان والتذكيرات |
 | `settings.sections.daily` | Budget, Coran et habitudes | الميزانية والقرآن والعادات |
 | `settings.sections.dailyHint` | Devise, wird, habitudes du jour | العملة، الورد، عادات اليوم |
-| `settings.sections.account` | Compte et sécurité | الحساب والأمان |
-| `settings.sections.accountHint` | Compte en ligne, code à 4 chiffres | الحساب على الإنترنت، الرمز من 4 أرقام |
+| `settings.sections.security` | Sécurité | الأمان |
+| `settings.sections.securityHint` | Code à 4 chiffres, empreinte ou visage | الرمز من 4 أرقام، البصمة أو الوجه |
 | `settings.sections.backup` | Sauvegarde et à propos | النسخ الاحتياطي وحول التطبيق |
 | `settings.sections.backupHint` | Exporter, importer, sources des textes | تصدير، استيراد، مصادر النصوص |
+| `settings.locationWhy` | Tes horaires sont calculés pour l’endroit où tu es. La position reste sur ton téléphone. | تُحسب مواقيتك للمكان الذي أنت فيه. يبقى الموقع على هاتفك. |
+| `settings.cityFallback` | Ou choisis ta ville | أو اختر مدينتك |
 ### today
 
 | Clé | Français | العربية |
@@ -1897,12 +1890,6 @@ nombre…) : ne pas les traduire.
 | `errors.recName` | Donne un nom. | اكتب اسمًا. |
 | `errors.projectName` | Donne un nom à ton projet. | أعطِ مشروعك اسمًا. |
 | `errors.step` | Écris l’étape. | اكتب الخطوة. |
-| `errors.email` | Entre une adresse e-mail valide. | أدخل بريدًا إلكترونيًا صحيحًا. |
-| `errors.otp` | Entre les 6 chiffres reçus par e-mail. | أدخل الأرقام الستة المستلمة بالبريد. |
-| `errors.otpWrong` | Code incorrect ou expiré. Demande un nouveau code. | رمز غير صحيح أو منتهي. اطلب رمزًا جديدًا. |
-| `errors.network` | Pas de connexion internet. Réessaie quand tu es en ligne. | لا يوجد اتصال بالإنترنت. أعد المحاولة عند الاتصال. |
-| `errors.rateLimit` | Trop de demandes. Attends quelques minutes avant de redemander un code. | طلبات كثيرة. انتظر بضع دقائق قبل طلب رمز جديد. |
-| `errors.emailSend` | L’e-mail n’a pas pu être envoyé. Le service d’envoi du compte est mal réglé : réessaie plus tard. | تعذّر إرسال البريد. خدمة الإرسال في الحساب غير مضبوطة: أعد المحاولة لاحقًا. |
 | `errors.position` | Touche « Utiliser ma position » ou choisis une ville. | المس «استخدام موقعي» أو اختر مدينة. |
 ### welcome
 
@@ -2108,12 +2095,9 @@ nombre…) : ne pas les traduire.
 | `lock.languageLabel` | Langue | اللغة |
 | `lock.next` | Continuer | متابعة |
 | `lock.back` | Retour | رجوع |
-| `lock.step` | Étape {{n}} sur 3 | الخطوة {{n}} من 3 |
+| `lock.step` | Étape {{n}} sur 2 | الخطوة {{n}} من 2 |
 | `lock.nameTitle` | Ton prénom | اسمك |
-| `lock.nameAr` | Prénom en arabe (facultatif) | الاسم بالعربية (اختياري) |
-| `lock.nameArHint` | Il sert à l’appel avant l’adhan en arabe. | يُستعمل للنداء قبل الأذان بالعربية. |
 | `lock.namePlaceholder` | ex. Elhadj | مثال: Elhadj |
-| `lock.nameArPlaceholder` | ex. الحاج | مثال: الحاج |
 | `lock.codeTitle` | Ton code | رمزك |
 | `lock.choose` | Choisis ton code à 4 chiffres | اختر رمزًا من 4 أرقام |
 | `lock.confirm` | Tape-le une deuxième fois | اكتبه مرة ثانية |
@@ -2126,7 +2110,7 @@ nombre…) : ne pas les traduire.
 | `lock.wait` | Trop d’essais. Réessaie dans {{time}}. | محاولات كثيرة. أعد المحاولة بعد {{time}}. |
 | `lock.forgot` | Code oublié ? | نسيت الرمز؟ |
 | `lock.forgotTitle` | Code oublié | نسيت الرمز |
-| `lock.forgotNoAccount` | Tu n’as pas de compte Sama Jàmm sur cet appareil : le code ne peut pas être récupéré. La seule solution est d’effacer les données de cet appareil et de recommencer. | لا يوجد حساب في سلامي على هذا الجهاز، فلا يمكن استرجاع الرمز. الحل الوحيد هو مسح بيانات هذا الجهاز والبدء من جديد. |
+| `lock.forgotBody` | Le code n’est enregistré que sur ce téléphone : il ne peut pas être récupéré. La seule solution est d’effacer les données de cet appareil et de recommencer. Si tu as un fichier de sauvegarde, tu pourras l’importer ensuite (Réglages → Sauvegarde). | الرمز محفوظ على هذا الهاتف فقط ولا يمكن استرجاعه. الحل الوحيد هو مسح بيانات هذا الجهاز والبدء من جديد. إذا كان لديك ملف نسخة احتياطية، يمكنك استيراده بعد ذلك (الإعدادات ← النسخ الاحتياطي). |
 | `lock.forgotContinue` | Continuer | متابعة |
 | `lock.wipeTitle` | Tout effacer ? | مسح كل شيء؟ |
 | `lock.wipeBody` | Toutes tes données sur ce téléphone seront supprimées. | ستُحذف كل بياناتك على هذا الهاتف. |
@@ -2139,9 +2123,10 @@ nombre…) : ne pas les traduire.
 | `lock.delete` | Effacer | حذف |
 | `lock.digit` | {{d}} | {{d}} |
 | `lock.nameField` | Prénom | الاسم |
-| `lock.forgotAccount` | Tu es connecté avec {{email}}. Reçois un code par e-mail pour choisir un nouveau code à 4 chiffres. | أنت متصل بـ {{email}}. استلم رمزًا بالبريد لاختيار رمز جديد من 4 أرقام. |
-| `lock.sendEmailCode` | Recevoir un code par e-mail | استلام رمز بالبريد |
 | `lock.forgotOther` | Effacer cet appareil à la place | مسح هذا الجهاز بدلًا من ذلك |
+| `lock.greet` | Jàmm nga am ? | السلام عليكم |
+| `lock.greetName` | Jàmm nga am, {{name}} ? | السلام عليكم، {{name}} |
+| `lock.peace` | Jàmm rekk. | وعليكم السلام |
 ### security
 
 | Clé | Français | العربية |
@@ -2163,36 +2148,13 @@ nombre…) : ne pas les traduire.
 | `security.biometricFailed` | Activation annulée ou impossible sur ce téléphone. | أُلغي التفعيل أو لا يمكن على هذا الهاتف. |
 | `security.biometricUnlock` | Utiliser l’empreinte ou le visage | استخدام البصمة أو الوجه |
 | `security.biometricRetry` | Pas reconnu. Réessaie, ou tape ton code. | لم يتم التعرف. أعد المحاولة أو اكتب رمزك. |
-### call
-
-| Clé | Français | العربية |
-|---|---|---|
-| `call.title` | Appel avant l’adhan | النداء قبل الأذان |
-| `call.enabled` | M’appeler par mon prénom avant l’adhan | ناديني باسمي قبل الأذان |
-| `call.enabledHint` | Le téléphone dit « {{phrase}} » quand l’app est ouverte, et un bandeau s’affiche. | يقول الهاتف «{{phrase}}» عندما يكون التطبيق مفتوحًا، ويظهر شريط تنبيه. |
-| `call.minutes` | Minutes avant l’adhan | دقائق قبل الأذان |
-| `call.minutesValue_one` | {{count}} minute | دقيقة واحدة |
-| `call.minutesValue_other` | {{count}} minutes | {{count}} دقيقة |
-| `call.prayers` | Prières concernées | الصلوات المعنية |
-| `call.voice` | Dire la phrase à voix haute | قول العبارة بصوت مسموع |
-| `call.lang` | Langue de l’appel | لغة النداء |
-| `call.langApp` | Langue de l’app | لغة التطبيق |
-| `call.langFr` | Français | الفرنسية |
-| `call.langAr` | Arabe | العربية |
-| `call.langBoth` | Les deux | الاثنتان |
-| `call.test` | Écouter un exemple | استمع إلى مثال |
-| `call.noVoiceAr` | Aucune voix arabe sur ce téléphone. Ajoute-la dans les réglages de synthèse vocale du téléphone. | لا يوجد صوت عربي على هذا الهاتف. أضفه من إعدادات تحويل النص إلى كلام في الهاتف. |
-| `call.noVoiceFr` | Aucune voix française sur ce téléphone. Ajoute-la dans les réglages de synthèse vocale du téléphone. | لا يوجد صوت فرنسي على هذا الهاتف. أضفه من إعدادات تحويل النص إلى كلام في الهاتف. |
-| `call.noSpeech` | Ce navigateur ne sait pas parler : à la place de la voix, un carillon et une vibration accompagneront le bandeau. Pour entendre ton prénom, essaie Chrome ou Firefox. | هذا المتصفح لا يستطيع الكلام: بدل الصوت سيرافق الشريطَ رنينٌ واهتزاز. لسماع اسمك جرّب Chrome أو Firefox. |
-| `call.closedHint` | App fermée : l’appel arrivera en notification avec les notifications d’adhan. | عند إغلاق التطبيق: سيصل النداء كإشعار مع إشعارات الأذان. |
-| `call.close` | Fermer | إغلاق |
-| `call.voiceFr` | Voix en français | الصوت بالفرنسية |
-| `call.voiceAr` | Voix en arabe | الصوت بالعربية |
-| `call.voiceAuto` | Automatique (voix d’homme si possible) | تلقائي (صوت رجل إن وُجد) |
-| `call.voiceMale` | {{name}} · homme | {{name}} · رجل |
-| `call.noMaleVoice` | Pas de voix d’homme sur ce téléphone : la voix est rendue plus grave. Sur iPhone, tu peux en télécharger une (Réglages → Accessibilité → Contenu énoncé → Voix), puis la choisir ici. | لا يوجد صوت رجل على هذا الهاتف: يُجعل الصوت أخشن. على iPhone يمكنك تنزيل صوت (الإعدادات ← تسهيلات الاستخدام ← المحتوى المنطوق ← الأصوات) ثم اختياره هنا. |
-| `call.notSpoken` | Le téléphone n’a pas parlé. Vérifie le volume, puis réessaie. | لم يتكلم الهاتف. تحقق من الصوت ثم أعد المحاولة. |
-| `call.speechError` | La voix du téléphone a échoué ({{code}}). Vérifie le volume et la synthèse vocale du téléphone. | فشل صوت الهاتف ({{code}}). تحقق من الصوت ومن تحويل النص إلى كلام في الهاتف. |
+| `security.none` | Aucun code : l’app s’ouvre directement. Tu peux la protéger par un code à 4 chiffres. | لا يوجد رمز: يُفتح التطبيق مباشرة. يمكنك حمايته برمز من 4 أرقام. |
+| `security.enable` | Protéger l’app par un code | حماية التطبيق برمز |
+| `security.enabled` | Code enregistré. Il sera demandé au prochain lancement. | تم حفظ الرمز. سيُطلب عند التشغيل القادم. |
+| `security.remove` | Retirer le code | إزالة الرمز |
+| `security.removeTitle` | Retirer le code ? | إزالة الرمز؟ |
+| `security.removeBody` | L’app s’ouvrira sans code. L’empreinte ou le visage seront aussi désactivés. | سيُفتح التطبيق دون رمز. وستُعطَّل البصمة أو الوجه أيضًا. |
+| `security.removed` | Code retiré. | تمت إزالة الرمز. |
 ### categories
 
 | Clé | Français | العربية |
@@ -2218,6 +2180,8 @@ nombre…) : ne pas les traduire.
 | `payMethods.cash` | Espèces | نقدًا |
 | `payMethods.bankily` | Bankily | بنكيلي |
 | `payMethods.masrvi` | Masrvi | مصرفي |
+| `payMethods.sedad` | Sedad | سداد |
+| `payMethods.bimbank` | BimBank | بيم بنك |
 | `payMethods.card` | Banque / carte | بنك / بطاقة |
 | `payMethods.other` | Autre | أخرى |
 ### startup
@@ -2289,6 +2253,7 @@ nombre…) : ne pas les traduire.
 | `budget.budgetsTitle` | Budgets du mois | ميزانيات الشهر |
 | `budget.budgetsHint` | Montant mensuel prévu par catégorie. Laisse vide pour ne pas suivre. | المبلغ الشهري المتوقع لكل فئة. اتركه فارغًا لعدم المتابعة. |
 | `budget.budgetsSaved` | Budgets enregistrés | تم حفظ الميزانيات |
+| `budget.byWallet` | Par portefeuille | حسب المحفظة |
 ### deadline
 
 | Clé | Français | العربية |
@@ -2404,6 +2369,12 @@ nombre…) : ne pas les traduire.
 | `rec.deleteBody` | Elle ne sera plus ajoutée. Les mouvements déjà notés restent dans ton budget. | لن تُضاف بعد الآن. العمليات المسجلة سابقًا تبقى في ميزانيتك. |
 | `rec.added_one` | {{count}} opération récurrente ajoutée | أُضيفت عملية متكررة واحدة |
 | `rec.added_other` | {{count}} opérations récurrentes ajoutées | أُضيفت {{count}} عمليات متكررة |
+| `rec.duration` | Durée | المدة |
+| `rec.always` | Toujours | دائمًا |
+| `rec.forMonths` | Nombre de mois | عدد الأشهر |
+| `rec.monthsField` | Combien de mois ? | كم شهرًا؟ |
+| `rec.progress` | {{count}} / {{months}} mois | {{count}} / {{months}} شهر |
+| `rec.finished` | Terminé | انتهى |
 ### projects
 
 | Clé | Français | العربية |
@@ -2504,7 +2475,7 @@ nombre…) : ne pas les traduire.
 |---|---|---|
 | `money.title` | Dépenses | المصاريف |
 | `money.today` | Aujourd’hui | اليوم |
-| `money.left` | Reste du budget | المتبقي من الميزانية |
+| `money.left` | Disponible (enveloppes) | المتاح (الظروف) |
 | `money.month` | Ce mois | هذا الشهر |
 | `money.add` | Ajouter une dépense | إضافة مصروف |
 ### steps
@@ -2544,37 +2515,7 @@ nombre…) : ne pas les traduire.
 | `about.times` | Horaires : bibliothèque libre adhan-js ; calendrier hégirien Umm al-Qura. | المواقيت: مكتبة adhan-js الحرة؛ التقويم الهجري أم القرى. |
 | `about.check` | Les textes seront relus avec Hisn al-Muslim et un mushaf avant la version finale. | ستُراجع النصوص مع حصن المسلم والمصحف قبل النسخة النهائية. |
 | `about.privacy` | Aucune publicité, aucun outil de mesure, aucune donnée envoyée à des tiers. | لا إعلانات، لا أدوات قياس، ولا بيانات تُرسل إلى أطراف أخرى. |
-### account
-
-| Clé | Français | العربية |
-|---|---|---|
-| `account.title` | Compte | الحساب |
-| `account.disabled` | Le compte n’est pas encore configuré sur cette version. L’app fonctionne entièrement sur ce téléphone. | الحساب غير مُعدّ بعد في هذه النسخة. التطبيق يعمل بالكامل على هذا الهاتف. |
-| `account.intro` | Un compte garde une copie de tes données pour les retrouver sur un autre téléphone. Sans compte, tout reste sur ce téléphone. | يحفظ الحساب نسخة من بياناتك لتجدها على هاتف آخر. بدون حساب، يبقى كل شيء على هذا الهاتف. |
-| `account.email` | Ton e-mail | بريدك الإلكتروني |
-| `account.sendCode` | Recevoir un code | استلام رمز |
-| `account.codeSent` | Code envoyé à {{email}}. Regarde aussi dans les indésirables. | أُرسل الرمز إلى {{email}}. تحقق من البريد غير المرغوب أيضًا. |
-| `account.code` | Code à 6 chiffres | الرمز من 6 أرقام |
-| `account.signIn` | Se connecter | تسجيل الدخول |
-| `account.otherEmail` | Changer d’e-mail | تغيير البريد |
-| `account.signedIn` | Connecté : {{email}} | متصل: {{email}} |
-| `account.signOut` | Se déconnecter | تسجيل الخروج |
-| `account.signedOut` | Déconnecté. Tes données restent sur ce téléphone. | تم تسجيل الخروج. تبقى بياناتك على هذا الهاتف. |
-| `account.welcome` | Connecté. Synchronisation en cours… | تم الاتصال. جارٍ المزامنة… |
-| `account.syncNow` | Synchroniser maintenant | زامن الآن |
-| `account.lastSync` | Dernière synchro : {{time}} | آخر مزامنة: {{time}} |
-| `account.never` | jamais | أبدًا |
-| `account.error` | La dernière synchro a échoué. Réessaie quand tu es en ligne. | فشلت آخر مزامنة. أعد المحاولة عند الاتصال. |
-### firstLogin
-
-| Clé | Français | العربية |
-|---|---|---|
-| `firstLogin.title` | Des données sont déjà sur ce téléphone | توجد بيانات على هذا الهاتف |
-| `firstLogin.body` | Que faire avec elles maintenant que tu es connecté ? | ماذا نفعل بها الآن بعد تسجيل الدخول؟ |
-| `firstLogin.merge` | Fusionner avec mon compte | دمجها مع حسابي |
-| `firstLogin.mergeHint` | Recommandé : rien n’est perdu, les deux sont réunis. | مُستحسن: لا يضيع شيء، ويُجمع الاثنان. |
-| `firstLogin.replace` | Remplacer par mon compte | استبدالها ببيانات حسابي |
-| `firstLogin.replaceHint` | Les données de ce téléphone sont effacées et remplacées par celles du compte. | تُمسح بيانات هذا الهاتف وتُستبدل ببيانات الحساب. |
+| `about.adhan` | Adhan d’exemple : « Beautiful adhan », Adam-synagda, Wikimedia Commons, domaine public (CC0 1.0). | الأذان المثال: «Beautiful adhan»، Adam-synagda، ويكيميديا كومنز، ملك عام (CC0 1.0). |
 ### notif
 
 | Clé | Français | العربية |
@@ -2582,7 +2523,6 @@ nombre…) : ne pas les traduire.
 | `notif.title` | Notifications | الإشعارات |
 | `notif.enable` | Recevoir les notifications d’adhan | استلام إشعارات الأذان |
 | `notif.enableHint` | Même quand l’app est fermée. La permission est demandée quand tu actives. | حتى عند إغلاق التطبيق. يُطلب الإذن عند التفعيل. |
-| `notif.needAccount` | Connecte-toi d’abord à ton compte (section Compte) : le serveur a besoin de ta ville pour calculer l’heure des prières. | سجّل الدخول إلى حسابك أولًا (قسم الحساب): يحتاج الخادم إلى مدينتك لحساب مواقيت الصلاة. |
 | `notif.denied` | Les notifications sont bloquées pour Sama Jàmm. Autorise-les dans les réglages du téléphone ou du navigateur, puis réessaie. | الإشعارات محظورة لتطبيق سلامي. اسمح بها من إعدادات الهاتف أو المتصفح ثم أعد المحاولة. |
 | `notif.unsupported` | Ce navigateur ne permet pas les notifications. Essaie avec Chrome, ou Safari sur iPhone avec l’app sur l’écran d’accueil. | هذا المتصفح لا يدعم الإشعارات. جرّب Chrome، أو Safari على iPhone مع إضافة التطبيق إلى الشاشة الرئيسية. |
 | `notif.disabled` | Les notifications ne sont pas encore configurées sur cette version. | الإشعارات غير مُعدّة بعد في هذه النسخة. |
@@ -2603,6 +2543,7 @@ nombre…) : ne pas les traduire.
 | `notif.ios2` | Touche le bouton Partager (le carré avec une flèche vers le haut). | المس زر المشاركة (المربع مع سهم إلى الأعلى). |
 | `notif.ios3` | Choisis « Sur l’écran d’accueil », puis « Ajouter ». | اختر «إضافة إلى الشاشة الرئيسية» ثم «إضافة». |
 | `notif.ios4` | Ouvre Sama Jàmm depuis sa nouvelle icône, et reviens ici. Il faut iOS 16.4 ou plus récent. | افتح سلامي من أيقونته الجديدة وعد إلى هنا. يلزم iOS 16.4 أو أحدث. |
+| `notif.privacy` | Pour t’envoyer l’adhan, le serveur reçoit seulement ta position arrondie (environ 1 km), ton fuseau horaire et ces choix. Ni nom, ni autre donnée. | لإرسال الأذان، يتلقى الخادم فقط موقعك التقريبي (نحو 1 كم) ومنطقتك الزمنية وهذه الاختيارات. لا اسم ولا أي بيانات أخرى. |
 ### insights
 
 | Clé | Français | العربية |
@@ -2615,7 +2556,7 @@ nombre…) : ne pas les traduire.
 | `insights.lateDebts_other` | {{count}} dettes ont dépassé leur échéance ({{amount}} restants). Un petit message aux personnes aide souvent. | {{count}} ديون تجاوزت موعدها (المتبقي {{amount}}). رسالة لطيفة للأشخاص تساعد غالبًا. |
 | `insights.catUp` | {{cat}} : +{{pct}} % par rapport au mois dernier. | {{cat}}: زيادة {{pct}}٪ مقارنة بالشهر الماضي. |
 | `insights.catDown` | {{cat}} : −{{pct}} % par rapport au mois dernier. Bien joué ! | {{cat}}: انخفاض {{pct}}٪ مقارنة بالشهر الماضي. أحسنت! |
-| `insights.biggest` | Plus grosse dépense : {{amount}} ({{what}}), le {{date}}. | أكبر مصروف: {{amount}} ({{what}})، يوم {{date}}. |
+| `insights.biggest` | Plus grosse dépense : {{amount}} ({{what}}), le {{date}} | أكبر مصروف: {{amount}} ({{what}})، يوم {{date}}. |
 | `insights.topDay` | Le jour où tu as le plus dépensé : le {{date}}, {{amount}}. | اليوم الأكثر إنفاقًا: {{date}}، {{amount}}. |
 | `insights.fixedShare` | Les dépenses fixes (récurrentes) font {{pct}} % de tes dépenses du mois. | المصاريف الثابتة (المتكررة) تمثل {{pct}}٪ من مصاريف الشهر. |
 | `insights.sadaqa` | Sadaqa ce mois-ci : {{amount}}. Qu’Allah l’accepte. | الصدقة هذا الشهر: {{amount}}. تقبّل الله. |
@@ -2656,3 +2597,37 @@ nombre…) : ne pas les traduire.
 | `audio.listenAll` | Tout écouter | استمع إلى الكل |
 | `audio.stop` | Arrêter l’écoute | إيقاف الاستماع |
 | `audio.error` | Impossible de lire l’enregistrement. Vérifie ta connexion : après une première écoute, il marche sans internet. | تعذّر تشغيل التسجيل. تحقّق من الاتصال: بعد الاستماع الأول يعمل دون إنترنت. |
+### envelopes
+
+| Clé | Français | العربية |
+|---|---|---|
+| `envelopes.toAssign` | À répartir | للتوزيع |
+| `envelopes.allAssigned` | Tout est réparti : chaque ouguiya a un rôle. | تم توزيع كل شيء: لكل أوقية دورها. |
+| `envelopes.leftToAssign` | Répartis ce montant dans tes enveloppes. | وزّع هذا المبلغ على ظروفك. |
+| `envelopes.overAssigned` | Tu as réparti plus que tes revenus : retire de l’argent d’une enveloppe. | وزّعت أكثر من مداخيلك: أنقص من أحد الظروف. |
+| `envelopes.assign` | Répartir mes revenus | توزيع مداخيلي |
+| `envelopes.title` | Enveloppes | الظروف |
+| `envelopes.available` | Disponible | المتاح |
+| `envelopes.detail` | mis {{assigned}} · dépensé {{spent}} | المخصص {{assigned}} · المصروف {{spent}} |
+| `envelopes.overspent` | dépassée de {{amount}} | تجاوز بـ {{amount}} |
+| `envelopes.empty` | Ajoute un revenu, puis répartis-le dans tes enveloppes : alimentation, transport, logement… | أضف دخلًا، ثم وزّعه على ظروفك: الطعام، النقل، السكن… |
+| `envelopes.assignHint` | Mets ton argent du mois dans tes enveloppes jusqu’à ce qu’il reste 0. Ce qui reste dans une enveloppe passe au mois suivant. | ضع مال الشهر في ظروفك حتى يبقى 0. ما يبقى في الظرف ينتقل إلى الشهر التالي. |
+| `envelopes.remaining` | Reste à répartir : {{amount}} | الباقي للتوزيع: {{amount}} |
+| `envelopes.copyLast` | Comme le mois dernier | مثل الشهر الماضي |
+| `envelopes.saved` | Enveloppes enregistrées | تم حفظ الظروف |
+| `envelopes.setLabel` | Mis ce mois-ci | المخصص هذا الشهر |
+| `envelopes.save` | Enregistrer | حفظ |
+| `envelopes.moveTitle` | Déplacer de l’argent | نقل المال |
+| `envelopes.moveTo` | Vers l’enveloppe | إلى الظرف |
+| `envelopes.moveAmount` | Montant à déplacer | المبلغ المنقول |
+| `envelopes.move` | Déplacer | نقل |
+| `envelopes.moved` | Argent déplacé | تم نقل المال |
+### adhan
+
+| Clé | Français | العربية |
+|---|---|---|
+| `adhan.listen` | Écouter l’adhan | استمع إلى الأذان |
+| `adhan.stop` | Arrêter l’adhan | أوقف الأذان |
+| `adhan.hint` | Quand l’app est ouverte, l’adhan se joue à l’heure. App fermée, la notification garde le son du téléphone : un site web ne peut pas jouer l’adhan à ce moment-là. | عندما يكون التطبيق مفتوحًا، يُرفع الأذان في وقته. وعندما يكون مغلقًا، يبقى للإشعار صوت الهاتف: لا يستطيع موقع ويب تشغيل الأذان حينها. |
+| `adhan.now` | C’est l’heure de {{name}}. | حان وقت {{name}}. |
+| `adhan.auto` | Adhan à l’heure de la prière | الأذان في وقت الصلاة |
