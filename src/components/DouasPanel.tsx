@@ -16,7 +16,6 @@ const chapterTracks = (c: HisnChapter): Track[] =>
 // Une invocation identique à une autre (ou à un dhikr) réutilise son enregistrement.
 indexTexts(HISN.flatMap(chapterTracks))
 
-/** Onglet Invocations : les situations de Hisn al-Muslim, avec une recherche. Chargé à la demande. */
 export default function DouasPanel() {
   const { t, i18n } = useTranslation()
   const ar = i18n.language === 'ar'

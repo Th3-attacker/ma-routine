@@ -28,12 +28,7 @@ export function useSyncState(): SyncState {
 let userId: string | null = null
 let running: Promise<void> | null = null
 let again = false
-let remote: Remote = supabaseRemote
-
-/** Pour les tests : un faux serveur. */
-export function setRemote(r: Remote): void {
-  remote = r
-}
+const remote: Remote = supabaseRemote
 
 /** Lance une synchro (une seule à la fois ; une demande pendant une synchro en relance une après). */
 export function syncNow(): Promise<void> {

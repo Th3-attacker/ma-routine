@@ -15,7 +15,7 @@ const FILES = import.meta.glob<string>('/src/assets/audio/**/*.{mp3,m4a,ogg}', {
 })
 
 /** Adresse de chaque enregistrement, par clé (« athkar/matin-01 », « douas/reveil-02 »). */
-export const AUDIO: Readonly<Record<string, string>> = Object.fromEntries(
+const AUDIO: Readonly<Record<string, string>> = Object.fromEntries(
   Object.entries(FILES).map(([path, url]) => [path.replace(/^\/src\/assets\/audio\//, '').replace(/\.\w+$/, ''), url]),
 )
 
@@ -30,7 +30,6 @@ export type Track = { key: string; n: number; ar?: string; title?: string; onEnd
 
 const byText = new Map<string, string>()
 
-/** Rend les enregistrements de ces textes réutilisables par les textes identiques (le premier gagne). */
 export function indexTexts(tracks: readonly Track[]): void {
   for (const t of tracks) {
     const url = AUDIO[t.key]
@@ -44,7 +43,6 @@ export function audioUrl(t: Track | undefined): string | undefined {
   return AUDIO[t.key] ?? (t.ar ? byText.get(t.ar.trim()) : undefined)
 }
 
-/** Les enregistrements d'une série d'athkar, dans l'ordre. */
 export function seriesTracks(set: AthkarSet, lang: string): Track[] {
   const series = ATHKAR[set]
   return series.items.map((it, i) => ({
@@ -176,7 +174,6 @@ for (const set of Object.keys(ATHKAR) as AthkarSet[]) indexTexts(seriesTracks(se
 
 export const player = createPlayer()
 
-/** État du lecteur (pour les boutons ▶ / ⏸). */
 export function usePlayer(): PlayerState {
   return useSyncExternalStore(player.subscribe, () => player.state)
 }

@@ -9,7 +9,6 @@ import { cn } from '@/lib/utils'
 
 import { Section, subClass } from './Section'
 
-/** Habitudes du jour à cocher, avec les 7 derniers jours en points. */
 export function HabitsCard({ day, settings }: { day: Day; settings: Settings }) {
   const { t } = useTranslation()
   const habitName = useHabitName()

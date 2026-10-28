@@ -42,7 +42,6 @@ function daysInMonth(month: string): number {
   return new Date(Date.UTC(y, m, 0)).getUTCDate()
 }
 
-/** Les conseils du mois, les alertes d'abord, au maximum 5. */
 export function monthInsights(input: InsightInput): Insight[] {
   const { month, today, transactions, previousMonth, budgets, debts } = input
   const stats = monthStats(transactions)

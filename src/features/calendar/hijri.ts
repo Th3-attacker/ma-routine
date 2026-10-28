@@ -3,7 +3,7 @@ import { keyToUtcNoon } from '@/lib/dates'
 
 export type HijriDate = { d: number; m: number; y: number }
 
-export const HIJRI_MONTHS: readonly { fr: string; ar: string }[] = [
+const HIJRI_MONTHS: readonly { fr: string; ar: string }[] = [
   { fr: 'Mouharram', ar: 'محرم' },
   { fr: 'Safar', ar: 'صفر' },
   { fr: 'Rabi‘ al-awwal', ar: 'ربيع الأول' },

@@ -2,7 +2,6 @@ import type { Transaction } from '@/db/types'
 
 export type MonthStats = { income: number; spent: number; byCategory: Record<string, number>; count: number }
 
-/** Totaux d'un mois : revenus, dépenses, dépenses par catégorie. */
 export function monthStats(items: readonly Pick<Transaction, 'type' | 'amount' | 'category'>[]): MonthStats {
   const byCategory: Record<string, number> = {}
   let income = 0

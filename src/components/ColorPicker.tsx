@@ -4,7 +4,6 @@ import { PICK_COLORS } from '@/features/budget/categories'
 
 import { ChipGroup } from './ChipGroup'
 
-/** Choix de couleur (projets, objectifs) : pastilles colorées avec un nom lisible par les lecteurs d'écran. */
 export function ColorPicker({
   label,
   value,

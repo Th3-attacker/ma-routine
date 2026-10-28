@@ -9,7 +9,6 @@ export type RecurringInput = Pick<Recurring, 'type' | 'name' | 'amount' | 'categ
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
-/** Totaux mensuels des opérations actives : dépenses fixes et revenus fixes. */
 export function recurringTotals(items: readonly Recurring[]): { out: number; in: number } {
   let out = 0
   let inc = 0

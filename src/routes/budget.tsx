@@ -17,9 +17,9 @@ import { dayKey } from '@/lib/dates'
 const route = getRouteApi('/budget')
 const VIEWS: readonly BudgetView[] = ['month', 'debts', 'goals', 'rec']
 
-export const tabClass =
+const tabClass =
   'h-11 flex-none rounded-full border border-line bg-surface px-3.5 text-[0.8125rem] font-bold text-ink-2 shadow-none after:hidden data-active:border-primary data-active:bg-primary data-active:text-primary-foreground data-active:shadow-none dark:text-ink-2 dark:data-active:border-primary dark:data-active:bg-primary dark:data-active:text-primary-foreground'
-export const tabListClass =
+const tabListClass =
   'h-auto w-full flex-wrap justify-start gap-1.5 bg-transparent p-0 group-data-horizontal/tabs:h-auto'
 
 export function BudgetPage() {

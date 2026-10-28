@@ -23,7 +23,6 @@ export async function tapDhikr(dayKey: string, set: AthkarSet, index: number): P
   return result
 }
 
-/** Remet une série à zéro pour la journée. */
 export function resetAthkar(dayKey: string, set: AthkarSet) {
   return updateDay(dayKey, (d) => ({ athkar: { ...d.athkar, [set]: {} } }))
 }

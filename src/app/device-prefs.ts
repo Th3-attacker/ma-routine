@@ -7,12 +7,11 @@ export type Lang = 'fr' | 'ar'
 export type ThemeMode = 'auto' | 'light' | 'dark'
 export type TextSize = 's' | 'm' | 'l' | 'xl'
 
-export const LANGS: readonly Lang[] = ['fr', 'ar']
+const LANGS: readonly Lang[] = ['fr', 'ar']
 export const THEME_MODES: readonly ThemeMode[] = ['auto', 'light', 'dark']
 export const TEXT_SIZES: readonly TextSize[] = ['s', 'm', 'l', 'xl']
 
-/** Taille de police de <html>, en pourcentage. */
-export const TEXT_SCALE: Record<TextSize, number> = { s: 92, m: 100, l: 110, xl: 122 }
+const TEXT_SCALE: Record<TextSize, number> = { s: 92, m: 100, l: 110, xl: 122 }
 
 const KEYS = { lang: 'elhadj.lang', mode: 'elhadj.mode', size: 'elhadj.size' } as const
 
@@ -45,7 +44,6 @@ export const saveLang = (v: Lang) => writeLocal(KEYS.lang, v)
 export const saveThemeMode = (v: ThemeMode) => writeLocal(KEYS.mode, v)
 export const saveTextSize = (v: TextSize) => writeLocal(KEYS.size, v)
 
-/** Automatique → Clair → Sombre → Automatique (bouton de l'en-tête). */
 export function nextThemeMode(mode: ThemeMode): ThemeMode {
   return THEME_MODES[(THEME_MODES.indexOf(mode) + 1) % THEME_MODES.length]
 }
@@ -66,7 +64,6 @@ export function applyTheme(dark: boolean, root: HTMLElement = document.documentE
   meta?.setAttribute('content', dark ? '#0D1022' : '#F1F2F7')
 }
 
-/** La taille du texte change la police de <html> : tout ce qui est en rem suit. */
 export function applyTextSize(size: TextSize, root: HTMLElement = document.documentElement): void {
   root.style.fontSize = `${TEXT_SCALE[size]}%`
 }

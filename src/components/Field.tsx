@@ -13,7 +13,6 @@ export const labelClass =
 
 type ControlProps = { id: string; 'aria-describedby'?: string; 'aria-invalid'?: boolean }
 
-/** Étiquette + champ + aide + erreur traduite, reliés pour les lecteurs d'écran. */
 export function Field({
   label,
   hint,
@@ -52,7 +51,6 @@ export function Field({
   )
 }
 
-/** Titre de section dans un Drawer. */
 export function SectionTitle({ id, children }: { id: string; children: ReactNode }) {
   return (
     <h3 id={id} className="font-display text-lg font-semibold rtl:font-bold">

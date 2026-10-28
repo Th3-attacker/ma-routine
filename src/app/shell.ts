@@ -40,7 +40,7 @@ function languageChoice(t: Texts, lang: 'fr' | 'ar'): string {
 }
 
 /** Le HTML d'une variante, dans une langue. Rien n'y est cliquable : React prend le relais au démarrage. */
-export function shellHtml(t: Texts, lang: 'fr' | 'ar', variant: ShellVariant): string {
+function shellHtml(t: Texts, lang: 'fr' | 'ar', variant: ShellVariant): string {
   const top = variant === 'welcome' ? languageChoice(t, lang) : ''
   const body =
     variant === 'welcome'

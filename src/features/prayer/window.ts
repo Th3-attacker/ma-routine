@@ -5,7 +5,7 @@ import type { DayTimes } from './times'
 const MIN = 60_000
 
 /** Sous ce seuil, la barre du temps restant devient dorée (orange sur l'écran Prière). */
-export const LOW_LEFT_MS = 20 * MIN
+const LOW_LEFT_MS = 20 * MIN
 
 export type WindowEnd = 'sunrise' | 'asr' | 'maghrib' | 'isha' | 'third'
 
@@ -27,7 +27,6 @@ export type PrayerWindow =
   /** Dernier tiers de la nuit : moment du qiyâm. */
   | { kind: 'last'; leftMs: number }
 
-/** Premier et dernier tiers d'une nuit, entre Maghrib et le Fajr suivant. */
 export function nightThirds(maghrib: Date, nextFajr: Date): { firstThirdEnd: Date; lastThirdStart: Date } {
   const len = nextFajr.getTime() - maghrib.getTime()
   return {

@@ -70,7 +70,6 @@ export async function disablePush(): Promise<void> {
   await sub.unsubscribe()
 }
 
-/** La langue de l'app change : les notifications suivent. */
 export async function updatePushLang(lang: 'fr' | 'ar'): Promise<void> {
   const sub = await currentSubscription()
   if (sub && accountsEnabled) await save(sub, lang)

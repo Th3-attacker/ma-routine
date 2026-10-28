@@ -25,7 +25,6 @@ const LEVEL_FILL = { ok: '', warn: 'bg-warn', bad: 'bg-bad' } as const
 const iconBtn =
   'grid size-11 flex-none place-items-center rounded-[12px] border border-line bg-surface text-ink-2 disabled:opacity-40'
 
-/** Budget → Mois : navigation, résumé, catégories, mouvements par jour. */
 export function MonthView({
   month,
   today,

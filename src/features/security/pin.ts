@@ -8,7 +8,7 @@ export const PIN_LENGTH = 4
 export const PBKDF2_ITERATIONS = 210_000
 const SALT_BYTES = 16
 
-export const DEFAULT_SECURITY: Security = {
+const DEFAULT_SECURITY: Security = {
   id: 'device',
   salt: null,
   hash: null,
@@ -22,7 +22,6 @@ export const DEFAULT_SECURITY: Security = {
 
 export type PinProblem = 'format' | 'repeated' | 'sequence'
 
-/** Refuse les codes trop simples : 4 chiffres identiques, suites croissantes (1234) ou décroissantes (4321). */
 export function pinProblem(pin: string): PinProblem | null {
   if (!/^\d{4}$/.test(pin)) return 'format'
   const d = [...pin].map(Number)
@@ -90,7 +89,6 @@ export type VerifyResult =
   | { ok: false; reason: 'wrong'; lockedUntil: number }
   | { ok: false; reason: 'locked'; lockedUntil: number }
 
-/** Vérifie un code. Les erreurs et l'attente sont enregistrées : recharger la page ne les efface pas. */
 export async function verifyPin(pin: string, now = Date.now()): Promise<VerifyResult> {
   const s = await getSecurity()
   if (now < s.lockedUntil) return { ok: false, reason: 'locked', lockedUntil: s.lockedUntil }
@@ -118,12 +116,10 @@ export function setLockDelay(lockAfterMin: LockDelay) {
   return saveSecurity({ lockAfterMin })
 }
 
-/** L'app passe en arrière-plan : on note l'heure. */
 export function markHidden(now = Date.now()) {
   return saveSecurity({ lastHiddenAt: now })
 }
 
-/** Au retour au premier plan : faut-il redemander le code ? */
 export function shouldRelock(s: Pick<Security, 'lastHiddenAt' | 'lockAfterMin'>, now: number): boolean {
   if (s.lastHiddenAt === null) return false
   return now - s.lastHiddenAt >= s.lockAfterMin * 60_000

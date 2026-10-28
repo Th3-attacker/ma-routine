@@ -41,7 +41,6 @@ import { QuickAmountForm } from './QuickAmountForm'
 type FormTarget = { direction: 'in' | 'out' } | { edit: Debt }
 const btn = 'h-11 flex-auto rounded-[14px] font-bold'
 
-/** Budget → Dettes : totaux, verset, cartes en cours et soldées, détail et formulaire. */
 export function DebtsView({ today, settings }: { today: string; settings: Settings }) {
   const { t, i18n } = useTranslation()
   const { lang } = usePreferences()

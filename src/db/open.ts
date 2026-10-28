@@ -16,7 +16,6 @@ db.on('versionchange', () => {
   return false
 })
 
-/** Ouvre la base locale et signale un blocage, une erreur, ou un chargement trop long. */
 export function openDatabase(onChange: (r: OpenResult) => void, slowAfterMs = 8000): () => void {
   let done = false
   const finish = (r: OpenResult) => {

@@ -18,7 +18,6 @@ const OnboardingProfile = lazy(loadProfile)
 
 const btn = 'h-12 w-full rounded-[14px] text-[0.9375rem] font-bold'
 
-/** Inscription au premier lancement : Bienvenue (langue) → Prénom et ville → Code (2 saisies). */
 export function Onboarding({ settings, onDone }: { settings: Settings; onDone: () => void }) {
   const { t } = useTranslation()
   const { lang, setLang } = usePreferences()

@@ -25,7 +25,7 @@ const LANGS: readonly CallLang[] = ['app', 'fr', 'ar', 'both']
 const LANG_KEY = { app: 'langApp', fr: 'langFr', ar: 'langAr', both: 'langBoth' } as const
 const MINUTES = Array.from({ length: 15 }, (_, i) => i + 1)
 
-/** Réglages → Appel avant l'adhan (enregistré tout de suite, synchronisé avec le compte en phase 2). */
+/** Réglages → Appel avant l'adhan (enregistré tout de suite, synchronisé avec le compte). */
 export function CallSettings({ settings }: { settings: Settings }) {
   const { t } = useTranslation()
   const { lang } = usePreferences()

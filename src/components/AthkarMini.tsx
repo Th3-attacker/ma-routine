@@ -7,7 +7,6 @@ import { athkarProgress } from '@/features/athkar/progress'
 
 import { Bar, linkClass, Section } from './Section'
 
-/** Progression des athkar du matin et du soir ; chaque carte ouvre la série. */
 export function AthkarMini({ day }: { day: Day }) {
   const { t, i18n } = useTranslation()
   const ar = i18n.language === 'ar'

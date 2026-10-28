@@ -12,7 +12,6 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 
-/** Fenêtre de confirmation (suppressions) : Annuler / action en rouge. */
 export function ConfirmDialog({
   trigger,
   title,

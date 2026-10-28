@@ -7,8 +7,6 @@ import { z } from 'zod'
 import { usePreferences } from '@/app/PreferencesProvider'
 import { AmountInput } from '@/components/AmountInput'
 import { AppDrawer } from '@/components/AppDrawer'
-import { ChipGroup } from '@/components/ChipGroup'
-import { ColorDot } from '@/components/ColorDot'
 import { ConfirmDialog } from '@/components/ConfirmDialog'
 import { Field, inputClass } from '@/components/Field'
 import { Button } from '@/components/ui/button'
@@ -16,14 +14,13 @@ import { Input } from '@/components/ui/input'
 import type { MoneyType, Transaction } from '@/db/types'
 import { currencyLabel, parseAmount } from '@/lib/money'
 
-import { CATEGORIES, PAY_METHODS } from './categories'
+import { CategoryChoice, PayMethodChoice, TypeChoice } from './MoneyChoices'
 import { addTransaction, deleteTransaction, editTransaction } from './transactions'
 
 export type TxTarget = { type: MoneyType } | { edit: Transaction }
 
 const btn = 'h-12 w-full rounded-[14px] text-[0.9375rem] font-bold'
 
-/** Volet d'ajout ou de modification d'un mouvement. */
 export function TransactionDrawer({
   target,
   today,
@@ -118,17 +115,12 @@ function TxForm({
     >
       <form.Field name="type">
         {(field) => (
-          <ChipGroup
-            label={t('budget.form.type')}
+          <TypeChoice
             value={field.state.value}
             onChange={(v) => {
               field.handleChange(v)
               form.setFieldValue('category', v === 'in' ? 'salary' : 'food')
             }}
-            options={[
-              { value: 'out', label: t('budget.addOut') },
-              { value: 'in', label: t('budget.addIn') },
-            ]}
           />
         )}
       </form.Field>
@@ -151,34 +143,12 @@ function TxForm({
       <form.Subscribe selector={(s) => s.values.type}>
         {(type) => (
           <form.Field name="category">
-            {(field) => (
-              <ChipGroup
-                label={t('budget.form.category')}
-                value={field.state.value}
-                onChange={field.handleChange}
-                options={CATEGORIES[type].map((c) => ({
-                  value: c.id,
-                  label: (
-                    <>
-                      <ColorDot color={c.color} />
-                      {t(`categories.${c.id}` as never)}
-                    </>
-                  ),
-                }))}
-              />
-            )}
+            {(field) => <CategoryChoice type={type} value={field.state.value} onChange={field.handleChange} />}
           </form.Field>
         )}
       </form.Subscribe>
       <form.Field name="payMethod">
-        {(field) => (
-          <ChipGroup
-            label={t('budget.form.payMethod')}
-            value={field.state.value}
-            onChange={field.handleChange}
-            options={PAY_METHODS.map((m) => ({ value: m, label: t(`payMethods.${m}`) }))}
-          />
-        )}
+        {(field) => <PayMethodChoice value={field.state.value} onChange={field.handleChange} />}
       </form.Field>
       <div className="grid grid-cols-2 gap-2.5">
         <form.Field name="note">

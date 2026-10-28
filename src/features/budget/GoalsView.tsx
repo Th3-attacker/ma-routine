@@ -41,7 +41,6 @@ import {
 
 const btn = 'h-11 flex-auto rounded-[14px] font-bold'
 
-/** Budget → Épargne : total, objectifs avec progression et montant mensuel, détail et formulaire. */
 export function GoalsView({ today, settings }: { today: string; settings: Settings }) {
   const { t } = useTranslation()
   const { lang } = usePreferences()
