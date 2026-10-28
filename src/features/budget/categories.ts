@@ -29,7 +29,8 @@ export function categoryColor(id: string): string {
   return [...CATEGORIES.out, ...CATEGORIES.in].find((c) => c.id === id)?.color ?? '--c10'
 }
 
-export const PAY_METHODS = ['cash', 'bankily', 'masrvi', 'card', 'other'] as const
+// Portefeuilles proposés. « card » et « other » restent lisibles dans les anciens mouvements.
+export const PAY_METHODS = ['cash', 'bankily', 'masrvi', 'sedad', 'bimbank'] as const
 export type PayMethod = (typeof PAY_METHODS)[number]
 
 export const PICK_COLORS = ['--c2', '--c1', '--c7', '--c3', '--c4', '--c5', '--c8', '--c9'] as const

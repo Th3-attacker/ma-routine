@@ -185,6 +185,13 @@ export type SavingsGoal = SyncMeta & {
   createdAt: number
 }
 
+/** Enveloppes d'un mois (budget base zéro) : montant mis dans chaque catégorie de dépense. */
+export type Allocation = SyncMeta & {
+  /** 'YYYY-MM' */
+  id: string
+  amounts: Record<string, number>
+}
+
 export type Recurring = SyncMeta & {
   id: string
   type: MoneyType
@@ -197,4 +204,8 @@ export type Recurring = SyncMeta & {
   active: boolean
   /** 'YYYY-MM' du dernier ajout, ou '' */
   lastMonth: string
+  /** Durée en mois (ex. 11 pour un traitement), ou null / absent : toujours. */
+  months?: number | null
+  /** Nombre de mois déjà ajoutés (pour savoir quand la durée est atteinte). */
+  count?: number
 }

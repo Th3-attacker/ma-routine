@@ -5,7 +5,12 @@ import { liveRows, newId, saveRow, softDelete, updateRow } from '@/db/rows'
 import type { Recurring } from '@/db/types'
 import { parseKey } from '@/lib/dates'
 
-export type RecurringInput = Pick<Recurring, 'type' | 'name' | 'amount' | 'category' | 'payMethod' | 'day'>
+export type RecurringInput = Pick<Recurring, 'type' | 'name' | 'amount' | 'category' | 'payMethod' | 'day' | 'months'>
+
+/** Durée atteinte : une opération de N mois a déjà été ajoutée N fois. */
+export function isFinished(r: Pick<Recurring, 'months' | 'count'>): boolean {
+  return r.months != null && (r.count ?? 0) >= r.months
+}
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
@@ -13,7 +18,7 @@ export function recurringTotals(items: readonly Recurring[]): { out: number; in:
   let out = 0
   let inc = 0
   for (const r of items) {
-    if (!r.active) continue
+    if (!r.active || isFinished(r)) continue
     if (r.type === 'in') inc += r.amount
     else out += r.amount
   }
@@ -37,6 +42,7 @@ export async function saveRecurring(input: RecurringInput, today: string, id?: s
   const current = id ? await db.recurring.get(id) : undefined
   return saveRow(db.recurring, {
     active: true,
+    count: 0,
     lastMonth: current ? current.lastMonth : initialLastMonth(input.day, today),
     ...current,
     ...input,
@@ -65,7 +71,7 @@ export async function applyRecurring(today: string): Promise<number> {
   return db.transaction('rw', db.recurring, db.transactions, async () => {
     let added = 0
     for (const r of await liveRows(db.recurring)) {
-      if (!r.active || r.amount <= 0) continue
+      if (!r.active || r.amount <= 0 || isFinished(r)) continue
       const day = Math.min(28, Math.max(1, r.day))
       if (d < day || r.lastMonth === month) continue
       const exists = await db.transactions
@@ -87,7 +93,7 @@ export async function applyRecurring(today: string): Promise<number> {
         })
         added++
       }
-      await saveRow(db.recurring, { ...r, lastMonth: month })
+      await saveRow(db.recurring, { ...r, lastMonth: month, count: (r.count ?? 0) + 1 })
     }
     return added
   })

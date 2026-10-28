@@ -7,7 +7,8 @@ import { usePreferences } from '@/app/PreferencesProvider'
 import { Button } from '@/components/ui/button'
 import type { Settings } from '@/db/types'
 import { topAlert } from '@/features/budget/insights'
-import { budgetTotal, monthStats } from '@/features/budget/stats'
+import { useEnvelopes } from '@/features/budget/envelopes'
+import { monthStats } from '@/features/budget/stats'
 import type { TxTarget } from '@/features/budget/TransactionDrawer'
 import { useMonthTransactions } from '@/features/budget/transactions'
 import { useInsightText, useMonthInsights } from '@/features/budget/useInsights'
@@ -33,7 +34,10 @@ export function MoneyMini({ today, settings }: { today: string; settings: Settin
   const money = (n: number) => formatMoney(n, settings.currency, lang)
   const stats = monthStats(items ?? [])
   const todayOut = (items ?? []).filter((x) => x.type === 'out' && x.date === today).reduce((a, x) => a + x.amount, 0)
-  const total = budgetTotal(settings.budgets)
+  // Disponible dans les enveloppes (méthode base zéro), quand quelque chose a été réparti.
+  const envelopes = useEnvelopes(today.slice(0, 7))
+  const hasEnvelopes = !!envelopes?.envelopes.some((e) => e.assigned || e.available)
+  const available = envelopes?.envelopes.reduce((a, e) => a + e.available, 0) ?? 0
   const alert = topAlert(useMonthInsights(today.slice(0, 7), today, settings) ?? [])
   const alertText = useInsightText(settings.currency)
   const big = 'font-display text-[1.375rem] font-semibold tabular [overflow-wrap:anywhere]'
@@ -54,9 +58,11 @@ export function MoneyMini({ today, settings }: { today: string; settings: Settin
             <dd className={big}>{money(todayOut)}</dd>
           </div>
           <div className="min-w-0">
-            <dt className="text-[0.8125rem] text-muted-foreground">{total ? t('money.left') : t('money.month')}</dt>
-            <dd className={cn(big, total && total - stats.spent < 0 && 'text-bad')}>
-              {money(total ? total - stats.spent : stats.spent)}
+            <dt className="text-[0.8125rem] text-muted-foreground">
+              {hasEnvelopes ? t('money.left') : t('money.month')}
+            </dt>
+            <dd className={cn(big, hasEnvelopes && available < 0 && 'text-bad')}>
+              {money(hasEnvelopes ? available : stats.spent)}
             </dd>
           </div>
         </dl>

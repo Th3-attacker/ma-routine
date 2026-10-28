@@ -15,7 +15,7 @@ test('récurrente : créée avant le jour prévu, ajoutée automatiquement le jo
   await d.getByRole('combobox', { name: 'Jour du mois' }).selectOption('5')
   await d.getByRole('button', { name: 'Ajouter' }).click()
   await expect(d).toBeHidden()
-  await expect(page.getByRole('button', { name: /Loyer/ })).toContainText('le 5 de chaque mois · Logement')
+  await expect(page.getByRole('button', { name: /Loyer/ })).toContainText('le 5 de chaque mois · Toujours · Logement')
 
   // Le lendemain (5 octobre) : ajout automatique
   await page.clock.setSystemTime(new Date('2026-10-05T09:00:00Z'))
