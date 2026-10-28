@@ -75,6 +75,11 @@ export async function setPin(pin: string): Promise<void> {
   await saveSecurity({ salt: toBase64(salt), hash, iterations: PBKDF2_ITERATIONS, failedCount: 0, lockedUntil: 0 })
 }
 
+/** Retire le code (et l'empreinte ou le visage, qui le complètent) : l'app s'ouvre alors sans code. */
+export async function removePin(): Promise<void> {
+  await saveSecurity({ salt: null, hash: null, failedCount: 0, lockedUntil: 0, passkey: null })
+}
+
 /** Attente imposée après la n-ième erreur d'affilée : 5e → 30 s, 6e → 1 min, 7e → 5 min, ensuite 15 min. */
 export function lockoutMs(failedCount: number): number {
   if (failedCount < 5) return 0

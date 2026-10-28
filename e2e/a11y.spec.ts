@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
 
-import { openApp } from './helpers.ts'
+import { enablePin, openApp } from './helpers.ts'
 
 // Contrôle automatique d'accessibilité (axe, règles WCAG 2.1 A et AA) sur chaque écran, en français et en arabe,
 // en clair et en sombre. Une seule largeur suffit : les autres tests vérifient déjà la mise en page.
@@ -102,7 +102,8 @@ for (const mode of ['light', 'dark'] as const) {
     await audit(page, 'athkar plein écran', found, '[role=dialog]')
     await page.keyboard.press('Escape')
 
-    // Écran du code après un rechargement
+    // Écran du code (facultatif, activé dans les réglages) après un rechargement
+    await enablePin(page)
     await page.reload()
     await expect(page.getByRole('group', { name: 'Clavier du code' })).toBeVisible()
     await audit(page, 'déverrouillage', found)

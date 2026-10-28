@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-import { openApp } from './helpers.ts'
+import { enablePin, openApp } from './helpers.ts'
 
 // Lecteur d'empreinte simulé par Chromium (WebAuthn virtuel) : activation, puis déverrouillage sans le code.
 test('déverrouiller avec l’empreinte ou le visage', async ({ page, browserName }) => {
@@ -19,6 +19,7 @@ test('déverrouiller avec l’empreinte ou le visage', async ({ page, browserNam
   })
 
   await openApp(page, { 'elhadj.lang': 'fr' })
+  await enablePin(page)
   await page.getByRole('button', { name: 'Réglages' }).click()
   await page.getByRole('button', { name: /^Sécurité/ }).click()
   const toggle = page.getByRole('switch', { name: /Ouvrir avec l’empreinte ou le visage/ })

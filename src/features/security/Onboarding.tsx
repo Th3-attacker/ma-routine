@@ -10,7 +10,6 @@ import type { Settings } from '@/db/types'
 import { whenIdle } from '@/lib/idle'
 import { displayName } from '@/lib/names'
 
-import { CreatePin } from './CreatePin'
 import { LockLayout } from './LockLayout'
 
 const loadProfile = () => import('./OnboardingProfile')
@@ -21,7 +20,7 @@ const btn = 'h-12 w-full rounded-[14px] text-[0.9375rem] font-bold'
 export function Onboarding({ settings, onDone }: { settings: Settings; onDone: () => void }) {
   const { t } = useTranslation()
   const { lang, setLang } = usePreferences()
-  const [step, setStep] = useState<1 | 2 | 3 | 'done'>(1)
+  const [step, setStep] = useState<1 | 2 | 'done'>(1)
   // Le formulaire de l'étape 2 se télécharge pendant qu'on lit la bienvenue.
   useEffect(() => whenIdle(() => void loadProfile()), [])
 
@@ -65,23 +64,16 @@ export function Onboarding({ settings, onDone }: { settings: Settings; onDone: (
 
       {step === 2 && (
         <Suspense fallback={<Skeleton className="h-96 w-full rounded-xl" />}>
-          <OnboardingProfile settings={settings} onBack={() => setStep(1)} onNext={() => setStep(3)} />
-        </Suspense>
-      )}
-
-      {step === 3 && (
-        <section aria-labelledby="ob-code" className="flex w-full flex-col items-center gap-2">
-          <h1 id="ob-code" className="sr-only">
-            {t('lock.codeTitle')}
-          </h1>
-          <CreatePin
-            onDone={async () => {
+          <OnboardingProfile
+            settings={settings}
+            onBack={() => setStep(1)}
+            onNext={async () => {
               await updateSettings({ onboarded: true })
               setStep('done')
               setTimeout(onDone, 1600)
             }}
           />
-        </section>
+        </Suspense>
       )}
     </LockLayout>
   )
