@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils'
 
 import { SlidersIcon } from './icons'
 import { Logo } from './Logo'
-import { SyncDot } from './SyncDot'
 import { ThemeIcon } from './ThemeIcon'
 
 // L'en-tête est en px (et non en rem) : il ne grossit pas avec la taille du texte et ne déborde jamais.
@@ -40,7 +39,6 @@ export function AppHeader({ onOpenSettings }: { onOpenSettings: () => void }) {
         </p>
       </div>
       <div className="flex flex-none items-center gap-1">
-        <SyncDot />
         <button
           type="button"
           className={cn(iconBtn, isAr ? 'text-[13px] font-extrabold' : 'pb-[3px] font-quran text-[19px] font-bold')}

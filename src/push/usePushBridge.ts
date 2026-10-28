@@ -1,39 +1,24 @@
 import { useEffect } from 'react'
 
 import { usePreferences } from '@/app/PreferencesProvider'
-import type { Prayer, Settings } from '@/db/types'
-import { logCall, readCallLog } from '@/features/call/schedule'
-import { chime } from '@/features/call/chime'
-import { speak } from '@/features/call/speech'
-import { resolvePlace } from '@/features/prayer/cities'
-import { dayKey } from '@/lib/dates'
+import type { Settings } from '@/db/types'
 
-import { updatePushLang } from './subscribe'
+import { updatePush } from './subscribe'
 
 /**
- * Lien entre l'app ouverte et les notifications :
- * - le service worker demande de dire l'appel à voix haute (si l'app ne l'a pas déjà dit elle-même) ;
- * - quand la langue de l'app change, les prochaines notifications suivent.
+ * Garde l'abonnement aux notifications à jour sur le serveur : langue, lieu, décalage hégirien et choix de
+ * notifications (le serveur n'a pas d'autre moyen de les connaître). Une seconde après le dernier changement.
  */
 export function usePushBridge(settings: Settings | undefined): void {
   const { lang } = usePreferences()
-
+  const key = settings
+    ? JSON.stringify([lang, settings.cityId, settings.custom, settings.notif, settings.hijriAdj])
+    : null
   useEffect(() => {
-    if (!('serviceWorker' in navigator) || !settings) return
-    const onMessage = (e: MessageEvent) => {
-      const msg = e.data as { type?: string; kind?: string; text?: string; lang?: 'fr' | 'ar' } | null
-      if (msg?.type !== 'elhadj-speak' || !msg.kind?.startsWith('call:') || !msg.text) return
-      const prayer = msg.kind.slice(5) as Prayer
-      const key = dayKey(new Date(), resolvePlace(settings).timezone)
-      if (readCallLog(key).prayers.includes(prayer)) return
-      logCall(key, prayer)
-      if (!speak([{ text: msg.text, lang: msg.lang === 'ar' ? 'ar' : 'fr' }])) chime()
-    }
-    navigator.serviceWorker.addEventListener('message', onMessage)
-    return () => navigator.serviceWorker.removeEventListener('message', onMessage)
-  }, [settings])
-
-  useEffect(() => {
-    void updatePushLang(lang).catch(() => {})
-  }, [lang])
+    if (!settings || !key) return
+    const timer = setTimeout(() => void updatePush(lang, settings).catch(() => {}), 1000)
+    return () => clearTimeout(timer)
+    // Seulement quand ce qui part au serveur change.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key])
 }

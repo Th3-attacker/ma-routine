@@ -28,7 +28,7 @@ beforeEach(async () => {
 })
 
 describe('premier lancement', () => {
-  it('inscription en 3 étapes : bienvenue, prénom, code deux fois', async () => {
+  it('inscription en 2 étapes : bienvenue, prénom et lieu, sans code', async () => {
     await act(() => i18n.changeLanguage('fr'))
     const user = userEvent.setup()
     await renderApp('/', { locked: true })
@@ -36,23 +36,11 @@ describe('premier lancement', () => {
     await user.click(screen.getByRole('button', { name: 'Continuer' }))
     await user.type(await screen.findByLabelText('Prénom'), 'Elhadj')
     await user.click(screen.getByRole('button', { name: 'Continuer' }))
-
-    expect(await screen.findByRole('heading', { name: 'Choisis ton code à 4 chiffres' })).toBeInTheDocument()
-    await typePin(user, '1234')
-    expect(await screen.findByRole('alert')).toHaveTextContent('1234')
-    await typePin(user, '2580')
-    expect(await screen.findByRole('heading', { name: 'Tape-le une deuxième fois' })).toBeInTheDocument()
-    await typePin(user, '2581')
-    expect(await screen.findByRole('alert')).toHaveTextContent('Les deux codes ne correspondent pas. Recommence.')
-    await typePin(user, '2580')
-    await typePin(user, '2580')
     expect(await screen.findByText('Bienvenue, Elhadj !', {}, { timeout: 5000 })).toBeInTheDocument()
     expect(
       await screen.findByRole('heading', { level: 1, name: 'As-salâmu ‘alaykum, Elhadj' }, { timeout: 5000 }),
     ).toBeInTheDocument()
-    const s = await db.security.get('device')
-    expect(s?.hash).toBeTruthy()
-    expect(JSON.stringify(s)).not.toContain('2580')
+    expect((await db.security.get('device'))?.hash).toBeFalsy()
   }, 20_000)
 
   it('déverrouille avec le bon code, sans rien afficher avant', async () => {
@@ -61,7 +49,7 @@ describe('premier lancement', () => {
     await setPin('2580')
     const user = userEvent.setup()
     await renderApp('/', { locked: true })
-    expect(await screen.findByRole('heading', { name: 'As-salâmu ‘alaykum, Elhadj' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'Jàmm nga am, Elhadj ?' })).toBeInTheDocument()
     expect(screen.queryByRole('navigation')).not.toBeInTheDocument()
     await typePin(user, '1111')
     expect(await screen.findByRole('alert')).toHaveTextContent('Code incorrect')

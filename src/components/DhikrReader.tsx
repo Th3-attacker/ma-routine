@@ -1,12 +1,14 @@
 import { ChevronLeftIcon, ChevronRightIcon, XIcon } from 'lucide-react'
 import { Dialog } from 'radix-ui'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { AudioButton } from '@/components/AudioButton'
 import { toast } from 'sonner'
 
 import type { AthkarSet, Day } from '@/db/types'
 import { firstUndone, tapDhikr } from '@/features/athkar/actions'
-import { setReaderOpen } from '@/features/call/speech'
+import { currentKey, seriesTracks, usePlayer } from '@/features/athkar/audio'
 import { ATHKAR } from '@/features/athkar/data'
 import { athkarProgress } from '@/features/athkar/progress'
 import { vibrate } from '@/lib/haptics'
@@ -32,11 +34,6 @@ export function DhikrReader({
   onClose: () => void
 }) {
   useWakeLock(open)
-  // Pas d'appel à voix haute pendant la lecture plein écran.
-  useEffect(() => {
-    setReaderOpen(open)
-    return () => setReaderOpen(false)
-  }, [open])
   return (
     <Dialog.Root open={open} onOpenChange={(o) => !o && onClose()}>
       <Dialog.Portal>
@@ -55,6 +52,24 @@ function ReaderBody({ set, day }: { set: AthkarSet; day: Day }) {
   const series = ATHKAR[set]
   const counts = day.athkar[set]
   const [index, setIndex] = useState(() => firstUndone(set, counts))
+  // Chaque écoute terminée compte une répétition, comme un toucher.
+  const tracks = seriesTracks(set, i18n.language).map((tr, i) => ({
+    ...tr,
+    onEnd: () =>
+      void tapDhikr(day.id, set, i).then((r) => {
+        if (!r) return
+        vibrate(r.done ? 35 : 8)
+        if (r.seriesDone) toast(t('athkar.seriesDone'))
+      }),
+  }))
+  // Pendant l'écoute de la série, le lecteur suit le dhikr en cours d'écoute.
+  const audio = usePlayer()
+  const playingAt = tracks.findIndex((tr) => tr.key === currentKey(audio))
+  const [followed, setFollowed] = useState(-1)
+  if (playingAt >= 0 && playingAt !== followed) {
+    setFollowed(playingAt)
+    setIndex(playingAt)
+  }
 
   const item = series.items[index]
   const count = Math.min(counts?.[index] ?? 0, item.n)
@@ -100,18 +115,21 @@ function ReaderBody({ set, day }: { set: AthkarSet; day: Day }) {
       </header>
       <Dialog.Description className="sr-only">{t('reader.hint')}</Dialog.Description>
 
-      <div
-        role="button"
-        tabIndex={0}
-        aria-label={`${t('reader.count')} · ${t('athkar.repetition', { c: count, n: item.n })}`}
-        onClick={() => void tap()}
-        className="flex min-h-0 flex-1 cursor-pointer flex-col justify-center gap-4 overflow-auto py-4 text-center select-none"
-      >
-        <p lang="ar" dir="rtl" className="font-quran text-[1.875rem] leading-[2.1] whitespace-pre-line">
-          {item.ar}
-        </p>
-        {note && <p className="mx-auto max-w-[52ch] text-sm text-ink-2">{note}</p>}
+      <div className="min-h-0 flex-1 overflow-auto">
+        <button
+          type="button"
+          aria-label={`${t('reader.count')} · ${t('athkar.repetition', { c: count, n: item.n })}`}
+          onClick={() => void tap()}
+          className="flex min-h-full w-full cursor-pointer flex-col justify-center gap-4 py-4 text-center select-none"
+        >
+          <span lang="ar" dir="rtl" className="block font-quran text-[1.875rem] leading-[2.1] whitespace-pre-line">
+            {item.ar}
+          </span>
+          {note && <span className="mx-auto block max-w-[52ch] text-sm text-ink-2">{note}</span>}
+        </button>
       </div>
+
+      <AudioButton queue={tracks} from={index} className="mx-auto mb-3" />
 
       <ol
         className="flex flex-wrap justify-center gap-1"

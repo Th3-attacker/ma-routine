@@ -9,7 +9,6 @@ import { usePreferences } from '@/app/PreferencesProvider'
 import { AmountInput } from '@/components/AmountInput'
 import { AppSelect } from '@/components/AppSelect'
 import { AppDrawer } from '@/components/AppDrawer'
-import { ChipGroup } from '@/components/ChipGroup'
 import { ColorDot } from '@/components/ColorDot'
 import { ConfirmDialog } from '@/components/ConfirmDialog'
 import { Field, inputClass } from '@/components/Field'
@@ -23,12 +22,12 @@ import type { Recurring, Settings } from '@/db/types'
 import { currencyLabel, formatMoney, parseAmount } from '@/lib/money'
 import { cn } from '@/lib/utils'
 
-import { CATEGORIES, categoryColor, PAY_METHODS } from './categories'
+import { categoryColor } from './categories'
+import { CategoryChoice, PayMethodChoice, TypeChoice } from './MoneyChoices'
 import { deleteRecurring, recurringTotals, saveRecurring, setActive, useRecurring } from './recurring'
 
 const DAYS = Array.from({ length: 28 }, (_, i) => i + 1)
 
-/** Budget → Récurrentes : totaux fixes, liste avec interrupteur, création et modification. */
 export function RecurringView({ today, settings }: { today: string; settings: Settings }) {
   const { t } = useTranslation()
   const { lang } = usePreferences()
@@ -161,17 +160,12 @@ function RecurringForm({
     >
       <form.Field name="type">
         {(field) => (
-          <ChipGroup
-            label={t('budget.form.type')}
+          <TypeChoice
             value={field.state.value}
             onChange={(v) => {
               field.handleChange(v)
               form.setFieldValue('category', v === 'in' ? 'salary' : 'home')
             }}
-            options={[
-              { value: 'out', label: t('budget.addOut') },
-              { value: 'in', label: t('budget.addIn') },
-            ]}
           />
         )}
       </form.Field>
@@ -229,34 +223,12 @@ function RecurringForm({
       <form.Subscribe selector={(s) => s.values.type}>
         {(type) => (
           <form.Field name="category">
-            {(field) => (
-              <ChipGroup
-                label={t('budget.form.category')}
-                value={field.state.value}
-                onChange={field.handleChange}
-                options={CATEGORIES[type].map((c) => ({
-                  value: c.id,
-                  label: (
-                    <>
-                      <ColorDot color={c.color} />
-                      {t(`categories.${c.id}` as never)}
-                    </>
-                  ),
-                }))}
-              />
-            )}
+            {(field) => <CategoryChoice type={type} value={field.state.value} onChange={field.handleChange} />}
           </form.Field>
         )}
       </form.Subscribe>
       <form.Field name="payMethod">
-        {(field) => (
-          <ChipGroup
-            label={t('budget.form.payMethod')}
-            value={field.state.value}
-            onChange={field.handleChange}
-            options={PAY_METHODS.map((m) => ({ value: m, label: t(`payMethods.${m}`) }))}
-          />
-        )}
+        {(field) => <PayMethodChoice value={field.state.value} onChange={field.handleChange} />}
       </form.Field>
       <p className={subClass}>{t('rec.formHint')}</p>
       <Button type="submit" className="h-12 rounded-[14px] text-[0.9375rem] font-bold">

@@ -5,6 +5,7 @@ import { toast } from 'sonner'
 
 import { AppDrawer } from '@/components/AppDrawer'
 import { ChipGroup } from '@/components/ChipGroup'
+import { ConfirmDialog } from '@/components/ConfirmDialog'
 import { SectionTitle } from '@/components/Field'
 import { PinPad } from '@/components/PinPad'
 import { Button } from '@/components/ui/button'
@@ -16,15 +17,42 @@ import { usePreferences } from '@/app/PreferencesProvider'
 
 import { biometricAvailable, disableBiometric, enableBiometric } from './biometric'
 import { CreatePin } from './CreatePin'
-import { getSecurity, setLockDelay, verifyPin } from './pin'
+import { getSecurity, removePin, setLockDelay, verifyPin } from './pin'
 
 const DELAYS: readonly LockDelay[] = [0, 1, 5, 15]
 
-/** Réglages → Sécurité : changer le code, délai de verrouillage, phrase d'information. */
+/**
+ * Réglages → Sécurité. Le code est facultatif : sans code, on propose d'en créer un ; avec, on peut le changer,
+ * le retirer, choisir le délai et l'empreinte ou le visage.
+ */
 export function SecuritySettings() {
   const { t } = useTranslation()
   const security = useLiveQuery(getSecurity)
   const [changing, setChanging] = useState(false)
+  const [creating, setCreating] = useState(false)
+  if (!security) return null
+  const withPin = !!security.hash
+
+  if (!withPin) {
+    return (
+      <section aria-labelledby="settings-security" className="flex flex-col gap-4">
+        <SectionTitle id="settings-security">{t('security.title')}</SectionTitle>
+        <p className="text-[0.8125rem] text-ink-2">{t('security.none')}</p>
+        <Button className="h-11 rounded-[14px] font-bold" onClick={() => setCreating(true)}>
+          {t('security.enable')}
+        </Button>
+        <p className="text-[0.8125rem] text-muted-foreground">{t('security.info')}</p>
+        <AppDrawer open={creating} onOpenChange={setCreating} title={t('security.enable')}>
+          <CreatePin
+            onDone={() => {
+              setCreating(false)
+              toast(t('security.enabled'))
+            }}
+          />
+        </AppDrawer>
+      </section>
+    )
+  }
 
   return (
     <section aria-labelledby="settings-security" className="flex flex-col gap-4">
@@ -41,6 +69,18 @@ export function SecuritySettings() {
         />
       )}
       {security && <BiometricToggle enabled={!!security.passkey} />}
+      <ConfirmDialog
+        trigger={
+          <Button variant="secondary" className="h-11 rounded-[14px] font-bold">
+            {t('security.remove')}
+          </Button>
+        }
+        title={t('security.removeTitle')}
+        body={t('security.removeBody')}
+        confirm={t('security.remove')}
+        cancel={t('lock.cancel')}
+        onConfirm={() => void removePin().then(() => toast(t('security.removed')))}
+      />
       <p className="text-[0.8125rem] text-muted-foreground">{t('security.info')}</p>
       <AppDrawer open={changing} onOpenChange={setChanging} title={t('security.change')}>
         <ChangePin

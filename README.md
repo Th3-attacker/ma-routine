@@ -15,16 +15,13 @@ en arabe. Elle fonctionne sans connexion, et tes données restent sur ton télé
 
 - **Prière** : les horaires de ta ville (Ligue islamique mondiale), le temps qui reste, la prière en cours, et le
   suivi de chaque prière (à l'heure, en retard, à rattraper).
-- **Appel avant l'adhan** : « {ton prénom}, la prière », à voix haute quelques minutes avant, et en notification
-  quand l'app est fermée.
 - **Athkar** du matin, du soir, après la prière et avant de dormir, avec un compteur ; un tasbih.
 - **Aujourd'hui** : le ciel du jour, la date hégirienne, un verset ou un hadith, le wird de Coran, les habitudes,
   le bilan du soir et le mode Ramadan.
 - **Budget** en ouguiyas : dépenses et revenus, budgets par catégorie, dettes, épargne, opérations qui reviennent
   chaque mois, et des conseils du mois calculés sur le téléphone.
 - **Projets** avec leurs étapes, leur intention (niyya) et leurs échéances ; l'app peut proposer des étapes.
-- **Sécurité** : un code à 4 chiffres, et en option l'empreinte ou le visage.
-- **Compte facultatif** (code reçu par e-mail) pour retrouver tes données sur un autre téléphone.
+- **Sécurité** : en option, un code à 4 chiffres (Réglages → Sécurité), puis l'empreinte ou le visage.
 
 ### L'installer sur ton téléphone
 
@@ -41,9 +38,11 @@ Après la première ouverture, l'app marche sans internet.
 - Tout est enregistré **sur ton téléphone**. Pas de publicité, pas de statistiques, rien n'est vendu.
 - Le code à 4 chiffres protège l'app contre un regard ou un accès rapide. Ce n'est pas un chiffrement.
 - L'empreinte et le visage restent dans ton téléphone : l'app ne les voit jamais.
-- Avec un compte, tes données sont copiées sur un serveur Supabase en Europe (Paris), visibles par toi seul. Le
-  code, le thème, la langue et la taille du texte ne quittent jamais l'appareil.
-- Réglages → Sauvegarde : tu peux télécharger toutes tes données dans un fichier, et les réimporter.
+- Pas de compte. Seules les notifications d'adhan (si tu les actives) passent par un serveur Supabase en Europe
+  (Paris) : il reçoit ta position arrondie (environ 1 km), ton fuseau horaire, ta langue et tes choix de
+  notifications. Ni nom, ni autre donnée.
+- Réglages → Sauvegarde : tu peux télécharger toutes tes données dans un fichier, et les réimporter (pour changer
+  de téléphone).
 
 ### Textes religieux
 
@@ -54,7 +53,7 @@ issue sur GitHub.
 ### Pour les développeurs
 
 React 19, TypeScript, Vite, Dexie (IndexedDB), adhan-js, TanStack Router / Query / Form, Tailwind et shadcn/ui,
-i18next, vite-plugin-pwa ; Supabase (compte, synchro, notifications) en option. Tout est gratuit.
+i18next, vite-plugin-pwa ; Supabase (notifications d'adhan) en option. Tout est gratuit.
 
 ```bash
 pnpm install
@@ -63,7 +62,7 @@ pnpm verify       # format, lint, types, tests
 pnpm build && pnpm test:e2e
 ```
 
-Pour le compte et les notifications, copier `.env.example` en `.env.local` et remplir les clés publiques du projet
+Pour les notifications, copier `.env.example` en `.env.local` et remplir les clés publiques du projet
 Supabase et la clé publique VAPID. Sans ces clés, l'app reste 100 % locale. Les règles du projet sont dans
 [CLAUDE.md](CLAUDE.md).
 
@@ -80,14 +79,12 @@ Supabase et la clé publique VAPID. Sans ces clés, l'app reste 100 % locale. Le
 
 - **الصلاة**: مواقيت مدينتك (رابطة العالم الإسلامي)، والوقت المتبقي، والصلاة الحالية، ومتابعة كل صلاة (في وقتها،
   متأخرة، قضاء).
-- **النداء قبل الأذان**: «{اسمك}، الصلاة» بصوت مسموع قبل الأذان ببضع دقائق، وفي إشعار إذا كان التطبيق مغلقًا.
 - **الأذكار**: أذكار الصباح والمساء وبعد الصلاة وقبل النوم، مع عدّاد، ومسبحة.
 - **اليوم**: سماء اليوم، والتاريخ الهجري، وآية أو حديث، وورد القرآن، والعادات، وحصيلة المساء، ووضع رمضان.
 - **الميزانية** بالأوقية: المصاريف والمداخيل، وميزانية لكل فئة، والديون، والادخار، والعمليات الشهرية، ونصائح
   الشهر محسوبة على الهاتف.
 - **المشاريع** بخطواتها ونيتها ومواعيدها، ويمكن للتطبيق أن يقترح خطوات.
-- **الأمان**: رمز من 4 أرقام، والبصمة أو الوجه اختياريًا.
-- **حساب اختياري** (رمز يصلك بالبريد) لاسترجاع بياناتك على هاتف آخر.
+- **الأمان**: اختياريًا، رمز من 4 أرقام (الإعدادات ← الأمان)، ثم البصمة أو الوجه.
 
 ### تثبيته على هاتفك
 
@@ -104,8 +101,8 @@ Supabase et la clé publique VAPID. Sans ces clés, l'app reste 100 % locale. Le
 - كل شيء محفوظ **على هاتفك**. لا إعلانات ولا إحصاءات، ولا يُباع شيء.
 - الرمز من 4 أرقام يحمي التطبيق من نظرة عابرة أو استعمال سريع. ليس تشفيرًا.
 - البصمة والوجه يبقيان في هاتفك: التطبيق لا يراهما أبدًا.
-- مع الحساب، تُنسخ بياناتك إلى خادم Supabase في أوروبا (باريس)، ولا يراها غيرك. الرمز والمظهر واللغة وحجم الخط
-  لا تغادر الجهاز أبدًا.
+- لا حساب. إشعارات الأذان فقط (إن فعّلتها) تمر عبر خادم Supabase في أوروبا (باريس): يتلقى موقعك التقريبي (نحو 1 كم)
+  ومنطقتك الزمنية ولغتك واختيارات الإشعارات. لا اسم ولا أي بيانات أخرى.
 - الإعدادات ← النسخ الاحتياطي: يمكنك تنزيل كل بياناتك في ملف واستيرادها من جديد.
 
 ### النصوص الدينية

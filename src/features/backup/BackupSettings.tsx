@@ -106,7 +106,6 @@ export function BackupSettings({ settings }: { settings: Settings }) {
   )
 }
 
-/** Réglages → À propos : sources des textes et respect de la vie privée. */
 export function AboutSettings() {
   const { t } = useTranslation()
   return (

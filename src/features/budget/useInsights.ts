@@ -20,7 +20,6 @@ export function useMonthInsights(month: string, today: string, settings: Setting
   return monthInsights({ month, today, transactions, previousMonth, budgets: settings.budgets, debts })
 }
 
-/** Texte d'un conseil, dans la langue de l'app. */
 export function useInsightText(currency: string): (i: Insight) => string {
   const { t } = useTranslation()
   const { lang } = usePreferences()

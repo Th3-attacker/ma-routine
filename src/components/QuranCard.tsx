@@ -15,7 +15,6 @@ import { Bar, cardClass, Section, subClass } from './Section'
 
 const btn = 'h-11 flex-auto rounded-[14px] font-bold'
 
-/** Wird du Coran : +1, +wird, −1, page actuelle, khatma prévue et khatmas terminées. */
 export function QuranCard({ day, settings }: { day: Day; settings: Settings }) {
   const { t } = useTranslation()
   const { lang } = usePreferences()

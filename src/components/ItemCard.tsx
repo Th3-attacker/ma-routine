@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useId, type ReactNode } from 'react'
 
 import { cn } from '@/lib/utils'
 
@@ -87,11 +87,16 @@ export function TotalsPair({ items }: { items: [string, ReactNode, string?][] })
   )
 }
 
-/** État vide (bordure en pointillés). */
 export function EmptyState({ title, children }: { title: string; children: ReactNode }) {
+  const id = useId()
   return (
-    <section className="flex flex-col items-start gap-2.5 rounded-xl border-[1.5px] border-dashed border-line p-[18px] text-sm text-ink-2">
-      <h3 className="text-[0.9375rem] font-bold text-foreground">{title}</h3>
+    <section
+      aria-labelledby={id}
+      className="flex flex-col items-start gap-2.5 rounded-xl border-[1.5px] border-dashed border-line p-[18px] text-sm text-ink-2"
+    >
+      <h3 id={id} className="text-[0.9375rem] font-bold text-foreground">
+        {title}
+      </h3>
       <p>{children}</p>
     </section>
   )

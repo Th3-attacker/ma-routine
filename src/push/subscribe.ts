@@ -1,4 +1,7 @@
-import { accountsEnabled, getSupabase } from '@/sync/supabase'
+import type { Settings } from '@/db/types'
+import { resolvePlace } from '@/features/prayer/cities'
+
+import { callServer, serverEnabled } from './server'
 
 const VAPID_PUBLIC_KEY = import.meta.env.VITE_VAPID_PUBLIC_KEY as string | undefined
 
@@ -12,7 +15,7 @@ const isStandalone = () =>
 
 /** Les notifications marchent-elles ici ? Sur iPhone, seulement une fois l'app ajoutée à l'écran d'accueil. */
 export function pushSupport(): PushSupport {
-  if (!VAPID_PUBLIC_KEY || !accountsEnabled) return 'disabled'
+  if (!VAPID_PUBLIC_KEY || !serverEnabled) return 'disabled'
   if (isIOS() && !isStandalone()) return 'ios-not-installed'
   if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) return 'unsupported'
   return 'ok'
@@ -30,28 +33,34 @@ export async function currentSubscription(): Promise<PushSubscription | null> {
   return (await reg?.pushManager.getSubscription()) ?? null
 }
 
-async function save(sub: PushSubscription, lang: 'fr' | 'ar'): Promise<void> {
-  const json = sub.toJSON()
-  const supabase = await getSupabase()
-  if (!supabase) return
-  const { error } = await supabase.from('push_subscriptions').upsert(
-    {
-      endpoint: sub.endpoint,
-      p256dh: json.keys!.p256dh,
-      auth: json.keys!.auth,
-      lang,
-      updated_at: new Date().toISOString(),
-    },
-    { onConflict: 'endpoint' },
-  )
-  if (error) throw error
+/**
+ * Ce que le serveur reçoit pour calculer les horaires : position arrondie (~1 km, arrondie aussi côté serveur),
+ * fuseau, langue et choix de notifications. Ni nom, ni e-mail, ni autre donnée de l'app.
+ */
+export function pushPayload(sub: PushSubscriptionJSON & { endpoint: string }, lang: 'fr' | 'ar', settings: Settings) {
+  const place = resolvePlace(settings)
+  return {
+    p_endpoint: sub.endpoint,
+    p_p256dh: sub.keys!.p256dh,
+    p_auth: sub.keys!.auth,
+    p_lang: lang,
+    p_lat: Math.round(place.lat * 100) / 100,
+    p_lng: Math.round(place.lng * 100) / 100,
+    p_timezone: place.timezone,
+    p_notif: settings.notif,
+    p_hijri_adj: settings.hijriAdj,
+  }
+}
+
+async function save(sub: PushSubscription, lang: 'fr' | 'ar', settings: Settings): Promise<void> {
+  await callServer('save_push_subscription', pushPayload({ ...sub.toJSON(), endpoint: sub.endpoint }, lang, settings))
 }
 
 /**
  * Active les notifications : la permission est demandée ici, au clic, jamais au chargement.
  * Renvoie false si la personne refuse.
  */
-export async function enablePush(lang: 'fr' | 'ar'): Promise<boolean> {
+export async function enablePush(lang: 'fr' | 'ar', settings: Settings): Promise<boolean> {
   if (pushSupport() !== 'ok') return false
   const permission = await Notification.requestPermission()
   if (permission !== 'granted') return false
@@ -59,19 +68,20 @@ export async function enablePush(lang: 'fr' | 'ar'): Promise<boolean> {
   const sub =
     (await reg.pushManager.getSubscription()) ??
     (await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: keyBytes(VAPID_PUBLIC_KEY!) }))
-  await save(sub, lang)
+  await save(sub, lang, { ...settings, notif: { ...settings.notif, enabled: true } })
   return true
 }
 
 export async function disablePush(): Promise<void> {
   const sub = await currentSubscription()
   if (!sub) return
-  await (await getSupabase())?.from('push_subscriptions').delete().eq('endpoint', sub.endpoint)
+  await callServer('delete_push_subscription', { p_endpoint: sub.endpoint })
   await sub.unsubscribe()
 }
 
-/** La langue de l'app change : les notifications suivent. */
-export async function updatePushLang(lang: 'fr' | 'ar'): Promise<void> {
+/** Lieu, langue ou choix changés : l'abonnement existant est mis à jour sur le serveur. */
+export async function updatePush(lang: 'fr' | 'ar', settings: Settings): Promise<void> {
+  if (!settings.notif.enabled || pushSupport() !== 'ok') return
   const sub = await currentSubscription()
-  if (sub && accountsEnabled) await save(sub, lang)
+  if (sub) await save(sub, lang, settings)
 }

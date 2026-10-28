@@ -7,6 +7,7 @@ import { toast } from 'sonner'
 import { usePreferences } from '@/app/PreferencesProvider'
 import { AppSelect } from '@/components/AppSelect'
 import { Field, inputClass, SectionTitle } from '@/components/Field'
+import { subClass } from '@/components/Section'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -55,37 +56,33 @@ export function PlaceFields({
     }
   }
 
+  // La position d'abord (horaires exacts là où l'on est) ; la liste des villes reste en secours.
   return (
     <>
-      <Field
-        label={t('settings.city')}
-        errors={errors}
-        hint={cityId === CUSTOM_CITY_ID ? t('settings.positionHint') : undefined}
-      >
+      <div className="flex flex-col gap-1.5">
+        <Button type="button" className="h-12 rounded-[14px] font-bold" onClick={locate} disabled={locating}>
+          <LocateFixedIcon aria-hidden="true" />
+          {locating ? t('settings.locating') : t('settings.useLocation')}
+        </Button>
+        <p className={subClass} role="status">
+          {cityId === CUSTOM_CITY_ID ? t('settings.positionHint') : t('settings.locationWhy')}
+        </p>
+      </div>
+      <Field label={t('settings.cityFallback')} errors={errors}>
         {(p) => (
           <AppSelect
             {...p}
             value={cityId}
             onChange={onCityChange}
             options={[
-              ...CITIES.map((c) => ({ value: c.id, label: c[lang] })),
               ...(hasPosition || cityId === CUSTOM_CITY_ID
                 ? [{ value: CUSTOM_CITY_ID, label: t('settings.myPosition') }]
                 : []),
+              ...CITIES.map((c) => ({ value: c.id, label: c[lang] })),
             ]}
           />
         )}
       </Field>
-      <Button
-        type="button"
-        variant="secondary"
-        className="h-11 rounded-[14px] font-bold"
-        onClick={locate}
-        disabled={locating}
-      >
-        <LocateFixedIcon aria-hidden="true" />
-        {locating ? t('settings.locating') : t('settings.useLocation')}
-      </Button>
     </>
   )
 }

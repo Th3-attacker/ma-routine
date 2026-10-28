@@ -11,7 +11,6 @@ import { PrayerStatusDrawer, type StatusTarget } from './PrayerStatusDrawer'
 import { linkClass, Section } from './Section'
 import { StatusDot } from './StatusDot'
 
-/** Les 5 prières du jour en pastilles ; un toucher ouvre le volet de statut. */
 export function PrayerPills({ day, times, timezone }: { day: Day; times: DayTimes; timezone: string }) {
   const { t } = useTranslation()
   const prayerName = usePrayerName()

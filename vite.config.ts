@@ -5,12 +5,15 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
+import { readFileSync } from 'node:fs'
+
+import { openingMarkup } from './src/app/opening.ts'
 import { shellMarkup } from './src/app/shell.ts'
 import ar from './src/i18n/ar.json' with { type: 'json' }
 import fr from './src/i18n/fr.json' with { type: 'json' }
 
-// Nom du dépôt GitHub : l'app est servie sur https://<compte>.github.io/ma-routine/
-const base = '/ma-routine/'
+// GitHub Pages sert l'app sur https://<compte>.github.io/ma-routine/ ; Vercel (variable VERCEL au build) à la racine.
+const base = process.env.VERCEL ? '/' : '/ma-routine/'
 
 export default defineConfig(({ mode }) => ({
   base,
@@ -25,6 +28,16 @@ export default defineConfig(({ mode }) => ({
       apply: 'build',
       transformIndexHtml: (html: string) =>
         html.replace('<div id="root"></div>', `<div id="root">${shellMarkup(fr, ar)}</div>`),
+    },
+    // Écran d'ouverture animé de la charte, hors de #root : React ne le remplace pas, il s'efface tout seul.
+    {
+      name: 'elhadj-opening',
+      apply: 'build',
+      transformIndexHtml: (html: string) =>
+        html.replace(
+          '<div id="root">',
+          `${openingMarkup(fr, ar, readFileSync('src/assets/brand/sama-jamm-nom-nuit.svg', 'utf8'))}<div id="root">`,
+        ),
     },
     // En production, le JavaScript de l'app ne se télécharge qu'après le premier affichage de l'écran
     // pré-dessiné : sur un réseau lent, il ne retarde plus ce premier écran.
@@ -53,7 +66,7 @@ export default defineConfig(({ mode }) => ({
       srcDir: 'src',
       filename: 'sw.ts',
       injectManifest: { globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'] },
-      includeAssets: ['favicon.ico', 'logo.svg', 'apple-touch-icon-180x180.png'],
+      includeAssets: ['favicon.ico', 'favicon.svg', 'apple-touch-icon-180x180.png'],
       manifest: {
         name: 'Sama Jàmm · سلامي',
         short_name: 'Sama Jàmm',
@@ -63,8 +76,9 @@ export default defineConfig(({ mode }) => ({
         scope: base,
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#F1F2F7',
-        theme_color: '#2C3B8F',
+        // Nuit de la marque : l'écran de démarrage du téléphone enchaîne avec l'écran d'ouverture.
+        background_color: '#10143A',
+        theme_color: '#10143A',
         categories: ['lifestyle', 'productivity'],
         icons: [
           { src: 'pwa-64x64.png', sizes: '64x64', type: 'image/png' },

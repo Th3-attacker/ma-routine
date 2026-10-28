@@ -18,11 +18,9 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Switch } from '@/components/ui/switch'
 import { updateSettings, useSettings } from '@/db/settings'
 import { AboutSettings, BackupSettings } from '@/features/backup/BackupSettings'
-import { CallSettings } from '@/features/call/CallSettings'
 import { SecuritySettings } from '@/features/security/SecuritySettings'
 import { SettingsForm } from '@/features/settings/SettingsForm'
 import { NotificationSettings } from '@/push/NotificationSettings'
-import { AccountSettings } from '@/sync/AccountSettings'
 
 import { AppDrawer } from './AppDrawer'
 import { ChipGroup } from './ChipGroup'
@@ -34,13 +32,12 @@ const PAGES = [
   { id: 'display', icon: PaletteIcon },
   { id: 'prayer', icon: BellIcon },
   { id: 'daily', icon: BookOpenIcon },
-  { id: 'account', icon: ShieldCheckIcon },
+  { id: 'security', icon: ShieldCheckIcon },
   { id: 'backup', icon: ArchiveIcon },
 ] as const satisfies readonly { id: string; icon: LucideIcon }[]
 
 type PageId = (typeof PAGES)[number]['id']
 
-/** Réglages en rubriques : une liste courte, puis une page par rubrique avec un bouton Retour. */
 export function SettingsDrawer({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const { t } = useTranslation()
   const [page, setPage] = useState<PageId | null>(null)
@@ -58,6 +55,7 @@ export function SettingsDrawer({ open, onOpenChange }: { open: boolean; onOpenCh
   return (
     <AppDrawer
       open={open}
+      tall
       onOpenChange={(o) => {
         // À la fermeture, on revient à la liste des rubriques.
         if (!o) setPage(null)
@@ -114,13 +112,7 @@ function SettingsPage({ page, onDone }: { page: PageId; onDone: () => void }) {
   const settings = useSettings()
 
   if (page === 'display') return <DisplaySettings />
-  if (page === 'account')
-    return (
-      <>
-        <AccountSettings />
-        <SecuritySettings />
-      </>
-    )
+  if (page === 'security') return <SecuritySettings />
   if (!settings) {
     return (
       <div className="flex flex-col gap-3" aria-busy="true" aria-label={t('common.loading')}>
@@ -130,13 +122,7 @@ function SettingsPage({ page, onDone }: { page: PageId; onDone: () => void }) {
       </div>
     )
   }
-  if (page === 'prayer')
-    return (
-      <>
-        <NotificationSettings settings={settings} />
-        <CallSettings settings={settings} />
-      </>
-    )
+  if (page === 'prayer') return <NotificationSettings settings={settings} />
   if (page === 'backup')
     return (
       <>

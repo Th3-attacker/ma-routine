@@ -48,7 +48,6 @@ export function useProjects(): ProjectWithTasks[] | undefined {
 
 export type ProjectInput = Pick<Project, 'name' | 'intention' | 'deadline' | 'color'>
 
-/** Crée ou modifie un projet ; à la création, les premières étapes (une par ligne) sont ajoutées. */
 export async function saveProject(input: ProjectInput, id?: string, firstSteps = ''): Promise<Project> {
   const current = id ? await db.projects.get(id) : undefined
   const p = await saveRow(db.projects, {

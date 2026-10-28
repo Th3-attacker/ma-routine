@@ -15,7 +15,6 @@ export type Recap = {
   spent: number
 }
 
-/** Les six tuiles du bilan du soir. */
 export function eveningRecap(
   day: Pick<Day, 'prayers' | 'athkar' | 'quranPages' | 'habits'>,
   settings: Pick<Settings, 'quran' | 'habits'>,
@@ -52,7 +51,6 @@ export function recapMessage(r: Pick<Recap, 'unmarked' | 'missed'>): {
   return { key: 'allDone', count: 0 }
 }
 
-/** Le bilan monte en haut de l'écran entre Icha et Fajr. */
 export function isEvening(now: Date, times: { isha: Date; fajr: Date }): boolean {
   return now.getTime() >= times.isha.getTime() || now.getTime() < times.fajr.getTime()
 }

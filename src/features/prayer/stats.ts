@@ -1,6 +1,5 @@
 import { PRAYERS, type Day } from '@/db/types'
 
-/** Bilan d'un mois : prières marquées, à l'heure (ou en jamâ‘a), et en jamâ‘a. */
 export function monthPrayerStats(days: readonly Pick<Day, 'prayers'>[]): {
   marked: number
   onTimePct: number

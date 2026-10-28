@@ -8,7 +8,7 @@ export const PIN_LENGTH = 4
 export const PBKDF2_ITERATIONS = 210_000
 const SALT_BYTES = 16
 
-export const DEFAULT_SECURITY: Security = {
+const DEFAULT_SECURITY: Security = {
   id: 'device',
   salt: null,
   hash: null,
@@ -22,7 +22,6 @@ export const DEFAULT_SECURITY: Security = {
 
 export type PinProblem = 'format' | 'repeated' | 'sequence'
 
-/** Refuse les codes trop simples : 4 chiffres identiques, suites croissantes (1234) ou décroissantes (4321). */
 export function pinProblem(pin: string): PinProblem | null {
   if (!/^\d{4}$/.test(pin)) return 'format'
   const d = [...pin].map(Number)
@@ -76,6 +75,11 @@ export async function setPin(pin: string): Promise<void> {
   await saveSecurity({ salt: toBase64(salt), hash, iterations: PBKDF2_ITERATIONS, failedCount: 0, lockedUntil: 0 })
 }
 
+/** Retire le code (et l'empreinte ou le visage, qui le complètent) : l'app s'ouvre alors sans code. */
+export async function removePin(): Promise<void> {
+  await saveSecurity({ salt: null, hash: null, failedCount: 0, lockedUntil: 0, passkey: null })
+}
+
 /** Attente imposée après la n-ième erreur d'affilée : 5e → 30 s, 6e → 1 min, 7e → 5 min, ensuite 15 min. */
 export function lockoutMs(failedCount: number): number {
   if (failedCount < 5) return 0
@@ -90,7 +94,6 @@ export type VerifyResult =
   | { ok: false; reason: 'wrong'; lockedUntil: number }
   | { ok: false; reason: 'locked'; lockedUntil: number }
 
-/** Vérifie un code. Les erreurs et l'attente sont enregistrées : recharger la page ne les efface pas. */
 export async function verifyPin(pin: string, now = Date.now()): Promise<VerifyResult> {
   const s = await getSecurity()
   if (now < s.lockedUntil) return { ok: false, reason: 'locked', lockedUntil: s.lockedUntil }
@@ -118,12 +121,10 @@ export function setLockDelay(lockAfterMin: LockDelay) {
   return saveSecurity({ lockAfterMin })
 }
 
-/** L'app passe en arrière-plan : on note l'heure. */
 export function markHidden(now = Date.now()) {
   return saveSecurity({ lastHiddenAt: now })
 }
 
-/** Au retour au premier plan : faut-il redemander le code ? */
 export function shouldRelock(s: Pick<Security, 'lastHiddenAt' | 'lockAfterMin'>, now: number): boolean {
   if (s.lastHiddenAt === null) return false
   return now - s.lastHiddenAt >= s.lockAfterMin * 60_000

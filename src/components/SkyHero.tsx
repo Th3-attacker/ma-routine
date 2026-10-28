@@ -23,7 +23,6 @@ const SKY: Record<SkyPeriod, string> = {
 const eyebrow =
   'text-[0.6875rem] font-bold tracking-[0.09em] uppercase rtl:text-[0.78125rem] rtl:tracking-normal rtl:normal-case'
 
-/** Le ciel de l'accueil : prochaine prière, compte à rebours, arc solaire, horaires et temps restant. */
 export function SkyHero({
   now,
   dayKey,

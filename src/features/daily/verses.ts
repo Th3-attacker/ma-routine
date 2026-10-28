@@ -1,4 +1,4 @@
-// Versets et hadiths du jour, repris de maquette-elhadj.html. Textes à faire vérifier en phase 5.
+// Versets et hadiths du jour, repris de maquette-elhadj.html. Textes à faire vérifier (pnpm texts).
 
 export type DailyText = { ar: string; fr: string; refFr: string; refAr: string; hadith?: true }
 

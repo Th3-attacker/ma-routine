@@ -18,24 +18,26 @@ import {
 import { Button } from '@/components/ui/button'
 import { formatWait } from '@/lib/dates'
 
-import { useSession } from '@/sync/auth'
-
 import { unlockWithBiometric } from './biometric'
 import { LockLayout } from './LockLayout'
 import { getSecurity, verifyPin, wipeDevice } from './pin'
-import { ResetWithEmail } from './ResetWithEmail'
 
-/** Déverrouillage : salutation, 4 ronds, clavier ; paliers d'attente avec compte à rebours ; « Code oublié ? ». */
-export function UnlockScreen({ name, onUnlock }: { name: string; onUnlock: () => void }) {
+/**
+ * Déverrouillage : salutation wolof (« Jàmm nga am ? »), 4 ronds, clavier ; paliers d'attente avec compte à
+ * rebours ; « Code oublié ? ». Le bon code : « Jàmm rekk. » une demi-seconde, puis l'app s'ouvre.
+ */
+export function UnlockScreen({ name, onUnlock: open }: { name: string; onUnlock: () => void }) {
   const { t } = useTranslation()
+  const [peace, setPeace] = useState(false)
+  const onUnlock = () => {
+    setPeace(true)
+    setTimeout(open, 500)
+  }
   const { lang } = usePreferences()
   const [lockedUntil, setLockedUntil] = useState(0)
   const [now, setNow] = useState(() => Date.now())
   const [wrong, setWrong] = useState(false)
   const [forgot, setForgot] = useState<0 | 1 | 2>(0)
-  const [resetting, setResetting] = useState(false)
-  const { session } = useSession()
-  const accountEmail = session?.user.email ?? null
   const hasPasskey = useLiveQuery(async () => !!(await getSecurity()).passkey)
   const [bioFailed, setBioFailed] = useState(false)
 
@@ -55,28 +57,26 @@ export function UnlockScreen({ name, onUnlock }: { name: string; onUnlock: () =>
   return (
     <LockLayout>
       <h1 className="text-center font-display text-2xl font-semibold rtl:font-bold">
-        {name ? t('today.salamName', { name }) : t('today.salam')}
+        {peace ? t('lock.peace') : name ? t('lock.greetName', { name }) : t('lock.greet')}
       </h1>
-      {!resetting && (
-        <PinPad
-          title={t('lock.unlockHint')}
-          message={waiting ? t('lock.wait', { time: waitText }) : wrong ? t('lock.wrong') : undefined}
-          error={waiting || wrong}
-          disabled={waiting}
-          onComplete={async (pin) => {
-            const r = await verifyPin(pin)
-            if (r.ok) {
-              onUnlock()
-              return true
-            }
-            setWrong(true)
-            setLockedUntil(r.lockedUntil)
-            setNow(Date.now())
-            return false
-          }}
-        />
-      )}
-      {hasPasskey && !resetting && (
+      <PinPad
+        title={t('lock.unlockHint')}
+        message={waiting ? t('lock.wait', { time: waitText }) : wrong ? t('lock.wrong') : undefined}
+        error={waiting || wrong}
+        disabled={waiting}
+        onComplete={async (pin) => {
+          const r = await verifyPin(pin)
+          if (r.ok) {
+            onUnlock()
+            return true
+          }
+          setWrong(true)
+          setLockedUntil(r.lockedUntil)
+          setNow(Date.now())
+          return false
+        }}
+      />
+      {hasPasskey && (
         <Button
           variant="secondary"
           className="h-12 w-full max-w-xs rounded-[14px] bg-primary-soft font-bold text-primary"
@@ -94,17 +94,9 @@ export function UnlockScreen({ name, onUnlock }: { name: string; onUnlock: () =>
           {t('security.biometricRetry')}
         </p>
       )}
-      {resetting && accountEmail ? (
-        <ResetWithEmail email={accountEmail} onDone={onUnlock} onCancel={() => setResetting(false)} />
-      ) : (
-        <Button
-          variant="link"
-          className="h-11 font-bold"
-          onClick={() => (accountEmail ? setResetting(true) : setForgot(1))}
-        >
-          {t('lock.forgot')}
-        </Button>
-      )}
+      <Button variant="link" className="h-11 font-bold" onClick={() => setForgot(1)}>
+        {t('lock.forgot')}
+      </Button>
 
       <AlertDialog open={forgot > 0} onOpenChange={(o) => !o && setForgot(0)}>
         <AlertDialogContent>
@@ -112,7 +104,7 @@ export function UnlockScreen({ name, onUnlock }: { name: string; onUnlock: () =>
             <>
               <AlertDialogHeader>
                 <AlertDialogTitle>{t('lock.forgotTitle')}</AlertDialogTitle>
-                <AlertDialogDescription>{t('lock.forgotNoAccount')}</AlertDialogDescription>
+                <AlertDialogDescription>{t('lock.forgotBody')}</AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel className="h-11">{t('lock.cancel')}</AlertDialogCancel>

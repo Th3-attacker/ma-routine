@@ -8,7 +8,6 @@ import { formatShortDate } from '@/lib/dates'
 import { EmptyState } from './ItemCard'
 import { linkClass, Section } from './Section'
 
-/** Les 4 prochaines étapes des projets en cours (par échéance). */
 export function NextSteps({ today }: { today: string }) {
   const { t } = useTranslation()
   const { lang } = usePreferences()

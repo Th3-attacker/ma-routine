@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test'
 
-import { openApp, PIN, typePin, unlock } from './helpers.ts'
+import { enablePin, openApp, PIN, typePin, unlock } from './helpers.ts'
 
-test('inscription en arabe : langue, prénom arabe, codes refusés et différents', async ({ page }) => {
+test('inscription en arabe : langue, prénom arabe, pas de code', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('elhadj.lang', 'fr'))
   await page.goto('./')
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Bienvenue sur Sama Jàmm')
@@ -14,23 +14,37 @@ test('inscription en arabe : langue, prénom arabe, codes refusés et différent
   await page.getByLabel('الاسم', { exact: true }).fill('Elhadj')
   await page.getByLabel('الاسم بالعربية (اختياري)').fill('الحاج')
   await page.getByRole('button', { name: 'متابعة' }).click()
-
-  await typePin(page, '1111')
-  await expect(page.getByRole('alert')).toContainText('أربعة أرقام متطابقة')
-  await typePin(page, PIN)
-  await expect(page.getByRole('heading', { name: 'اكتبه مرة ثانية' })).toBeVisible()
-  await typePin(page, '1357')
-  await expect(page.getByRole('alert')).toHaveText('الرمزان غير متطابقين. أعد المحاولة.')
-  await typePin(page, PIN)
-  await typePin(page, PIN)
   await expect(page.getByText('مرحبًا، الحاج!')).toBeVisible()
   await expect(page.getByRole('heading', { level: 1, name: 'السلام عليكم، الحاج' })).toBeVisible({ timeout: 10_000 })
+  // Sans code, l'app s'ouvre directement au lancement suivant (le script de test remet le français).
+  await page.reload()
+  await expect(page.getByRole('heading', { level: 1, name: 'As-salâmu ‘alaykum, Elhadj' })).toBeVisible()
+  await expect(page.getByRole('group', { name: 'Clavier du code' })).toHaveCount(0)
+})
+
+test('code facultatif : codes refusés et différents, puis demandé au lancement suivant', async ({ page }) => {
+  await openApp(page, { 'elhadj.lang': 'fr' })
+  await page.getByRole('button', { name: 'Réglages' }).click()
+  await page.getByRole('button', { name: /^Sécurité/ }).click()
+  await page.getByRole('button', { name: 'Protéger l’app par un code' }).click()
+  await typePin(page, '1111')
+  await expect(page.getByRole('alert')).toContainText('Quatre chiffres identiques')
+  await typePin(page, PIN)
+  await typePin(page, '1357')
+  await expect(page.getByRole('alert')).toHaveText('Les deux codes ne correspondent pas. Recommence.')
+  await typePin(page, PIN)
+  await typePin(page, PIN)
+  await expect(page.getByText('Code enregistré')).toBeVisible()
+  await page.reload()
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Jàmm nga am, Elhadj ?')
+  await unlock(page)
 })
 
 test('déverrouillage après rechargement, clavier physique, attente après 5 erreurs', async ({ page }) => {
   await openApp(page, { 'elhadj.lang': 'fr' })
+  await enablePin(page)
   await page.reload()
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('As-salâmu ‘alaykum, Elhadj')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Jàmm nga am, Elhadj ?')
   await expect(page.getByRole('navigation')).toHaveCount(0)
 
   // Clavier physique
@@ -46,6 +60,7 @@ test('déverrouillage après rechargement, clavier physique, attente après 5 er
 
 test('verrouillage au retour après le délai', async ({ page }) => {
   await openApp(page, { 'elhadj.lang': 'fr' })
+  await enablePin(page)
   // On simule : l'app a été cachée il y a 6 minutes.
   await page.evaluate(async () => {
     const req = indexedDB.open('elhadj')
@@ -65,8 +80,9 @@ test('verrouillage au retour après le délai', async ({ page }) => {
   await unlock(page)
 })
 
-test('code oublié sans compte : tout effacer avec une confirmation en deux temps', async ({ page }) => {
+test('code oublié : tout effacer avec une confirmation en deux temps', async ({ page }) => {
   await openApp(page, { 'elhadj.lang': 'fr' })
+  await enablePin(page)
   await page.reload()
   await page.getByRole('button', { name: 'Code oublié ?' }).click()
   await expect(page.getByRole('alertdialog')).toContainText('La seule solution est d’effacer les données')
@@ -78,8 +94,9 @@ test('code oublié sans compte : tout effacer avec une confirmation en deux temp
 
 test('Réglages → Sécurité : changer le code', async ({ page }) => {
   await openApp(page, { 'elhadj.lang': 'fr' })
+  await enablePin(page)
   await page.getByRole('button', { name: 'Réglages' }).click()
-  await page.getByRole('button', { name: /^Compte et sécurité/ }).click()
+  await page.getByRole('button', { name: /^Sécurité/ }).click()
   await page.getByRole('button', { name: 'Changer mon code' }).click()
   await typePin(page, PIN)
   await typePin(page, '1357')
@@ -88,4 +105,19 @@ test('Réglages → Sécurité : changer le code', async ({ page }) => {
   await page.reload()
   await typePin(page, '1357')
   await expect(page.getByRole('navigation', { name: 'Sections' })).toBeVisible()
+})
+
+test('inscription : la position d’abord, la ville en secours', async ({ page, context }) => {
+  await context.grantPermissions(['geolocation'])
+  // Dakar
+  await context.setGeolocation({ latitude: 14.7167, longitude: -17.4677 })
+  await page.addInitScript(() => localStorage.setItem('elhadj.lang', 'fr'))
+  await page.goto('./')
+  await page.getByRole('button', { name: 'Continuer' }).click()
+  await page.getByLabel('Prénom', { exact: true }).fill('Awa')
+  const city = page.getByRole('combobox', { name: 'Ou choisis ta ville' })
+  await expect(city.locator('option')).not.toContainText(['Ma position'])
+  await page.getByRole('button', { name: 'Utiliser ma position' }).click()
+  await expect(city).toHaveValue('custom')
+  await expect(page.getByText('Horaires calculés pour ta position')).toBeVisible()
 })

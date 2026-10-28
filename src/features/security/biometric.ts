@@ -23,7 +23,6 @@ const b64url = {
 const ES256 = -7
 const RS256 = -257
 
-/** Le téléphone a-t-il un lecteur d'empreinte ou de visage utilisable ici ? */
 export async function biometricAvailable(): Promise<boolean> {
   try {
     return (
@@ -78,7 +77,6 @@ export async function disableBiometric(): Promise<void> {
   await saveSecurity({ passkey: null })
 }
 
-/** Signature ECDSA au format DER (WebAuthn) → format brut r‖s (WebCrypto). */
 export function derToRaw(der: Uint8Array): Uint8Array<ArrayBuffer> {
   let i = 2 // 0x30, longueur
   const read = () => {

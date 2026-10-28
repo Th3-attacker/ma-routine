@@ -44,3 +44,31 @@ test('les cartes athkar d’Aujourd’hui ouvrent la bonne série', async ({ pag
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
   expect(overflow).toBeLessThanOrEqual(0)
 })
+
+test('invocations : chercher une situation et ouvrir ses invocations', async ({ page }) => {
+  await openApp(page, { 'elhadj.lang': 'fr' })
+  await page.goto('./#/athkar?set=douas')
+  await expect(page.getByRole('heading', { name: 'Invocations du quotidien' })).toBeVisible()
+  await page.getByLabel('Chercher une situation ou un mot').fill('pluie')
+  const chapter = page.getByRole('button', { name: /^Pluie, vent et tonnerre/ })
+  await expect(chapter).toBeVisible()
+  await expect(page.getByRole('button', { name: /^Repas/ })).toHaveCount(0)
+  await chapter.click()
+  const drawer = page.getByRole('dialog')
+  await expect(drawer.getByText('Rapporté par Al-Bukhârî').first()).toBeVisible()
+  await drawer.getByRole('button', { name: 'Fermer' }).click()
+  await page.getByLabel('Chercher une situation ou un mot').fill('zzzz')
+  await expect(page.getByText('Aucune invocation ne correspond à « zzzz ».').first()).toBeVisible()
+})
+
+test('écoute : un dhikr écouté jusqu’au bout est compté', async ({ page, browserName }) => {
+  test.skip(browserName === 'webkit', 'pas de sortie audio dans WebKit sous Linux (CI)')
+  test.setTimeout(60_000)
+  await openApp(page, { 'elhadj.lang': 'fr' })
+  await page.goto('./#/athkar?set=nuit')
+  await expect(page.getByRole('button', { name: 'Tout écouter' })).toBeVisible()
+  // 4e dhikr du coucher : « Bismika Allâhumma amûtu wa ahyâ », une fois (environ 5 s).
+  await page.getByRole('button', { name: 'Écouter', exact: true }).nth(3).click()
+  await expect(page.getByRole('button', { name: 'Mettre en pause' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Répétition 1 sur 1' })).toHaveCount(1, { timeout: 20_000 })
+})

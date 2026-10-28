@@ -3,7 +3,6 @@ import type { ReactNode } from 'react'
 
 import { cn } from '@/lib/utils'
 
-/** Liste de remboursements ou de versements, la plus récente en haut, avec suppression. */
 export function MovementList({
   items,
   empty,

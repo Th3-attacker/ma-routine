@@ -1,6 +1,6 @@
 // Modèle de données local (Dexie). Toutes les lignes ont id, updatedAt (ms), deleted et dirty.
 // `deleted` et `dirty` valent 0 ou 1 (et non des booléens) : IndexedDB ne sait pas indexer les booléens,
-// et le moteur de synchro (phase 2) cherchera les lignes avec dirty = 1.
+// et le moteur de synchro cherche les lignes avec dirty = 1.
 
 export type Flag = 0 | 1
 
@@ -12,7 +12,6 @@ export type SyncMeta = {
 
 export const PRAYERS = ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'] as const
 export type Prayer = (typeof PRAYERS)[number]
-/** Les 5 prières et Chourouq (lever du soleil, à titre informatif). */
 export type PrayerOrSunrise = Prayer | 'sunrise'
 
 export type PrayerStatus = 'jamaa' | 'ontime' | 'late' | 'missed'
@@ -38,24 +37,12 @@ export type NotifSettings = {
   iftar: boolean
 }
 
-export type CallLang = 'app' | 'fr' | 'ar' | 'both'
-
-/** Appel personnel avant l'adhan (« Elhadj, la prière »). */
-export type CallSettings = {
-  enabled: boolean
-  /** De 1 à 15 minutes avant l'adhan. */
-  minutesBefore: number
-  prayers: Record<Prayer, boolean>
-  lang: CallLang
-  voice: boolean
-}
-
 export type Settings = SyncMeta & {
   id: 'me'
   /** Écran d'accueil du premier lancement terminé. */
   onboarded: boolean
   name: string
-  /** Prénom en arabe (facultatif), pour l'appel en arabe. */
+  /** Prénom en arabe (facultatif), affiché quand l'app est en arabe. */
   nameAr: string
   cityId: string
   /** Position personnalisée : remplace la ville quand elle est remplie. */
@@ -74,7 +61,6 @@ export type Settings = SyncMeta & {
   qada: number
   ramadanPreview: boolean
   notif: NotifSettings
-  call: CallSettings
 }
 
 export const SUNNA_KEYS = ['fajr2', 'rawatib', 'duha', 'witr', 'qiyam'] as const
@@ -128,7 +114,7 @@ export type Security = {
   passkey: { id: string; publicKey: string; alg: number } | null
 }
 
-// ── Budget et projets (phase 1B) ── montants entiers en ouguiyas
+// ── Budget et projets ── montants entiers en ouguiyas
 
 export type MoneyType = 'out' | 'in'
 

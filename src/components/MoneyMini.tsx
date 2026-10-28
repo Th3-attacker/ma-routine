@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { PlusIcon } from 'lucide-react'
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { usePreferences } from '@/app/PreferencesProvider'
@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import type { Settings } from '@/db/types'
 import { topAlert } from '@/features/budget/insights'
 import { budgetTotal, monthStats } from '@/features/budget/stats'
-import { TransactionDrawer, type TxTarget } from '@/features/budget/TransactionDrawer'
+import type { TxTarget } from '@/features/budget/TransactionDrawer'
 import { useMonthTransactions } from '@/features/budget/transactions'
 import { useInsightText, useMonthInsights } from '@/features/budget/useInsights'
 import { formatMoney } from '@/lib/money'
@@ -16,12 +16,20 @@ import { cn } from '@/lib/utils'
 
 import { cardClass, linkClass, Section } from './Section'
 
+// Le formulaire (et sa validation) n'est téléchargé qu'au premier ajout.
+const TransactionDrawer = lazy(() =>
+  import('@/features/budget/TransactionDrawer').then((m) => ({ default: m.TransactionDrawer })),
+)
+
 /** Dépenses du jour et reste du budget, avec « Ajouter une dépense ». */
 export function MoneyMini({ today, settings }: { today: string; settings: Settings }) {
   const { t } = useTranslation()
   const { lang } = usePreferences()
   const items = useMonthTransactions(today.slice(0, 7))
   const [tx, setTx] = useState<TxTarget | null>(null)
+  // Une fois ouvert, le volet reste monté pour garder son animation de fermeture.
+  const [txUsed, setTxUsed] = useState(false)
+  if (tx && !txUsed) setTxUsed(true)
   const money = (n: number) => formatMoney(n, settings.currency, lang)
   const stats = monthStats(items ?? [])
   const todayOut = (items ?? []).filter((x) => x.type === 'out' && x.date === today).reduce((a, x) => a + x.amount, 0)
@@ -68,7 +76,11 @@ export function MoneyMini({ today, settings }: { today: string; settings: Settin
           {t('money.add')}
         </Button>
       </div>
-      <TransactionDrawer target={tx} today={today} currency={settings.currency} onClose={() => setTx(null)} />
+      {txUsed && (
+        <Suspense fallback={null}>
+          <TransactionDrawer target={tx} today={today} currency={settings.currency} onClose={() => setTx(null)} />
+        </Suspense>
+      )}
     </Section>
   )
 }

@@ -1,6 +1,6 @@
 import { useForm } from '@tanstack/react-form'
 import { PlusIcon, Trash2Icon } from 'lucide-react'
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -41,7 +41,6 @@ import { QuickAmountForm } from './QuickAmountForm'
 type FormTarget = { direction: 'in' | 'out' } | { edit: Debt }
 const btn = 'h-11 flex-auto rounded-[14px] font-bold'
 
-/** Budget → Dettes : totaux, verset, cartes en cours et soldées, détail et formulaire. */
 export function DebtsView({ today, settings }: { today: string; settings: Settings }) {
   const { t, i18n } = useTranslation()
   const { lang } = usePreferences()
@@ -174,10 +173,14 @@ function DebtDetail({
   const st = isSettled(debt)
   const left = debtLeft(debt)
 
+  const titleId = useId()
+
   return (
     <>
-      <section className={`${cardClass} flex flex-col gap-2.5`}>
-        <h3 className={subClass}>{debt.direction === 'in' ? t('debts.leftToReceive') : t('debts.leftToPay')}</h3>
+      <section aria-labelledby={titleId} className={`${cardClass} flex flex-col gap-2.5`}>
+        <h3 id={titleId} className={subClass}>
+          {debt.direction === 'in' ? t('debts.leftToReceive') : t('debts.leftToPay')}
+        </h3>
         <p className="tabular font-display text-[2.125rem] leading-tight font-semibold">{money(left)}</p>
         <Bar value={debt.amount ? debtPaid(debt) / debt.amount : 0} fill="bg-ok" />
         <p className={subClass}>
