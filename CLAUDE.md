@@ -44,8 +44,8 @@ React 19 + TypeScript strict + Vite 8 · pnpm · TanStack Router (code-based, `c
 (`networkMode: 'offlineFirst'`) · TanStack Form + zod · shadcn/ui (style radix-nova, `rtl: true`) + Tailwind v4 ·
 i18next/react-i18next · lucide-react + icônes SVG de la maquette (`src/components/icons.tsx`) · @fontsource
 (Reem Kufi titres, Manrope texte latin, IBM Plex Sans Arabic texte arabe, Amiri Coran/athkar) · vite-plugin-pwa +
-@vite-pwa/assets-generator · Dexie + dexie-react-hooks (phase 1A) · adhan (phase 1A) · Supabase (phase 2) ·
-Web Push VAPID (phase 3) · Vitest + Testing Library · Playwright (360 et 390 px) · ESLint + Prettier.
+@vite-pwa/assets-generator · Dexie + dexie-react-hooks · adhan · Supabase (seulement les notifications, appel HTTP direct, pas de
+bibliothèque) · Web Push VAPID · Vitest + Testing Library · Playwright (360 et 390 px) · ESLint + Prettier.
 
 ## Commandes
 
@@ -69,7 +69,7 @@ src/app/        router.tsx, AppLayout, Providers (QueryClient + préférences), 
 src/routes/     aujourdhui, priere, athkar, budget, projets (Réglages = Drawer en 6 rubriques avec Retour, components/SettingsDrawer ; calcul des horaires non réglable : Ligue islamique mondiale, Asr standard)
 src/i18n/       fr.json, ar.json, index.ts, i18next.d.ts
 src/features/   prayer, athkar, tasbih, daily, ramadan, budget, debts, savings, recurring, projects, quran, habits, calendar
-src/db/         schéma Dexie        src/sync/  Supabase + moteur de synchro        src/push/  notifications
+src/db/         schéma Dexie        src/push/  notifications (server.ts : seul échange avec le serveur)
 src/components/ ui/ (shadcn, ne pas reformater) + composants ELHADJ (AppHeader, TabBar, ChipGroup…)
 src/lib/        dates (fuseau de la ville), montants, durées, storage
 supabase/       migrations/, functions/send-prayer-push/
@@ -114,11 +114,20 @@ focus visible · `prefers-reduced-motion`.
 
 0 Mise en place ✅ · 1A Cœur hors connexion (Dexie, Réglages, Aujourd'hui, Prière, Athkar, tasbih) ✅ ·
 1A+ Verrou à 4 chiffres et appel avant l'adhan (Ajout n° 1) ✅ ·
-1B Budget, projets, bilan du soir, Ramadan, export/import (dont JSON de la maquette) ✅ · 2 Compte + synchro Supabase
+1B Budget, projets, bilan du soir, Ramadan, export/import (dont JSON de la maquette) ✅ · 2 Compte + synchro Supabase (retirés le 28/10/2026)
 (code à 6 chiffres par e-mail) ✅ · 3 Notifications d'adhan ✅ · 4 Conseils sans IA ✅ · 5 Finitions (a11y axe dans la CI,
 Lighthouse mobile ~92 grâce à l'écran pré-dessiné `src/app/shell.ts`, README FR/AR, `pnpm texts`, empreinte/visage
-WebAuthn) ✅. En ligne depuis le 28/10/2026. Reste : SMTP Gmail (erreur « Error sending confirmation
-email » = réglage SMTP de Supabase), puis plus tard Vercel pour un lien à partager (après les tests).
+WebAuthn) ✅. En ligne depuis le 28/10/2026. Plus tard : Vercel pour un lien à partager (après les tests).
+
+## Sans compte (28/10/2026, #95–#97)
+
+- **Plus de compte ni de synchro** : tout reste sur le téléphone ; changer de téléphone = Réglages → Sauvegarde.
+  Les champs `updatedAt` / `dirty` / `deleted` des tables Dexie restent (anciennes données, sauvegardes).
+- **Lieu** : la position d'abord (`PlaceFields`), la liste des villes en secours.
+- **Notifications d'adhan sans compte** : l'abonnement porte position arrondie (2 décimales), fuseau, langue, choix
+  et décalage hégirien ; écrit par les fonctions SQL `save_push_subscription` / `delete_push_subscription`
+  (migration `20261028120000_push_sans_compte`), tenu à jour par `usePushBridge`. La fonction Edge ne lit que
+  `push_subscriptions` ; journal `push_log` par `sub_id`.
 
 ## Invocations et audio (après la phase 5)
 
@@ -135,14 +144,14 @@ hégirien 12 Joumada al-oula 1448 ; le 24/10/2026 est le premier des jours blanc
 
 ## Ajout n° 1 : verrou à 4 chiffres (phase 1A+)
 
-- **Verrou de l'app sur l'appareil**, distinct du compte Supabase (qui garde le code e-mail, phase 2).
+- **Verrou de l'app sur l'appareil**.
   Redemandé au démarrage et au retour après le délai (0 / 1 / 5 par défaut / 15 min, `visibilitychange`).
 - Inscription en 3 étapes : Bienvenue (langue) → Prénom + prénom arabe (facultatif) + ville → Code ×2.
   Codes refusés : 4 chiffres identiques, suites croissantes / décroissantes.
 - Clavier 3 × 4 dessiné, `dir="ltr"`, touches ≥ 56 px, validation au 4e chiffre, tremblement + vibration.
   Tant que le code n'est pas bon, **aucune donnée n'est chargée** dans l'interface.
 - Paliers : 5e erreur → 30 s, 6e → 1 min, 7e → 5 min, ensuite 15 min ; enregistrés (survivent au rechargement).
-- Code oublié : sans compte → effacer l'appareil (confirmation en 2 temps) ; avec compte → code e-mail (phase 2).
+- Code oublié : effacer l'appareil (confirmation en 2 temps), puis réimporter une sauvegarde si on en a une.
 - Table Dexie **`security`** (jamais synchronisée) : hachage PBKDF2-SHA-256, sel 16 octets, 210 000 itérations.
   Ne jamais promettre un chiffrement ; ne pas chiffrer la base avec ce code. WebAuthn : à proposer en phase 5.
 - **Appel avant l'adhan retiré** (28/10/2026, #94) : plus de voix, carillon ni bandeau ; seule la notification

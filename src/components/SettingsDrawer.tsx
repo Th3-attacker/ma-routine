@@ -21,7 +21,6 @@ import { AboutSettings, BackupSettings } from '@/features/backup/BackupSettings'
 import { SecuritySettings } from '@/features/security/SecuritySettings'
 import { SettingsForm } from '@/features/settings/SettingsForm'
 import { NotificationSettings } from '@/push/NotificationSettings'
-import { AccountSettings } from '@/sync/AccountSettings'
 
 import { AppDrawer } from './AppDrawer'
 import { ChipGroup } from './ChipGroup'
@@ -33,7 +32,7 @@ const PAGES = [
   { id: 'display', icon: PaletteIcon },
   { id: 'prayer', icon: BellIcon },
   { id: 'daily', icon: BookOpenIcon },
-  { id: 'account', icon: ShieldCheckIcon },
+  { id: 'security', icon: ShieldCheckIcon },
   { id: 'backup', icon: ArchiveIcon },
 ] as const satisfies readonly { id: string; icon: LucideIcon }[]
 
@@ -112,13 +111,7 @@ function SettingsPage({ page, onDone }: { page: PageId; onDone: () => void }) {
   const settings = useSettings()
 
   if (page === 'display') return <DisplaySettings />
-  if (page === 'account')
-    return (
-      <>
-        <AccountSettings />
-        <SecuritySettings />
-      </>
-    )
+  if (page === 'security') return <SecuritySettings />
   if (!settings) {
     return (
       <div className="flex flex-col gap-3" aria-busy="true" aria-label={t('common.loading')}>
