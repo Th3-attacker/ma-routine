@@ -825,6 +825,8 @@
   "adhan": {
     "listen": "Écouter l’adhan",
     "stop": "Arrêter l’adhan",
-    "hint": "Un exemple d’adhan à écouter. Les notifications, elles, utilisent le son du téléphone."
+    "hint": "Quand l’app est ouverte, l’adhan se joue à l’heure. App fermée, la notification garde le son du téléphone : un site web ne peut pas jouer l’adhan à ce moment-là.",
+    "now": "C’est l’heure de {{name}}.",
+    "auto": "Adhan à l’heure de la prière"
   }
 }
