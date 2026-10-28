@@ -24,7 +24,7 @@ export function AppLayout() {
   const [settingsUsed, setSettingsUsed] = useState(false)
   const settings = useSettings()
   useRecurringAutoAdd(settings)
-  usePushBridge()
+  usePushBridge(settings)
 
   const openSettings = useCallback(() => {
     setSettingsUsed(true)

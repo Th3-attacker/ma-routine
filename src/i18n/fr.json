@@ -755,7 +755,6 @@
     "title": "Notifications",
     "enable": "Recevoir les notifications d’adhan",
     "enableHint": "Même quand l’app est fermée. La permission est demandée quand tu actives.",
-    "needAccount": "Connecte-toi d’abord à ton compte (section Compte) : le serveur a besoin de ta ville pour calculer l’heure des prières.",
     "denied": "Les notifications sont bloquées pour Sama Jàmm. Autorise-les dans les réglages du téléphone ou du navigateur, puis réessaie.",
     "unsupported": "Ce navigateur ne permet pas les notifications. Essaie avec Chrome, ou Safari sur iPhone avec l’app sur l’écran d’accueil.",
     "disabled": "Les notifications ne sont pas encore configurées sur cette version.",
@@ -775,7 +774,8 @@
     "ios1": "Ouvre Sama Jàmm dans Safari.",
     "ios2": "Touche le bouton Partager (le carré avec une flèche vers le haut).",
     "ios3": "Choisis « Sur l’écran d’accueil », puis « Ajouter ».",
-    "ios4": "Ouvre Sama Jàmm depuis sa nouvelle icône, et reviens ici. Il faut iOS 16.4 ou plus récent."
+    "ios4": "Ouvre Sama Jàmm depuis sa nouvelle icône, et reviens ici. Il faut iOS 16.4 ou plus récent.",
+    "privacy": "Pour t’envoyer l’adhan, le serveur reçoit seulement ta position arrondie (environ 1 km), ton fuseau horaire et ces choix. Ni nom, ni autre donnée."
   },
   "insights": {
     "title": "Conseils du mois",

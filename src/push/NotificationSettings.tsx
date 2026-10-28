@@ -12,7 +12,6 @@ import { Switch } from '@/components/ui/switch'
 import { updateSettings } from '@/db/settings'
 import { PRAYERS, type NotifSettings, type Settings } from '@/db/types'
 import { usePrayerName } from '@/features/prayer/usePrayerName'
-import { useSession } from '@/sync/auth'
 import { cn } from '@/lib/utils'
 
 import { currentSubscription, disablePush, enablePush, pushSupport } from './subscribe'
@@ -20,11 +19,10 @@ import { currentSubscription, disablePush, enablePush, pushSupport } from './sub
 const BEFORE = ['0', '5', '10', '15'] as const
 const REMINDERS = ['fridayKahf', 'athkarMatin', 'athkarSoir', 'suhur', 'iftar'] as const
 
-/** Réglages → Notifications (enregistré tout de suite, synchronisé avec le compte pour le serveur). */
+/** Réglages → Notifications (enregistré tout de suite ; usePushBridge transmet les choix au serveur). */
 export function NotificationSettings({ settings }: { settings: Settings }) {
   const { t } = useTranslation()
   const { lang } = usePreferences()
-  const { session } = useSession()
   const prayerName = usePrayerName()
   const switchId = useId()
   const support = pushSupport()
@@ -41,7 +39,7 @@ export function NotificationSettings({ settings }: { settings: Settings }) {
     setBusy(true)
     try {
       if (on) {
-        const ok = await enablePush(lang)
+        const ok = await enablePush(lang, settings)
         if (!ok) {
           toast(Notification.permission === 'denied' ? t('notif.denied') : t('notif.error'))
           return
@@ -71,14 +69,13 @@ export function NotificationSettings({ settings }: { settings: Settings }) {
         <IosInstallGuide />
       ) : support === 'unsupported' ? (
         <p className={subClass}>{t('notif.unsupported')}</p>
-      ) : !session ? (
-        <p className="rounded-lg bg-warn-soft p-3 text-[0.8125rem] text-ink-2">{t('notif.needAccount')}</p>
       ) : (
         <>
           <div className="flex items-center gap-3 rounded-[14px] border border-line bg-surface px-3.5 py-3">
             <label htmlFor={switchId} className="min-w-0 flex-1">
               <span className="block font-bold">{t('notif.enable')}</span>
               <span className="block text-[0.8125rem] text-muted-foreground">{t('notif.enableHint')}</span>
+              <span className="mt-1 block text-[0.8125rem] text-muted-foreground">{t('notif.privacy')}</span>
             </label>
             <Switch
               id={switchId}
