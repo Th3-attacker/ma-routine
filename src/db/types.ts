@@ -37,24 +37,12 @@ export type NotifSettings = {
   iftar: boolean
 }
 
-export type CallLang = 'app' | 'fr' | 'ar' | 'both'
-
-/** Appel personnel avant l'adhan (« Elhadj, la prière »). */
-export type CallSettings = {
-  enabled: boolean
-  /** De 1 à 15 minutes avant l'adhan. */
-  minutesBefore: number
-  prayers: Record<Prayer, boolean>
-  lang: CallLang
-  voice: boolean
-}
-
 export type Settings = SyncMeta & {
   id: 'me'
   /** Écran d'accueil du premier lancement terminé. */
   onboarded: boolean
   name: string
-  /** Prénom en arabe (facultatif), pour l'appel en arabe. */
+  /** Prénom en arabe (facultatif), affiché quand l'app est en arabe. */
   nameAr: string
   cityId: string
   /** Position personnalisée : remplace la ville quand elle est remplie. */
@@ -73,7 +61,6 @@ export type Settings = SyncMeta & {
   qada: number
   ramadanPreview: boolean
   notif: NotifSettings
-  call: CallSettings
 }
 
 export const SUNNA_KEYS = ['fajr2', 'rawatib', 'duha', 'witr', 'qiyam'] as const

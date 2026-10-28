@@ -18,7 +18,6 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Switch } from '@/components/ui/switch'
 import { updateSettings, useSettings } from '@/db/settings'
 import { AboutSettings, BackupSettings } from '@/features/backup/BackupSettings'
-import { CallSettings } from '@/features/call/CallSettings'
 import { SecuritySettings } from '@/features/security/SecuritySettings'
 import { SettingsForm } from '@/features/settings/SettingsForm'
 import { NotificationSettings } from '@/push/NotificationSettings'
@@ -129,13 +128,7 @@ function SettingsPage({ page, onDone }: { page: PageId; onDone: () => void }) {
       </div>
     )
   }
-  if (page === 'prayer')
-    return (
-      <>
-        <NotificationSettings settings={settings} />
-        <CallSettings settings={settings} />
-      </>
-    )
+  if (page === 'prayer') return <NotificationSettings settings={settings} />
   if (page === 'backup')
     return (
       <>
