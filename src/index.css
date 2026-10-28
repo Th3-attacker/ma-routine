@@ -1,0 +1,272 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Tokens ELHADJ, repris de maquette-elhadj.html.
+ * Les noms de la maquette sont gardés (--bg, --surface, --ink, --gold…), sauf --muted
+ * (couleur de texte dans la maquette) devenu --ink-3, car shadcn utilise --muted pour un fond.
+ * Les variables shadcn pointent ensuite vers ces tokens.
+ */
+:root {
+  --bg: #f1f2f7;
+  --surface: #ffffff;
+  --surface-2: #e8eaf3;
+  --line: #dcdfea;
+  --ink: #151935;
+  --ink-2: #464b6b;
+  --ink-3: #626784; /* maquette #767b99, foncé pour un contraste ≥ 4,5:1 (WCAG AA) */
+  --primary: #2c3b8f;
+  --primary-soft: #e3e7f8;
+  --on-primary: #ffffff;
+  --gold: #b97a1c;
+  /* Texte doré sur fond clair : plus foncé que --gold pour un contraste ≥ 4,5:1 */
+  --gold-ink: #8f5e16;
+  --gold-soft: #faebd2;
+  --ok: #1c7552;
+  --ok-soft: #dcf0e6;
+  --warn: #945b0f;
+  --warn-soft: #f9ead2;
+  --bad: #b23b3b;
+  --bad-soft: #f6dfdf;
+  --c1: #d9822b;
+  --c2: #2f6fd1;
+  --c3: #7b5bc9;
+  --c4: #c2457a;
+  --c5: #1f9a8a;
+  --c6: #d2493f;
+  --c7: #2e8b57;
+  --c8: #a0752e;
+  --c9: #2e95bc;
+  --c10: #7c819e;
+  --scrim: rgba(12, 14, 34, 0.48);
+  --shadow: 0 1px 2px rgba(21, 25, 53, 0.05), 0 6px 18px rgba(21, 25, 53, 0.06);
+
+  /* Ciel et carte Ramadan : identiques dans les deux thèmes */
+  --sky-ink: #ffffff;
+  --sky-deep: #151935;
+  --sky-accent: #ffd27f;
+  --sky-line: rgba(255, 255, 255, 0.55);
+  --sky-faint: rgba(255, 255, 255, 0.14);
+  --sky-night: linear-gradient(165deg, #10143a 0%, #22306e 100%);
+  --sky-dawn: linear-gradient(165deg, #222b68 0%, #6e4f8e 55%, #c9824a 100%);
+  --sky-day: linear-gradient(165deg, #24509f 0%, #4f86d3 100%);
+  --sky-dusk: linear-gradient(165deg, #241f5c 0%, #7a3a68 58%, #c86a3c 100%);
+
+  /* Variables shadcn */
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--bg);
+  --popover-foreground: var(--ink);
+  --primary-foreground: var(--on-primary);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface-2);
+  --muted-foreground: var(--ink-3);
+  --accent: var(--primary-soft);
+  --accent-foreground: var(--primary);
+  --destructive: var(--bad);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--primary);
+  --radius: 0.875rem;
+
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0d1022;
+  --surface: #161a31;
+  --surface-2: #20253f;
+  --line: #2a3050;
+  --ink: #eceef8;
+  --ink-2: #b7bbd4;
+  --ink-3: #8a8fae;
+  --primary: #94a4f5;
+  --primary-soft: #232a55;
+  --on-primary: #0d1022;
+  --gold: #efb25a;
+  --gold-ink: #efb25a;
+  --gold-soft: #382b16;
+  --ok: #5fcb98;
+  --ok-soft: #14352a;
+  --warn: #efb25a;
+  --warn-soft: #382b16;
+  --bad: #ef8080;
+  --bad-soft: #3b1d24;
+  --c1: #f0a257;
+  --c2: #6e9bf0;
+  --c3: #a88bf0;
+  --c4: #ee7baa;
+  --c5: #4fc9b6;
+  --c6: #f07e73;
+  --c7: #5cc48a;
+  --c8: #d1a660;
+  --c9: #6dc5e6;
+  --c10: #a3a8c4;
+  --scrim: rgba(0, 0, 0, 0.6);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.25);
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: 'Manrope', 'IBM Plex Sans Arabic', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Reem Kufi', 'Manrope', system-ui, sans-serif;
+  --font-quran: 'Amiri', 'Noto Naskh Arabic', 'Geeza Pro', 'Traditional Arabic', serif;
+  --font-heading: var(--font-display);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-gold: var(--gold);
+  --color-gold-ink: var(--gold-ink);
+  --color-gold-soft: var(--gold-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-c1: var(--c1);
+  --color-c2: var(--c2);
+  --color-c3: var(--c3);
+  --color-c4: var(--c4);
+  --color-c5: var(--c5);
+  --color-c6: var(--c6);
+  --color-c7: var(--c7);
+  --color-c8: var(--c8);
+  --color-c9: var(--c9);
+  --color-c10: var(--c10);
+  --color-sky-ink: var(--sky-ink);
+  --color-sky-accent: var(--sky-accent);
+
+  --shadow-card: var(--shadow);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.43);
+  --radius-2xl: calc(var(--radius) * 1.72);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply bg-background font-sans;
+    -webkit-text-size-adjust: 100%;
+    /* Quand la page défile vers un élément (focus, liens, Safari), il reste visible :
+       au-dessus de la barre d'onglets et des messages courts, sous l'en-tête. */
+    scroll-padding-top: 72px;
+    scroll-padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px));
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+  [dir='rtl'] body {
+    line-height: 1.65;
+  }
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+@layer utilities {
+  /* Textes coraniques et athkar */
+  .font-quran {
+    font-family: var(--font-quran);
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  /* En arabe, le « 0 » de Reem Kufi ressemble au chiffre arabe ٥ : les nombres prennent la police du texte. */
+  .tabular:where([dir='rtl'] *) {
+    font-family: var(--font-sans);
+  }
+  /* Inverse un dessin (arc solaire, flèches) en arabe */
+  .rtl-flip:where([dir='rtl'] *) {
+    transform: scaleX(-1);
+  }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Le clavier du code tremble quand le code est faux (désactivé avec prefers-reduced-motion) */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-8px);
+  }
+  40%,
+  80% {
+    transform: translateX(8px);
+  }
+}
+@utility animate-shake {
+  animation: shake 0.4s ease;
+}
+
+/* Les messages courts (toasts) informent sans bloquer : un toucher passe à travers jusqu'au contenu dessous.
+   Seuls leurs boutons d'action restent touchables. */
+[data-sonner-toaster],
+[data-sonner-toast] {
+  pointer-events: none !important;
+}
+[data-sonner-toast] button {
+  pointer-events: auto !important;
+}

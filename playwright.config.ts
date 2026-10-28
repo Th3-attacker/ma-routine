@@ -1,0 +1,24 @@
+import { defineConfig, devices } from '@playwright/test'
+
+// Tests de bout en bout sur le build de production, aux largeurs de téléphone 360 et 390 px.
+export default defineConfig({
+  testDir: './e2e',
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  reporter: process.env.CI ? 'github' : 'list',
+  use: { baseURL: 'http://localhost:4173/ma-routine/', trace: 'retain-on-failure', screenshot: 'only-on-failure' },
+  projects: [
+    { name: '360px', use: { ...devices['Pixel 5'], viewport: { width: 360, height: 740 } } },
+    { name: '390px', use: { ...devices['iPhone 13'], browserName: 'chromium', viewport: { width: 390, height: 844 } } },
+    // Le vrai moteur des iPhone (Safari = WebKit), profil iPhone 13 complet. Lancé dans la CI (WebKit a besoin de
+    // bibliothèques système installées par « playwright install --with-deps »).
+    ...(process.env.CI || process.env.WEBKIT
+      ? [{ name: 'iphone13', timeout: 60_000, use: { ...devices['iPhone 13'] } }]
+      : []),
+  ],
+  webServer: {
+    command: 'pnpm preview --port 4173 --strictPort',
+    url: 'http://localhost:4173/ma-routine/',
+    reuseExistingServer: !process.env.CI,
+  },
+})
