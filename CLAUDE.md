@@ -138,6 +138,14 @@ WebAuthn) ✅. En ligne depuis le 28/10/2026. Plus tard : Vercel pour un lien à
 - Récurrentes : `months` (N mois, null = toujours) et `count` ; `isFinished` les arrête.
 - Portefeuilles : Espèces, Bankily, Masrvi, Sedad, BimBank (`card`/`other` lisibles dans les anciens mouvements).
 
+## Adhan (#119, #125)
+
+- Exemple libre de droits (`src/assets/adhan/adhan-exemple.mp3`, CC0, source dans « À propos »), lecteur unique
+  `adhanPlayer` (`features/prayer/adhan.ts`). `AdhanAlarm` joue l'adhan à l'heure de chaque prière **quand l'app est
+  à l'écran** (préférence de l'appareil `elhadj.adhanSound`, une fois par prière et par jour). Un site web ne peut
+  pas mettre ce son dans une notification : app fermée, la notification garde le son du téléphone (vraie app mobile
+  nécessaire pour ça).
+
 ## Invocations et audio (après la phase 5)
 
 - Onglet **Invocations** (`?set=douas`) : Hisn al-Muslim, situations du quotidien (`src/features/athkar/hisn.ts`,

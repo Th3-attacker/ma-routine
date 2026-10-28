@@ -1,48 +1,50 @@
 import { PauseIcon, PlayIcon } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 
-import adhanUrl from '@/assets/adhan/adhan-exemple.mp3'
 import { Button } from '@/components/ui/button'
+import { Switch } from '@/components/ui/switch'
+import { writeLocal } from '@/lib/storage'
+
+import { ADHAN_SOUND_KEY, adhanPlayer, adhanSoundOn, useAdhanPlaying } from './adhan'
 
 /**
- * Écouter un exemple d'adhan (enregistrement libre de droits, voir « À propos »). Servi par l'app et gardé sur le
- * téléphone après la première écoute (src/sw.ts). Une notification web ne peut pas jouer ce son : elle garde celui
- * du téléphone.
+ * Réglages → Prière : écouter l'adhan (enregistrement libre de droits, voir « À propos »), et le faire jouer à
+ * l'heure de la prière quand l'app est ouverte (préférence de l'appareil).
  */
 export function AdhanSample() {
   const { t } = useTranslation()
-  const audio = useRef<HTMLAudioElement | null>(null)
-  const [playing, setPlaying] = useState(false)
-  useEffect(() => () => audio.current?.pause(), [])
-
-  function toggle() {
-    audio.current ??= Object.assign(new Audio(adhanUrl), { onended: () => setPlaying(false) })
-    if (playing) {
-      audio.current.pause()
-      setPlaying(false)
-      return
-    }
-    audio.current.currentTime = 0
-    audio.current
-      .play()
-      .then(() => setPlaying(true))
-      .catch(() => toast(t('audio.error')))
-  }
+  const playing = useAdhanPlaying()
+  const [auto, setAuto] = useState(adhanSoundOn)
+  const switchId = useId()
 
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-3">
       <Button
         variant="secondary"
         aria-pressed={playing}
         className="h-11 rounded-[14px] bg-primary-soft font-bold text-primary"
-        onClick={toggle}
+        onClick={() => (playing ? adhanPlayer.stop() : void adhanPlayer.play().catch(() => toast(t('audio.error'))))}
       >
         {playing ? <PauseIcon aria-hidden="true" /> : <PlayIcon aria-hidden="true" />}
         {t(playing ? 'adhan.stop' : 'adhan.listen')}
       </Button>
-      <p className="text-[0.8125rem] text-muted-foreground">{t('adhan.hint')}</p>
+      <div className="flex items-center gap-3 rounded-[14px] border border-line bg-surface px-3.5 py-3">
+        <label htmlFor={switchId} className="min-w-0 flex-1">
+          <span className="block font-bold">{t('adhan.auto')}</span>
+          <span className="block text-[0.8125rem] text-muted-foreground">{t('adhan.hint')}</span>
+        </label>
+        <Switch
+          id={switchId}
+          checked={auto}
+          onCheckedChange={(v) => {
+            setAuto(v)
+            writeLocal(ADHAN_SOUND_KEY, v ? '1' : '0')
+          }}
+          className="data-checked:bg-ok"
+        />
+      </div>
     </div>
   )
 }

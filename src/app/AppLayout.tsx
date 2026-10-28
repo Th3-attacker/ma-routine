@@ -8,6 +8,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Toaster } from '@/components/ui/sonner'
 import { useSettings } from '@/db/settings'
 import { useRecurringAutoAdd } from '@/features/budget/useRecurringAutoAdd'
+import { AdhanAlarm } from '@/features/prayer/AdhanAlarm'
 import { whenIdle } from '@/lib/idle'
 import { usePushBridge } from '@/push/usePushBridge'
 
@@ -38,6 +39,7 @@ export function AppLayout() {
           {settings ? <Outlet /> : <Skeleton className="h-40 w-full rounded-xl" />}
         </main>
       </div>
+      {settings && <AdhanAlarm settings={settings} />}
       <TabBar />
       {settingsUsed && (
         <Suspense fallback={null}>

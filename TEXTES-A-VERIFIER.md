@@ -2628,4 +2628,6 @@ nombre…) : ne pas les traduire.
 |---|---|---|
 | `adhan.listen` | Écouter l’adhan | استمع إلى الأذان |
 | `adhan.stop` | Arrêter l’adhan | أوقف الأذان |
-| `adhan.hint` | Un exemple d’adhan à écouter. Les notifications, elles, utilisent le son du téléphone. | مثال للأذان للاستماع. أما الإشعارات فتستعمل صوت الهاتف. |
+| `adhan.hint` | Quand l’app est ouverte, l’adhan se joue à l’heure. App fermée, la notification garde le son du téléphone : un site web ne peut pas jouer l’adhan à ce moment-là. | عندما يكون التطبيق مفتوحًا، يُرفع الأذان في وقته. وعندما يكون مغلقًا، يبقى للإشعار صوت الهاتف: لا يستطيع موقع ويب تشغيل الأذان حينها. |
+| `adhan.now` | C’est l’heure de {{name}}. | حان وقت {{name}}. |
+| `adhan.auto` | Adhan à l’heure de la prière | الأذان في وقت الصلاة |

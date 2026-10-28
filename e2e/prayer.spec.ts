@@ -44,3 +44,12 @@ test('exemple d’adhan : écouter puis arrêter', async ({ page, browserName })
   await page.getByRole('button', { name: 'Arrêter l’adhan' }).click()
   await expect(page.getByRole('button', { name: 'Écouter l’adhan' })).toBeVisible()
 })
+
+test('adhan joué à l’heure de la prière quand l’app est ouverte', async ({ page, browserName }) => {
+  test.skip(browserName === 'webkit', 'pas de sortie audio dans WebKit sous Linux (CI)')
+  // Nouakchott, 23/10/2026 : Asr vers 16:08 (UTC+0)
+  await page.clock.install({ time: new Date('2026-10-23T16:04:00Z') })
+  await openApp(page, { 'elhadj.lang': 'fr' })
+  await page.clock.fastForward('06:00')
+  await expect(page.getByText('C’est l’heure de Asr.')).toBeVisible()
+})
