@@ -7,14 +7,17 @@ import { Input } from '@/components/ui/input'
 import { translateError } from '@/lib/errors'
 import { parseAmount } from '@/lib/money'
 
-/** Petit formulaire « montant + Ajouter » (remboursement, versement). */
+/** Petit formulaire « montant + Ajouter » (remboursement, versement, enveloppe). */
 export function QuickAmountForm({
   label,
   placeholder,
+  submitLabel,
   onAdd,
 }: {
   label: string
   placeholder?: string
+  /** Texte du bouton (« Ajouter » par défaut). */
+  submitLabel?: string
   onAdd: (amount: number) => Promise<unknown>
 }) {
   const { t } = useTranslation()
@@ -54,7 +57,7 @@ export function QuickAmountForm({
         />
       </div>
       <Button type="submit" className="h-11 rounded-[14px] font-bold">
-        {t('budget.form.add')}
+        {submitLabel ?? t('budget.form.add')}
       </Button>
       {error && (
         <p id={`${id}-err`} className="col-span-2 text-[0.8125rem] font-semibold text-bad">

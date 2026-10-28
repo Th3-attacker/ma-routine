@@ -128,6 +128,16 @@ WebAuthn) ✅. En ligne depuis le 28/10/2026. Plus tard : Vercel pour un lien à
   (migration `20261028120000_push_sans_compte`), tenu à jour par `usePushBridge`. La fonction Edge ne lit que
   `push_subscriptions` ; journal `push_log` par `sub_id`.
 
+## Budget base zéro (28/10/2026, #117, comme Finzee)
+
+- Enveloppes = catégories de dépense, une ligne Dexie `allocations` par mois (`'YYYY-MM'` → montants, v4).
+  « À répartir » = revenus notés − montants mis ; disponible = mis − dépensé ; les deux sont reportés d'un mois sur
+  l'autre à partir du premier mois réparti (`envelopeMonth`, `features/budget/envelopes.ts`). Déplacer entre
+  enveloppes, « Comme le mois dernier » (sinon les anciens `settings.budgets`). Les conseils du mois et la carte
+  d'Aujourd'hui lisent les enveloppes.
+- Récurrentes : `months` (N mois, null = toujours) et `count` ; `isFinished` les arrête.
+- Portefeuilles : Espèces, Bankily, Masrvi, Sedad, BimBank (`card`/`other` lisibles dans les anciens mouvements).
+
 ## Invocations et audio (après la phase 5)
 
 - Onglet **Invocations** (`?set=douas`) : Hisn al-Muslim, situations du quotidien (`src/features/athkar/hisn.ts`,

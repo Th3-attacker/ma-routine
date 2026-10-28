@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 
 import { usePreferences } from '@/app/PreferencesProvider'
 import { ColorDot } from '@/components/ColorDot'
-import { Bar, cardClass, linkClass, Section, subClass } from '@/components/Section'
+import { cardClass, Section, subClass } from '@/components/Section'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { Settings, Transaction } from '@/db/types'
@@ -14,14 +14,14 @@ import { formatDayLabel, formatMonth } from '@/lib/dates'
 import { formatMoney } from '@/lib/money'
 import { cn } from '@/lib/utils'
 
-import { BudgetsDrawer } from './BudgetsDrawer'
 import { InsightsCard } from './InsightsCard'
-import { CATEGORIES, categoryColor } from './categories'
-import { addMonths, budgetLevel, budgetTotal, groupByDay, monthStats } from './stats'
+import { categoryColor } from './categories'
+import { useEnvelopes } from './envelopes'
+import { AssignDrawer, EnvelopeDrawer, EnvelopeList, ToAssignCard } from './EnvelopesView'
+import { addMonths, groupByDay, monthStats } from './stats'
 import { TransactionDrawer, type TxTarget } from './TransactionDrawer'
 import { useMonthTransactions } from './transactions'
 
-const LEVEL_FILL = { ok: '', warn: 'bg-warn', bad: 'bg-bad' } as const
 const iconBtn =
   'grid size-11 flex-none place-items-center rounded-[12px] border border-line bg-surface text-ink-2 disabled:opacity-40'
 
@@ -40,20 +40,14 @@ export function MonthView({
   const { lang } = usePreferences()
   const items = useMonthTransactions(month)
   const [tx, setTx] = useState<TxTarget | null>(null)
-  const [budgetsOpen, setBudgetsOpen] = useState(false)
+  const [assignOpen, setAssignOpen] = useState(false)
+  const [envelopeId, setEnvelopeId] = useState<string | null>(null)
+  const envelopes = useEnvelopes(month)
   const money = (n: number, sign = false) => formatMoney(n, settings.currency, lang, sign)
   const current = today.slice(0, 7)
 
   const stats = monthStats(items ?? [])
-  const total = budgetTotal(settings.budgets)
-  const pct = total ? (stats.spent / total) * 100 : 0
-  const level = budgetLevel(stats.spent, total)
   const balance = stats.income - stats.spent
-
-  const cats = CATEGORIES.out
-    .filter((c) => (stats.byCategory[c.id] ?? 0) > 0 || (settings.budgets[c.id] ?? 0) > 0)
-    .sort((a, b) => (stats.byCategory[b.id] ?? 0) - (stats.byCategory[a.id] ?? 0))
-  const maxCat = Math.max(1, ...cats.map((c) => stats.byCategory[c.id] ?? 0))
 
   return (
     <div className="flex flex-col gap-[22px]">
@@ -85,28 +79,7 @@ export function MonthView({
           {t('budget.spentMonth')}
         </h3>
         <p className="tabular font-display text-[2.125rem] leading-tight font-semibold">{money(stats.spent)}</p>
-        {total ? (
-          <>
-            <Bar value={pct / 100} fill={LEVEL_FILL[level] || 'bg-primary'} />
-            <p className={subClass}>
-              {t('budget.ofBudget', {
-                pct: Math.round(pct),
-                budget: money(total),
-                status:
-                  total - stats.spent >= 0
-                    ? t('budget.left', { amount: money(total - stats.spent) })
-                    : t('budget.over', { amount: money(stats.spent - total) }),
-              })}
-            </p>
-          </>
-        ) : (
-          <p className={subClass}>
-            {t('budget.noBudget')}{' '}
-            <button type="button" className={cn(linkClass, 'min-h-0')} onClick={() => setBudgetsOpen(true)}>
-              {t('budget.setBudgets')}
-            </button>
-          </p>
-        )}
+        {envelopes && <ToAssignCard state={envelopes} money={money} onAssign={() => setAssignOpen(true)} />}
         <dl className="grid grid-cols-3 gap-2">
           {[
             [t('budget.income'), money(stats.income), 'text-ok'],
@@ -142,57 +115,11 @@ export function MonthView({
           <EmptyState title={t('budget.emptyTitle', { month: formatMonth(month, lang) })}>
             {t('budget.emptyBody')}
           </EmptyState>
-          <Button variant="secondary" className="h-11 rounded-[14px] font-bold" onClick={() => setBudgetsOpen(true)}>
-            {t('budget.setBudgetsLong')}
-          </Button>
+          {envelopes && <EnvelopeList state={envelopes} money={money} onOpen={setEnvelopeId} />}
         </>
       ) : (
         <>
-          {cats.length > 0 && (
-            <Section
-              title={t('budget.byCategory')}
-              aside={
-                <button type="button" className={linkClass} onClick={() => setBudgetsOpen(true)}>
-                  {t('budget.budgets')}
-                </button>
-              }
-            >
-              <ul className="overflow-hidden rounded-xl bg-card shadow-card">
-                {cats.map((c) => {
-                  const spent = stats.byCategory[c.id] ?? 0
-                  const b = settings.budgets[c.id] ?? 0
-                  const lvl = budgetLevel(spent, b)
-                  return (
-                    <li
-                      key={c.id}
-                      className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-2.5 gap-y-1 border-t border-line px-3.5 py-2.5 first:border-t-0"
-                    >
-                      <span className="flex min-w-0 items-center gap-2 text-sm font-semibold">
-                        <ColorDot color={c.color} />
-                        <span className="truncate">{t(`categories.${c.id}` as never)}</span>
-                      </span>
-                      <span className="tabular text-end text-[0.84375rem] font-bold">
-                        {money(spent)}
-                        {b > 0 && <small className="font-semibold text-muted-foreground"> / {money(b)}</small>}
-                      </span>
-                      <span
-                        className="col-span-2 block h-1.5 overflow-hidden rounded-full bg-surface-2"
-                        aria-hidden="true"
-                      >
-                        <i
-                          className={cn('block h-full rounded-full', LEVEL_FILL[lvl])}
-                          style={{
-                            width: `${Math.min(100, b ? (spent / b) * 100 : (spent / maxCat) * 100)}%`,
-                            background: lvl === 'ok' ? `var(${c.color})` : undefined,
-                          }}
-                        />
-                      </span>
-                    </li>
-                  )
-                })}
-              </ul>
-            </Section>
-          )}
+          {envelopes && <EnvelopeList state={envelopes} money={money} onOpen={setEnvelopeId} />}
 
           <InsightsCard month={month} today={today} settings={settings} />
 
@@ -226,7 +153,25 @@ export function MonthView({
       )}
 
       <TransactionDrawer target={tx} today={today} currency={settings.currency} onClose={() => setTx(null)} />
-      <BudgetsDrawer open={budgetsOpen} onOpenChange={setBudgetsOpen} budgets={settings.budgets} />
+      {envelopes && (
+        <>
+          <AssignDrawer
+            month={month}
+            state={envelopes}
+            fallback={settings.budgets}
+            open={assignOpen}
+            money={money}
+            onOpenChange={setAssignOpen}
+          />
+          <EnvelopeDrawer
+            month={month}
+            state={envelopes}
+            id={envelopeId}
+            money={money}
+            onClose={() => setEnvelopeId(null)}
+          />
+        </>
+      )}
     </div>
   )
 }

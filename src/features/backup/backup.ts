@@ -1,6 +1,7 @@
 import { db } from '@/db/db'
 import { normalizeSettings } from '@/db/settings'
 import type {
+  Allocation,
   Day,
   Debt,
   Habit,
@@ -29,9 +30,20 @@ export type Backup = {
   debts: Debt[]
   savingsGoals: SavingsGoal[]
   recurring: Recurring[]
+  /** Enveloppes du budget (absent des anciennes sauvegardes). */
+  allocations: Allocation[]
 }
 
-const TABLES = ['days', 'transactions', 'projects', 'tasks', 'debts', 'savingsGoals', 'recurring'] as const
+const TABLES = [
+  'days',
+  'transactions',
+  'projects',
+  'tasks',
+  'debts',
+  'savingsGoals',
+  'recurring',
+  'allocations',
+] as const
 type TableName = (typeof TABLES)[number]
 
 export async function buildBackup(): Promise<Backup> {
@@ -48,6 +60,7 @@ export async function buildBackup(): Promise<Backup> {
     debts: await live(db.debts.toArray()),
     savingsGoals: await live(db.savingsGoals.toArray()),
     recurring: await live(db.recurring.toArray()),
+    allocations: await live(db.allocations.toArray()),
   }
 }
 
@@ -245,6 +258,7 @@ export function fromMockup(json: Obj, now = Date.now()): Backup {
     debts: debts.filter((d) => d.id),
     savingsGoals: savingsGoals.filter((g) => g.id),
     recurring: recurring.filter((r) => r.id),
+    allocations: [],
   }
 }
 
@@ -295,6 +309,17 @@ export async function importBackup(b: Backup): Promise<ImportSummary> {
     await db.debts.bulkPut(touch(b.debts))
     await db.savingsGoals.bulkPut(touch(b.savingsGoals))
     await db.recurring.bulkPut(touch(b.recurring))
+    // Seulement des lignes « YYYY-MM » avec des montants entiers positifs.
+    await db.allocations.bulkPut(
+      touch(
+        b.allocations
+          .filter((a) => typeof a.id === 'string' && /^\d{4}-\d{2}$/.test(a.id) && isObj(a.amounts))
+          .map((a) => ({
+            id: a.id,
+            amounts: Object.fromEntries(Object.entries(a.amounts).filter(([, v]) => Number.isInteger(v) && v > 0)),
+          })),
+      ),
+    )
   })
   return Object.fromEntries(TABLES.map((t) => [t, b[t].length])) as ImportSummary
 }

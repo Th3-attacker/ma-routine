@@ -403,6 +403,8 @@
     "cash": "Espèces",
     "bankily": "Bankily",
     "masrvi": "Masrvi",
+    "sedad": "Sedad",
+    "bimbank": "BimBank",
     "card": "Banque / carte",
     "other": "Autre"
   },
@@ -475,7 +477,8 @@
     },
     "budgetsTitle": "Budgets du mois",
     "budgetsHint": "Montant mensuel prévu par catégorie. Laisse vide pour ne pas suivre.",
-    "budgetsSaved": "Budgets enregistrés"
+    "budgetsSaved": "Budgets enregistrés",
+    "byWallet": "Par portefeuille"
   },
   "deadline": {
     "done": "échéance {{date}}",
@@ -582,7 +585,13 @@
     "deleteTitle": "Supprimer cette opération récurrente ?",
     "deleteBody": "Elle ne sera plus ajoutée. Les mouvements déjà notés restent dans ton budget.",
     "added_one": "{{count}} opération récurrente ajoutée",
-    "added_other": "{{count}} opérations récurrentes ajoutées"
+    "added_other": "{{count}} opérations récurrentes ajoutées",
+    "duration": "Durée",
+    "always": "Toujours",
+    "forMonths": "Nombre de mois",
+    "monthsField": "Combien de mois ?",
+    "progress": "{{count}} / {{months}} mois",
+    "finished": "Terminé"
   },
   "projects": {
     "title": "Mes projets",
@@ -683,7 +692,7 @@
   "money": {
     "title": "Dépenses",
     "today": "Aujourd’hui",
-    "left": "Reste du budget",
+    "left": "Disponible (enveloppes)",
     "month": "Ce mois",
     "add": "Ajouter une dépense"
   },
@@ -753,7 +762,7 @@
     "lateDebts_other": "{{count}} dettes ont dépassé leur échéance ({{amount}} restants). Un petit message aux personnes aide souvent.",
     "catUp": "{{cat}} : +{{pct}} % par rapport au mois dernier.",
     "catDown": "{{cat}} : −{{pct}} % par rapport au mois dernier. Bien joué !",
-    "biggest": "Plus grosse dépense : {{amount}} ({{what}}), le {{date}}.",
+    "biggest": "Plus grosse dépense : {{amount}} ({{what}}), le {{date}}",
     "topDay": "Le jour où tu as le plus dépensé : le {{date}}, {{amount}}.",
     "fixedShare": "Les dépenses fixes (récurrentes) font {{pct}} % de tes dépenses du mois.",
     "sadaqa": "Sadaqa ce mois-ci : {{amount}}. Qu’Allah l’accepte."
@@ -788,5 +797,28 @@
     "listenAll": "Tout écouter",
     "stop": "Arrêter l’écoute",
     "error": "Impossible de lire l’enregistrement. Vérifie ta connexion : après une première écoute, il marche sans internet."
+  },
+  "envelopes": {
+    "toAssign": "À répartir",
+    "allAssigned": "Tout est réparti : chaque ouguiya a un rôle.",
+    "leftToAssign": "Répartis ce montant dans tes enveloppes.",
+    "overAssigned": "Tu as réparti plus que tes revenus : retire de l’argent d’une enveloppe.",
+    "assign": "Répartir mes revenus",
+    "title": "Enveloppes",
+    "available": "Disponible",
+    "detail": "mis {{assigned}} · dépensé {{spent}}",
+    "overspent": "dépassée de {{amount}}",
+    "empty": "Ajoute un revenu, puis répartis-le dans tes enveloppes : alimentation, transport, logement…",
+    "assignHint": "Mets ton argent du mois dans tes enveloppes jusqu’à ce qu’il reste 0. Ce qui reste dans une enveloppe passe au mois suivant.",
+    "remaining": "Reste à répartir : {{amount}}",
+    "copyLast": "Comme le mois dernier",
+    "saved": "Enveloppes enregistrées",
+    "setLabel": "Mis ce mois-ci",
+    "save": "Enregistrer",
+    "moveTitle": "Déplacer de l’argent",
+    "moveTo": "Vers l’enveloppe",
+    "moveAmount": "Montant à déplacer",
+    "move": "Déplacer",
+    "moved": "Argent déplacé"
   }
 }

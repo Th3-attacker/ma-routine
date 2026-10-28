@@ -2180,6 +2180,8 @@ nombre…) : ne pas les traduire.
 | `payMethods.cash` | Espèces | نقدًا |
 | `payMethods.bankily` | Bankily | بنكيلي |
 | `payMethods.masrvi` | Masrvi | مصرفي |
+| `payMethods.sedad` | Sedad | سداد |
+| `payMethods.bimbank` | BimBank | بيم بنك |
 | `payMethods.card` | Banque / carte | بنك / بطاقة |
 | `payMethods.other` | Autre | أخرى |
 ### startup
@@ -2251,6 +2253,7 @@ nombre…) : ne pas les traduire.
 | `budget.budgetsTitle` | Budgets du mois | ميزانيات الشهر |
 | `budget.budgetsHint` | Montant mensuel prévu par catégorie. Laisse vide pour ne pas suivre. | المبلغ الشهري المتوقع لكل فئة. اتركه فارغًا لعدم المتابعة. |
 | `budget.budgetsSaved` | Budgets enregistrés | تم حفظ الميزانيات |
+| `budget.byWallet` | Par portefeuille | حسب المحفظة |
 ### deadline
 
 | Clé | Français | العربية |
@@ -2366,6 +2369,12 @@ nombre…) : ne pas les traduire.
 | `rec.deleteBody` | Elle ne sera plus ajoutée. Les mouvements déjà notés restent dans ton budget. | لن تُضاف بعد الآن. العمليات المسجلة سابقًا تبقى في ميزانيتك. |
 | `rec.added_one` | {{count}} opération récurrente ajoutée | أُضيفت عملية متكررة واحدة |
 | `rec.added_other` | {{count}} opérations récurrentes ajoutées | أُضيفت {{count}} عمليات متكررة |
+| `rec.duration` | Durée | المدة |
+| `rec.always` | Toujours | دائمًا |
+| `rec.forMonths` | Nombre de mois | عدد الأشهر |
+| `rec.monthsField` | Combien de mois ? | كم شهرًا؟ |
+| `rec.progress` | {{count}} / {{months}} mois | {{count}} / {{months}} شهر |
+| `rec.finished` | Terminé | انتهى |
 ### projects
 
 | Clé | Français | العربية |
@@ -2466,7 +2475,7 @@ nombre…) : ne pas les traduire.
 |---|---|---|
 | `money.title` | Dépenses | المصاريف |
 | `money.today` | Aujourd’hui | اليوم |
-| `money.left` | Reste du budget | المتبقي من الميزانية |
+| `money.left` | Disponible (enveloppes) | المتاح (الظروف) |
 | `money.month` | Ce mois | هذا الشهر |
 | `money.add` | Ajouter une dépense | إضافة مصروف |
 ### steps
@@ -2546,7 +2555,7 @@ nombre…) : ne pas les traduire.
 | `insights.lateDebts_other` | {{count}} dettes ont dépassé leur échéance ({{amount}} restants). Un petit message aux personnes aide souvent. | {{count}} ديون تجاوزت موعدها (المتبقي {{amount}}). رسالة لطيفة للأشخاص تساعد غالبًا. |
 | `insights.catUp` | {{cat}} : +{{pct}} % par rapport au mois dernier. | {{cat}}: زيادة {{pct}}٪ مقارنة بالشهر الماضي. |
 | `insights.catDown` | {{cat}} : −{{pct}} % par rapport au mois dernier. Bien joué ! | {{cat}}: انخفاض {{pct}}٪ مقارنة بالشهر الماضي. أحسنت! |
-| `insights.biggest` | Plus grosse dépense : {{amount}} ({{what}}), le {{date}}. | أكبر مصروف: {{amount}} ({{what}})، يوم {{date}}. |
+| `insights.biggest` | Plus grosse dépense : {{amount}} ({{what}}), le {{date}} | أكبر مصروف: {{amount}} ({{what}})، يوم {{date}}. |
 | `insights.topDay` | Le jour où tu as le plus dépensé : le {{date}}, {{amount}}. | اليوم الأكثر إنفاقًا: {{date}}، {{amount}}. |
 | `insights.fixedShare` | Les dépenses fixes (récurrentes) font {{pct}} % de tes dépenses du mois. | المصاريف الثابتة (المتكررة) تمثل {{pct}}٪ من مصاريف الشهر. |
 | `insights.sadaqa` | Sadaqa ce mois-ci : {{amount}}. Qu’Allah l’accepte. | الصدقة هذا الشهر: {{amount}}. تقبّل الله. |
@@ -2587,3 +2596,28 @@ nombre…) : ne pas les traduire.
 | `audio.listenAll` | Tout écouter | استمع إلى الكل |
 | `audio.stop` | Arrêter l’écoute | إيقاف الاستماع |
 | `audio.error` | Impossible de lire l’enregistrement. Vérifie ta connexion : après une première écoute, il marche sans internet. | تعذّر تشغيل التسجيل. تحقّق من الاتصال: بعد الاستماع الأول يعمل دون إنترنت. |
+### envelopes
+
+| Clé | Français | العربية |
+|---|---|---|
+| `envelopes.toAssign` | À répartir | للتوزيع |
+| `envelopes.allAssigned` | Tout est réparti : chaque ouguiya a un rôle. | تم توزيع كل شيء: لكل أوقية دورها. |
+| `envelopes.leftToAssign` | Répartis ce montant dans tes enveloppes. | وزّع هذا المبلغ على ظروفك. |
+| `envelopes.overAssigned` | Tu as réparti plus que tes revenus : retire de l’argent d’une enveloppe. | وزّعت أكثر من مداخيلك: أنقص من أحد الظروف. |
+| `envelopes.assign` | Répartir mes revenus | توزيع مداخيلي |
+| `envelopes.title` | Enveloppes | الظروف |
+| `envelopes.available` | Disponible | المتاح |
+| `envelopes.detail` | mis {{assigned}} · dépensé {{spent}} | المخصص {{assigned}} · المصروف {{spent}} |
+| `envelopes.overspent` | dépassée de {{amount}} | تجاوز بـ {{amount}} |
+| `envelopes.empty` | Ajoute un revenu, puis répartis-le dans tes enveloppes : alimentation, transport, logement… | أضف دخلًا، ثم وزّعه على ظروفك: الطعام، النقل، السكن… |
+| `envelopes.assignHint` | Mets ton argent du mois dans tes enveloppes jusqu’à ce qu’il reste 0. Ce qui reste dans une enveloppe passe au mois suivant. | ضع مال الشهر في ظروفك حتى يبقى 0. ما يبقى في الظرف ينتقل إلى الشهر التالي. |
+| `envelopes.remaining` | Reste à répartir : {{amount}} | الباقي للتوزيع: {{amount}} |
+| `envelopes.copyLast` | Comme le mois dernier | مثل الشهر الماضي |
+| `envelopes.saved` | Enveloppes enregistrées | تم حفظ الظروف |
+| `envelopes.setLabel` | Mis ce mois-ci | المخصص هذا الشهر |
+| `envelopes.save` | Enregistrer | حفظ |
+| `envelopes.moveTitle` | Déplacer de l’argent | نقل المال |
+| `envelopes.moveTo` | Vers l’enveloppe | إلى الظرف |
+| `envelopes.moveAmount` | Montant à déplacer | المبلغ المنقول |
+| `envelopes.move` | Déplacer | نقل |
+| `envelopes.moved` | Argent déplacé | تم نقل المال |

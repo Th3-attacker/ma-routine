@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 import { db } from '@/db/db'
 
-import { applyRecurring, initialLastMonth, recurringTotals, saveRecurring, setActive } from './recurring'
+import { applyRecurring, initialLastMonth, isFinished, recurringTotals, saveRecurring, setActive } from './recurring'
 
 beforeEach(async () => {
   await Promise.all(db.tables.map((t) => t.clear()))
@@ -72,5 +72,16 @@ describe('opérations récurrentes', () => {
       out: 40000,
       in: 150000,
     })
+  })
+
+  it('traitement de 3 mois : ajouté 3 fois puis terminé ; « toujours » continue', async () => {
+    const r = await saveRecurring({ ...rent, name: 'Traitement', months: 3 }, '2026-10-01')
+    for (const day of ['2026-10-05', '2026-11-05', '2026-12-05', '2027-01-05', '2027-02-05']) await applyRecurring(day)
+    expect(await txs()).toHaveLength(3)
+    const done = await db.recurring.get(r.id)
+    expect(done && isFinished(done)).toBe(true)
+    expect(recurringTotals([done!])).toEqual({ out: 0, in: 0 })
+    await saveRecurring({ ...rent, months: null }, '2027-03-01')
+    expect(await applyRecurring('2027-03-05')).toBe(1)
   })
 })
