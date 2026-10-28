@@ -356,7 +356,10 @@
     "delete": "Effacer",
     "digit": "{{d}}",
     "nameField": "Prénom",
-    "forgotOther": "Effacer cet appareil à la place"
+    "forgotOther": "Effacer cet appareil à la place",
+    "greet": "Jàmm nga am ?",
+    "greetName": "Jàmm nga am, {{name}} ?",
+    "peace": "Jàmm rekk."
   },
   "security": {
     "title": "Sécurité",

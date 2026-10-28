@@ -57,24 +57,6 @@
   --sky-day: linear-gradient(165deg, #24509f 0%, #4f86d3 100%);
   --sky-dusk: linear-gradient(165deg, #241f5c 0%, #7a3a68 58%, #c86a3c 100%);
 
-  /* Variables shadcn */
-  --background: var(--bg);
-  --foreground: var(--ink);
-  --card: var(--surface);
-  --card-foreground: var(--ink);
-  --popover: var(--bg);
-  --popover-foreground: var(--ink);
-  --primary-foreground: var(--on-primary);
-  --secondary: var(--surface-2);
-  --secondary-foreground: var(--ink);
-  --muted: var(--surface-2);
-  --muted-foreground: var(--ink-3);
-  --accent: var(--primary-soft);
-  --accent-foreground: var(--primary);
-  --destructive: var(--bad);
-  --border: var(--line);
-  --input: var(--line);
-  --ring: var(--primary);
   --radius: 0.875rem;
 
   color-scheme: light;
@@ -115,6 +97,29 @@
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 18px rgba(0, 0, 0, 0.25);
 
   color-scheme: dark;
+}
+
+/* Variables shadcn, déclarées aussi sur .dark : un bloc « dark » imbriqué (le ciel du verrou) les recalcule
+   avec ses propres couleurs. */
+:root,
+.dark {
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--bg);
+  --popover-foreground: var(--ink);
+  --primary-foreground: var(--on-primary);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface-2);
+  --muted-foreground: var(--ink-3);
+  --accent: var(--primary-soft);
+  --accent-foreground: var(--primary);
+  --destructive: var(--bad);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--primary);
 }
 
 @theme inline {

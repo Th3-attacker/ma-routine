@@ -30,7 +30,7 @@ test('inscription en arabe : langue, prénom arabe, codes refusés et différent
 test('déverrouillage après rechargement, clavier physique, attente après 5 erreurs', async ({ page }) => {
   await openApp(page, { 'elhadj.lang': 'fr' })
   await page.reload()
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('As-salâmu ‘alaykum, Elhadj')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Jàmm nga am, Elhadj ?')
   await expect(page.getByRole('navigation')).toHaveCount(0)
 
   // Clavier physique

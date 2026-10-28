@@ -61,7 +61,7 @@ describe('premier lancement', () => {
     await setPin('2580')
     const user = userEvent.setup()
     await renderApp('/', { locked: true })
-    expect(await screen.findByRole('heading', { name: 'As-salâmu ‘alaykum, Elhadj' })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: 'Jàmm nga am, Elhadj ?' })).toBeInTheDocument()
     expect(screen.queryByRole('navigation')).not.toBeInTheDocument()
     await typePin(user, '1111')
     expect(await screen.findByRole('alert')).toHaveTextContent('Code incorrect')
