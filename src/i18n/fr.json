@@ -298,15 +298,7 @@
     "witr": "Witr",
     "qiyam": "Qiyâm al-layl"
   },
-  "weekdays": [
-    "dim",
-    "lun",
-    "mar",
-    "mer",
-    "jeu",
-    "ven",
-    "sam"
-  ],
+  "weekdays": ["dim", "lun", "mar", "mer", "jeu", "ven", "sam"],
   "reader": {
     "count": "Compter",
     "prev": "Précédent",
