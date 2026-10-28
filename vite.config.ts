@@ -12,8 +12,8 @@ import { shellMarkup } from './src/app/shell.ts'
 import ar from './src/i18n/ar.json' with { type: 'json' }
 import fr from './src/i18n/fr.json' with { type: 'json' }
 
-// Nom du dépôt GitHub : l'app est servie sur https://<compte>.github.io/ma-routine/
-const base = '/ma-routine/'
+// GitHub Pages sert l'app sur https://<compte>.github.io/ma-routine/ ; Vercel (variable VERCEL au build) à la racine.
+const base = process.env.VERCEL ? '/' : '/ma-routine/'
 
 export default defineConfig(({ mode }) => ({
   base,
