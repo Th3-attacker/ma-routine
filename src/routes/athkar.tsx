@@ -105,7 +105,13 @@ function Series({ set, day }: { set: AthkarSet; day: Day }) {
   const series = ATHKAR[set]
   const progress = athkarProgress(set, day)
   const [reading, setReading] = useState(false)
-  const tracks = seriesTracks(set, i18n.language)
+  // Chaque écoute terminée compte comme un toucher sur la carte.
+  const tracks = seriesTracks(set, i18n.language).map((tr, i) => ({ ...tr, onEnd: () => void tap(i) }))
+  // « Tout écouter » : seulement ce qui reste à dire (dhikr non terminés, répétitions restantes).
+  const remaining = tracks.flatMap((tr, i) => {
+    const left = tr.n - (day.athkar[set]?.[i] ?? 0)
+    return left > 0 ? [{ ...tr, n: left }] : []
+  })
   const hasAudio = tracks.some((tr) => audioUrl(tr))
   const audio = usePlayer()
   const listening = tracks.some((tr) => tr.key === currentKey(audio))
@@ -170,11 +176,11 @@ function Series({ set, day }: { set: AthkarSet; day: Day }) {
       <Bar value={progress.done / progress.total} fill="bg-gold" />
       <div className="flex flex-wrap items-center justify-between gap-2.5">
         <p className={subClass}>{t('athkar.tapHint')}</p>
-        {hasAudio && (
+        {hasAudio && (listening || remaining.some((tr) => audioUrl(tr))) && (
           <Button
             variant="secondary"
             className="h-11 rounded-[14px] bg-primary-soft font-bold text-primary"
-            onClick={() => (listening ? player.stop() : player.play(tracks, 0, () => toast(t('audio.error'))))}
+            onClick={() => (listening ? player.stop() : player.play(remaining, 0, () => toast(t('audio.error'))))}
           >
             {listening ? <SquareIcon aria-hidden="true" /> : <HeadphonesIcon aria-hidden="true" />}
             {t(listening ? 'audio.stop' : 'audio.listenAll')}
