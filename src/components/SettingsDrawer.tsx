@@ -55,6 +55,7 @@ export function SettingsDrawer({ open, onOpenChange }: { open: boolean; onOpenCh
   return (
     <AppDrawer
       open={open}
+      tall
       onOpenChange={(o) => {
         // À la fermeture, on revient à la liste des rubriques.
         if (!o) setPage(null)
