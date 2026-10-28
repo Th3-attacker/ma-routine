@@ -1,5 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon, PlusIcon } from 'lucide-react'
 import { useState } from 'react'
+
+import { EmptyState } from '@/components/ItemCard'
 import { useTranslation } from 'react-i18next'
 
 import { usePreferences } from '@/app/PreferencesProvider'
@@ -138,12 +140,9 @@ export function MonthView({
         <Skeleton className="h-32 w-full rounded-xl" />
       ) : items.length === 0 ? (
         <>
-          <section className="flex flex-col items-start gap-2.5 rounded-xl border-[1.5px] border-dashed border-line p-[18px] text-sm text-ink-2">
-            <h3 className="text-[0.9375rem] font-bold text-foreground">
-              {t('budget.emptyTitle', { month: formatMonth(month, lang) })}
-            </h3>
-            <p>{t('budget.emptyBody')}</p>
-          </section>
+          <EmptyState title={t('budget.emptyTitle', { month: formatMonth(month, lang) })}>
+            {t('budget.emptyBody')}
+          </EmptyState>
           <Button variant="secondary" className="h-11 rounded-[14px] font-bold" onClick={() => setBudgetsOpen(true)}>
             {t('budget.setBudgetsLong')}
           </Button>
