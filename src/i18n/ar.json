@@ -376,7 +376,10 @@
     "delete": "حذف",
     "digit": "{{d}}",
     "nameField": "الاسم",
-    "forgotOther": "مسح هذا الجهاز بدلًا من ذلك"
+    "forgotOther": "مسح هذا الجهاز بدلًا من ذلك",
+    "greet": "السلام عليكم",
+    "greetName": "السلام عليكم، {{name}}",
+    "peace": "وعليكم السلام"
   },
   "security": {
     "title": "الأمان",

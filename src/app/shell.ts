@@ -15,6 +15,8 @@ export type ShellVariant = 'welcome' | 'unlock'
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
 // Mêmes classes que LockLayout, Logo, ChipGroup et l'étape 1 d'Onboarding.
+// Ciel de nuit de LockLayout (classe « dark » : couleurs du mode sombre à l'intérieur).
+const NIGHT = 'dark min-h-dvh bg-[image:var(--sky-night)] text-foreground'
 const LAYOUT =
   'mx-auto flex min-h-dvh max-w-[480px] flex-col ps-[max(16px,env(safe-area-inset-left,0px))] pe-[max(16px,env(safe-area-inset-right,0px))] pt-[calc(12px+env(safe-area-inset-top,0px))] pb-[calc(20px+env(safe-area-inset-bottom,0px))]'
 const LABEL =
@@ -53,7 +55,7 @@ function shellHtml(t: Texts, lang: 'fr' | 'ar', variant: ShellVariant): string {
 <span class="inline-flex h-12 w-full items-center justify-center rounded-[14px] bg-primary text-[0.9375rem] font-bold text-primary-foreground">${esc(t.lock.next)}</span>
 </section>`
       : ''
-  return `<div data-shell="${variant}-${lang}" aria-hidden="true" class="${LAYOUT}">${top}<div class="flex flex-1 flex-col items-center justify-center gap-6 py-4">${header(t)}${body}</div></div>`
+  return `<div data-shell="${variant}-${lang}" aria-hidden="true" class="${NIGHT}"><div class="${LAYOUT}">${top}<div class="flex flex-1 flex-col items-center justify-center gap-6 py-4">${header(t)}${body}</div></div></div>`
 }
 
 /** Les 4 variantes, plus le petit script qui garde la bonne (langue, premier lancement ou non). */

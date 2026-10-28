@@ -22,9 +22,17 @@ import { unlockWithBiometric } from './biometric'
 import { LockLayout } from './LockLayout'
 import { getSecurity, verifyPin, wipeDevice } from './pin'
 
-/** Déverrouillage : salutation, 4 ronds, clavier ; paliers d'attente avec compte à rebours ; « Code oublié ? ». */
-export function UnlockScreen({ name, onUnlock }: { name: string; onUnlock: () => void }) {
+/**
+ * Déverrouillage : salutation wolof (« Jàmm nga am ? »), 4 ronds, clavier ; paliers d'attente avec compte à
+ * rebours ; « Code oublié ? ». Le bon code : « Jàmm rekk. » une demi-seconde, puis l'app s'ouvre.
+ */
+export function UnlockScreen({ name, onUnlock: open }: { name: string; onUnlock: () => void }) {
   const { t } = useTranslation()
+  const [peace, setPeace] = useState(false)
+  const onUnlock = () => {
+    setPeace(true)
+    setTimeout(open, 500)
+  }
   const { lang } = usePreferences()
   const [lockedUntil, setLockedUntil] = useState(0)
   const [now, setNow] = useState(() => Date.now())
@@ -49,7 +57,7 @@ export function UnlockScreen({ name, onUnlock }: { name: string; onUnlock: () =>
   return (
     <LockLayout>
       <h1 className="text-center font-display text-2xl font-semibold rtl:font-bold">
-        {name ? t('today.salamName', { name }) : t('today.salam')}
+        {peace ? t('lock.peace') : name ? t('lock.greetName', { name }) : t('lock.greet')}
       </h1>
       <PinPad
         title={t('lock.unlockHint')}
