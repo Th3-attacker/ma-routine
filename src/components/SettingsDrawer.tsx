@@ -20,6 +20,7 @@ import { updateSettings, useSettings } from '@/db/settings'
 import { AboutSettings, BackupSettings } from '@/features/backup/BackupSettings'
 import { SecuritySettings } from '@/features/security/SecuritySettings'
 import { SettingsForm } from '@/features/settings/SettingsForm'
+import { AdhanSample } from '@/features/prayer/AdhanSample'
 import { NotificationSettings } from '@/push/NotificationSettings'
 
 import { AppDrawer } from './AppDrawer'
@@ -122,7 +123,13 @@ function SettingsPage({ page, onDone }: { page: PageId; onDone: () => void }) {
       </div>
     )
   }
-  if (page === 'prayer') return <NotificationSettings settings={settings} />
+  if (page === 'prayer')
+    return (
+      <>
+        <AdhanSample />
+        <NotificationSettings settings={settings} />
+      </>
+    )
   if (page === 'backup')
     return (
       <>

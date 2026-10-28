@@ -2515,6 +2515,7 @@ nombre…) : ne pas les traduire.
 | `about.times` | Horaires : bibliothèque libre adhan-js ; calendrier hégirien Umm al-Qura. | المواقيت: مكتبة adhan-js الحرة؛ التقويم الهجري أم القرى. |
 | `about.check` | Les textes seront relus avec Hisn al-Muslim et un mushaf avant la version finale. | ستُراجع النصوص مع حصن المسلم والمصحف قبل النسخة النهائية. |
 | `about.privacy` | Aucune publicité, aucun outil de mesure, aucune donnée envoyée à des tiers. | لا إعلانات، لا أدوات قياس، ولا بيانات تُرسل إلى أطراف أخرى. |
+| `about.adhan` | Adhan d’exemple : « Beautiful adhan », Adam-synagda, Wikimedia Commons, domaine public (CC0 1.0). | الأذان المثال: «Beautiful adhan»، Adam-synagda، ويكيميديا كومنز، ملك عام (CC0 1.0). |
 ### notif
 
 | Clé | Français | العربية |
@@ -2621,3 +2622,10 @@ nombre…) : ne pas les traduire.
 | `envelopes.moveAmount` | Montant à déplacer | المبلغ المنقول |
 | `envelopes.move` | Déplacer | نقل |
 | `envelopes.moved` | Argent déplacé | تم نقل المال |
+### adhan
+
+| Clé | Français | العربية |
+|---|---|---|
+| `adhan.listen` | Écouter l’adhan | استمع إلى الأذان |
+| `adhan.stop` | Arrêter l’adhan | أوقف الأذان |
+| `adhan.hint` | Un exemple d’adhan à écouter. Les notifications, elles, utilisent le son du téléphone. | مثال للأذان للاستماع. أما الإشعارات فتستعمل صوت الهاتف. |
