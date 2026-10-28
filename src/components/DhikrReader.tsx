@@ -121,17 +121,18 @@ function ReaderBody({ set, day }: { set: AthkarSet; day: Day }) {
       </header>
       <Dialog.Description className="sr-only">{t('reader.hint')}</Dialog.Description>
 
-      <div
-        role="button"
-        tabIndex={0}
-        aria-label={`${t('reader.count')} · ${t('athkar.repetition', { c: count, n: item.n })}`}
-        onClick={() => void tap()}
-        className="flex min-h-0 flex-1 cursor-pointer flex-col justify-center gap-4 overflow-auto py-4 text-center select-none"
-      >
-        <p lang="ar" dir="rtl" className="font-quran text-[1.875rem] leading-[2.1] whitespace-pre-line">
-          {item.ar}
-        </p>
-        {note && <p className="mx-auto max-w-[52ch] text-sm text-ink-2">{note}</p>}
+      <div className="min-h-0 flex-1 overflow-auto">
+        <button
+          type="button"
+          aria-label={`${t('reader.count')} · ${t('athkar.repetition', { c: count, n: item.n })}`}
+          onClick={() => void tap()}
+          className="flex min-h-full w-full cursor-pointer flex-col justify-center gap-4 py-4 text-center select-none"
+        >
+          <span lang="ar" dir="rtl" className="block font-quran text-[1.875rem] leading-[2.1] whitespace-pre-line">
+            {item.ar}
+          </span>
+          {note && <span className="mx-auto block max-w-[52ch] text-sm text-ink-2">{note}</span>}
+        </button>
       </div>
 
       <AudioButton queue={tracks} from={index} className="mx-auto mb-3" />

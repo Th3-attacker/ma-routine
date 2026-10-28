@@ -1,6 +1,6 @@
 import { useForm } from '@tanstack/react-form'
 import { PlusIcon, Trash2Icon } from 'lucide-react'
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -150,10 +150,14 @@ function GoalDetail({
   const pct = goal.target ? Math.max(0, Math.min(100, Math.round((saved / goal.target) * 100))) : 0
   const pm = monthlyToSave(goal, today)
 
+  const titleId = useId()
+
   return (
     <>
-      <section className={`${cardClass} flex flex-col gap-2.5`}>
-        <h3 className={subClass}>{t('goals.saved')}</h3>
+      <section aria-labelledby={titleId} className={`${cardClass} flex flex-col gap-2.5`}>
+        <h3 id={titleId} className={subClass}>
+          {t('goals.saved')}
+        </h3>
         <p className="tabular font-display text-[2.125rem] leading-tight font-semibold">{money(saved)}</p>
         <span className="block h-2 overflow-hidden rounded-full bg-surface-2" aria-hidden="true">
           <i className="block h-full rounded-full" style={{ width: `${pct}%`, background: `var(${goal.color})` }} />
