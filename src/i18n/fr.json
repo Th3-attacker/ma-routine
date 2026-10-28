@@ -87,7 +87,9 @@
       "accountHint": "Compte en ligne, code à 4 chiffres",
       "backup": "Sauvegarde et à propos",
       "backupHint": "Exporter, importer, sources des textes"
-    }
+    },
+    "locationWhy": "Tes horaires sont calculés pour l’endroit où tu es. La position reste sur ton téléphone.",
+    "cityFallback": "Ou choisis ta ville"
   },
   "today": {
     "salam": "As-salâmu ‘alaykum",
