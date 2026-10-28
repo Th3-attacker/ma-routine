@@ -68,7 +68,6 @@
     "days_many": "{{value}} أيام",
     "days_other": "{{value}} أيام",
     "habitsTitle": "العادات",
-    "nameAr": "الاسم بالعربية (اختياري)",
     "positionHint": "تُحسب المواقيت لموقعك، بالمنطقة الزمنية لجهازك.",
     "back": "العودة إلى الإعدادات",
     "sections": {
@@ -347,10 +346,7 @@
     "back": "رجوع",
     "step": "الخطوة {{n}} من 2",
     "nameTitle": "اسمك",
-    "nameAr": "الاسم بالعربية (اختياري)",
-    "nameArHint": "يظهر عندما يكون التطبيق بالعربية.",
     "namePlaceholder": "مثال: Elhadj",
-    "nameArPlaceholder": "مثال: الحاج",
     "codeTitle": "رمزك",
     "choose": "اختر رمزًا من 4 أرقام",
     "confirm": "اكتبه مرة ثانية",

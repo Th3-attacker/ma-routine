@@ -19,7 +19,6 @@ const coord = (max: number) =>
 const profileSchema = z
   .object({
     name: z.string().trim().min(1, 'errors.required').max(40, 'errors.tooLong?max=40'),
-    nameAr: z.string().trim().max(40, 'errors.tooLong?max=40'),
     cityId: z.string(),
     lat: coord(66),
     lng: coord(180),
@@ -45,7 +44,6 @@ export default function OnboardingProfile({
   const form = useForm({
     defaultValues: {
       name: settings.name,
-      nameAr: settings.nameAr,
       cityId: settings.cityId,
       lat: settings.custom ? String(settings.custom.lat) : '',
       lng: settings.custom ? String(settings.custom.lng) : '',
@@ -56,7 +54,6 @@ export default function OnboardingProfile({
       const lng = parseNumber(value.lng)
       await updateSettings({
         name: value.name.trim(),
-        nameAr: value.nameAr.trim(),
         cityId: value.cityId,
         custom:
           Number.isFinite(lat) && Number.isFinite(lng) ? { lat, lng, timezone: deviceTimezone() } : settings.custom,
@@ -89,25 +86,6 @@ export default function OnboardingProfile({
                 placeholder={t('lock.namePlaceholder')}
                 maxLength={40}
                 required
-                value={field.state.value}
-                onChange={(e) => field.handleChange(e.target.value)}
-                onBlur={field.handleBlur}
-              />
-            )}
-          </Field>
-        )}
-      </form.Field>
-      <form.Field name="nameAr">
-        {(field) => (
-          <Field label={t('lock.nameAr')} hint={t('lock.nameArHint')} errors={field.state.meta.errors}>
-            {(p) => (
-              <Input
-                {...p}
-                lang="ar"
-                dir="rtl"
-                className={inputClass}
-                placeholder={t('lock.nameArPlaceholder')}
-                maxLength={40}
                 value={field.state.value}
                 onChange={(e) => field.handleChange(e.target.value)}
                 onBlur={field.handleBlur}

@@ -64,7 +64,6 @@
     "days_one": "{{value}} jour",
     "days_other": "{{value}} jours",
     "habitsTitle": "Habitudes",
-    "nameAr": "Prénom en arabe (facultatif)",
     "positionHint": "Horaires calculés pour ta position, avec le fuseau horaire de ton appareil.",
     "back": "Retour aux réglages",
     "sections": {
@@ -327,10 +326,7 @@
     "back": "Retour",
     "step": "Étape {{n}} sur 2",
     "nameTitle": "Ton prénom",
-    "nameAr": "Prénom en arabe (facultatif)",
-    "nameArHint": "Il s’affiche quand l’app est en arabe.",
     "namePlaceholder": "ex. Elhadj",
-    "nameArPlaceholder": "ex. الحاج",
     "codeTitle": "Ton code",
     "choose": "Choisis ton code à 4 chiffres",
     "confirm": "Tape-le une deuxième fois",
