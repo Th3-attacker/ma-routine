@@ -1,12 +1,20 @@
 import { ChevronRightIcon } from 'lucide-react'
-import { useDeferredValue, useState } from 'react'
+import { useDeferredValue, useState, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { AppDrawer } from '@/components/AppDrawer'
+import { AudioButton } from '@/components/AudioButton'
 import { Field, inputClass } from '@/components/Field'
 import { subClass } from '@/components/Section'
 import { Input } from '@/components/ui/input'
+import { duaAudioKey, indexTexts, type Track } from '@/features/athkar/audio'
 import { formatSources, HISN, searchHisn, type Dua, type HisnChapter } from '@/features/athkar/hisn'
+
+const chapterTracks = (c: HisnChapter): Track[] =>
+  c.items.map((d, i) => ({ key: duaAudioKey(c.id, i), n: d.n, ar: d.ar, title: c.ar }))
+
+// Une invocation identique à une autre (ou à un dhikr) réutilise son enregistrement.
+indexTexts(HISN.flatMap(chapterTracks))
 
 /** Onglet Invocations : les situations de Hisn al-Muslim, avec une recherche. Chargé à la demande. */
 export default function DouasPanel() {
@@ -92,11 +100,12 @@ export default function DouasPanel() {
 }
 
 function ChapterList({ chapter }: { chapter: HisnChapter }) {
+  const tracks = chapterTracks(chapter)
   return (
     <ol className="flex flex-col gap-2.5">
       {chapter.items.map((d, i) => (
         <li key={i}>
-          <DuaCard dua={d} />
+          <DuaCard dua={d} audio={<AudioButton queue={tracks} from={i} />} />
         </li>
       ))}
     </ol>
@@ -104,7 +113,7 @@ function ChapterList({ chapter }: { chapter: HisnChapter }) {
 }
 
 /** Une invocation : texte arabe, sens (ou note arabe), répétitions et recueils. */
-function DuaCard({ dua }: { dua: Dua }) {
+function DuaCard({ dua, audio }: { dua: Dua; audio: ReactNode }) {
   const { t, i18n } = useTranslation()
   const lang = i18n.language === 'ar' ? 'ar' : 'fr'
   const note = lang === 'ar' ? dua.an : dua.fr
@@ -115,7 +124,10 @@ function DuaCard({ dua }: { dua: Dua }) {
       </p>
       {note && <p className="text-[0.8125rem] text-ink-2">{note}</p>}
       <p className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-xs font-semibold text-muted-foreground">
-        <span>{dua.n > 1 ? t('athkar.times', { n: dua.n }) : t('athkar.once')}</span>
+        <span className="flex items-center gap-2.5">
+          {audio}
+          {dua.n > 1 ? t('athkar.times', { n: dua.n }) : t('athkar.once')}
+        </span>
         <span>{t('athkar.douas.source', { src: formatSources(dua.src, lang) })}</span>
       </p>
     </div>

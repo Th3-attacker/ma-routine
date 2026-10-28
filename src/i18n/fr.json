@@ -842,5 +842,12 @@
     "ramadan": "Préparer Ramadan",
     "family": "Organiser un événement familial",
     "debt": "Rembourser une dette"
+  },
+  "audio": {
+    "play": "Écouter",
+    "pause": "Mettre en pause",
+    "listenAll": "Tout écouter",
+    "stop": "Arrêter l’écoute",
+    "error": "Impossible de lire l’enregistrement. Vérifie ta connexion : après une première écoute, il marche sans internet."
   }
 }

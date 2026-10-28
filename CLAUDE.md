@@ -58,6 +58,7 @@ pnpm verify         # formate, puis lint + types + tests (avant chaque commit)
 pnpm lint && pnpm format:check
 pnpm build          # tsc -b + vite build
 pnpm texts          # régénère TEXTES-A-VERIFIER.md (textes religieux et traductions à faire relire)
+pnpm audio          # régénère ENREGISTREMENTS.md (fichiers audio à demander au récitant, avancement)
 pnpm icons          # régénère les icônes PWA depuis public/logo.svg (pwa-assets.config.ts)
 ```
 
@@ -116,7 +117,17 @@ focus visible · `prefers-reduced-motion`.
 1B Budget, projets, bilan du soir, Ramadan, export/import (dont JSON de la maquette) ✅ · 2 Compte + synchro Supabase
 (code à 6 chiffres par e-mail) ✅ · 3 Notifications d'adhan ✅ · 4 Conseils sans IA ✅ · 5 Finitions (a11y axe dans la CI,
 Lighthouse mobile ~92 grâce à l'écran pré-dessiné `src/app/shell.ts`, README FR/AR, `pnpm texts`, empreinte/visage
-WebAuthn, voix d'homme) ✅. Reste : mise en ligne (dépôt public, Pages, secrets, PR dev → main), SMTP Gmail.
+WebAuthn, voix d'homme) ✅. En ligne depuis le 28/10/2026. Reste : SMTP Gmail (erreur « Error sending confirmation
+email » = réglage SMTP de Supabase), puis plus tard Vercel pour un lien à partager (après les tests).
+
+## Invocations et audio (après la phase 5)
+
+- Onglet **Invocations** (`?set=douas`) : Hisn al-Muslim, situations du quotidien (`src/features/athkar/hisn.ts`,
+  chargé à la demande avec `DouasPanel`), recherche sans voyelles ; recueils par codes (`SOURCES`).
+- **Audio** : enregistrements d'un récitant (accord écrit) dans `src/assets/audio/athkar|douas/<clé>.mp3`, trouvés
+  au build par `import.meta.glob` ; pas de fichier → pas de bouton. Un texte s'enregistre une fois (l'app répète
+  `n` fois ; un texte identique réutilise l'enregistrement). Pas dans le précache : `src/sw.ts` garde chaque
+  fichier après la 1re écoute et répond aux requêtes Range. Lecteur unique `player` (`features/athkar/audio.ts`).
 
 Valeurs de référence pour les tests (Nouakchott 18,0858 ; −15,9785, 23/10/2026, Ligue islamique mondiale, Asr
 standard, ±2 min) : Fajr 05:47 · Chourouq 07:00 · Dhohr 12:48 · Asr 16:08 · Maghrib 18:36 · Icha 19:45 ;

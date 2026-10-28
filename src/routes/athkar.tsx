@@ -1,10 +1,11 @@
 import { getRouteApi } from '@tanstack/react-router'
-import { ExpandIcon } from 'lucide-react'
+import { ExpandIcon, HeadphonesIcon, SquareIcon } from 'lucide-react'
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 
 import type { AthkarTab } from '@/app/router'
+import { AudioButton } from '@/components/AudioButton'
 import { DhikrCard } from '@/components/DhikrCard'
 import { DhikrReader } from '@/components/DhikrReader'
 import { Bar, subClass } from '@/components/Section'
@@ -27,6 +28,7 @@ import { useDay } from '@/db/days'
 import { useSettings } from '@/db/settings'
 import { ATHKAR_SETS, type AthkarSet, type Day, type Settings } from '@/db/types'
 import { resetAthkar, tapDhikr } from '@/features/athkar/actions'
+import { audioUrl, currentKey, player, seriesTracks, usePlayer } from '@/features/athkar/audio'
 import { ATHKAR } from '@/features/athkar/data'
 import { athkarProgress, defaultAthkarSet } from '@/features/athkar/progress'
 import { useNow, useToday } from '@/features/prayer/useToday'
@@ -103,6 +105,10 @@ function Series({ set, day }: { set: AthkarSet; day: Day }) {
   const series = ATHKAR[set]
   const progress = athkarProgress(set, day)
   const [reading, setReading] = useState(false)
+  const tracks = seriesTracks(set, i18n.language)
+  const hasAudio = tracks.some((tr) => audioUrl(tr))
+  const audio = usePlayer()
+  const listening = tracks.some((tr) => tr.key === currentKey(audio))
   const cards = useRef<(HTMLButtonElement | null)[]>([])
   const pendingScroll = useRef<number | null>(null)
 
@@ -164,6 +170,16 @@ function Series({ set, day }: { set: AthkarSet; day: Day }) {
       <Bar value={progress.done / progress.total} fill="bg-gold" />
       <div className="flex flex-wrap items-center justify-between gap-2.5">
         <p className={subClass}>{t('athkar.tapHint')}</p>
+        {hasAudio && (
+          <Button
+            variant="secondary"
+            className="h-11 rounded-[14px] bg-primary-soft font-bold text-primary"
+            onClick={() => (listening ? player.stop() : player.play(tracks, 0, () => toast(t('audio.error'))))}
+          >
+            {listening ? <SquareIcon aria-hidden="true" /> : <HeadphonesIcon aria-hidden="true" />}
+            {t(listening ? 'audio.stop' : 'audio.listenAll')}
+          </Button>
+        )}
         <Button
           variant="secondary"
           className="h-11 rounded-[14px] bg-primary-soft font-bold text-primary"
@@ -183,6 +199,7 @@ function Series({ set, day }: { set: AthkarSet; day: Day }) {
               item={it}
               count={day.athkar[set]?.[i] ?? 0}
               onTap={() => void tap(i)}
+              audio={hasAudio && <AudioButton queue={tracks} from={i} />}
             />
           </li>
         ))}

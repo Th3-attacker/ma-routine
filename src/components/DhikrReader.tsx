@@ -2,10 +2,13 @@ import { ChevronLeftIcon, ChevronRightIcon, XIcon } from 'lucide-react'
 import { Dialog } from 'radix-ui'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { AudioButton } from '@/components/AudioButton'
 import { toast } from 'sonner'
 
 import type { AthkarSet, Day } from '@/db/types'
 import { firstUndone, tapDhikr } from '@/features/athkar/actions'
+import { currentKey, seriesTracks, usePlayer } from '@/features/athkar/audio'
 import { setReaderOpen } from '@/features/call/speech'
 import { ATHKAR } from '@/features/athkar/data'
 import { athkarProgress } from '@/features/athkar/progress'
@@ -55,6 +58,15 @@ function ReaderBody({ set, day }: { set: AthkarSet; day: Day }) {
   const series = ATHKAR[set]
   const counts = day.athkar[set]
   const [index, setIndex] = useState(() => firstUndone(set, counts))
+  const tracks = seriesTracks(set, i18n.language)
+  // Pendant l'écoute de la série, le lecteur suit le dhikr en cours d'écoute.
+  const audio = usePlayer()
+  const playingAt = tracks.findIndex((tr) => tr.key === currentKey(audio))
+  const [followed, setFollowed] = useState(-1)
+  if (playingAt >= 0 && playingAt !== followed) {
+    setFollowed(playingAt)
+    setIndex(playingAt)
+  }
 
   const item = series.items[index]
   const count = Math.min(counts?.[index] ?? 0, item.n)
@@ -112,6 +124,8 @@ function ReaderBody({ set, day }: { set: AthkarSet; day: Day }) {
         </p>
         {note && <p className="mx-auto max-w-[52ch] text-sm text-ink-2">{note}</p>}
       </div>
+
+      <AudioButton queue={tracks} from={index} className="mx-auto mb-3" />
 
       <ol
         className="flex flex-wrap justify-center gap-1"
