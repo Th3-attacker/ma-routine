@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 import { enablePin, openApp, PIN, typePin, unlock } from './helpers.ts'
 
-test('inscription en arabe : langue, prénom arabe, pas de code', async ({ page }) => {
+test('inscription en arabe : langue, prénom, pas de code', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('elhadj.lang', 'fr'))
   await page.goto('./')
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Bienvenue sur Sama Jàmm')
@@ -11,14 +11,13 @@ test('inscription en arabe : langue, prénom arabe, pas de code', async ({ page 
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl')
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('مرحبًا بك في سلامي')
   await page.getByRole('button', { name: 'متابعة' }).click()
-  await page.getByLabel('الاسم', { exact: true }).fill('Elhadj')
-  await page.getByLabel('الاسم بالعربية (اختياري)').fill('الحاج')
+  await page.getByLabel('الاسم', { exact: true }).fill('الحاج')
   await page.getByRole('button', { name: 'متابعة' }).click()
   await expect(page.getByText('مرحبًا، الحاج!')).toBeVisible()
   await expect(page.getByRole('heading', { level: 1, name: 'السلام عليكم، الحاج' })).toBeVisible({ timeout: 10_000 })
   // Sans code, l'app s'ouvre directement au lancement suivant (le script de test remet le français).
   await page.reload()
-  await expect(page.getByRole('heading', { level: 1, name: 'As-salâmu ‘alaykum, Elhadj' })).toBeVisible()
+  await expect(page.getByRole('heading', { level: 1, name: 'As-salâmu ‘alaykum, الحاج' })).toBeVisible()
   await expect(page.getByRole('group', { name: 'Clavier du code' })).toHaveCount(0)
 })
 

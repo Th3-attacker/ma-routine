@@ -37,7 +37,7 @@ function Today({ settings }: { settings: Settings }) {
   const now = useNow()
   const { key, place, yesterday, today, tomorrow } = useToday(settings, now)
   const day = useDay(key)
-  const name = displayName(settings, lang)
+  const name = displayName(settings)
   const hijri = hijriDate(key, settings.hijriAdj)
   const ramadan = ramadanDay(key, settings.hijriAdj, settings.ramadanPreview)
   const evening = isEvening(now, today)

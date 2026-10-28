@@ -167,5 +167,5 @@ Icônes PWA, iPhone et favicon : fichiers fournis par la charte dans `public/` (
 `background_color` / `theme_color` du manifeste = nuit de la marque `#10143A`.
 Verrou et inscription sur le ciel de nuit (`LockLayout`, classe `dark` imbriquée : les variables shadcn sont aussi
 déclarées sur `.dark`), salutation wolof « Jàmm nga am, {prénom} ? » puis « Jàmm rekk. ». Écran d'ouverture animé
-`src/app/opening.ts` (HTML + CSS injectés au build hors de `#root`, ~2 s, passable d'un toucher, absent sous
+`src/app/opening.ts` (HTML + CSS injectés au build hors de `#root`, 3,5 s, passable d'un toucher, absent sous
 `navigator.webdriver`), prénom lu dans `elhadj.greet` (écrit par `LockGate`).

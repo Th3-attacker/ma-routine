@@ -1,8 +1,9 @@
 // Écran d'ouverture de la charte, inséré dans index.html au build (plugin « opening » de vite.config.ts).
 // HTML + CSS + quelques lignes de script, sans React : il se joue PENDANT le téléchargement de l'app, donc sans
 // la ralentir. Sur le ciel de nuit : l'arche se dessine, l'intérieur s'allume, le soleil se lève, l'étoile
-// scintille, puis le nom et la salutation wolof (1,6 s), lisibles jusqu'à 2 s ; un toucher (ou une touche) le passe ;
-// « réduire les animations » : état final pendant 0,6 s. Rien dans les tests automatisés (navigator.webdriver).
+// scintille, puis le nom et la salutation wolof (1,6 s), laissés environ 2 s pour les lire (3,5 s en tout) ;
+// un toucher (ou une touche) le passe ;
+// « réduire les animations » : état final pendant 2 s. Rien dans les tests automatisés (navigator.webdriver).
 
 type Texts = { lock: { greet: string; greetName: string } }
 
@@ -40,7 +41,7 @@ export function openingMarkup(fr: Texts, ar: Texts, nameSvg: string): string {
 var T=${texts},l=document.documentElement.lang==='ar'?'ar':'fr',n='';try{var g=JSON.parse(localStorage.getItem('elhadj.greet')||'{}');n=g[l]||''}catch(e){}
 var h=o.querySelector('.hello');h.lang=l;h.textContent=n?T[l][1].replace('{{name}}',n):T[l][0];
 var done=0;function end(){if(done)return;done=1;o.classList.add('out');setTimeout(function(){o.remove()},300)}
-var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;setTimeout(end,reduce?600:2000);
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;setTimeout(end,reduce?2000:3500);
 o.addEventListener('pointerdown',end);addEventListener('keydown',end,{once:true})})()`
   return `<div id="opening" aria-hidden="true"><style>${STYLE}</style>${mark}${name}<p class="hello">${esc(fr.lock.greet)}</p></div><script>${script}</script>`
 }

@@ -114,7 +114,7 @@ export function SettingsForm({
   })
 
   const textField = (
-    name: 'name' | 'nameAr' | 'currency' | 'goal' | 'page' | 'total',
+    name: 'name' | 'currency' | 'goal' | 'page' | 'total',
     label: string,
     extra: { hint?: string; numeric?: boolean; placeholder?: string; maxLength?: number } = {},
   ) => (
@@ -130,8 +130,7 @@ export function SettingsForm({
               onChange={(e) => field.handleChange(e.target.value)}
               onBlur={field.handleBlur}
               inputMode={extra.numeric ? 'numeric' : undefined}
-              dir={extra.numeric || name === 'currency' ? 'ltr' : name === 'nameAr' ? 'rtl' : undefined}
-              lang={name === 'nameAr' ? 'ar' : undefined}
+              dir={extra.numeric || name === 'currency' ? 'ltr' : undefined}
               placeholder={extra.placeholder}
               maxLength={extra.maxLength}
             />
@@ -155,7 +154,6 @@ export function SettingsForm({
           <section aria-labelledby="settings-profile" className="flex flex-col gap-4">
             <SectionTitle id="settings-profile">{t('settings.profile')}</SectionTitle>
             {textField('name', t('settings.name'), { placeholder: t('settings.namePlaceholder'), maxLength: 40 })}
-            {textField('nameAr', t('settings.nameAr'), { hint: t('lock.nameArHint'), maxLength: 40 })}
           </section>
 
           <section aria-labelledby="settings-place" className="flex flex-col gap-4">
