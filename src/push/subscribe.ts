@@ -1,6 +1,7 @@
 import type { Settings } from '@/db/types'
 import { resolvePlace } from '@/features/prayer/cities'
-import { accountsEnabled, getSupabase } from '@/sync/supabase'
+
+import { callServer, serverEnabled } from './server'
 
 const VAPID_PUBLIC_KEY = import.meta.env.VITE_VAPID_PUBLIC_KEY as string | undefined
 
@@ -14,7 +15,7 @@ const isStandalone = () =>
 
 /** Les notifications marchent-elles ici ? Sur iPhone, seulement une fois l'app ajoutée à l'écran d'accueil. */
 export function pushSupport(): PushSupport {
-  if (!VAPID_PUBLIC_KEY || !accountsEnabled) return 'disabled'
+  if (!VAPID_PUBLIC_KEY || !serverEnabled) return 'disabled'
   if (isIOS() && !isStandalone()) return 'ios-not-installed'
   if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) return 'unsupported'
   return 'ok'
@@ -52,13 +53,7 @@ export function pushPayload(sub: PushSubscriptionJSON & { endpoint: string }, la
 }
 
 async function save(sub: PushSubscription, lang: 'fr' | 'ar', settings: Settings): Promise<void> {
-  const supabase = await getSupabase()
-  if (!supabase) return
-  const { error } = await supabase.rpc(
-    'save_push_subscription',
-    pushPayload({ ...sub.toJSON(), endpoint: sub.endpoint }, lang, settings),
-  )
-  if (error) throw error
+  await callServer('save_push_subscription', pushPayload({ ...sub.toJSON(), endpoint: sub.endpoint }, lang, settings))
 }
 
 /**
@@ -80,7 +75,7 @@ export async function enablePush(lang: 'fr' | 'ar', settings: Settings): Promise
 export async function disablePush(): Promise<void> {
   const sub = await currentSubscription()
   if (!sub) return
-  await (await getSupabase())?.rpc('delete_push_subscription', { p_endpoint: sub.endpoint })
+  await callServer('delete_push_subscription', { p_endpoint: sub.endpoint })
   await sub.unsubscribe()
 }
 

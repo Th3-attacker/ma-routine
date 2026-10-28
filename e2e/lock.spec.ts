@@ -79,7 +79,7 @@ test('code oublié sans compte : tout effacer avec une confirmation en deux temp
 test('Réglages → Sécurité : changer le code', async ({ page }) => {
   await openApp(page, { 'elhadj.lang': 'fr' })
   await page.getByRole('button', { name: 'Réglages' }).click()
-  await page.getByRole('button', { name: /^Compte et sécurité/ }).click()
+  await page.getByRole('button', { name: /^Sécurité/ }).click()
   await page.getByRole('button', { name: 'Changer mon code' }).click()
   await typePin(page, PIN)
   await typePin(page, '1357')

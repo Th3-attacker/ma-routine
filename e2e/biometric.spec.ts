@@ -20,7 +20,7 @@ test('déverrouiller avec l’empreinte ou le visage', async ({ page, browserNam
 
   await openApp(page, { 'elhadj.lang': 'fr' })
   await page.getByRole('button', { name: 'Réglages' }).click()
-  await page.getByRole('button', { name: /^Compte et sécurité/ }).click()
+  await page.getByRole('button', { name: /^Sécurité/ }).click()
   const toggle = page.getByRole('switch', { name: /Ouvrir avec l’empreinte ou le visage/ })
   await toggle.click()
   await expect(toggle).toBeChecked()

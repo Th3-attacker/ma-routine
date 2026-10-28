@@ -10,7 +10,6 @@ import { useSettings } from '@/db/settings'
 import { useRecurringAutoAdd } from '@/features/budget/useRecurringAutoAdd'
 import { whenIdle } from '@/lib/idle'
 import { usePushBridge } from '@/push/usePushBridge'
-import { SyncLink } from '@/sync/SyncLink'
 
 import { OpenSettingsContext } from './settings-drawer'
 
@@ -46,7 +45,6 @@ export function AppLayout() {
         </Suspense>
       )}
       <PwaPrompt />
-      <SyncLink />
       <Toaster />
     </OpenSettingsContext.Provider>
   )
