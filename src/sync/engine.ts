@@ -128,10 +128,11 @@ export type SyncResult = { pulled: number; pushed: number }
 
 /** Une synchro complète : récupérer et fusionner, puis envoyer. */
 export async function syncOnce(remote: Remote, userId: string): Promise<SyncResult> {
-  let pulled = 0
-  let pushed = 0
-  for (const name of Object.keys(SYNCED_TABLES) as LocalName[]) pulled += await pullTable(remote, userId, name)
-  for (const name of Object.keys(SYNCED_TABLES) as LocalName[]) pushed += await pushTable(remote, name)
+  // Les tables sont indépendantes : une requête par table, toutes en même temps (un aller-retour au lieu de huit).
+  const names = Object.keys(SYNCED_TABLES) as LocalName[]
+  const sum = (ns: number[]) => ns.reduce((a, b) => a + b, 0)
+  const pulled = sum(await Promise.all(names.map((name) => pullTable(remote, userId, name))))
+  const pushed = sum(await Promise.all(names.map((name) => pushTable(remote, name))))
   return { pulled, pushed }
 }
 
